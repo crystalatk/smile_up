@@ -56,50 +56,32 @@ const AddAnEvent = () => {
   //   Function to Handle Submit
   const _handleSubmit = async (e) => {
     e.preventDefault();
-    const submitResponse = await fetch(
-          `http://127.0.0.1:3232/users/signup`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              username: userName,
-              password: password,
-              first_name: firstName,
-              last_name: lastName,
-              zip_code: zipCode,
-              phone_num: phoneNumber,
-              picture: avatar,
-            }),
-          }
-        ).then((response) => response);
-        myAlert.success("Your account has been created!");
-        setAvatar("");
-        setFirstName("");
-        setLastName("");
-        setMatchingPasswords(true);
-        setPassword("");
-        setPassword2("");
-        setPhoneNumber("");
-        setUserName("");
-        setZipCode("");
-        setUsernameTaken(false);
-        history.push("/");
-      } else {
-        myAlert.error("You broke it...");
-      }
-    } else {
-      myAlert.error("You broke it!");
-      setTimeout(() => {
-        myAlert.error("Just kidding.");
-      }, 1000);
-      setTimeout(() => {
-        myAlert.error("That username is super popular.");
-      }, 2000);
-      setTimeout(() => {
-        myAlert.error("Choose something else.");
-      }, 3000);
-      setUsernameTaken(true);
-    }
+    const submitResponse = await fetch(`http://127.0.0.1:3232/users/signup`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: userName,
+        password: password,
+        first_name: firstName,
+        last_name: lastName,
+        zip_code: zipCode,
+        phone_num: phoneNumber,
+        picture: avatar,
+      }),
+    }).then((response) => response);
+    myAlert.success("Your event has been created!");
+    setTitle("");
+    setDateStart("");
+    setDateStop("");
+    setLocation("");
+    setDescription("");
+    setHeadcountServedPotential("");
+    setAgeMin("");
+    setMinParticipants("");
+    setMaxParticipants("");
+    setAdultsNeeded("");
+    setNumAdults("");
+    setAlerts("");
   };
 
   return (
