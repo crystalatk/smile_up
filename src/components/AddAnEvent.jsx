@@ -1,8 +1,14 @@
 import { useState, useEffect } from "react";
 import { useAlert } from "react-alert";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import moment from "moment";
 
 const AddAnEvent = () => {
   const [title, setTitle] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
+  const [startTime, setStartTime] = useState(new Date());
+  const [stopTime, setStopTime] = useState(new Date());
   const [dateStart, setDateStart] = useState("");
   const [dateStop, setDateStop] = useState("");
   const [location, setLocation] = useState("");
@@ -18,51 +24,40 @@ const AddAnEvent = () => {
   const myAlert = useAlert();
 
   //   functions to handle Input changes
-  const _handleTitleChange = (e) => {
-    setTitle(e.target.value);
-  };
-  const _handleDateStart = (e) => {
-    setDateStart(e.target.value);
-  };
-  const _handleDateStop = (e) => {
-    setDateStop(e.target.value);
-  };
-  const _handleLocation = (e) => {
-    setLocation(e.target.value);
-  };
-  const _handleDescription = (e) => {
-    setDescription(e.target.value);
-  };
-  const _handleHeadcountServedPotential = (e) => {
-    setHeadcountServedPotential(e.target.value);
-  };
-  const _handleSignupDeadline = (e) => {
-    setSignupDeadline(e.target.value);
-  };
-  const _handleAgeMin = (e) => {
-    setAgeMin(e.target.value);
-  };
-  const _handleMinParticipants = (e) => {
-    setMinParticipants(e.target.value);
-  };
-  const _handleMaxParticipants = (e) => {
-    setMaxParticipants(e.target.value);
-  };
   const _handleAdultsNeeded = (e) => {
     adultsNeeded ? setAdultsNeeded(false) : setAdultsNeeded(true);
   };
-  const _handleNumAdults = (e) => {
-    setNumAdults(e.target.value);
-  };
-  const _handleAlerts = (e) => {
-    setAlerts(e.target.value);
-  };
+
+  useEffect(() => {
+    if (startDate) {
+      if (startTime) {
+        console.log(startTime);
+        const totalDateStart =
+          moment(startDate).format("YYYY-MM-DD") +
+          " " +
+          moment(startTime).format("HH:MM:SS");
+        setDateStart(totalDateStart);
+      }
+      if (stopTime) {
+        const totalDateStop =
+          moment(startDate).format("YYYY-MM-DD") +
+          " " +
+          moment(stopTime).format("HH:MM:SS");
+        setDateStop(totalDateStop);
+      }
+    }
+  }, [startDate, startTime, stopTime]);
+
+  // useEffect(() => {
+  //   setTimeStop();
+  // });
 
   useEffect(() => {
     console.log("THIS IS ADULTS NEEDED: ", adultsNeeded);
     console.log("THIS IS THE HEADCOUNT SERVED :", headcountServedPotential);
     console.log("THIS IS THE MIN AGE: ", ageMin);
-  }, [adultsNeeded, headcountServedPotential]);
+    console.log("THIS IS THE DATE START AND DATE STOP: ", dateStart, dateStop);
+  }, [adultsNeeded, headcountServedPotential, dateStart, dateStop, ageMin]);
 
   //   Function to Handle Submit
   const _handleSubmit = async (e) => {
@@ -91,17 +86,19 @@ const AddAnEvent = () => {
     ).then((response) => response);
     myAlert.success("Your event has been created!");
     setTitle("");
-    setDateStart("");
-    setDateStop("");
+    setStartDate("");
+    setStartTime("");
+    setStopTime("");
     setLocation("");
     setDescription("");
     setHeadcountServedPotential("");
     setAgeMin("");
     setMinParticipants("");
     setMaxParticipants("");
-    setAdultsNeeded("");
+    setAdultsNeeded(false);
     setNumAdults("");
     setAlerts("");
+    setSignupDeadline("");
   };
 
   return (
@@ -110,50 +107,84 @@ const AddAnEvent = () => {
       <form onSubmit={_handleSubmit}>
         <label>
           Event Title
-          <input type="text" value={title} onChange={_handleTitleChange} />
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+          />
         </label>
         <label>
-          Event Start
-          <input type="text" value={dateStart} onChange={_handleDateStart} />
+          Event Date:
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            dateFormat="MM/dd/yyyy"
+            showMonthDropdown
+          />
         </label>
         <label>
-          Event End
-          <input type="text" value={dateStop} onChange={_handleDateStop} />
+          Event Start Time
+          <DatePicker
+            selected={startTime}
+            onChange={(date) => setStartTime(date)}
+            showTimeSelect
+            showTimeSelectOnly
+            timeIntervals={15}
+            timeCaption="Time"
+            dateFormat="h:mm aa"
+          />
+        </label>
+        <label>
+          Event End Time
+          <DatePicker
+            selected={stopTime}
+            onChange={(date) => setStopTime(date)}
+            showTimeSelect
+            showTimeSelectOnly
+            timeIntervals={15}
+            timeCaption="Time"
+            dateFormat="h:mm aa"
+          />
         </label>
         <label>
           Event Location
-          <input type="text" value={location} onChange={_handleLocation} />
+          <input
+            type="text"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+          />
         </label>
         <label>
           Event Description
-          <textarea value={description} onChange={_handleDescription} />
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
         </label>
         <label>
           Total Smiles we will give
           <input
             type="text"
             value={headcountServedPotential}
-            onChange={_handleHeadcountServedPotential}
-          />
-        </label>
-        <label>
-          Sign-up Deadline
-          <input
-            type="text"
-            value={signupDeadline}
-            onChange={_handleSignupDeadline}
+            onChange={(e) => setHeadcountServedPotential(e.target.value)}
           />
         </label>
         <label>
           Minimum Age
-          <input type="text" value={ageMin} onChange={_handleAgeMin} />
+          <input
+            type="text"
+            value={ageMin}
+            onChange={(e) => setAgeMin(e.target.value)}
+          />
         </label>
         <label>
           Minimum Participants
           <input
             type="text"
             value={minParticipants}
-            onChange={_handleMinParticipants}
+            onChange={(e) => setMinParticipants(e.target.value)}
           />
         </label>
         <label>
@@ -161,7 +192,7 @@ const AddAnEvent = () => {
           <input
             type="text"
             value={maxParticipants}
-            onChange={_handleMaxParticipants}
+            onChange={(e) => setMaxParticipants(e.target.value)}
           />
         </label>
         <label>
@@ -171,13 +202,30 @@ const AddAnEvent = () => {
         {!!adultsNeeded ? (
           <label>
             Number of Adults Needed
-            <input type="text" value={numAdults} onChange={_handleNumAdults} />
+            <input
+              type="text"
+              value={numAdults}
+              onChange={(e) => setNumAdults(e.target.value)}
+            />
           </label>
         ) : null}
 
         <label>
           Alerts:
-          <textarea value={alerts} onChange={_handleAlerts} />
+          <textarea
+            value={alerts}
+            onChange={(e) => setAlerts(e.target.value)}
+          />
+        </label>
+        <label>
+          Sign-up Deadline:
+          <DatePicker
+            selected={signupDeadline}
+            onChange={(date) =>
+              setSignupDeadline(moment(date).format("YYYY-MM-DD HH:MM:SS"))
+            }
+            showMonthDropdown
+          />
         </label>
         <button type="submit">Create my Event</button>
       </form>
