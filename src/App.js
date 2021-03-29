@@ -1,8 +1,15 @@
-import "./App.css";
-import NewNonMinorAccount from "./components/NewNonMinorAccount";
+
+import './App.css';
+import LoginVolunteers from './components__andrew/LoginVolunteers';
+import AdminLogin from "./J Component/AdminLogin";
 
 function App() {
-  return <div className="App"><NewNonMinorAccount/></div>;
+  return (
+    <div className="App">
+      <LoginVolunteers />
+      <AdminLogin/>
+    </div>
+  );
 }
 
 export default App;
