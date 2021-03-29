@@ -2,7 +2,9 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import LoginVolunteers from "./components/LoginVolunteers";
 import AdminLogin from "./components/AdminLogin";
 import AddAnEvent from "./components/AddAnEvent";
+import TotalVolunteers from './components/TotalVolunteers'
 import "./App.css";
+import VolunteerHours from "./components/VolunteerHrs";
 
 function App() {
   return (
@@ -12,8 +14,14 @@ function App() {
           <LoginVolunteers />
           <AdminLogin />
         </Route>
-        <Route>
-          <AddAnEvent path="/addevent" />
+        <Route path="/addevent" >
+          <AddAnEvent />
+        </Route>
+        <Route path="/totalVolunteers">
+          <TotalVolunteers />
+        </Route>
+        <Route path="/volunteerHours">
+            <VolunteerHours />
         </Route>
       </Router>
     </div>
