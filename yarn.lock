@@ -1338,6 +1338,7 @@
     terminal-link "^2.0.0"
     v8-to-istanbul "^7.0.0"
 
+
   optionalDependencies:
     node-notifier "^8.0.0"
 
@@ -2986,6 +2987,7 @@ cacache@^15.0.5:
   integrity sha512-lloiL22n7sOjEEXdL8NAjTgv9a1u43xICE9/203qonkZUCj5X1UEWIdf2/Y0d6QcCtMzbKQyhrcDbdvlZTs/+A==
   dependencies:
     "@npmcli/move-file" "^1.0.1"
+
     chownr "^2.0.0"
     fs-minipass "^2.0.0"
     glob "^7.1.4"
@@ -3965,6 +3967,7 @@ del@^4.1.1:
   dependencies:
     "@types/glob" "^7.1.1"
 
+
     globby "^6.1.0"
     is-path-cwd "^2.0.0"
     is-path-in-cwd "^2.0.0"
@@ -4407,6 +4410,7 @@ escodegen@^1.14.1:
     estraverse "^4.2.0"
     esutils "^2.0.2"
     optionator "^0.8.1"
+
   optionalDependencies:
     source-map "~0.6.1"
 
@@ -6341,6 +6345,7 @@ jest-haste-map@^26.6.2:
     sane "^4.0.3"
     walker "^1.0.7"
 
+
   optionalDependencies:
     fsevents "^2.1.2"
 
@@ -6740,6 +6745,7 @@ jsonfile@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/jsonfile/-/jsonfile-4.0.0.tgz"
   integrity sha1-h3Gq4HmbZAdrdmQPygWPnBDjPss=
+
   optionalDependencies:
     graceful-fs "^4.1.6"
 
@@ -6750,6 +6756,7 @@ jsonfile@^6.0.1:
   dependencies:
 
     universalify "^2.0.0"
+
 
   optionalDependencies:
     graceful-fs "^4.1.6"
@@ -9084,6 +9091,7 @@ react-scripts@4.0.3:
     "@svgr/webpack" "5.5.0"
     "@typescript-eslint/eslint-plugin" "^4.5.0"
     "@typescript-eslint/parser" "^4.5.0"
+
     babel-eslint "^10.1.0"
     babel-jest "^26.6.0"
     babel-loader "8.1.0"
@@ -11026,6 +11034,7 @@ walker@^1.0.7, walker@~1.0.5:
   resolved "https://registry.yarnpkg.com/walker/-/walker-1.0.7.tgz"
   integrity sha1-L3+bj9ENZ3JisYqITijRlhjgKPs=
   dependencies:
+
     makeerror "1.0.x"
 
 watchpack-chokidar2@^2.0.1:
@@ -11042,6 +11051,7 @@ watchpack@^1.7.4:
   dependencies:
     graceful-fs "^4.1.2"
     neo-async "^2.5.0"
+
   optionalDependencies:
     chokidar "^3.4.1"
     watchpack-chokidar2 "^2.0.1"
