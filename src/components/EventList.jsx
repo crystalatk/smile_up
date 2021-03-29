@@ -1,5 +1,6 @@
 import moment from "moment";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const EventList = () => {
   const [eventList, setEventList] = useState();
@@ -33,12 +34,14 @@ const EventList = () => {
           {eventList.map((event) => {
             return (
               <div>
-                <h1>{event.title}</h1>
-                <h3>{event.date_start}</h3>
-                <h3>{event.date_stop}</h3>
-                <h3>{event.location}</h3>
-                <h3>{event.signup_deadline}</h3>
-                <h3>{event.age_min}</h3>
+                <Link to="/${event.id}">
+                  <h1>{event.title}</h1>
+                  <h3>{event.date_start}</h3>
+                  <h3>{event.date_stop}</h3>
+                  <h3>{event.location}</h3>
+                  <h3>{event.signup_deadline}</h3>
+                  <h3>{event.age_min}</h3>
+                </Link>
               </div>
             );
           })}
