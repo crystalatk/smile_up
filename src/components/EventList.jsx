@@ -31,7 +31,16 @@ const EventList = () => {
       {!!eventList ? (
         <>
           {eventList.map((event) => {
-            return <h1>event.title</h1>;
+            return (
+              <div>
+                <h1>{event.title}</h1>
+                <h3>{event.date_start}</h3>
+                <h3>{event.date_stop}</h3>
+                <h3>{event.location}</h3>
+                <h3>{event.signup_deadline}</h3>
+                <h3>{event.age_min}</h3>
+              </div>
+            );
           })}
         </>
       ) : (
