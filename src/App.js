@@ -12,8 +12,8 @@ function App() {
           <LoginVolunteers />
           <AdminLogin />
         </Route>
-        <Route>
-          <AddAnEvent path="/addevent" />
+        <Route path="/addevent">
+          <AddAnEvent />
         </Route>
       </Router>
     </div>
