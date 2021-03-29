@@ -14,6 +14,7 @@ const AddAnEvent = () => {
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [headcountServedPotential, setHeadcountServedPotential] = useState("");
+  const [signupDeadlineDate, setSignupDeadlineDate] = useState(new Date());
   const [signupDeadline, setSignupDeadline] = useState("");
   const [ageMin, setAgeMin] = useState("");
   const [minParticipants, setMinParticipants] = useState("");
@@ -45,19 +46,29 @@ const AddAnEvent = () => {
           moment(stopTime).format("HH:MM:SS");
         setDateStop(totalDateStop);
       }
+      if (signupDeadlineDate) {
+        setSignupDeadline(
+          `${moment(signupDeadlineDate).format("YYYY-MM-DD")} 00:00:00`
+        );
+      }
     }
-  }, [startDate, startTime, stopTime]);
+  }, [startDate, startTime, stopTime, signupDeadlineDate]);
 
-  // useEffect(() => {
-  //   setTimeStop();
-  // });
-
+  // useEffect for consoling....
   useEffect(() => {
     console.log("THIS IS ADULTS NEEDED: ", adultsNeeded);
+    console.log("THIS IS SIGN UP DEADLINE: ", signupDeadline);
     console.log("THIS IS THE HEADCOUNT SERVED :", headcountServedPotential);
     console.log("THIS IS THE MIN AGE: ", ageMin);
     console.log("THIS IS THE DATE START AND DATE STOP: ", dateStart, dateStop);
-  }, [adultsNeeded, headcountServedPotential, dateStart, dateStop, ageMin]);
+  }, [
+    adultsNeeded,
+    headcountServedPotential,
+    dateStart,
+    dateStop,
+    ageMin,
+    signupDeadline,
+  ]);
 
   //   Function to Handle Submit
   const _handleSubmit = async (e) => {
@@ -87,6 +98,9 @@ const AddAnEvent = () => {
     myAlert.success("Your event has been created!");
     setTitle("");
     setStartDate("");
+    setDateStop(new Date());
+    setDateStart(new Date());
+    setSignupDeadlineDate(new Date());
     setStartTime("");
     setStopTime("");
     setLocation("");
@@ -220,9 +234,10 @@ const AddAnEvent = () => {
         <label>
           Sign-up Deadline:
           <DatePicker
-            selected={signupDeadline}
-            onChange={(date) =>
-              setSignupDeadline(moment(date).format("YYYY-MM-DD HH:MM:SS"))
+            selected={!!signupDeadlineDate ? signupDeadlineDate : startDate}
+            onChange={
+              (date) => setSignupDeadlineDate(date)
+              // console.log(`${moment(date).format("YYYY-MM-DD")} 00:00:00`)
             }
             showMonthDropdown
           />

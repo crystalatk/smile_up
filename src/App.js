@@ -20,7 +20,7 @@ function App() {
         <Route path="/eventlist">
           <EventList />
         </Route>
-        <Route path="/:id">
+        <Route path="/event/:id">
           <EventDetails />
         </Route>
       </Router>
