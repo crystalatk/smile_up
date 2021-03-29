@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useAlert } from "react-alert";
 
 const AddAnEvent = () => {
@@ -10,7 +11,7 @@ const AddAnEvent = () => {
   const [ageMin, setAgeMin] = useState("");
   const [minParticipants, setMinParticipants] = useState("");
   const [maxParticipants, setMaxParticipants] = useState("");
-  const [adultsNeeded, setAdultsNeeded] = useState("");
+  const [adultsNeeded, setAdultsNeeded] = useState(false);
   const [numAdults, setNumAdults] = useState("");
   const [alerts, setAlerts] = useState("");
   const myAlert = useAlert();
@@ -31,7 +32,7 @@ const AddAnEvent = () => {
   const _handleDescription = (e) => {
     setDescription(e.target.value);
   };
-  const _handleHeadcountServedPotential = () => {
+  const _handleHeadcountServedPotential = (e) => {
     setHeadcountServedPotential(e.target.value);
   };
   const _handleAgeMin = (e) => {
@@ -44,7 +45,7 @@ const AddAnEvent = () => {
     setMaxParticipants(e.target.value);
   };
   const _handleAdultsNeeded = (e) => {
-    setAdultsNeeded(e.target.value);
+    adultsNeeded ? setAdultsNeeded(false) : setAdultsNeeded(true);
   };
   const _handleNumAdults = (e) => {
     setNumAdults(e.target.value);
@@ -53,6 +54,10 @@ const AddAnEvent = () => {
     setAlerts(e.target.value);
   };
 
+  useEffect(() => {
+    console.log("THIS IS ADULTS NEEDED: ", adultsNeeded);
+  }, [adultsNeeded]);
+
   //   Function to Handle Submit
   const _handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,13 +65,18 @@ const AddAnEvent = () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        username: userName,
-        password: password,
-        first_name: firstName,
-        last_name: lastName,
-        zip_code: zipCode,
-        phone_num: phoneNumber,
-        picture: avatar,
+        title: title,
+        dateStart: dateStart,
+        dateStop: dateStop,
+        location: location,
+        description: description,
+        headcountServedPotential: headcountServedPotential,
+        ageMin: ageMin,
+        minParticipants: minParticipants,
+        maxParticipants: maxParticipants,
+        adultsNeeded: adultsNeeded,
+        numAdults: numAdults,
+        alerts: alerts,
       }),
     }).then((response) => response);
     myAlert.success("Your event has been created!");
@@ -109,7 +119,7 @@ const AddAnEvent = () => {
           <textarea value={description} onChange={_handleDescription} />
         </label>
         <label>
-          Event Title
+          Total Smiles we will give
           <input
             type="text"
             value={headcountServedPotential}
@@ -117,11 +127,11 @@ const AddAnEvent = () => {
           />
         </label>
         <label>
-          Event Title
+          Minimum Age
           <input type="text" value={ageMin} onChange={_handleAgeMin} />
         </label>
         <label>
-          Event Title
+          Minimum Participants
           <input
             type="text"
             value={minParticipants}
@@ -129,7 +139,7 @@ const AddAnEvent = () => {
           />
         </label>
         <label>
-          Event Title
+          Maximum Participants
           <input
             type="text"
             value={maxParticipants}
@@ -137,20 +147,19 @@ const AddAnEvent = () => {
           />
         </label>
         <label>
-          Event Title
-          <input
-            type="text"
-            value={adultsNeeded}
-            onChange={_handleAdultsNeeded}
-          />
+          Adults Needed
+          <input type="checkbox" onChange={_handleAdultsNeeded} />
         </label>
+        {!!adultsNeeded ? (
+          <label>
+            Number of Adults Needed
+            <input type="text" value={numAdults} onChange={_handleNumAdults} />
+          </label>
+        ) : null}
+
         <label>
-          Event Title
-          <input type="text" value={numAdults} onChange={_handleNumAdults} />
-        </label>
-        <label>
-          Event Title
-          <input type="text" value={alerts} onChange={_handleAlerts} />
+          Alerts:
+          <textarea value={alerts} onChange={_handleAlerts} />
         </label>
       </form>
     </>
