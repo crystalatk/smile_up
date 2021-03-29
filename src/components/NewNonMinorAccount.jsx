@@ -13,7 +13,7 @@ const NewNonMinorAccount = () => {
     return (
         <>
             <h1>Create an Account:</h1>
-            <form>
+            <form onSubmit={_handleSubmit}>
                 <label>Create Username
                     <input></input>
                 </label>
@@ -41,16 +41,20 @@ const NewNonMinorAccount = () => {
                 <label>Zip Code
                     <input></input>
                 </label>
-                <div>
-                    <label>If you are a parent or guardian, would you like to sign up your child to be a volunteer?
-                        <input type="radio" value={true} checked={hasMinor === true} onChange={_handleHasMinorChange} name="minor_signup"/> Yes
-                        <input type="radio" value={false} checked={hasMinor === false} onChange={_handleHasMinorChange} name="minor_signup"/> No
-                    </label>
-                </div>
+                <label>Emergency Contact Name (First & Last)
+                    <input></input>
+                </label>
+                <label>Emergency Contact Phone Number
+                    <input></input>
+                </label>
+                <label>Are you the parent or guardian of a smileUp volunteer who is under the age of 18?
+                    <input type="radio" value={true} onChange={_handleHasMinorChange} name="minor_signup"/> Yes
+                    <input type="radio" value={false} onChange={_handleHasMinorChange} name="minor_signup"/> No
+                </label>
                 <label>Would you like to include a message to the administrator? If so, enter below:
                     <input></input>
                 </label>
-
+                <button type="submit">Submit</button>
             </form>
         </>
     )
