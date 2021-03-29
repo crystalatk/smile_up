@@ -61,24 +61,27 @@ const AddAnEvent = () => {
   //   Function to Handle Submit
   const _handleSubmit = async (e) => {
     e.preventDefault();
-    const submitResponse = await fetch(`http://127.0.0.1:3232/users/signup`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        title: title,
-        dateStart: dateStart,
-        dateStop: dateStop,
-        location: location,
-        description: description,
-        headcountServedPotential: headcountServedPotential,
-        ageMin: ageMin,
-        minParticipants: minParticipants,
-        maxParticipants: maxParticipants,
-        adultsNeeded: adultsNeeded,
-        numAdults: numAdults,
-        alerts: alerts,
-      }),
-    }).then((response) => response);
+    const submitResponse = await fetch(
+      `http://127.0.0.1:3232/admins/addevent`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: title,
+          date_start: dateStart,
+          date_stop: dateStop,
+          location: location,
+          description: description,
+          headcount_served_potential: headcountServedPotential,
+          age_min: ageMin,
+          min_participants: minParticipants,
+          max_participants: maxParticipants,
+          adults_needed: adultsNeeded,
+          num_adults: numAdults,
+          alerts: alerts,
+        }),
+      }
+    ).then((response) => response);
     myAlert.success("Your event has been created!");
     setTitle("");
     setDateStart("");
@@ -97,7 +100,7 @@ const AddAnEvent = () => {
   return (
     <>
       <h1>This is the AddAnEvent</h1>
-      <form>
+      <form onSubmit={_handleSubmit}>
         <label>
           Event Title
           <input type="text" value={title} onChange={_handleTitleChange} />
@@ -161,6 +164,7 @@ const AddAnEvent = () => {
           Alerts:
           <textarea value={alerts} onChange={_handleAlerts} />
         </label>
+        <button type="submit">Create my Event</button>
       </form>
     </>
   );
