@@ -8,6 +8,7 @@ const AddAnEvent = () => {
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [headcountServedPotential, setHeadcountServedPotential] = useState("");
+  const [signupDeadline, setSignupDeadline] = useState("");
   const [ageMin, setAgeMin] = useState("");
   const [minParticipants, setMinParticipants] = useState("");
   const [maxParticipants, setMaxParticipants] = useState("");
@@ -35,6 +36,9 @@ const AddAnEvent = () => {
   const _handleHeadcountServedPotential = (e) => {
     setHeadcountServedPotential(e.target.value);
   };
+  const _handleSignupDeadline = (e) => {
+    setSignupDeadline(e.target.value);
+  };
   const _handleAgeMin = (e) => {
     setAgeMin(e.target.value);
   };
@@ -56,7 +60,9 @@ const AddAnEvent = () => {
 
   useEffect(() => {
     console.log("THIS IS ADULTS NEEDED: ", adultsNeeded);
-  }, [adultsNeeded]);
+    console.log("THIS IS THE HEADCOUNT SERVED :", headcountServedPotential);
+    console.log("THIS IS THE MIN AGE: ", ageMin);
+  }, [adultsNeeded, headcountServedPotential]);
 
   //   Function to Handle Submit
   const _handleSubmit = async (e) => {
@@ -73,6 +79,7 @@ const AddAnEvent = () => {
           location: location,
           description: description,
           headcount_served_potential: headcountServedPotential,
+          signup_deadline: signupDeadline,
           age_min: ageMin,
           min_participants: minParticipants,
           max_participants: maxParticipants,
@@ -127,6 +134,14 @@ const AddAnEvent = () => {
             type="text"
             value={headcountServedPotential}
             onChange={_handleHeadcountServedPotential}
+          />
+        </label>
+        <label>
+          Sign-up Deadline
+          <input
+            type="text"
+            value={signupDeadline}
+            onChange={_handleSignupDeadline}
           />
         </label>
         <label>
