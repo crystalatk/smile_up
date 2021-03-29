@@ -22,11 +22,13 @@ const AddAnEvent = () => {
   const [adultsNeeded, setAdultsNeeded] = useState(false);
   const [numAdults, setNumAdults] = useState("");
   const [alerts, setAlerts] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
   const myAlert = useAlert();
 
   //   functions to handle Input changes
   const _handleAdultsNeeded = (e) => {
     adultsNeeded ? setAdultsNeeded(false) : setAdultsNeeded(true);
+    setIsChecked(true);
   };
 
   useEffect(() => {
@@ -97,12 +99,12 @@ const AddAnEvent = () => {
     ).then((response) => response);
     myAlert.success("Your event has been created!");
     setTitle("");
-    setStartDate("");
-    setDateStop(new Date());
-    setDateStart(new Date());
+    setStartDate(new Date());
+    setDateStop("");
+    setDateStart("");
     setSignupDeadlineDate(new Date());
-    setStartTime("");
-    setStopTime("");
+    setStartTime(new Date());
+    setStopTime(new Date());
     setLocation("");
     setDescription("");
     setHeadcountServedPotential("");
@@ -113,6 +115,7 @@ const AddAnEvent = () => {
     setNumAdults("");
     setAlerts("");
     setSignupDeadline("");
+    setIsChecked(false);
   };
 
   return (
@@ -127,6 +130,7 @@ const AddAnEvent = () => {
             onChange={(e) => {
               setTitle(e.target.value);
             }}
+            required
           />
         </label>
         <label>
@@ -136,6 +140,7 @@ const AddAnEvent = () => {
             onChange={(date) => setStartDate(date)}
             dateFormat="MM/dd/yyyy"
             showMonthDropdown
+            required
           />
         </label>
         <label>
@@ -148,6 +153,7 @@ const AddAnEvent = () => {
             timeIntervals={15}
             timeCaption="Time"
             dateFormat="h:mm aa"
+            required
           />
         </label>
         <label>
@@ -160,6 +166,7 @@ const AddAnEvent = () => {
             timeIntervals={15}
             timeCaption="Time"
             dateFormat="h:mm aa"
+            required
           />
         </label>
         <label>
@@ -168,6 +175,7 @@ const AddAnEvent = () => {
             type="text"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
+            required
           />
         </label>
         <label>
@@ -175,6 +183,7 @@ const AddAnEvent = () => {
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            required
           />
         </label>
         <label>
@@ -183,6 +192,7 @@ const AddAnEvent = () => {
             type="text"
             value={headcountServedPotential}
             onChange={(e) => setHeadcountServedPotential(e.target.value)}
+            required
           />
         </label>
         <label>
@@ -191,6 +201,7 @@ const AddAnEvent = () => {
             type="text"
             value={ageMin}
             onChange={(e) => setAgeMin(e.target.value)}
+            required
           />
         </label>
         <label>
@@ -199,6 +210,7 @@ const AddAnEvent = () => {
             type="text"
             value={minParticipants}
             onChange={(e) => setMinParticipants(e.target.value)}
+            required
           />
         </label>
         <label>
@@ -207,11 +219,17 @@ const AddAnEvent = () => {
             type="text"
             value={maxParticipants}
             onChange={(e) => setMaxParticipants(e.target.value)}
+            required
           />
         </label>
         <label>
           Adults Needed
-          <input type="checkbox" onChange={_handleAdultsNeeded} />
+          <input
+            type="checkbox"
+            onChange={_handleAdultsNeeded}
+            checked={isChecked}
+            required
+          />
         </label>
         {!!adultsNeeded ? (
           <label>
@@ -220,6 +238,7 @@ const AddAnEvent = () => {
               type="text"
               value={numAdults}
               onChange={(e) => setNumAdults(e.target.value)}
+              required
             />
           </label>
         ) : null}
@@ -229,6 +248,7 @@ const AddAnEvent = () => {
           <textarea
             value={alerts}
             onChange={(e) => setAlerts(e.target.value)}
+            required
           />
         </label>
         <label>
@@ -240,6 +260,7 @@ const AddAnEvent = () => {
               // console.log(`${moment(date).format("YYYY-MM-DD")} 00:00:00`)
             }
             showMonthDropdown
+            required
           />
         </label>
         <button type="submit">Create my Event</button>
