@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import LoginVolunteers from "./components/LoginVolunteers";
 import AdminLogin from "./components/AdminLogin";
 import AddAnEvent from "./components/AddAnEvent";
+import EventList from "./components/EventList";
 import "./App.css";
 
 function App() {
@@ -14,6 +15,9 @@ function App() {
         </Route>
         <Route path="/addevent">
           <AddAnEvent />
+        </Route>
+        <Route path="/eventlist">
+          <EventList />
         </Route>
       </Router>
     </div>
