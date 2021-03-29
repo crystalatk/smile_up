@@ -2,9 +2,11 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import LoginVolunteers from "./components/LoginVolunteers";
 import AdminLogin from "./components/AdminLogin";
 import AddAnEvent from "./components/AddAnEvent";
+import TotalVolunteers from './components/TotalVolunteers'
 import EventList from "./components/EventList";
 import EventDetails from "./components/EventDetails";
 import "./App.css";
+import VolunteerHours from "./components/VolunteerHrs";
 
 function App() {
   return (
@@ -14,6 +16,15 @@ function App() {
           <LoginVolunteers />
           <AdminLogin />
         </Route>
+        <Route path="/addevent" >
+          <AddAnEvent />
+        </Route>
+        <Route path="/totalVolunteers">
+          <TotalVolunteers />
+        </Route>
+        <Route path="/volunteerHours">
+            <VolunteerHours />
+        <Route />
         <Route path="/addevent">
           <AddAnEvent />
         </Route>
