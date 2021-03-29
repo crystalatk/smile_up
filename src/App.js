@@ -3,6 +3,8 @@ import LoginVolunteers from "./components/LoginVolunteers";
 import AdminLogin from "./components/AdminLogin";
 import AddAnEvent from "./components/AddAnEvent";
 import TotalVolunteers from './components/TotalVolunteers'
+import EventList from "./components/EventList";
+import EventDetails from "./components/EventDetails";
 import "./App.css";
 import VolunteerHours from "./components/VolunteerHrs";
 
@@ -22,6 +24,15 @@ function App() {
         </Route>
         <Route path="/volunteerHours">
             <VolunteerHours />
+        <Route />
+        <Route path="/addevent">
+          <AddAnEvent />
+        </Route>
+        <Route path="/eventlist">
+          <EventList />
+        </Route>
+        <Route path="/event/:id">
+          <EventDetails />
         </Route>
       </Router>
     </div>
