@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useHistory } from "react-router-dom";
 import { useAlert }  from 'react-alert';
+import { useHistory } from 'react-router-dom';
+import moment from 'moment';
 
 const NewNonMinorAccount = () => {
     const [username, setUsername] = useState('');
@@ -15,7 +16,6 @@ const NewNonMinorAccount = () => {
     const [emergencyName, setEmergencyName] = useState('');
     const [emergencyPhone, setEmergencyPhone] = useState('');
     const [signUpMessage, setSignUpMessage] = useState('');
-    const [dateJoined, setDateJoined] = useState('');
     const [isGuardian, setIsGuardian] = useState(false);
     const [isMinor, setIsMinor] = useState(false);
     const [isAmbassador, setIsAmbassador] = useState(false);
@@ -92,13 +92,13 @@ const NewNonMinorAccount = () => {
     const _handleSubmit = async (e) => {
         e.preventDefault();
         const isUsername = await fetch(
-            `$http://127.0.0.1:3232/login/username/?username=${username}`
+            `http://127.0.0.1:3232/login/username/?username=${username}`
         ).then((response) => response.json());
         console.log("THIS IS THE ISUSESRNAME RESPONSE: ", isUsername);
         if (isUsername) {
             if (password2 === password) {
                 const submitResponse = await fetch(
-                    `${process.env.REACT_APP_SERVER_URL}users/signup`,
+                    `http://127.0.0.1:3232/login/signupVolunteer`,
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -107,14 +107,13 @@ const NewNonMinorAccount = () => {
                         password: password,
                         first_name: firstName,
                         last_name: lastName,
-                        date_of_birth: dateOfBirth,
+                        date_of_birth: moment(dateOfBirth).format("YYYY-MM-DD HH:MM:SS"),
                         phone: phoneNumber,
                         email: email,
                         zip_code: zipCode,
                         emergency_name: emergencyName,
                         emergencyPhone: emergencyPhone,
                         sign_up_message: signUpMessage,
-                        date_joined: dateJoined,
                         is_guardian: isGuardian,
                         is_minor: isMinor,
                         is_ambassador: isAmbassador
@@ -135,7 +134,6 @@ const NewNonMinorAccount = () => {
                 setEmergencyName("");
                 setEmergencyPhone("");
                 setSignUpMessage("");
-                setDateJoined("");
                 setIsGuardian(false);
                 setIsMinor(false);
                 setIsAmbassador(false);
