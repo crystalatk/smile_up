@@ -8,6 +8,7 @@ import TotalVolunteers from "./components/TotalVolunteers";
 import EventList from "./components/EventList";
 import EventDetails from "./components/EventDetails";
 import VolunteerHours from "./components/VolunteerHrs";
+import TotalSmiles from "./components/TotalSmiles";
 import "./App.css";
 
 function App() {
@@ -45,6 +46,9 @@ function App() {
         </Route>
         <Route path="/event/:id">
           <EventDetails userInfo={userInfo} />
+        </Route>
+        <Route path="/totalSmiles">
+            <TotalSmiles />
         </Route>
       </Router>
     </div>
