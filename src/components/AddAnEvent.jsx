@@ -6,16 +6,12 @@ import moment from "moment";
 
 const AddAnEvent = () => {
   const [title, setTitle] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
-  const [startTime, setStartTime] = useState(new Date());
-  const [stopTime, setStopTime] = useState(new Date());
-  const [dateStart, setDateStart] = useState("");
-  const [dateStop, setDateStop] = useState("");
+  const [dateStart, setDateStart] = useState(new Date());
+  const [dateStop, setDateStop] = useState(null);
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [headcountServedPotential, setHeadcountServedPotential] = useState("");
-  const [signupDeadlineDate, setSignupDeadlineDate] = useState(new Date());
-  const [signupDeadline, setSignupDeadline] = useState("");
+  const [signupDeadline, setSignupDeadline] = useState(new Date());
   const [ageMin, setAgeMin] = useState("");
   const [minParticipants, setMinParticipants] = useState("");
   const [maxParticipants, setMaxParticipants] = useState("");
@@ -24,6 +20,12 @@ const AddAnEvent = () => {
   const [alerts, setAlerts] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const myAlert = useAlert();
+  const filterPassedTime = (time) => {
+    const currentDate = new Date();
+    const selectedDate = new Date(time);
+
+    return currentDate.getTime() < selectedDate.getTime();
+  };
 
   //   functions to handle Input changes
   const _handleAdultsNeeded = (e) => {
@@ -31,46 +33,13 @@ const AddAnEvent = () => {
     setIsChecked(true);
   };
 
-  useEffect(() => {
-    if (startDate) {
-      if (startTime) {
-        console.log(startTime);
-        const totalDateStart =
-          moment(startDate).format("YYYY-MM-DD") +
-          " " +
-          moment(startTime).format("HH:MM:SS");
-        setDateStart(totalDateStart);
-      }
-      if (stopTime) {
-        const totalDateStop =
-          moment(startDate).format("YYYY-MM-DD") +
-          " " +
-          moment(stopTime).format("HH:MM:SS");
-        setDateStop(totalDateStop);
-      }
-      if (signupDeadlineDate) {
-        setSignupDeadline(
-          `${moment(signupDeadlineDate).format("YYYY-MM-DD")} 04:00:00`
-        );
-      }
-    }
-  }, [startDate, startTime, stopTime, signupDeadlineDate]);
-
   // useEffect for consoling....
   useEffect(() => {
     console.log("THIS IS ADULTS NEEDED: ", adultsNeeded);
     console.log("THIS IS SIGN UP DEADLINE: ", signupDeadline);
     console.log("THIS IS THE HEADCOUNT SERVED :", headcountServedPotential);
     console.log("THIS IS THE MIN AGE: ", ageMin);
-    console.log("THIS IS THE DATE START AND DATE STOP: ", dateStart, dateStop);
-  }, [
-    adultsNeeded,
-    headcountServedPotential,
-    dateStart,
-    dateStop,
-    ageMin,
-    signupDeadline,
-  ]);
+  }, [adultsNeeded, headcountServedPotential, ageMin, signupDeadline]);
 
   //   Function to Handle Submit
   const _handleSubmit = async (e) => {
@@ -99,12 +68,12 @@ const AddAnEvent = () => {
     ).then((response) => response);
     myAlert.success("Your event has been created!");
     setTitle("");
-    setStartDate(new Date());
-    setDateStop("");
-    setDateStart("");
-    setSignupDeadlineDate(new Date());
-    setStartTime(new Date());
-    setStopTime(new Date());
+    // setStartDate(new Date());
+    // setDateStop("");
+    // setDateStart("");
+    setSignupDeadline(new Date());
+    setDateStart(new Date());
+    setDateStop(new Date());
     setLocation("");
     setDescription("");
     setHeadcountServedPotential("");
@@ -114,7 +83,6 @@ const AddAnEvent = () => {
     setAdultsNeeded(false);
     setNumAdults(0);
     setAlerts("");
-    setSignupDeadline("");
     setIsChecked(false);
   };
 
@@ -134,38 +102,30 @@ const AddAnEvent = () => {
           />
         </label>
         <label>
-          Event Date:
+          Event Start:
           <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            dateFormat="MM/dd/yyyy"
-            showMonthDropdown
+            selected={dateStart}
+            onChange={(date) => setDateStart(date)}
+            showTimeSelect
+            timeIntervals={15}
+            timeCaption="Time"
+            dateFormat="MMMM d, yyyy h:mm aa"
+            shouldCloseOnSelect={true}
+            filterTime={filterPassedTime}
             required
           />
         </label>
         <label>
-          Event Start Time
+          Event End:
           <DatePicker
-            selected={startTime}
-            onChange={(date) => setStartTime(date)}
+            selected={!!dateStop ? dateStop : dateStart}
+            onChange={(date) => setDateStop(date)}
             showTimeSelect
-            showTimeSelectOnly
             timeIntervals={15}
             timeCaption="Time"
-            dateFormat="h:mm aa"
-            required
-          />
-        </label>
-        <label>
-          Event End Time
-          <DatePicker
-            selected={stopTime}
-            onChange={(date) => setStopTime(date)}
-            showTimeSelect
-            showTimeSelectOnly
-            timeIntervals={15}
-            timeCaption="Time"
-            dateFormat="h:mm aa"
+            dateFormat="MMMM d, yyyy h:mm aa"
+            shouldCloseOnSelect={true}
+            filterTime={filterPassedTime}
             required
           />
         </label>
@@ -251,12 +211,14 @@ const AddAnEvent = () => {
         <label>
           Sign-up Deadline:
           <DatePicker
-            selected={!!signupDeadlineDate ? signupDeadlineDate : startDate}
+            selected={!!signupDeadline ? signupDeadline : dateStart}
             onChange={
-              (date) => setSignupDeadlineDate(date)
+              (date) => setSignupDeadline(date)
               // console.log(`${moment(date).format("YYYY-MM-DD")} 00:00:00`)
             }
             showMonthDropdown
+            shouldCloseOnSelect={true}
+            filterTime={filterPassedTime}
             required
           />
         </label>
