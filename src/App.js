@@ -1,12 +1,15 @@
+
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import NewNonMinorAccount from './components/NewNonMinorAccount';
 import LoginVolunteers from "./components/LoginVolunteers";
 import AdminLogin from "./components/AdminLogin";
 import AddAnEvent from "./components/AddAnEvent";
 import TotalVolunteers from './components/TotalVolunteers'
 import EventList from "./components/EventList";
 import EventDetails from "./components/EventDetails";
-import "./App.css";
 import VolunteerHours from "./components/VolunteerHrs";
+import "./App.css";
+
 
 function App() {
   return (
@@ -15,6 +18,7 @@ function App() {
         <Route exact path="/login">
           <LoginVolunteers />
           <AdminLogin />
+           <NewNonMinorAccount/>
         </Route>
         <Route path="/addevent" >
           <AddAnEvent />
