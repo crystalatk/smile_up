@@ -216,7 +216,7 @@ const NewNonMinorAccount = () => {
                     <h6 className="f-red f-small">Your username is taken.</h6>
                     ) : null}
             </form>
-            {isGuardian && adultFormSubmitted ? <NewMinorAccount /> : null}
+            {adultFormSubmitted && isGuardian ? <NewMinorAccount /> : null}
         </>
     )
 }
