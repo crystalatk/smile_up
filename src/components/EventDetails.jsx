@@ -88,7 +88,7 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
               Please <Link to="/login">Login</Link> to signup for this event.
             </p>
           )}
-          {/* NEED TO CHANGe THIS AND TAKE AWAY THE OR TRUE! */}
+          {/* NEED TO CHANGE THIS AND TAKE AWAY THE OR TRUE! */}
           {!!userInfo.isAdmin || true ? (
             <>
               <h1>Number of Volunteers Signed up</h1>

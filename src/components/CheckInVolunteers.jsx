@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const CheckInVolunteers = ({ event_id }) => {
   const [volunteersAttending, setVolunteersAttending] = useState([]);
-  const [infoForVolunteersAttending, setInfoForVolunteersAttending] = useState(
-    []
-  );
 
   useEffect(() => {
     const fetchVolunteersAttending = async () => {
@@ -26,44 +24,32 @@ const CheckInVolunteers = ({ event_id }) => {
       setVolunteersAttending(volunteersAttendingResponse);
     };
     fetchVolunteersAttending();
-  }, []);
+  }, [event_id]);
 
   useEffect(() => {
-    volunteersAttending?.map((volunteer, i) => {
-      const fetchVolunteerInfo = async () => {
-        const volunteerInfoResponse = await fetch(
-          `http://127.0.0.1:3232/admins/volunteerinfo?volunteer_id=${volunteer.volunteer_id}`,
-          {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-          }
-        )
-          .then((response) => response.json())
-          .catch((e) => {
-            console.log(e);
-          });
-        console.log("THIS IS THE VOLUNTEER INFO: ", volunteerInfoResponse);
-        setInfoForVolunteersAttending([
-          ...infoForVolunteersAttending,
-          volunteerInfoResponse,
-        ]);
-      };
-      fetchVolunteerInfo();
-    });
+    console.log(volunteersAttending);
   }, [volunteersAttending]);
 
-  useEffect(() => {
-    console.log(
-      "THIS IS THE INFO FOR THE VOLUNTEERS!",
-      infoForVolunteersAttending
-    );
-  }, [infoForVolunteersAttending]);
   return (
     <>
       <h1>I am in the CheckInVolunteers</h1>
-      {!!volunteersAttending.length === 0 ? (
+      {!!volunteersAttending.length !== 0 ? (
         <>
-          <h2>These Volunteers are attending the event</h2>
+          <h2>These Volunteers are attending the event:</h2>
+          <ul>
+            {volunteersAttending.map((volunteer) => {
+              return (
+                <li>
+                  <Link to={`/profile/${volunteer.id}`}>
+                    <h3>
+                      {volunteer.first_name} {volunteer.last_name}
+                      <span>Check-in</span>
+                    </h3>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
         </>
       ) : (
         <h3>There are no volunteers signed up for this event.</h3>

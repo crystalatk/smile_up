@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useAlert } from "react-alert";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import moment from "moment";
 
 const AddAnEvent = () => {
   const [title, setTitle] = useState("");
