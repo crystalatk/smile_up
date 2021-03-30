@@ -18,7 +18,7 @@ function App() {
         <Route exact path="/login">
           <LoginVolunteers />
           <AdminLogin />
-           <NewNonMinorAccount/>
+          <NewNonMinorAccount/>
         </Route>
         <Route path="/addevent" >
           <AddAnEvent />
@@ -28,7 +28,7 @@ function App() {
         </Route>
         <Route path="/volunteerHours">
             <VolunteerHours />
-        <Route />
+        </Route>
         <Route path="/addevent">
           <AddAnEvent />
         </Route>
