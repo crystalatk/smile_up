@@ -2,10 +2,9 @@ import moment from "moment";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
-const EventDetails = () => {
+const EventDetails = ({ userInfo }) => {
   const { id } = useParams();
   const [event, setEvent] = useState();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     console.log("THIS IS THE ID: ", id);
@@ -40,7 +39,10 @@ const EventDetails = () => {
             You must be at least {event.age_min} to participate in this event.
           </h5>
           {event.adults_needed ? (
-            <h6>We will need {event.num_adults} adults at this event.</h6>
+            <h6>
+              We will need at least {event.num_adults} adult volunteers at this
+              event.
+            </h6>
           ) : null}
           <h3>Details:</h3>
           <p>{event.description}</p>
@@ -48,13 +50,14 @@ const EventDetails = () => {
             Signup Deadline: {moment(event.signup_deadline).format("MMMM DD")}
           </h3>
           <h4>You MUST signup by the deadline!</h4>
-          {!!isLoggedIn ? (
+          {!!userInfo.isLoggedIn ? (
             <button>Sign Up!</button>
           ) : (
             <p>
               Please <Link to="/login">Login</Link> to signup for this event.
             </p>
           )}
+          {!!userInfo.isAdmin ? null : null}
         </>
       ) : (
         <h1>Event Loading.....</h1>
