@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { useAlert }  from 'react-alert';
 // import { useHistory } from 'react-router-dom';
-import NewMinorAccount from './NewMinorAccount';
 import moment from 'moment';
 
-const NewNonMinorAccount = () => {
+const NewMinorAccount = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
@@ -16,13 +15,13 @@ const NewNonMinorAccount = () => {
     const [zipCode, setZipCode] = useState('');
     const [emergencyName, setEmergencyName] = useState('');
     const [emergencyPhone, setEmergencyPhone] = useState('');
-    const [signUpMessage, setSignUpMessage] = useState('');
     const [isGuardian, setIsGuardian] = useState(false);
-    const [isMinor, setIsMinor] = useState(false);
+    const [isMinor, setIsMinor] = useState(true);
     const [isAmbassador, setIsAmbassador] = useState(false);
     const [passwordsMatch, setPasswordsMatch] = useState(false);
     const [usernameTaken, setUsernameTaken] = useState(false);
-    const [adultFormSubmitted, setAdultFormSubmitted] = useState(false);
+    const [minorFormSubmitted, setMinorFormSubmitted] = useState(false);
+    const [needsAdditionalForm, setNeedsAdditionalForm] = useState(false)
     const myAlert = useAlert();
     // const history = useHistory();
 
@@ -83,12 +82,8 @@ const NewNonMinorAccount = () => {
         setEmergencyPhone(e.target.value);
     }
 
-    const _handleSignUpMessageChange = e => {
-        setSignUpMessage(e.target.value);
-    }
-
-    const _handleIsGuardianChange = e => {
-        e.target.value === "yes" ? setIsGuardian(true) : setIsGuardian(false);
+    const _handleNeedsAdditionalFormChange = e => {
+        e.target.value === "yes" ? setNeedsAdditionalForm(true) : setNeedsAdditionalForm(false);
     }
 
     const _handleSubmit = async (e) => {
@@ -115,7 +110,7 @@ const NewNonMinorAccount = () => {
                         zip_code: zipCode,
                         emergency_name: emergencyName,
                         emergencyPhone: emergencyPhone,
-                        sign_up_message: signUpMessage,
+                        sign_up_message: null,
                         is_guardian: isGuardian,
                         is_minor: isMinor,
                         is_ambassador: isAmbassador
@@ -135,11 +130,11 @@ const NewNonMinorAccount = () => {
                 setEmail("");
                 setEmergencyName("");
                 setEmergencyPhone("");
-                setSignUpMessage("");
                 setIsMinor(false);
                 setIsAmbassador(false);
                 setUsernameTaken(false);
-                setAdultFormSubmitted(true);
+                setMinorFormSubmitted(true);
+                setIsGuardian(false);
                 // history.push("/");
                 console.log('submit response is ', submitResponse);
             } else {
@@ -162,8 +157,8 @@ const NewNonMinorAccount = () => {
     
     
     return (
-        <div className="App">
-            <h1>Create an Account:</h1>
+        <>
+            <h3>Create a new account for your minor:</h3>
             <form onSubmit={_handleSubmit}>
                 <label>Create Username
                     <input type="text" value={username} onChange={_handleUsernameChange} required></input>
@@ -204,22 +199,19 @@ const NewNonMinorAccount = () => {
                 <label>Emergency Contact Phone Number
                     <input  type="text" value={emergencyPhone} onChange={_handleEmergencyPhoneChange} required></input>
                 </label>
-                <label>Would you like to include a message to the administrator? If so, enter below:
-                    <input type="text" value={signUpMessage} onChange={_handleSignUpMessageChange} ></input>
-                </label>
-                <label>Are you the parent or guardian of a smileUp volunteer who is under the age of 18?
-                    <input type="radio" value="yes" onChange={_handleIsGuardianChange} name="is_guardian"/> Yes
-                    <input type="radio" value="no" onChange={_handleIsGuardianChange} name="is_guardian"/> No
+                <label>Would you like to register another minor after you submit this form?
+                    <input type="radio" value="yes" onChange={_handleNeedsAdditionalFormChange} name="is_guardian"/> Yes
+                    <input type="radio" value="no" onChange={_handleNeedsAdditionalFormChange} name="is_guardian"/> No
                 </label>
                 <button type="submit">Submit</button>
                 {!!usernameTaken ? (
                     <h6 className="f-red f-small">Your username is taken.</h6>
                     ) : null}
             </form>
-        </div>
-            {adultFormSubmitted && isGuardian ? <NewMinorAccount /> : null}
+            {minorFormSubmitted && needsAdditionalForm ? <NewMinorAccount /> : null}
 
+        </>
     )
 }
 
-export default NewNonMinorAccount;
+export default NewMinorAccount;
