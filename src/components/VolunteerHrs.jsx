@@ -17,7 +17,7 @@ const VolunteerHours = () => {
 
     return (
         <>
-            <h1> Total Minutes</h1>
+            <h1> Total </h1>
             
                 <h2>
                     {volunteerHours}
