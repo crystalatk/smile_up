@@ -6,6 +6,7 @@ import TotalVolunteers from './components/TotalVolunteers'
 import "./App.css";
 import VolunteerHours from "./components/VolunteerHrs";
 import TotalSmiles from "./components/TotalSmiles";
+import TotalEvents from "./components/TotalEvents";
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
         </Route>
         <Route path="/totalSmiles">
             <TotalSmiles />
+        </Route>
+        <Route path="counttotalevents">
+            <TotalEvents />
         </Route>
       </Router>
     </div>
