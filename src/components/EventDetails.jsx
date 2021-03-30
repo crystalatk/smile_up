@@ -2,10 +2,11 @@ import moment from "moment";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
-const EventDetails = ({ userInfo }) => {
+const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
   const { id } = useParams();
   const [event, setEvent] = useState();
   const [volunteersSignedUp, setVolunteersSignedUp] = useState("");
+  const [spotsRemaining, setSpotsRemaining] = useState("");
 
   useEffect(() => {
     console.log("THIS IS THE ID: ", id);
@@ -23,6 +24,7 @@ const EventDetails = ({ userInfo }) => {
         });
       console.log("THIS IS THE EVENT RESPONSE: ", eventResponse);
       setEvent(eventResponse);
+      setEventDetailsForEditPurposes(eventResponse);
     };
     const fetchNumVolunteersSignedUp = async () => {
       const numVolSignedUp = await fetch(
@@ -42,6 +44,14 @@ const EventDetails = ({ userInfo }) => {
     fetchEvent();
     fetchNumVolunteersSignedUp();
   }, []);
+
+  useEffect(() => {
+    if (event && volunteersSignedUp !== "") {
+      const mathNumSpotsRemaining = event.max_participants - volunteersSignedUp;
+      console.log("This is the spots reamining", mathNumSpotsRemaining);
+      setSpotsRemaining(mathNumSpotsRemaining);
+    }
+  }, [event, volunteersSignedUp]);
   return (
     <>
       {!!event ? (
@@ -74,23 +84,23 @@ const EventDetails = ({ userInfo }) => {
               Please <Link to="/login">Login</Link> to signup for this event.
             </p>
           )}
-          {!!userInfo.isAdmin ? (
+          {/* NEED TO CHANGe THIS AND TAKE AWAY THE OR TRUE! */}
+          {!!userInfo.isAdmin || true ? (
             <>
               <h1>Number of Volunteers Signed up</h1>
               <h1>
                 {volunteersSignedUp} signed up/{event.min_participants} needed
               </h1>
-              <h1>Maximum Volunteers Allowed</h1>
               <h1>
                 {volunteersSignedUp} signed up/{event.max_participants} max
               </h1>
+              <Link to="/editevent">
+                <button>Edit Event</button>
+              </Link>
             </>
           ) : (
             <>
-              <h6>Maximum Volunteers Allowed</h6>
-              <h6>
-                {volunteersSignedUp}/{event.max_participants}
-              </h6>
+              <h6>We have {spotsRemaining} more spots! Sign up today!</h6>
             </>
           )}
         </>

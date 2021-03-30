@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NewNonMinorAccount from "./components/NewNonMinorAccount";
 import LoginVolunteers from "./components/LoginVolunteers";
 import AdminLogin from "./components/AdminLogin";
@@ -8,6 +8,7 @@ import TotalVolunteers from "./components/TotalVolunteers";
 import EventList from "./components/EventList";
 import EventDetails from "./components/EventDetails";
 import VolunteerHours from "./components/VolunteerHrs";
+import EditEvent from "./components/EditEvent";
 import TotalSmiles from "./components/TotalSmiles";
 import "./App.css";
 
@@ -20,6 +21,33 @@ function App() {
     isMinor: true,
     first_name: "",
   });
+  const [
+    eventDetailsForEditPurposes,
+    setEventDetailsForEditPurposes,
+  ] = useState({
+    adults_needed: false,
+    age_min: "",
+    alerts: "",
+    date_start: "",
+    date_stop: "",
+    description: "",
+    headcount_served_potential: "",
+    id: "",
+    location: "",
+    max_particcipants: "",
+    min_participants: "",
+    num_adults: "",
+    signup_deadline: "",
+    title: "",
+  });
+
+  // useEffect for console logs
+  useEffect(() => {
+    console.log(
+      "THESE ARE THE EVENT DETAILS FOR EDIT PURPOSE: ",
+      eventDetailsForEditPurposes
+    );
+  }, [eventDetailsForEditPurposes]);
 
   return (
     <div className="App">
@@ -45,7 +73,15 @@ function App() {
           <EventList userInfo={userInfo} />
         </Route>
         <Route path="/event/:id">
-          <EventDetails userInfo={userInfo} />
+          <EventDetails
+            userInfo={userInfo}
+            setEventDetailsForEditPurposes={setEventDetailsForEditPurposes}
+          />
+        </Route>
+        <Route exact path="/editevent">
+          <EditEvent
+            eventDetailsForEditPurposes={eventDetailsForEditPurposes}
+          />
         </Route>
         <Route path="/totalSmiles">
             <TotalSmiles />
