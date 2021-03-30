@@ -95,7 +95,7 @@ const AddAnEvent = () => {
   };
 
   return (
-    <>
+    <div className="App">
       <h1>This is the AddAnEvent</h1>
       <form>
         <label>
@@ -162,7 +162,7 @@ const AddAnEvent = () => {
           <textarea value={alerts} onChange={_handleAlerts} />
         </label>
       </form>
-    </>
+    </div>
   );
 };
 

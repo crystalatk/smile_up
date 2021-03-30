@@ -11,7 +11,7 @@ const NewNonMinorAccount = () => {
     
     
     return (
-        <>
+        <div className="App">
             <h1>Create an Account:</h1>
             <form>
                 <label>Create Username
@@ -52,7 +52,7 @@ const NewNonMinorAccount = () => {
                 </label>
 
             </form>
-        </>
+        </div>
     )
 }
 
