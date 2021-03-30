@@ -9,6 +9,7 @@ import EventList from "./components/EventList";
 import EventDetails from "./components/EventDetails";
 import VolunteerHours from "./components/VolunteerHrs";
 import EditEvent from "./components/EditEvent";
+import TotalSmiles from "./components/TotalSmiles";
 import "./App.css";
 
 function App() {
@@ -81,6 +82,9 @@ function App() {
           <EditEvent
             eventDetailsForEditPurposes={eventDetailsForEditPurposes}
           />
+        </Route>
+        <Route path="/totalSmiles">
+            <TotalSmiles />
         </Route>
       </Router>
     </div>

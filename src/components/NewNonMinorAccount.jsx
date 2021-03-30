@@ -162,7 +162,7 @@ const NewNonMinorAccount = () => {
     
     
     return (
-        <>
+        <div className="App">
             <h1>Create an Account:</h1>
             <form onSubmit={_handleSubmit}>
                 <label>Create Username
@@ -216,8 +216,9 @@ const NewNonMinorAccount = () => {
                     <h6 className="f-red f-small">Your username is taken.</h6>
                     ) : null}
             </form>
-            {isGuardian && adultFormSubmitted ? <NewMinorAccount /> : null}
-        </>
+        </div>
+            {adultFormSubmitted && isGuardian ? <NewMinorAccount /> : null}
+
     )
 }
 
