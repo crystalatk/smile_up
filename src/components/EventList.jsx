@@ -1,4 +1,3 @@
-import moment from "moment";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -6,11 +5,10 @@ const EventList = () => {
   const [eventList, setEventList] = useState();
 
   useEffect(() => {
-    const current_date = moment().format("YYYY-MM-DD HH:MM:SS");
-    console.log(current_date);
+    console.log();
     const fetchList = async () => {
       const eventListResponse = await fetch(
-        `http://127.0.0.1:3232/events/list?current_date=${current_date}`,
+        `http://127.0.0.1:3232/events/list`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
@@ -31,20 +29,23 @@ const EventList = () => {
       <h1>This is the Event List Page</h1>
       {!!eventList ? (
         <>
-          {eventList.map((event) => {
-            return (
-              <div>
-                <Link to="/${event.id}">
-                  <h1>{event.title}</h1>
-                  <h3>{event.date_start}</h3>
-                  <h3>{event.date_stop}</h3>
-                  <h3>{event.location}</h3>
-                  <h3>{event.signup_deadline}</h3>
-                  <h3>{event.age_min}</h3>
-                </Link>
-              </div>
-            );
-          })}
+          <ul>
+            {eventList.map((event) => {
+              return (
+                <li key={event.id}>
+                  <Link to={`/event/${event.id}`}>
+                    <h1>{event.title}</h1>
+                    <h3>Date: {event.date}</h3>
+                    <h3>Start Time: {event.stop_time}</h3>
+                    <h3>End Time: {event.start_time}</h3>
+                    <h3>Location: {event.location}</h3>
+                    <h3>You must sign up by: {event.deadline}</h3>
+                    <h3>Minimum Age: {event.age_min}</h3>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
         </>
       ) : (
         <>

@@ -20,7 +20,7 @@ const AddAnEvent = () => {
   const [minParticipants, setMinParticipants] = useState("");
   const [maxParticipants, setMaxParticipants] = useState("");
   const [adultsNeeded, setAdultsNeeded] = useState(false);
-  const [numAdults, setNumAdults] = useState("");
+  const [numAdults, setNumAdults] = useState(0);
   const [alerts, setAlerts] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const myAlert = useAlert();
@@ -50,7 +50,7 @@ const AddAnEvent = () => {
       }
       if (signupDeadlineDate) {
         setSignupDeadline(
-          `${moment(signupDeadlineDate).format("YYYY-MM-DD")} 00:00:00`
+          `${moment(signupDeadlineDate).format("YYYY-MM-DD")} 04:00:00`
         );
       }
     }
@@ -112,7 +112,7 @@ const AddAnEvent = () => {
     setMinParticipants("");
     setMaxParticipants("");
     setAdultsNeeded(false);
-    setNumAdults("");
+    setNumAdults(0);
     setAlerts("");
     setSignupDeadline("");
     setIsChecked(false);
@@ -228,7 +228,6 @@ const AddAnEvent = () => {
             type="checkbox"
             onChange={_handleAdultsNeeded}
             checked={isChecked}
-            required
           />
         </label>
         {!!adultsNeeded ? (
@@ -238,7 +237,6 @@ const AddAnEvent = () => {
               type="text"
               value={numAdults}
               onChange={(e) => setNumAdults(e.target.value)}
-              required
             />
           </label>
         ) : null}
@@ -248,7 +246,6 @@ const AddAnEvent = () => {
           <textarea
             value={alerts}
             onChange={(e) => setAlerts(e.target.value)}
-            required
           />
         </label>
         <label>
