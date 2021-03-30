@@ -1,6 +1,7 @@
 import moment from "moment";
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Route, useParams } from "react-router-dom";
+import CheckInVolunteers from "./CheckInVolunteers";
 
 const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
   const { id } = useParams();
@@ -78,7 +79,10 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
           </h3>
           <h4>You MUST signup by the deadline!</h4>
           {!!userInfo.isLoggedIn ? (
-            <button>Sign Up!</button>
+            <>
+              <button>Sign Up!</button>
+              {!!userInfo}
+            </>
           ) : (
             <p>
               Please <Link to="/login">Login</Link> to signup for this event.
@@ -97,6 +101,9 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
               <Link to="/editevent">
                 <button>Edit Event</button>
               </Link>
+              <Route>
+                <CheckInVolunteers event_id={id} />
+              </Route>
             </>
           ) : (
             <>

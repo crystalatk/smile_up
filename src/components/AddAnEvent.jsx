@@ -96,7 +96,7 @@ const AddAnEvent = () => {
             type="text"
             value={title}
             onChange={(e) => {
-              setTitle(e.target.value);
+              setTitle(e.target.value.replace(/‘/g, "''"));
             }}
             required
           />
@@ -134,7 +134,7 @@ const AddAnEvent = () => {
           <input
             type="text"
             value={location}
-            onChange={(e) => setLocation(e.target.value)}
+            onChange={(e) => setLocation(e.target.value.replace(/‘/g, "''"))}
             required
           />
         </label>
@@ -142,7 +142,7 @@ const AddAnEvent = () => {
           Event Description
           <textarea
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) => setDescription(e.target.value.replace(/‘/g, "''"))}
             required
           />
         </label>
@@ -151,7 +151,9 @@ const AddAnEvent = () => {
           <input
             type="text"
             value={headcountServedPotential}
-            onChange={(e) => setHeadcountServedPotential(e.target.value)}
+            onChange={(e) =>
+              setHeadcountServedPotential(e.target.value.replace(/‘/g, "''"))
+            }
             required
           />
         </label>
@@ -160,7 +162,7 @@ const AddAnEvent = () => {
           <input
             type="text"
             value={ageMin}
-            onChange={(e) => setAgeMin(e.target.value)}
+            onChange={(e) => setAgeMin(e.target.value.replace(/‘/g, "''"))}
             required
           />
         </label>
@@ -169,7 +171,9 @@ const AddAnEvent = () => {
           <input
             type="text"
             value={minParticipants}
-            onChange={(e) => setMinParticipants(e.target.value)}
+            onChange={(e) =>
+              setMinParticipants(e.target.value.replace(/‘/g, "''"))
+            }
             required
           />
         </label>
@@ -178,7 +182,9 @@ const AddAnEvent = () => {
           <input
             type="text"
             value={maxParticipants}
-            onChange={(e) => setMaxParticipants(e.target.value)}
+            onChange={(e) =>
+              setMaxParticipants(e.target.value.replace(/‘/g, "''"))
+            }
             required
           />
         </label>
@@ -196,7 +202,7 @@ const AddAnEvent = () => {
             <input
               type="text"
               value={numAdults}
-              onChange={(e) => setNumAdults(e.target.value)}
+              onChange={(e) => setNumAdults(e.target.value.replace(/‘/g, "''"))}
             />
           </label>
         ) : null}
@@ -205,7 +211,7 @@ const AddAnEvent = () => {
           Alerts:
           <textarea
             value={alerts}
-            onChange={(e) => setAlerts(e.target.value)}
+            onChange={(e) => setAlerts(e.target.value.replace(/‘/g, "''"))}
           />
         </label>
         <label>

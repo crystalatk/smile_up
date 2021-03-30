@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAlert } from "react-alert";
+import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import moment from "moment";
 
 const EditEvent = ({ eventDetailsForEditPurposes }) => {
   const [title, setTitle] = useState(eventDetailsForEditPurposes.title);
@@ -89,9 +89,6 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
     ).then((response) => response);
     myAlert.success("Your event has been updated!");
     setTitle("");
-    // setStartDate(new Date());
-    // setDateStop("");
-    // setDateStart("");
     setSignupDeadline(new Date());
     setDateStart(new Date());
     setDateStop(new Date());
@@ -117,7 +114,7 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
             type="text"
             value={title}
             onChange={(e) => {
-              setTitle(e.target.value);
+              setTitle(e.target.value.replace(/‘/g, "''"));
             }}
             required
           />
@@ -155,7 +152,7 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
           <input
             type="text"
             value={location}
-            onChange={(e) => setLocation(e.target.value)}
+            onChange={(e) => setLocation(e.target.value.replace(/‘/g, "''"))}
             required
           />
         </label>
@@ -163,7 +160,7 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
           Event Description
           <textarea
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) => setDescription(e.target.value.replace(/‘/g, "''"))}
             required
           />
         </label>
@@ -172,7 +169,9 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
           <input
             type="text"
             value={headcountServedPotential}
-            onChange={(e) => setHeadcountServedPotential(e.target.value)}
+            onChange={(e) =>
+              setHeadcountServedPotential(e.target.value.replace(/‘/g, "''"))
+            }
             required
           />
         </label>
@@ -181,7 +180,7 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
           <input
             type="text"
             value={ageMin}
-            onChange={(e) => setAgeMin(e.target.value)}
+            onChange={(e) => setAgeMin(e.target.value.replace(/‘/g, "''"))}
             required
           />
         </label>
@@ -190,7 +189,9 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
           <input
             type="text"
             value={minParticipants}
-            onChange={(e) => setMinParticipants(e.target.value)}
+            onChange={(e) =>
+              setMinParticipants(e.target.value.replace(/‘/g, "''"))
+            }
             required
           />
         </label>
@@ -199,7 +200,9 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
           <input
             type="text"
             value={maxParticipants}
-            onChange={(e) => setMaxParticipants(e.target.value)}
+            onChange={(e) =>
+              setMaxParticipants(e.target.value.replace(/‘/g, "''"))
+            }
             required
           />
         </label>
@@ -217,7 +220,7 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
             <input
               type="text"
               value={numAdults}
-              onChange={(e) => setNumAdults(e.target.value)}
+              onChange={(e) => setNumAdults(e.target.value.replace(/‘/g, "''"))}
             />
           </label>
         ) : null}
@@ -226,7 +229,7 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
           Alerts:
           <textarea
             value={alerts}
-            onChange={(e) => setAlerts(e.target.value)}
+            onChange={(e) => setAlerts(e.target.value.replace(/‘/g, "''"))}
           />
         </label>
         <label>
@@ -243,7 +246,9 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
             required
           />
         </label>
-        <button type="submit">Update my Event</button>
+        <Link to={`/event/${eventDetailsForEditPurposes.id}`}>
+          <button type="submit">Update my Event</button>
+        </Link>
       </form>
     </>
   );
