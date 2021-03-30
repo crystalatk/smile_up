@@ -5,6 +5,7 @@ import AddAnEvent from "./components/AddAnEvent";
 import TotalVolunteers from './components/TotalVolunteers'
 import "./App.css";
 import VolunteerHours from "./components/VolunteerHrs";
+import TotalSmiles from "./components/TotalSmiles";
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
         </Route>
         <Route path="/volunteerHours">
             <VolunteerHours />
+        </Route>
+        <Route path="/totalSmiles">
+            <TotalSmiles />
         </Route>
       </Router>
     </div>

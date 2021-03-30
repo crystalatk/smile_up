@@ -4,12 +4,12 @@ const VolunteerHours = () => {
     const [volunteerHours, setVolunteerHours] = useState('')
     useEffect(() => {
 
-        async function getData () {
+         const getData = () => {
             fetch('http://127.0.0.1:3232/volunteers/volunteerHours')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                setVolunteerHours(data[0].total_minutes)
+                setVolunteerHours(data[0].sum)
             })
         }
         getData();
@@ -18,10 +18,12 @@ const VolunteerHours = () => {
     return (
         <>
             <h1> Total </h1>
-            
+                {!!volunteerHours ? 
                 <h2>
                     {volunteerHours}
                 </h2>
+                :<h3>noData</h3>
+                }
         </>
     )
 
