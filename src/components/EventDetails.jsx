@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 const EventDetails = ({ userInfo }) => {
   const { id } = useParams();
   const [event, setEvent] = useState();
+  const [volunteersSignedUp, setVolunteersSignedUp] = useState("");
 
   useEffect(() => {
     console.log("THIS IS THE ID: ", id);
@@ -23,7 +24,23 @@ const EventDetails = ({ userInfo }) => {
       console.log("THIS IS THE EVENT RESPONSE: ", eventResponse);
       setEvent(eventResponse);
     };
+    const fetchNumVolunteersSignedUp = async () => {
+      const numVolSignedUp = await fetch(
+        `http://127.0.0.1:3232/admins/counttotalvolbyevent?event_id=${id}`,
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        }
+      )
+        .then((response) => response.json())
+        .catch((e) => {
+          console.log(e);
+        });
+      console.log("THIS IS THE NUMVOLSIGNEDUP: ", numVolSignedUp.rows[0].count);
+      setVolunteersSignedUp(numVolSignedUp.rows[0].count);
+    };
     fetchEvent();
+    fetchNumVolunteersSignedUp();
   }, []);
   return (
     <>
@@ -57,7 +74,25 @@ const EventDetails = ({ userInfo }) => {
               Please <Link to="/login">Login</Link> to signup for this event.
             </p>
           )}
-          {!!userInfo.isAdmin ? null : null}
+          {!!userInfo.isAdmin ? (
+            <>
+              <h1>Number of Volunteers Signed up</h1>
+              <h1>
+                {volunteersSignedUp} signed up/{event.min_participants} needed
+              </h1>
+              <h1>Maximum Volunteers Allowed</h1>
+              <h1>
+                {volunteersSignedUp} signed up/{event.max_participants} max
+              </h1>
+            </>
+          ) : (
+            <>
+              <h6>Maximum Volunteers Allowed</h6>
+              <h6>
+                {volunteersSignedUp}/{event.max_participants}
+              </h6>
+            </>
+          )}
         </>
       ) : (
         <h1>Event Loading.....</h1>
