@@ -13,6 +13,7 @@ import VolunteerDirectory from "./components/VolunteerDirectory";
 import VolunteerProfile from "./components/VolunteerProfile";
 import TotalSmiles from "./components/TotalSmiles";
 import TotalEvents from "./components/TotalEvents";
+import VolunteerHrsById from "./components/VolunteerHrsById";
 import "./App.css";
 
 function App() {
@@ -97,6 +98,9 @@ function App() {
         </Route>
         <Route path="/counttotalevents">
             <TotalEvents />
+        </Route>
+        <Route path="/volunteerHoursId"> 
+            <VolunteerHrsById />
         </Route>
       </Router>
     </div>
