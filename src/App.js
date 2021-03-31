@@ -17,6 +17,7 @@ import VolunteerHrsById from "./components/VolunteerHrsById";
 import LogoutButton from "./components/LogoutButton";
 import EditVolunteerProfile from "./components/EditVolunteerProfile";
 import "./App.css";
+import NewMinorAccount from "./components/NewMinorAccount";
 
 function App() {
   const [userInfo, setUserInfo] = useState({
@@ -111,6 +112,9 @@ function App() {
         </Route>
         <Route path="/editprofile/:id">
           <VolunteerHrsById />
+        </Route>
+        <Route path="/newminor">
+            <NewMinorAccount />
         </Route>
       </Router>
     </div>
