@@ -106,10 +106,10 @@ function App() {
           <TotalEvents />
         </Route>
         <Route path="/volunteerHoursId">
-          <VolunteerHrsById userInfo={userInfo} />
+          <VolunteerHrsById id={userInfo.id} />
         </Route>
         <Route path="/totalEventsId">
-          <TotalEventsId userInfo={userInfo} />
+          <TotalEventsId id={userInfo.id} />
         </Route>
         <Route path="/editprofile/:id">
           <EditVolunteerProfile userInfo={userInfo} />

@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
+import VHID from "./VolunteerHrsById";
+import EventsId from "./TotalEventsId";
+import moment from "moment";
 
 const VolunteerProfile = ({ userInfo }) => {
   const { id: initialID } = useParams();
@@ -86,13 +89,18 @@ const VolunteerProfile = ({ userInfo }) => {
               </h1>
               {!!volunteerInfo.is_ambassador ? <h1>Badge Here</h1> : null}
               <h6>Member since {volunteerInfo.date_joined}.</h6>
-              <h3>Birthday: {volunteerInfo.date_of_birth}</h3>
+              <h3>
+                Birthday:{" "}
+                {moment(volunteerInfo.date_of_birth).format("MMM DD, YYYY")}
+              </h3>
               <h3>Phone Number: {volunteerInfo.phone}</h3>
               <h3>Email: {volunteerInfo.email}</h3>
               <h3>Zip Code: {volunteerInfo.zip_code}</h3>
 
               {!volunteerInfo.is_minor ? null : (
                 <>
+                  <VHID id={volunteerInfo.id} />
+                  <EventsId id={volunteerInfo.id} />
                   <h2>Emergency Contact Information:</h2>
                   <h3>
                     Emergency Contact Name: {volunteerInfo.emergency_name}
