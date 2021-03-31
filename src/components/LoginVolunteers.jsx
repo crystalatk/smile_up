@@ -6,7 +6,6 @@ const LoginVolunteers = () => {
    
    const _handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('i am here')
     const loginData  = await fetch('http://127.0.0.1:3232/login/sitelogin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},

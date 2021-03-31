@@ -28,7 +28,7 @@ function App() {
         <Route path="/totalSmiles">
             <TotalSmiles />
         </Route>
-        <Route path="counttotalevents">
+        <Route path="/counttotalevents">
             <TotalEvents />
         </Route>
       </Router>
