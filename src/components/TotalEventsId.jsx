@@ -6,11 +6,11 @@ const EventsId = ({userInfo}) => {
     useEffect(() => {
         
         const getVH = () => {
-            fetch(`http://127.0.0.1:3232/events/totalEventsId`)
+            fetch(`http://127.0.0.1:3232/events/totalEventsId?volunteer_id=${userInfo.id}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                setEventId(data[0].sum)
+                setEventId(data[0].count)
             })
         }
         getVH();
@@ -20,7 +20,7 @@ const EventsId = ({userInfo}) => {
 
     return (
         <>
-            <h1>Total Hours </h1>
+            <h1>Total Events </h1>
                 {!!eventId ? 
                 <h2>
                     {eventId}

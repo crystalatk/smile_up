@@ -111,11 +111,11 @@ function App() {
         <Route path="/volunteerHoursId">
           <VolunteerHrsById userInfo={userInfo} />
         </Route>
-        <Route>
+        <Route path="/totalEventsId">
             <TotalEventsId userInfo={userInfo} />
               </Route>
         <Route path="/editprofile/:id">
-          <VolunteerHrsById />
+          <EditVolunteerProfile userInfo={userInfo}/>
         </Route>
         <Route path="/newminor">
             <NewMinorAccount />
