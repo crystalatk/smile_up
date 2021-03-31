@@ -149,7 +149,7 @@ const EditVolunteerProfile = ({ userInfo }) => {
     if (guardianID === userInfo?.id) {
       setIsProfileGuardian(true);
     }
-    if (volunteerInfo?.id === id || userInfo?.is_admin || isProfileGuardian) {
+    if (userInfo?.id === id || userInfo?.is_admin || isProfileGuardian) {
       setViewPage(true);
       console.log("I made it!");
     }
