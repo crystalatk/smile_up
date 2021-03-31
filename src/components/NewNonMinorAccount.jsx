@@ -117,7 +117,7 @@ const NewNonMinorAccount = () => {
                         email: email,
                         zip_code: zipCode,
                         emergency_name: emergencyName,
-                        emergencyPhone: emergencyPhone,
+                        emergency_phone: emergencyPhone,
                         sign_up_message: signUpMessage,
                         is_guardian: isGuardian,
                         is_minor: isMinor,

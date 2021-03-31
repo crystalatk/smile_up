@@ -14,6 +14,7 @@ import VolunteerProfile from "./components/VolunteerProfile";
 import TotalSmiles from "./components/TotalSmiles";
 import TotalEvents from "./components/TotalEvents";
 import "./App.css";
+import NewMinorAccount from "./components/NewMinorAccount";
 
 function App() {
   const [userInfo, setUserInfo] = useState({
@@ -97,6 +98,9 @@ function App() {
         </Route>
         <Route path="/counttotalevents">
             <TotalEvents />
+        </Route>
+        <Route path="/newminor">
+            <NewMinorAccount />
         </Route>
       </Router>
     </div>
