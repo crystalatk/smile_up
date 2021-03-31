@@ -35,7 +35,7 @@ const VolunteerProfile = ({ userInfo }) => {
         console.log("THIS IS THE PROFILE DATA:", profileDataResponse);
         setVolunteerInfo(profileDataResponse);
       };
-      if (!userInfo.isMinor) {
+      if (!userInfo.is_minor) {
         fetchGuardianID();
       }
       fetchProfileData();
@@ -46,7 +46,7 @@ const VolunteerProfile = ({ userInfo }) => {
     if (guardianID === userInfo.id) {
       setIsProfileGuardian(true);
     }
-    if (userInfo.id === id || userInfo.isAdmin || isProfileGuardian) {
+    if (userInfo.id === id || userInfo.is_admin || isProfileGuardian) {
       setViewPage(true);
     }
   }, [guardianID]);

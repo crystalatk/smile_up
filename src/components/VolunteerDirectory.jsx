@@ -1,8 +1,9 @@
 import { useEffect, useState, forwardRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import MaterialTable from "material-table";
 import AddBox from "@material-ui/icons/AddBox";
 import ArrowDownward from "@material-ui/icons/ArrowDownward";
+import Add from "@material-ui/icons/Add";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
 import ChevronRight from "@material-ui/icons/ChevronRight";
 import Clear from "@material-ui/icons/Clear";
@@ -15,6 +16,7 @@ import moment from "moment";
 
 const VolunteerDirectory = ({ userInfo }) => {
   const [volunteersData, setVolunteersData] = useState([]);
+  const history = useHistory();
 
   const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -53,7 +55,7 @@ const VolunteerDirectory = ({ userInfo }) => {
   }, []);
   return (
     <>
-      {userInfo.isAdmin || true ? (
+      {userInfo.is_admin ? (
         <>
           <div style={{ maxWidth: "100%" }}>
             <MaterialTable
@@ -63,29 +65,33 @@ const VolunteerDirectory = ({ userInfo }) => {
                 { title: "Last Name", field: "last_name" },
                 { title: "Phone Number", field: "phone" },
                 { title: "Age", field: "age" },
+                { title: "Minor?", field: "isMinor" },
+                { title: "Guardian?", field: "is_guardian" },
               ]}
               data={volunteersData.map((volunteer) => ({
                 ...volunteer,
                 isMinor: moment().diff(volunteer.date_of_birth, "years") < 18,
                 age: moment().diff(volunteer.date_of_birth, "years"),
               }))}
-              title="Demo Title"
+              title="SmileUp Volunteers"
+              actions={[
+                {
+                  icon: Edit,
+                  tooltip: "Edit Volunteer",
+                  onClick: (event, rowData) => {
+                    // console.log("THIS IS THE ROW DATA: ", rowData);
+                    history.push(`/profile/${rowData.id}`);
+                  },
+                },
+                {
+                  icon: Add,
+                  tooltip: "Add User",
+                  isFreeAction: true,
+                  onClick: (event) => alert("You want to add a new row"),
+                },
+              ]}
             />
           </div>
-          <h1>This is the Volunteer Directory</h1>
-          <ul>
-            {volunteersData.map((volunteer) => {
-              return (
-                <Link to={`/profile/${volunteer.id}`}>
-                  <li key={volunteer.id}>
-                    <h1>
-                      {volunteer.first_name} {volunteer.last_name}
-                    </h1>
-                  </li>
-                </Link>
-              );
-            })}
-          </ul>
         </>
       ) : (
         <h1>You must be an admin to access this page.</h1>

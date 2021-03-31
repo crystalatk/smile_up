@@ -1,23 +1,30 @@
 import { useState } from "react";
 import React from "react";
-import BottomNav from './BottomNav'
+import BottomNav from "./BottomNav";
 
-
-const LoginVolunteers = () => {
+const LoginVolunteers = ({ setUserInfo }) => {
   const [username, setUserName] = useState([]);
   const [password, setPassword] = useState([]);
 
   const _handleSubmit = async (e) => {
     e.preventDefault();
     const loginData = await fetch("http://127.0.0.1:3232/login/sitelogin", {
-      method: "Get",
+      method: "POST",
       headers: { "Content-Type": "application/json" },
-      Body: JSON.stringify({
+      body: JSON.stringify({
         username: username,
         password: password,
       }),
     }).then((response) => response.json());
-    console.log("Here are the search results: ", loginData);
+    console.log("Here are the login results: ", loginData);
+    setUserInfo({
+      isLoggedIn: true,
+      id: loginData.id,
+      is_admin: loginData.is_admin,
+      is_guardian: loginData.is_guardian,
+      is_minor: loginData.is_minor,
+      first_name: loginData.first_name,
+    });
   };
 
   const _onUserName = (e) => {
@@ -48,7 +55,7 @@ const LoginVolunteers = () => {
         </label>
         <button type="submit"> Login </button>
       </form>
-      </div>
+    </div>
   );
 };
 
