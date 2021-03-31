@@ -39,7 +39,7 @@ const AdminLogin = () => {
       };
 
     return (
-        <div>
+        <div className="App">
 
             <h1>Admin Login</h1>
            
