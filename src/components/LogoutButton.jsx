@@ -1,4 +1,6 @@
+import { useHistory } from "react-router-dom";
 const LogoutButton = ({ setUserInfo }) => {
+  const history = useHistory();
   const _handleClick = (e) => {
     e.preventDefault();
     setUserInfo({
@@ -9,6 +11,7 @@ const LogoutButton = ({ setUserInfo }) => {
       is_minor: true,
       first_name: "",
     });
+    history.push("/");
   };
   return (
     <>
