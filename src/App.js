@@ -15,6 +15,7 @@ import TempHeader from "./components/TempHeader";
 import TotalEvents from "./components/TotalEvents";
 import VolunteerHrsById from "./components/VolunteerHrsById";
 import LogoutButton from "./components/LogoutButton";
+import EditVolunteerProfile from "./components/EditVolunteerProfile";
 import "./App.css";
 
 function App() {
@@ -106,6 +107,9 @@ function App() {
           <TotalEvents />
         </Route>
         <Route path="/volunteerHoursId">
+          <VolunteerHrsById />
+        </Route>
+        <Route path="/editprofile/:id">
           <VolunteerHrsById />
         </Route>
       </Router>
