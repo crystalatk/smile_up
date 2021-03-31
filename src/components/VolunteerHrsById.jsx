@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
 
-const VHID = () => {
+const VHID = ({userInfo}) => {
     const [vhid, setVH] = useState('')
     useEffect(() => {
         
         const getVH = () => {
-            fetch('http://127.0.0.1:3232/volunteers/volunteerHoursId')
+            fetch(`http://127.0.0.1:3232/volunteers/volunteerHoursId?volunteer_id=${userInfo.id}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -20,7 +20,7 @@ const VHID = () => {
 
     return (
         <>
-            <h1>VHID</h1>
+            <h1>Total Hours </h1>
                 {!!vhid ? 
                 <h2>
                     {vhid}

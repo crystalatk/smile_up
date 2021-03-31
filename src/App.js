@@ -106,7 +106,7 @@ function App() {
           <TotalEvents />
         </Route>
         <Route path="/volunteerHoursId">
-          <VolunteerHrsById />
+          <VolunteerHrsById userInfo={userInfo} />
         </Route>
       </Router>
     </div>
