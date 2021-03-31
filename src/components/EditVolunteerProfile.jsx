@@ -4,7 +4,8 @@ import { useAlert } from "react-alert";
 import moment from "moment";
 
 const EditVolunteerProfile = ({ userInfo }) => {
-  const { id } = useParams();
+  const { id: initialID } = useParams();
+  const id = parseInt(initialID);
   const [volunteerInfo, setVolunteerInfo] = useState(
     userInfo?.id === id ? userInfo : {}
   );
@@ -142,7 +143,7 @@ const EditVolunteerProfile = ({ userInfo }) => {
     }
     fetchProfileData();
     console.log("fetching...");
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (guardianID === userInfo?.id) {

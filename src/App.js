@@ -13,7 +13,7 @@ import VolunteerProfile from "./components/VolunteerProfile";
 import TotalSmiles from "./components/TotalSmiles";
 import TempHeader from "./components/TempHeader";
 import TotalEvents from "./components/TotalEvents";
-import TotalEventsId from "./components/TotalEventsId"
+import TotalEventsId from "./components/TotalEventsId";
 import VolunteerHrsById from "./components/VolunteerHrsById";
 import LogoutButton from "./components/LogoutButton";
 import EditVolunteerProfile from "./components/EditVolunteerProfile";
@@ -79,9 +79,6 @@ function App() {
         <Route path="/volunteerHours">
           <VolunteerHours userInfo={userInfo} />
         </Route>
-        <Route path="/addevent">
-          <AddAnEvent userInfo={userInfo} />
-        </Route>
         <Route path="/eventlist">
           <EventList userInfo={userInfo} />
         </Route>
@@ -112,13 +109,13 @@ function App() {
           <VolunteerHrsById userInfo={userInfo} />
         </Route>
         <Route path="/totalEventsId">
-            <TotalEventsId userInfo={userInfo} />
-              </Route>
+          <TotalEventsId userInfo={userInfo} />
+        </Route>
         <Route path="/editprofile/:id">
-          <EditVolunteerProfile userInfo={userInfo}/>
+          <EditVolunteerProfile userInfo={userInfo} />
         </Route>
         <Route path="/newminor">
-            <NewMinorAccount />
+          <NewMinorAccount />
         </Route>
       </Router>
     </div>
