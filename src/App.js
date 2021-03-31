@@ -13,6 +13,7 @@ import VolunteerProfile from "./components/VolunteerProfile";
 import TotalSmiles from "./components/TotalSmiles";
 import TempHeader from "./components/TempHeader";
 import TotalEvents from "./components/TotalEvents";
+import TotalEventsId from "./components/TotalEventsId"
 import VolunteerHrsById from "./components/VolunteerHrsById";
 import LogoutButton from "./components/LogoutButton";
 import "./App.css";
@@ -107,6 +108,9 @@ function App() {
         </Route>
         <Route path="/volunteerHoursId">
           <VolunteerHrsById userInfo={userInfo} />
+        </Route>
+        <Route>
+            <TotalEventsId userInfo={userInfo} />
         </Route>
       </Router>
     </div>
