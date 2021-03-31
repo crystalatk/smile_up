@@ -14,6 +14,7 @@ import TotalSmiles from "./components/TotalSmiles";
 import TempHeader from "./components/TempHeader";
 import TotalEvents from "./components/TotalEvents";
 import VolunteerHrsById from "./components/VolunteerHrsById";
+import LogoutButton from "./components/LogoutButton";
 import "./App.css";
 
 function App() {
@@ -57,8 +58,13 @@ function App() {
     <div className="App">
       <Router>
         <TempHeader />
-        <Route exact path="/login">
+        {!!userInfo.isLoggedIn ? (
+          <LogoutButton setUserInfo={setUserInfo} />
+        ) : (
           <LoginVolunteers setUserInfo={setUserInfo} />
+        )}
+
+        <Route exact path="/createaccount">
           <NewNonMinorAccount />
         </Route>
         <Route path="/addevent">
@@ -97,10 +103,10 @@ function App() {
           <TotalSmiles />
         </Route>
         <Route path="/counttotalevents">
-            <TotalEvents />
+          <TotalEvents />
         </Route>
-        <Route path="/volunteerHoursId"> 
-            <VolunteerHrsById />
+        <Route path="/volunteerHoursId">
+          <VolunteerHrsById />
         </Route>
       </Router>
     </div>
