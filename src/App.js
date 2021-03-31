@@ -13,6 +13,7 @@ import VolunteerProfile from "./components/VolunteerProfile";
 import TotalSmiles from "./components/TotalSmiles";
 import TempHeader from "./components/TempHeader";
 import TotalEvents from "./components/TotalEvents";
+import TotalEventsId from "./components/TotalEventsId"
 import VolunteerHrsById from "./components/VolunteerHrsById";
 import LogoutButton from "./components/LogoutButton";
 import EditVolunteerProfile from "./components/EditVolunteerProfile";
@@ -110,6 +111,9 @@ function App() {
         <Route path="/volunteerHoursId">
           <VolunteerHrsById userInfo={userInfo} />
         </Route>
+        <Route>
+            <TotalEventsId userInfo={userInfo} />
+              </Route>
         <Route path="/editprofile/:id">
           <VolunteerHrsById />
         </Route>
