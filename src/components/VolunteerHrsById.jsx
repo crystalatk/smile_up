@@ -1,0 +1,36 @@
+import { useEffect, useState } from 'react';
+
+
+const VHID = () => {
+    const [vhid, setVH] = useState('')
+    useEffect(() => {
+        
+        const getVH = () => {
+            fetch('http://127.0.0.1:3232/volunteers/volunteerHoursId')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setVH(data[0].sum)
+            })
+        }
+        getVH();
+        
+    },[])
+
+
+    return (
+        <>
+            <h1>VHID</h1>
+                {!!vhid ? 
+                <h2>
+                    {vhid}
+                </h2>
+                :<h3>nothing is here</h3>
+                }
+           
+        </>
+    )
+
+}
+
+export default VHID
