@@ -11,6 +11,7 @@ import VolunteerHours from "./components/VolunteerHrs";
 import EditEvent from "./components/EditEvent";
 import VolunteerDirectory from "./components/VolunteerDirectory";
 import VolunteerProfile from "./components/VolunteerProfile";
+import TotalSmiles from "./components/TotalSmiles";
 import "./App.css";
 
 function App() {
@@ -89,6 +90,9 @@ function App() {
         </Route>
         <Route path="/profile/:id">
           <VolunteerProfile userInfo={userInfo} />
+        </Route>
+        <Route path="/totalSmiles">
+            <TotalSmiles />
         </Route>
       </Router>
     </div>

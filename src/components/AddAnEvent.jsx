@@ -86,7 +86,7 @@ const AddAnEvent = () => {
   };
 
   return (
-    <>
+    <div className="App">
       <h1>This is the AddAnEvent</h1>
       <form onSubmit={_handleSubmit}>
         <label>
@@ -229,7 +229,7 @@ const AddAnEvent = () => {
         </label>
         <button type="submit">Create my Event</button>
       </form>
-    </>
+    </div>
   );
 };
 
