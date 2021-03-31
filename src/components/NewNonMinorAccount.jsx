@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAlert }  from 'react-alert';
 // import { useHistory } from 'react-router-dom';
-import NewMinorAccount from './NewMinorAccount';
+import NewMinorAccountBridge from './NewMinorAccountBridge';
 import moment from 'moment';
 import Modal from './Modal';
 
@@ -145,7 +145,6 @@ const NewNonMinorAccount = () => {
                 setUsernameTaken(false);
                 setAdultFormSubmitted(true);
                 // history.push("/");
-                console.log('submit response is ', submitResponse);
             } else {
                 myAlert.error("You broke it...");
             }
@@ -223,7 +222,7 @@ const NewNonMinorAccount = () => {
             </form>
             {(adultFormSubmitted && isGuardian) ? (
                 <Modal showModal={showModal} handleClose={() => setShowModal(false)}>
-                    <NewMinorAccount/>
+                    <NewMinorAccountBridge guardianId={guardianId}/>
                 </Modal>
             ) : null}
         </>
