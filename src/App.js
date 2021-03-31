@@ -12,6 +12,7 @@ import EditEvent from "./components/EditEvent";
 import VolunteerDirectory from "./components/VolunteerDirectory";
 import VolunteerProfile from "./components/VolunteerProfile";
 import TotalSmiles from "./components/TotalSmiles";
+import TotalEvents from "./components/TotalEvents";
 import "./App.css";
 
 function App() {
@@ -93,6 +94,9 @@ function App() {
         </Route>
         <Route path="/totalSmiles">
             <TotalSmiles />
+        </Route>
+        <Route path="/counttotalevents">
+            <TotalEvents />
         </Route>
       </Router>
     </div>

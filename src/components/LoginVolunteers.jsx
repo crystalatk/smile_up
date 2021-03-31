@@ -9,14 +9,16 @@ const LoginVolunteers = () => {
 
   const _handleSubmit = async (e) => {
     e.preventDefault();
-    const loginData = await fetch("http://127.0.0.1:3232/login/sitelogin", {
-      method: "Get",
-      headers: { "Content-Type": "application/json" },
-      Body: JSON.stringify({
-        username: username,
-        password: password,
-      }),
-    }).then((response) => response.json());
+    const loginData  = await fetch('http://127.0.0.1:3232/login/sitelogin', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            username: username,
+            password: password,
+        })
+    }).then(
+        (response) => (response.json())
+    );
     console.log("Here are the search results: ", loginData);
   };
 
