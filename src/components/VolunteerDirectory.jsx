@@ -24,7 +24,7 @@ const VolunteerDirectory = ({ userInfo }) => {
   }, []);
   return (
     <>
-      {userInfo.isAdmin || true ? (
+      {userInfo.isAdmin ? (
         <>
           <h1>This is the Volunteer Directory</h1>
           <ul>

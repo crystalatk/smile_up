@@ -89,7 +89,7 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
             </p>
           )}
           {/* NEED TO CHANGE THIS AND TAKE AWAY THE OR TRUE! */}
-          {!!userInfo.isAdmin || true ? (
+          {!!userInfo.isAdmin ? (
             <>
               <h1>Number of Volunteers Signed up</h1>
               <h1>
