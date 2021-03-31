@@ -3,6 +3,7 @@ import { useAlert }  from 'react-alert';
 // import { useHistory } from 'react-router-dom';
 import NewMinorAccount from './NewMinorAccount';
 import moment from 'moment';
+import Modal from './Modal';
 
 const NewNonMinorAccount = () => {
     const [username, setUsername] = useState('');
@@ -22,23 +23,25 @@ const NewNonMinorAccount = () => {
     const [isAmbassador, setIsAmbassador] = useState(false);
     const [passwordsMatch, setPasswordsMatch] = useState(false);
     const [usernameTaken, setUsernameTaken] = useState(false);
+    const [guardianId, setGuardianId] = useState('');
     const [adultFormSubmitted, setAdultFormSubmitted] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const myAlert = useAlert();
     // const history = useHistory();
 
     const _handleUsernameChange = e => {
-        setUsername(e.target.value);
+        setUsername((e.target.value).replace(/'/g, "''"));
     }
 
     const _handlePasswordChange = e => {
-        setPassword(e.target.value);
+        setPassword((e.target.value).replace(/'/g, "''"));
         if (e.target.value.length === 0) {
             setPasswordsMatch(true);
         }
     }
 
     const _handlePassword2Change = (e) => {
-        setPassword2(e.target.value);
+        setPassword2((e.target.value).replace(/'/g, "''"));
         if (password.length === e.target.value.length) {
             if (password === e.target.value) {
             setPasswordsMatch(true);
@@ -52,39 +55,39 @@ const NewNonMinorAccount = () => {
     };
 
     const _handleFirstNameChange = e => {
-        setFirstName(e.target.value);
+        setFirstName((e.target.value).replace(/'/g, "''"));
     }
 
     const _handleLastNameChange = e => {
-        setLastName(e.target.value);
+        setLastName((e.target.value).replace(/'/g, "''"));
     }
 
     const _handleDateOfBirthChange = e => {
-        setDateOfBirth(e.target.value);
+        setDateOfBirth((e.target.value).replace(/'/g, "''"));
     }
 
     const _handlePhoneNumberChange = e => {
-        setPhoneNumber(e.target.value);
+        setPhoneNumber((e.target.value).replace(/'/g, "''"));
     }
     
     const _handleEmailChange = e => {
-        setEmail(e.target.value);
+        setEmail((e.target.value).replace(/'/g, "''"));
     }
 
     const _handleZipCodeChange = e => {
-        setZipCode(e.target.value);
+        setZipCode((e.target.value).replace(/'/g, "''"));
     }
 
     const _handleEmergencyNameChange = e => {
-        setEmergencyName(e.target.value);
+        setEmergencyName((e.target.value).replace(/'/g, "''"));
     }
 
     const _handleEmergencyPhoneChange = e => {
-        setEmergencyPhone(e.target.value);
+        setEmergencyPhone((e.target.value).replace(/'/g, "''"));
     }
 
     const _handleSignUpMessageChange = e => {
-        setSignUpMessage(e.target.value);
+        setSignUpMessage((e.target.value).replace(/'/g, "''"));
     }
 
     const _handleIsGuardianChange = e => {
@@ -121,8 +124,9 @@ const NewNonMinorAccount = () => {
                         is_ambassador: isAmbassador
                     }),
                 }
-                ).then((response) => response);
+                ).then((response) => response.json());
                 myAlert.success("Your account has been created!");
+                if (isGuardian) { setGuardianId(submitResponse.id) };
                 setFirstName("");
                 setLastName("");
                 setPasswordsMatch(true);
@@ -211,12 +215,17 @@ const NewNonMinorAccount = () => {
                     <input type="radio" value="yes" onChange={_handleIsGuardianChange} name="is_guardian"/> Yes
                     <input type="radio" value="no" onChange={_handleIsGuardianChange} name="is_guardian"/> No
                 </label>
-                <button type="submit">Submit</button>
+
+                <button type="submit" onClick={() => setShowModal(true)}>Submit</button>
                 {!!usernameTaken ? (
                     <h6 className="f-red f-small">Your username is taken.</h6>
                     ) : null}
             </form>
-            {adultFormSubmitted && isGuardian ? <NewMinorAccount /> : null}
+            {(adultFormSubmitted && isGuardian) ? (
+                <Modal showModal={showModal} handleClose={() => setShowModal(false)}>
+                    <NewMinorAccount/>
+                </Modal>
+            ) : null}
         </>
     )
 }
