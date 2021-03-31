@@ -7,6 +7,7 @@ const TempHeader = () => {
       <Link to="/directory">Directory</Link>
       <Link to="/createaccount">Create Account</Link>
       <Link to="/volunteerHoursId">Volunteer Hours Id</Link>
+      <Link to="/editprofile/26">CrystalEditProfile</Link>
     </>
   );
 };

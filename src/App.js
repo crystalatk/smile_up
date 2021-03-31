@@ -110,7 +110,7 @@ function App() {
           <VolunteerHrsById userInfo={userInfo} />
         </Route>
         <Route path="/editprofile/:id">
-          <VolunteerHrsById />
+          <EditVolunteerProfile userInfo={userInfo} />
         </Route>
       </Router>
     </div>
