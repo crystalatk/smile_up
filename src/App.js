@@ -13,10 +13,12 @@ import VolunteerProfile from "./components/VolunteerProfile";
 import TotalSmiles from "./components/TotalSmiles";
 import TempHeader from "./components/TempHeader";
 import TotalEvents from "./components/TotalEvents";
+import TotalEventsId from "./components/TotalEventsId"
 import VolunteerHrsById from "./components/VolunteerHrsById";
 import LogoutButton from "./components/LogoutButton";
 import EditVolunteerProfile from "./components/EditVolunteerProfile";
 import "./App.css";
+import NewMinorAccount from "./components/NewMinorAccount";
 
 function App() {
   const [userInfo, setUserInfo] = useState({
@@ -109,8 +111,14 @@ function App() {
         <Route path="/volunteerHoursId">
           <VolunteerHrsById userInfo={userInfo} />
         </Route>
+        <Route path="/totalEventsId">
+            <TotalEventsId userInfo={userInfo} />
+              </Route>
         <Route path="/editprofile/:id">
-          <EditVolunteerProfile userInfo={userInfo} />
+          <EditVolunteerProfile userInfo={userInfo}/>
+        </Route>
+        <Route path="/newminor">
+            <NewMinorAccount />
         </Route>
       </Router>
     </div>
