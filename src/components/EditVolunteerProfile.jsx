@@ -104,23 +104,16 @@ const EditVolunteerProfile = ({ userInfo }) => {
       setEmergencyName(profileDataResponse.emergency_name);
       setEmergencyPhone(profileDataResponse.emergency_phone);
     };
-    if (userInfo?.id !== id) {
-      if (!userInfo?.is_minor) {
-        fetchGuardianID();
-      }
+    if (userInfo?.id !== id && !userInfo?.is_minor) {
+      fetchGuardianID();
     }
     fetchProfileData();
     console.log("fetching...");
   }, [id]);
 
   useEffect(() => {
-    if (guardianID === userInfo?.id) {
-      setIsProfileGuardian(true);
-    }
-    if (userInfo?.id === id || userInfo?.is_admin || isProfileGuardian) {
-      setViewPage(true);
-      console.log("I made it!");
-    }
+    setIsProfileGuardian(guardianID === userInfo?.id);
+    setViewPage(userInfo?.id === id || userInfo?.is_admin || isProfileGuardian);
   }, [guardianID, userInfo, volunteerInfo]);
 
   return (
