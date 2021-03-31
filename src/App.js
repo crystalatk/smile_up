@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import NewNonMinorAccount from "./components/NewNonMinorAccount";
 import LoginVolunteers from "./components/LoginVolunteers";
-import AdminLogin from "./components/AdminLogin";
 import AddAnEvent from "./components/AddAnEvent";
 import TotalVolunteers from "./components/TotalVolunteers";
 import EventList from "./components/EventList";
@@ -12,6 +11,7 @@ import EditEvent from "./components/EditEvent";
 import VolunteerDirectory from "./components/VolunteerDirectory";
 import VolunteerProfile from "./components/VolunteerProfile";
 import TotalSmiles from "./components/TotalSmiles";
+import TempHeader from "./components/TempHeader";
 import TotalEvents from "./components/TotalEvents";
 import VolunteerHrsById from "./components/VolunteerHrsById";
 import "./App.css";
@@ -20,9 +20,9 @@ function App() {
   const [userInfo, setUserInfo] = useState({
     isLoggedIn: false,
     id: "",
-    isAdmin: false,
-    isGuardian: false,
-    isMinor: true,
+    is_admin: false,
+    is_guardian: false,
+    is_minor: true,
     first_name: "",
   });
   const [
@@ -56,9 +56,9 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <TempHeader />
         <Route exact path="/login">
           <LoginVolunteers setUserInfo={setUserInfo} />
-          <AdminLogin />
           <NewNonMinorAccount />
         </Route>
         <Route path="/addevent">
@@ -94,7 +94,7 @@ function App() {
           <VolunteerProfile userInfo={userInfo} />
         </Route>
         <Route path="/totalSmiles">
-            <TotalSmiles />
+          <TotalSmiles />
         </Route>
         <Route path="/counttotalevents">
             <TotalEvents />
