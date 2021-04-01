@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAlert } from "react-alert";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -42,6 +42,7 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
     eventDetailsForEditPurposes.adults_needed
   );
   const myAlert = useAlert();
+  const history = useHistory();
   const filterPassedTime = (time) => {
     const currentDate = new Date();
     const selectedDate = new Date(time);
@@ -102,6 +103,7 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
     setNumAdults(0);
     setAlerts("");
     setIsChecked(false);
+    history.push(`/event/${eventDetailsForEditPurposes.id}`);
   };
 
   return (
@@ -246,10 +248,11 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
             required
           />
         </label>
-        <Link to={`/event/${eventDetailsForEditPurposes.id}`}>
-          <button type="submit">Update my Event</button>
-        </Link>
+        <button type="submit">Update my Event</button>
       </form>
+      <Link to={`/event/${eventDetailsForEditPurposes.id}`}>
+        <button type="button">Cancel</button>
+      </Link>
     </>
   );
 };

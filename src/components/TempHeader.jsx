@@ -11,6 +11,7 @@ const TempHeader = () => {
       <Link to="/profile/26"> Crystal's'Profile</Link>
       <Link to="/profile/40"> Ella's'Profile</Link>
       <Link to="/profile/45"> Eli's'Profile</Link>
+      <Link to="/eventlist"> EventList</Link>
     </>
   );
 };
