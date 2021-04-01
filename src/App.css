@@ -1,10 +1,10 @@
 .App {
   text-align: center;
-  /* background-color: rgb(250, 193, 135); */
-  /* min-width: "100vw";
+  background-color: rgb(250, 193, 135);
+  min-width: "100vw";
   min-height: "100vh";
-  position: "absolute";
-  overflow: "hidden"; */
+  position: relative;
+  overflow: hidden;
 }
 
 a {
@@ -17,10 +17,12 @@ li {
 }
 .menu-bar {
   display: flex;
+  /* flex-shrink: 3; */
+  flex-grow: 1;
   justify-content: space-around;
   align-items: center;
   background-color: rgb(0, 214, 203);
-  /* margin-bottom: 120px; */
+  margin-bottom: 0;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   /* padding: 0 20px; */
@@ -29,4 +31,47 @@ li {
   position: fixed;
   width: 100%;
   bottom: 10px;
+  /* margin-top: 10px; */
+}
+.flex-container {
+  /* We first create a flex layout context */
+  display: flex;
+  /* Then we define the flow direction 
+     and if we allow the items to wrap 
+   * Remember this is the same as:
+   * flex-direction: row;
+   * flex-wrap: wrap;
+   */
+  flex-flow: row wrap;
+  /* Then we define how is distributed the remaining space */
+  justify-content: flex-start;
+  padding: auto;
+  margin: auto;
+  list-style: none;
+}
+/* @media (max-width: 414px){
+  .App{
+    width: 100%;
+    display: inline-block;
+  }
+} */
+
+.flex-item {
+  padding: auto;
+  margin-top: auto;
+  line-height: 150px;
+  /* font-size: 3em; */
+  text-align: left;
+}
+@media all and (max-width: 800px) {
+  .flex-container {
+    /* When on medium sized screens, we center it by evenly distributing empty space around items */
+    justify-content: space-around;
+  }
+}
+@media all and (max-width: 500px) {
+  .flex-container {
+    /* On small screens, we are no longer using row direction but column */
+    flex-direction: column;
+  }
 }

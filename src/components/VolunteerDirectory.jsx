@@ -12,6 +12,7 @@ import FilterList from "@material-ui/icons/FilterList";
 import FirstPage from "@material-ui/icons/FirstPage";
 import LastPage from "@material-ui/icons/LastPage";
 import Search from "@material-ui/icons/Search";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import moment from "moment";
 
 const VolunteerDirectory = ({ userInfo }) => {
@@ -32,6 +33,9 @@ const VolunteerDirectory = ({ userInfo }) => {
     Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
     SortArrow: forwardRef((props, ref) => (
       <ArrowDownward {...props} ref={ref} />
+    )),
+    AccountCircleIcon: forwardRef((props, ref) => (
+      <AccountCircleIcon {...props} ref={ref} />
     )),
   };
 
@@ -78,6 +82,14 @@ const VolunteerDirectory = ({ userInfo }) => {
                 {
                   icon: Edit,
                   tooltip: "Edit Volunteer",
+                  onClick: (event, rowData) => {
+                    // console.log("THIS IS THE ROW DATA: ", rowData);
+                    history.push(`/editprofile/${rowData.id}`);
+                  },
+                },
+                {
+                  icon: AccountCircleIcon,
+                  tooltip: "Go to Volunteer Profile",
                   onClick: (event, rowData) => {
                     // console.log("THIS IS THE ROW DATA: ", rowData);
                     history.push(`/profile/${rowData.id}`);

@@ -4,7 +4,8 @@ import { useAlert } from "react-alert";
 import moment from "moment";
 
 const EditVolunteerProfile = ({ userInfo }) => {
-  const { id } = useParams();
+  const { id: initialID } = useParams();
+  const id = parseInt(initialID);
   const [volunteerInfo, setVolunteerInfo] = useState(
     userInfo?.id === id ? userInfo : {}
   );
@@ -35,38 +36,6 @@ const EditVolunteerProfile = ({ userInfo }) => {
   );
   const myAlert = useAlert();
   const history = useHistory();
-
-  const _handleFirstNameChange = (e) => {
-    setFirstName(e.target.value);
-  };
-
-  const _handleLastNameChange = (e) => {
-    setLastName(e.target.value);
-  };
-
-  const _handleDateOfBirthChange = (e) => {
-    setDateOfBirth(e.target.value);
-  };
-
-  const _handlePhoneNumberChange = (e) => {
-    setPhoneNumber(e.target.value);
-  };
-
-  const _handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const _handleZipCodeChange = (e) => {
-    setZipCode(e.target.value);
-  };
-
-  const _handleEmergencyNameChange = (e) => {
-    setEmergencyName(e.target.value);
-  };
-
-  const _handleEmergencyPhoneChange = (e) => {
-    setEmergencyPhone(e.target.value);
-  };
 
   const _handleSubmit = async (e) => {
     e.preventDefault();
@@ -135,23 +104,16 @@ const EditVolunteerProfile = ({ userInfo }) => {
       setEmergencyName(profileDataResponse.emergency_name);
       setEmergencyPhone(profileDataResponse.emergency_phone);
     };
-    if (userInfo?.id !== id) {
-      if (!userInfo?.is_minor) {
-        fetchGuardianID();
-      }
+    if (userInfo?.id !== id && !userInfo?.is_minor) {
+      fetchGuardianID();
     }
     fetchProfileData();
     console.log("fetching...");
-  }, []);
+  }, [id]);
 
   useEffect(() => {
-    if (guardianID === userInfo?.id) {
-      setIsProfileGuardian(true);
-    }
-    if (volunteerInfo?.id === id || userInfo?.is_admin || isProfileGuardian) {
-      setViewPage(true);
-      console.log("I made it!");
-    }
+    setIsProfileGuardian(guardianID === userInfo?.id);
+    setViewPage(userInfo?.id === id || userInfo?.is_admin || isProfileGuardian);
   }, [guardianID, userInfo, volunteerInfo]);
 
   return (
@@ -166,7 +128,9 @@ const EditVolunteerProfile = ({ userInfo }) => {
                 <input
                   type="text"
                   value={firstName}
-                  onChange={_handleFirstNameChange}
+                  onChange={(e) =>
+                    setFirstName(e.target.value.replace(/‘/g, "''"))
+                  }
                   required
                 />
               </label>
@@ -175,7 +139,9 @@ const EditVolunteerProfile = ({ userInfo }) => {
                 <input
                   type="text"
                   value={lastName}
-                  onChange={_handleLastNameChange}
+                  onChange={(e) =>
+                    setLastName(e.target.value.replace(/‘/g, "''"))
+                  }
                   required
                 />
               </label>
@@ -184,7 +150,7 @@ const EditVolunteerProfile = ({ userInfo }) => {
                 <input
                   type="date"
                   value={dateOfBirth}
-                  onChange={_handleDateOfBirthChange}
+                  onChange={(e) => setDateOfBirth(e.target.value)}
                   required
                 />
               </label>
@@ -193,7 +159,9 @@ const EditVolunteerProfile = ({ userInfo }) => {
                 <input
                   type="text"
                   value={phoneNumber}
-                  onChange={_handlePhoneNumberChange}
+                  onChange={(e) =>
+                    setPhoneNumber(e.target.value.replace(/‘/g, "''"))
+                  }
                   required
                 />
               </label>
@@ -202,7 +170,7 @@ const EditVolunteerProfile = ({ userInfo }) => {
                 <input
                   type="email"
                   value={email}
-                  onChange={_handleEmailChange}
+                  onChange={(e) => setEmail(e.target.value.replace(/‘/g, "''"))}
                   required
                 />
               </label>
@@ -211,7 +179,9 @@ const EditVolunteerProfile = ({ userInfo }) => {
                 <input
                   type="text"
                   value={zipCode}
-                  onChange={_handleZipCodeChange}
+                  onChange={(e) =>
+                    setZipCode(e.target.value.replace(/‘/g, "''"))
+                  }
                   required
                 />
               </label>
@@ -220,7 +190,9 @@ const EditVolunteerProfile = ({ userInfo }) => {
                 <input
                   type="text"
                   value={emergencyName}
-                  onChange={_handleEmergencyNameChange}
+                  onChange={(e) =>
+                    setEmergencyName(e.target.value.replace(/‘/g, "''"))
+                  }
                   required
                 />
               </label>
@@ -229,7 +201,9 @@ const EditVolunteerProfile = ({ userInfo }) => {
                 <input
                   type="text"
                   value={emergencyPhone}
-                  onChange={_handleEmergencyPhoneChange}
+                  onChange={(e) =>
+                    setEmergencyPhone(e.target.value.replace(/‘/g, "''"))
+                  }
                   required
                 />
               </label>

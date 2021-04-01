@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useAlert } from "react-alert";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import TextField from "@material-ui/core/TextField";
 
 const AddAnEvent = () => {
   const [title, setTitle] = useState("");
@@ -67,9 +68,6 @@ const AddAnEvent = () => {
     ).then((response) => response);
     myAlert.success("Your event has been created!");
     setTitle("");
-    // setStartDate(new Date());
-    // setDateStop("");
-    // setDateStart("");
     setSignupDeadline(new Date());
     setDateStart(new Date());
     setDateStop(new Date());
@@ -89,31 +87,30 @@ const AddAnEvent = () => {
     <div className="App">
       <h1>This is the AddAnEvent</h1>
       <form onSubmit={_handleSubmit}>
-        <label>
-          Event Title
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => {
-              setTitle(e.target.value.replace(/‘/g, "''"));
-            }}
-            required
-          />
-        </label>
-        <label>
-          Event Start:
-          <DatePicker
-            selected={dateStart}
-            onChange={(date) => setDateStart(date)}
-            showTimeSelect
-            timeIntervals={15}
-            timeCaption="Time"
-            dateFormat="MMMM d, yyyy h:mm aa"
-            shouldCloseOnSelect={true}
-            filterTime={filterPassedTime}
-            required
-          />
-        </label>
+        <TextField
+          label="Event Title"
+          type="text"
+          variant="outlined"
+          margin="dense"
+          value={title}
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
+          required
+        />
+        <TextField
+          required
+          id="outlined-required"
+          label="Event Start"
+          variant="outlined"
+          value={dateStart}
+          margin="dense"
+          onChange={(date) => setDateStart(date)}
+          type="date"
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
         <label>
           Event End:
           <DatePicker
@@ -217,10 +214,7 @@ const AddAnEvent = () => {
           Sign-up Deadline:
           <DatePicker
             selected={!!signupDeadline ? signupDeadline : dateStart}
-            onChange={
-              (date) => setSignupDeadline(date)
-              // console.log(`${moment(date).format("YYYY-MM-DD")} 00:00:00`)
-            }
+            onChange={(date) => setSignupDeadline(date)}
             showMonthDropdown
             shouldCloseOnSelect={true}
             filterTime={filterPassedTime}
