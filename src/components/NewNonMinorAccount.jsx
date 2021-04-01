@@ -17,7 +17,6 @@ import FormLabel from "@material-ui/core/FormLabel";
 import Button from "@material-ui/core/Button";
 import Fab from "@material-ui/core/Fab";
 import NewMinorAccountBridge from "./NewMinorAccountBridge";
-import moment from "moment";
 import Modal from "./Modal";
 
 // const useStyles = makeStyles((theme) => ({
@@ -173,93 +172,8 @@ const NewNonMinorAccount = () => {
     setSignUpMessage(e.target.value.replace(/'/g, "''"));
   };
 
-  const _handleZipCodeChange = (e) => {
-    setZipCode(e.target.value);
-  };
-
-  const _handleEmergencyNameChange = (e) => {
-    setEmergencyName(e.target.value);
-  };
-
-  const _handleEmergencyPhoneChange = (e) => {
-    setEmergencyPhone(e.target.value);
-  };
-
-  const _handleSignUpMessageChange = (e) => {
-    setSignUpMessage(e.target.value);
-  };
-
   const _handleIsGuardianChange = (e) => {
     e.target.value === "yes" ? setIsGuardian(true) : setIsGuardian(false);
-  };
-
-  const _handleSubmit = async (e) => {
-    e.preventDefault();
-    const isUsername = await fetch(
-      `http://127.0.0.1:3232/login/username/?username=${username}`
-    ).then((response) => response.json());
-    console.log("THIS IS THE ISUSESRNAME RESPONSE: ", isUsername);
-    if (isUsername) {
-      if (password2 === password) {
-        const submitResponse = await fetch(
-          `http://127.0.0.1:3232/login/signupVolunteer`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              username: username,
-              password: password,
-              first_name: firstName,
-              last_name: lastName,
-              date_of_birth: moment(dateOfBirth).format("YYYY-MM-DD HH:MM:SS"),
-              phone: phoneNumber,
-              email: email,
-              zip_code: zipCode,
-              emergency_name: emergencyName,
-              emergencyPhone: emergencyPhone,
-              sign_up_message: signUpMessage,
-              is_guardian: isGuardian,
-              is_minor: isMinor,
-              is_ambassador: isAmbassador,
-            }),
-          }
-        ).then((response) => response);
-        myAlert.success("Your account has been created!");
-        setFirstName("");
-        setLastName("");
-        setPasswordsMatch(true);
-        setPassword("");
-        setPassword2("");
-        setPhoneNumber("");
-        setUsername("");
-        setZipCode("");
-        setDateOfBirth("");
-        setEmail("");
-        setEmergencyName("");
-        setEmergencyPhone("");
-        setSignUpMessage("");
-        setIsMinor(false);
-        setIsAmbassador(false);
-        setUsernameTaken(false);
-        setAdultFormSubmitted(true);
-        // history.push("/");
-        console.log("submit response is ", submitResponse);
-      } else {
-        myAlert.error("You broke it...");
-      }
-    } else {
-      myAlert.error("You broke it!");
-      setTimeout(() => {
-        myAlert.error("Just kidding.");
-      }, 1000);
-      setTimeout(() => {
-        myAlert.error("That username is super popular.");
-      }, 2000);
-      setTimeout(() => {
-        myAlert.error("Choose something else.");
-      }, 3000);
-      setUsernameTaken(true);
-    }
   };
 
   const _handleSubmit = async (e) => {
