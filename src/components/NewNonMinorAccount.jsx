@@ -167,6 +167,7 @@ const NewNonMinorAccount = () => {
     return (
         <>
             <h1>Create an Account:</h1>
+            <h2>You must be 18 years or older to create an account. If you need to register a minor with smileUp, you will have the option to do so immediately after creating your account.</h2>
             <form onSubmit={_handleSubmit}>
                 <label>Create Username
                     <input type="text" value={username} onChange={_handleUsernameChange} required></input>
