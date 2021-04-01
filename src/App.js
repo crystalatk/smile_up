@@ -10,6 +10,7 @@ import EventDetails from "./components/EventDetails";
 import VolunteerHours from "./components/VolunteerHrs";
 import TotalSmiles from "./components/TotalSmiles";
 import "./App.css";
+import BottomNav from "./components/BottomNav";
 
 function App() {
   const [userInfo, setUserInfo] = useState({
@@ -24,9 +25,8 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Route exact path="/login">
-          <LoginVolunteers setUserInfo={setUserInfo} />
-          <AdminLogin />
+      <LoginVolunteers setUserInfo={setUserInfo} />
+        <Route exact path="/createaccount">
           <NewNonMinorAccount />
         </Route>
         <Route path="/addevent">
@@ -38,9 +38,6 @@ function App() {
         <Route path="/volunteerHours">
           <VolunteerHours userInfo={userInfo} />
         </Route>
-        <Route path="/addevent">
-          <AddAnEvent userInfo={userInfo} />
-        </Route>
         <Route path="/eventlist">
           <EventList userInfo={userInfo} />
         </Route>
@@ -50,6 +47,7 @@ function App() {
         <Route path="/totalSmiles">
             <TotalSmiles />
         </Route>
+        <BottomNav/>
       </Router>
     </div>
   );

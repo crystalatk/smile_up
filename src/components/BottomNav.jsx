@@ -8,6 +8,8 @@ import bell from '../images/bell.png'
 import mail from '../images/mail.png'
 import donate from '../images/donate.png'
 import profile from '../images/profile.png'
+import Grid from '@material-ui/core/Grid';
+
 
 
 
@@ -35,7 +37,9 @@ const BottomNav = () => {
       const profileI =  <img src={profile} height='20px' width='20px'/>
 
     return (
+       <Grid item xs={12}>
         <div className="menu-bar">
+         
       <BottomNavigation
         value={value}
         onChange={handleChange}
@@ -67,7 +71,8 @@ const BottomNav = () => {
           icon={donateI}
         />
       </BottomNavigation>
-        </div>
+      
+        </div></Grid>
     )
 }
 
