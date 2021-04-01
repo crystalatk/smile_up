@@ -18,6 +18,7 @@ import VolunteerHrsById from "./components/VolunteerHrsById";
 import LogoutButton from "./components/LogoutButton";
 import EditVolunteerProfile from "./components/EditVolunteerProfile";
 import "./App.css";
+import BottomNav from "./components/BottomNav";
 import NewMinorAccount from "./components/NewMinorAccount";
 import GuardianSignUp from "./components/GuardianSignUp";
 
@@ -68,7 +69,7 @@ function App() {
           <LoginVolunteers setUserInfo={setUserInfo} />
         )}
 
-        <Route exact path="/createaccount">
+        <Route path="/createaccount">
           <NewNonMinorAccount />
         </Route>
         <Route path="/addevent">
@@ -115,12 +116,15 @@ function App() {
         <Route path="/editprofile/:id">
           <EditVolunteerProfile userInfo={userInfo} />
         </Route>
-        <Route path="/newminor">
-          <NewMinorAccount />
+        <Route path="/newminor/:guardianid">
+            <NewMinorAccount />
         </Route>
         <Route path="/guardiansignup/:event_id">
           <GuardianSignUp userInfo={userInfo} />
         </Route>
+        
+        <BottomNav />
+
       </Router>
     </div>
   );

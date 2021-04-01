@@ -1,6 +1,8 @@
 import { useState } from "react";
 import React from "react";
 import BottomNav from "./BottomNav";
+import TextField from "@material-ui/core/TextField";
+import Fab from "@material-ui/core/Fab";
 
 const LoginVolunteers = ({ setUserInfo }) => {
   const [username, setUserName] = useState([]);
@@ -39,21 +41,29 @@ const LoginVolunteers = ({ setUserInfo }) => {
     <div className="App">
       <form onSubmit={_handleSubmit}>
         <label>
-          <input
+          <TextField
+            required
             name="name"
-            placeholder="Enter your name"
+            id="outlined-required"
+            label="Username"
+            variant="outlined"
+            margin="dense"
             type="text"
             onChange={_onUserName}
           />
-          &nbsp;
-          <input
-            name="password"
-            placeholder="Enter password"
+
+          <TextField
+            id="outlined-password-input"
+            label="Password"
             type="password"
+            autoComplete="current-password"
+            variant="outlined"
+            margin="dense"
             onChange={_onPassword}
+            required
           />
         </label>
-        <button type="submit"> Login </button>
+        <Fab type="submit">Submit</Fab>
       </form>
     </div>
   );
