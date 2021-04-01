@@ -67,7 +67,7 @@ function App() {
           <LoginVolunteers setUserInfo={setUserInfo} />
         )}
 
-        <Route exact path="/createaccount">
+        <Route path="/createaccount">
           <NewNonMinorAccount />
         </Route>
         <Route path="/addevent">
@@ -117,7 +117,7 @@ function App() {
         <Route path="/editprofile/:id">
           <EditVolunteerProfile userInfo={userInfo}/>
         </Route>
-        <Route path="/newminor">
+        <Route path="/newminor/:guardianid">
             <NewMinorAccount />
         </Route>
       </Router>
