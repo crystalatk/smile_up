@@ -18,6 +18,7 @@ import VolunteerHrsById from "./components/VolunteerHrsById";
 import LogoutButton from "./components/LogoutButton";
 import EditVolunteerProfile from "./components/EditVolunteerProfile";
 import "./App.css";
+import BottomNav from "./components/BottomNav";
 import NewMinorAccount from "./components/NewMinorAccount";
 
 function App() {
@@ -117,6 +118,7 @@ function App() {
         <Route path="/newminor">
           <NewMinorAccount />
         </Route>
+        <BottomNav />
       </Router>
     </div>
   );
