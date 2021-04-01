@@ -53,6 +53,7 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
       setSpotsRemaining(mathNumSpotsRemaining);
     }
   }, [event, volunteersSignedUp]);
+
   return (
     <>
       {!!event ? (
