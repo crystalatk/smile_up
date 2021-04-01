@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAlert }  from 'react-alert';
-// import { useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import moment from 'moment';
 
 const NewMinorAccount = () => {
@@ -21,9 +21,20 @@ const NewMinorAccount = () => {
     const [passwordsMatch, setPasswordsMatch] = useState(false);
     const [usernameTaken, setUsernameTaken] = useState(false);
     const [minorFormSubmitted, setMinorFormSubmitted] = useState(false);
-    const [needsAdditionalForm, setNeedsAdditionalForm] = useState(false)
+    const [needsAdditionalForm, setNeedsAdditionalForm] = useState(false);
     const myAlert = useAlert();
+    const { guardianid } = useParams({});
     // const history = useHistory();
+
+    useEffect(() => {
+        (async () => {
+            const data = await fetch(`http://127.0.0.1:3232/volunteers/profile/?id=${guardianid}`).then(response => response.json());
+            console.log('the data is ', data);
+            setZipCode(data.zip_code);
+            setEmergencyName(`${data.first_name} ${data.last_name}`);
+            setEmergencyPhone(data.phone);
+        })();
+    },[guardianid]);
 
     const _handleUsernameChange = e => {
         setUsername(e.target.value);
@@ -116,7 +127,7 @@ const NewMinorAccount = () => {
                         is_ambassador: isAmbassador
                     }),
                 }
-                ).then((response) => response);
+                ).then((response) => response.json());
                 myAlert.success("Your account has been created!");
                 setFirstName("");
                 setLastName("");
@@ -125,18 +136,26 @@ const NewMinorAccount = () => {
                 setPassword2("");
                 setPhoneNumber("");
                 setUsername("");
-                setZipCode("");
                 setDateOfBirth("");
                 setEmail("");
-                setEmergencyName("");
-                setEmergencyPhone("");
-                setIsMinor(false);
+                setIsMinor(true);
                 setIsAmbassador(false);
                 setUsernameTaken(false);
                 setMinorFormSubmitted(true);
                 setIsGuardian(false);
                 // history.push("/");
                 console.log('submit response is ', submitResponse);
+                const linkResponse = await fetch(
+                    `http://127.0.0.1:3232/volunteers/linkminor`,
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        minor_id: submitResponse.id,
+                        guardian_id: guardianid,
+                    }),
+                }
+                ).then((response) => response.json());
             } else {
                 myAlert.error("You broke it...");
             }
@@ -185,10 +204,10 @@ const NewMinorAccount = () => {
                     <input  type="date" value={dateOfBirth} onChange={_handleDateOfBirthChange} required></input>
                 </label>
                 <label>Phone Number
-                    <input type="text" value={phoneNumber} onChange={_handlePhoneNumberChange} required></input>
+                    <input type="text" value={phoneNumber} onChange={_handlePhoneNumberChange}></input>
                 </label>
                 <label>Email
-                    <input type="email" value={email} onChange={_handleEmailChange} required></input>
+                    <input type="email" value={email} onChange={_handleEmailChange}></input>
                 </label>
                 <label>Zip Code
                     <input type="text" value={zipCode} onChange={_handleZipCodeChange} required></input>
@@ -208,7 +227,8 @@ const NewMinorAccount = () => {
                     <h6 className="f-red f-small">Your username is taken.</h6>
                     ) : null}
             </form>
-            {minorFormSubmitted && needsAdditionalForm ? <NewMinorAccount /> : null}
+            {minorFormSubmitted && needsAdditionalForm ? <p>Your minor was registered. Please use the the same form to register additional minors.</p> : null}
+            {minorFormSubmitted && !needsAdditionalForm ? <p>Your minor was registered!</p> : null}
 
         </>
     )
