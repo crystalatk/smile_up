@@ -1,31 +1,73 @@
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NewNonMinorAccount from "./components/NewNonMinorAccount";
 import LoginVolunteers from "./components/LoginVolunteers";
-import AdminLogin from "./components/AdminLogin";
 import AddAnEvent from "./components/AddAnEvent";
 import TotalVolunteers from "./components/TotalVolunteers";
 import EventList from "./components/EventList";
 import EventDetails from "./components/EventDetails";
 import VolunteerHours from "./components/VolunteerHrs";
+import EditEvent from "./components/EditEvent";
+import VolunteerDirectory from "./components/VolunteerDirectory";
+import VolunteerProfile from "./components/VolunteerProfile";
 import TotalSmiles from "./components/TotalSmiles";
+import TempHeader from "./components/TempHeader";
+import TotalEvents from "./components/TotalEvents";
+import TotalEventsId from "./components/TotalEventsId";
+import VolunteerHrsById from "./components/VolunteerHrsById";
+import LogoutButton from "./components/LogoutButton";
+import EditVolunteerProfile from "./components/EditVolunteerProfile";
 import "./App.css";
 import BottomNav from "./components/BottomNav";
+import NewMinorAccount from "./components/NewMinorAccount";
 
 function App() {
   const [userInfo, setUserInfo] = useState({
     isLoggedIn: false,
     id: "",
-    isAdmin: false,
-    isGuardian: false,
-    isMinor: true,
+    is_admin: false,
+    is_guardian: false,
+    is_minor: true,
     first_name: "",
   });
+  const [
+    eventDetailsForEditPurposes,
+    setEventDetailsForEditPurposes,
+  ] = useState({
+    adults_needed: false,
+    age_min: "",
+    alerts: "",
+    date_start: "",
+    date_stop: "",
+    description: "",
+    headcount_served_potential: "",
+    id: "",
+    location: "",
+    max_particcipants: "",
+    min_participants: "",
+    num_adults: "",
+    signup_deadline: "",
+    title: "",
+  });
+
+  // useEffect for console logs
+  useEffect(() => {
+    console.log(
+      "THESE ARE THE EVENT DETAILS FOR EDIT PURPOSE: ",
+      eventDetailsForEditPurposes
+    );
+  }, [eventDetailsForEditPurposes]);
 
   return (
     <div className="App">
       <Router>
-      <LoginVolunteers setUserInfo={setUserInfo} />
+        <TempHeader />
+        {!!userInfo.isLoggedIn ? (
+          <LogoutButton setUserInfo={setUserInfo} />
+        ) : (
+          <LoginVolunteers setUserInfo={setUserInfo} />
+        )}
+
         <Route exact path="/createaccount">
           <NewNonMinorAccount />
         </Route>
@@ -42,12 +84,41 @@ function App() {
           <EventList userInfo={userInfo} />
         </Route>
         <Route path="/event/:id">
-          <EventDetails userInfo={userInfo} />
+          <EventDetails
+            userInfo={userInfo}
+            setEventDetailsForEditPurposes={setEventDetailsForEditPurposes}
+          />
+        </Route>
+        <Route exact path="/editevent">
+          <EditEvent
+            eventDetailsForEditPurposes={eventDetailsForEditPurposes}
+          />
+        </Route>
+        <Route path="/directory">
+          <VolunteerDirectory userInfo={userInfo} />
+        </Route>
+        <Route path="/profile/:id">
+          <VolunteerProfile userInfo={userInfo} />
         </Route>
         <Route path="/totalSmiles">
-            <TotalSmiles />
+          <TotalSmiles />
         </Route>
-        <BottomNav/>
+        <Route path="/counttotalevents">
+          <TotalEvents />
+        </Route>
+        <Route path="/volunteerHoursId">
+          <VolunteerHrsById id={userInfo.id} />
+        </Route>
+        <Route path="/totalEventsId">
+          <TotalEventsId id={userInfo.id} />
+        </Route>
+        <Route path="/editprofile/:id">
+          <EditVolunteerProfile userInfo={userInfo} />
+        </Route>
+        <Route path="/newminor">
+          <NewMinorAccount />
+        </Route>
+        <BottomNav />
       </Router>
     </div>
   );

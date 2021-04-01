@@ -1,23 +1,24 @@
 import { useState } from "react";
 import { useAlert } from "react-alert";
-import BottomNav from './BottomNav'
+import BottomNav from "./BottomNav";
 import NewMinorAccount from "./NewMinorAccount";
 import moment from "moment";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
-import PropTypes from 'prop-types';
-import MaskedInput from 'react-text-mask';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
-import Button from '@material-ui/core/Button';
-import Fab from '@material-ui/core/Fab';
-
-
+import PropTypes from "prop-types";
+import MaskedInput from "react-text-mask";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormLabel from "@material-ui/core/FormLabel";
+import Button from "@material-ui/core/Button";
+import Fab from "@material-ui/core/Fab";
+import NewMinorAccountBridge from "./NewMinorAccountBridge";
+import moment from "moment";
+import Modal from "./Modal";
 
 // const useStyles = makeStyles((theme) => ({
 //   root: {
@@ -28,50 +29,63 @@ import Fab from '@material-ui/core/Fab';
 //   },
 // }));
 const useStyles = makeStyles((theme) => ({
-    root: {
-        '& > *': {
-      display: 'flex',
-      flexWrap: 'wrap',
+  root: {
+    "& > *": {
+      display: "flex",
+      flexWrap: "wrap",
       margin: theme.spacing(1),
-     '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: '75ch',
+      "& .MuiTextField-root": {
+        margin: theme.spacing(1),
+        width: "75ch",
+      },
     },
-},
-    },
-    textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      marginTop: theme.spacing(10),
-      marginBottom: theme.spacing(10),
-      
-    },
-    Fab:{
-        marginBottom: theme.spacing(10),
-    },
-    InputLabel:{
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    marginTop: theme.spacing(10),
+    marginBottom: theme.spacing(10),
+  },
+  Fab: {
+    marginBottom: theme.spacing(10),
+  },
+  InputLabel: {},
+}));
 
-    }
-  }));
-  function TextMaskCustom(props) {
-    const { inputRef, ...other } = props;
-  
-    return (
-      <MaskedInput
-        {...other}
-        ref={(ref) => {
-          inputRef(ref ? ref.inputElement : null);
-        }}
-        mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-        placeholderChar={'\u2000'}
-        showMask
-      />
-    );
-  }
-  
-  TextMaskCustom.propTypes = {
-    inputRef: PropTypes.func.isRequired,
-  };
+function TextMaskCustom(props) {
+  const { inputRef, ...other } = props;
+
+  return (
+    <MaskedInput
+      {...other}
+      ref={(ref) => {
+        inputRef(ref ? ref.inputElement : null);
+      }}
+      mask={[
+        "(",
+        /[1-9]/,
+        /\d/,
+        /\d/,
+        ")",
+        " ",
+        /\d/,
+        /\d/,
+        /\d/,
+        "-",
+        /\d/,
+        /\d/,
+        /\d/,
+        /\d/,
+      ]}
+      placeholderChar={"\u2000"}
+      showMask
+    />
+  );
+}
+
+TextMaskCustom.propTypes = {
+  inputRef: PropTypes.func.isRequired,
+};
 
 const NewNonMinorAccount = () => {
   const [username, setUsername] = useState("");
@@ -91,22 +105,26 @@ const NewNonMinorAccount = () => {
   const [isAmbassador, setIsAmbassador] = useState(false);
   const [passwordsMatch, setPasswordsMatch] = useState(false);
   const [usernameTaken, setUsernameTaken] = useState(false);
+  const [guardianId, setGuardianId] = useState("");
   const [adultFormSubmitted, setAdultFormSubmitted] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const myAlert = useAlert();
+  const classes = useStyles();
+  // const history = useHistory();
 
   const _handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+    setUsername(e.target.value.replace(/'/g, "''"));
   };
 
   const _handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+    setPassword(e.target.value.replace(/'/g, "''"));
     if (e.target.value.length === 0) {
       setPasswordsMatch(true);
     }
   };
 
   const _handlePassword2Change = (e) => {
-    setPassword2(e.target.value);
+    setPassword2(e.target.value.replace(/'/g, "''"));
     if (password.length === e.target.value.length) {
       if (password === e.target.value) {
         setPasswordsMatch(true);
@@ -120,23 +138,39 @@ const NewNonMinorAccount = () => {
   };
 
   const _handleFirstNameChange = (e) => {
-    setFirstName(e.target.value);
+    setFirstName(e.target.value.replace(/'/g, "''"));
   };
 
   const _handleLastNameChange = (e) => {
-    setLastName(e.target.value);
+    setLastName(e.target.value.replace(/'/g, "''"));
   };
 
   const _handleDateOfBirthChange = (e) => {
-    setDateOfBirth(e.target.value);
+    setDateOfBirth(e.target.value.replace(/'/g, "''"));
   };
 
   const _handlePhoneNumberChange = (e) => {
-    setPhoneNumber(e.target.value);
+    setPhoneNumber(e.target.value.replace(/'/g, "''"));
   };
 
   const _handleEmailChange = (e) => {
-    setEmail(e.target.value);
+    setEmail(e.target.value.replace(/'/g, "''"));
+  };
+
+  const _handleZipCodeChange = (e) => {
+    setZipCode(e.target.value.replace(/'/g, "''"));
+  };
+
+  const _handleEmergencyNameChange = (e) => {
+    setEmergencyName(e.target.value.replace(/'/g, "''"));
+  };
+
+  const _handleEmergencyPhoneChange = (e) => {
+    setEmergencyPhone(e.target.value.replace(/'/g, "''"));
+  };
+
+  const _handleSignUpMessageChange = (e) => {
+    setSignUpMessage(e.target.value.replace(/'/g, "''"));
   };
 
   const _handleZipCodeChange = (e) => {
@@ -228,51 +262,120 @@ const NewNonMinorAccount = () => {
     }
   };
 
-  const classes = useStyles();
- 
+  const _handleSubmit = async (e) => {
+    e.preventDefault();
+    const isUsername = await fetch(
+      `http://127.0.0.1:3232/login/username/?username=${username}`
+    ).then((response) => response.json());
+    console.log("THIS IS THE ISUSESRNAME RESPONSE: ", isUsername);
+    if (isUsername) {
+      if (password2 === password) {
+        const submitResponse = await fetch(
+          `http://127.0.0.1:3232/login/signupVolunteer`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              username: username,
+              password: password,
+              first_name: firstName,
+              last_name: lastName,
+              date_of_birth: moment(dateOfBirth).format("YYYY-MM-DD HH:MM:SS"),
+              phone: phoneNumber,
+              email: email,
+              zip_code: zipCode,
+              emergency_name: emergencyName,
+              emergency_phone: emergencyPhone,
+              sign_up_message: signUpMessage,
+              is_guardian: isGuardian,
+              is_minor: isMinor,
+              is_ambassador: isAmbassador,
+            }),
+          }
+        ).then((response) => response.json());
+        myAlert.success("Your account has been created!");
+        if (isGuardian) {
+          setGuardianId(submitResponse.id);
+        }
+        setFirstName("");
+        setLastName("");
+        setPasswordsMatch(true);
+        setPassword("");
+        setPassword2("");
+        setPhoneNumber("");
+        setUsername("");
+        setZipCode("");
+        setDateOfBirth("");
+        setEmail("");
+        setEmergencyName("");
+        setEmergencyPhone("");
+        setSignUpMessage("");
+        setIsMinor(false);
+        setIsAmbassador(false);
+        setUsernameTaken(false);
+        setAdultFormSubmitted(true);
+        // history.push("/");
+      } else {
+        myAlert.error("You broke it...");
+      }
+    } else {
+      myAlert.error("You broke it!");
+      setTimeout(() => {
+        myAlert.error("Just kidding.");
+      }, 1000);
+      setTimeout(() => {
+        myAlert.error("That username is super popular.");
+      }, 2000);
+      setTimeout(() => {
+        myAlert.error("Choose something else.");
+      }, 3000);
+      setUsernameTaken(true);
+    }
+  };
+
   return (
     <div>
       <h1>Create an Account:</h1>
       <form className={classes} onSubmit={_handleSubmit}>
-      
         <div>
-        <FormControl>
-          <TextField
-            required
-            id="outlined-required"
-            label="Create Username"
-            variant="outlined"
-            value={username}
-            margin="dense"
-            onChange={_handleUsernameChange}
-            type="text"
-          />
-          {!!usernameTaken ? (
-            <h6 className="f-red f-small">Please choose another username.</h6>
-          ) : null}
+          <FormControl>
+            <TextField
+              required
+              id="outlined-required"
+              label="Create Username"
+              variant="outlined"
+              value={username}
+              margin="dense"
+              onChange={_handleUsernameChange}
+              type="text"
+            />
+            {!!usernameTaken ? (
+              <h6 className="f-red f-small">Please choose another username.</h6>
+            ) : null}
 
-          <TextField
-            id="outlined-password-input"
-            label="Create a Password"
-            type="password"
-            autoComplete="current-password"
-            variant="outlined"
-            margin="dense"
-            value={password}
-            onChange={_handlePasswordChange}
-            required
-          />
-          <TextField
-            id="outlined-password-input"
-            label="Retype your password"
-            type="password"
-            autoComplete="current-password"
-            variant="outlined"
-            margin="dense"
-            value={password2}
-            onChange={_handlePassword2Change}
-            required
-          />
+            <TextField
+              id="outlined-password-input"
+              label="Create a Password"
+              type="password"
+              autoComplete="current-password"
+              variant="outlined"
+              margin="dense"
+              value={password}
+              onChange={_handlePasswordChange}
+              required
+            />
+
+            <TextField
+              id="outlined-password-input"
+              label="Retype your password"
+              type="password"
+              autoComplete="current-password"
+              variant="outlined"
+              margin="dense"
+              value={password2}
+              onChange={_handlePassword2Change}
+              required
+            />
           </FormControl>
           {!!passwordsMatch ? null : (
             <h6 className="f-red f-small">Your passwords do not match</h6>
@@ -288,6 +391,7 @@ const NewNonMinorAccount = () => {
             onChange={_handleFirstNameChange}
             type="text"
           />
+
           <TextField
             required
             id="outlined-required"
@@ -298,6 +402,7 @@ const NewNonMinorAccount = () => {
             onChange={_handleLastNameChange}
             type="text"
           />
+
           <TextField
             required
             id="outlined-required"
@@ -311,6 +416,7 @@ const NewNonMinorAccount = () => {
               shrink: true,
             }}
           />
+
           <TextField
             required
             id="outlined-required"
@@ -332,19 +438,17 @@ const NewNonMinorAccount = () => {
             onChange={_handleZipCodeChange}
           />
           <FormControl>
-          <InputLabel htmlFor="num">
-            Phone Number111111
-          </InputLabel>
-          <Input
-            required
-            name="num"
-            id="num"
-            inputComponent={TextMaskCustom}
-            margin="dense"
-            value={phoneNumber}
-            onChange={_handlePhoneNumberChange}
-            
-          /></FormControl>
+            <InputLabel htmlFor="num">Phone Number111111</InputLabel>
+            <Input
+              required
+              name="num"
+              id="num"
+              inputComponent={TextMaskCustom}
+              margin="dense"
+              value={phoneNumber}
+              onChange={_handlePhoneNumberChange}
+            />
+          </FormControl>
         </div>
         <div>
           <TextField
@@ -356,20 +460,22 @@ const NewNonMinorAccount = () => {
             type="text"
             value={emergencyName}
             onChange={_handleEmergencyNameChange}
-          /> <br/>
-        <FormControl>
-          <InputLabel className={classes.root} htmlFor="enum">
-            Emergency Contact #
-          </InputLabel>
-          <Input
-            required
-            name="enum"
-            id="enum"
-            inputComponent={TextMaskCustom}
-            margin="normal"
-            value={emergencyPhone}
-            onChange={_handleEmergencyPhoneChange}
-          /></FormControl>
+          />{" "}
+          <br />
+          <FormControl>
+            <InputLabel className={classes.root} htmlFor="enum">
+              Emergency Contact #
+            </InputLabel>
+            <Input
+              required
+              name="enum"
+              id="enum"
+              inputComponent={TextMaskCustom}
+              margin="normal"
+              value={emergencyPhone}
+              onChange={_handleEmergencyPhoneChange}
+            />
+          </FormControl>
         </div>
         <div>
           <FormControl component="fieldset">
@@ -385,8 +491,10 @@ const NewNonMinorAccount = () => {
               <FormControlLabel value="yes" control={<Radio />} label="Yes" />
               <FormControlLabel value="no" control={<Radio />} label="No" />
             </label>
-          </FormControl> <br/>
-          <TextField className={classes.root}
+          </FormControl>{" "}
+          <br />
+          <TextField
+            className={classes.root}
             required
             id="MuiTextField-root"
             label="Optional message to the administrator  "
@@ -401,10 +509,10 @@ const NewNonMinorAccount = () => {
               shrink: true,
             }}
           />
-
         </div>
+
         <div>
-          <Fab type="submit" size="large">
+          <Fab type="submit" size="large" onClick={() => setShowModal(true)}>
             Submit
           </Fab>
         </div>
@@ -412,9 +520,11 @@ const NewNonMinorAccount = () => {
           <h6 className="f-red f-small">Your username is taken.</h6>
         ) : null}
       </form>
-      
-
-      {adultFormSubmitted && isGuardian ? <NewMinorAccount /> : null}
+      {adultFormSubmitted && isGuardian ? (
+        <Modal showModal={showModal} handleClose={() => setShowModal(false)}>
+          <NewMinorAccountBridge guardianId={guardianId} />
+        </Modal>
+      ) : null}
     </div>
   );
 };
