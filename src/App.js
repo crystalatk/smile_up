@@ -20,6 +20,7 @@ import EditVolunteerProfile from "./components/EditVolunteerProfile";
 import "./App.css";
 import BottomNav from "./components/BottomNav";
 import NewMinorAccount from "./components/NewMinorAccount";
+import GuardianSignUp from "./components/GuardianSignUp";
 
 function App() {
   const [userInfo, setUserInfo] = useState({
@@ -118,7 +119,12 @@ function App() {
         <Route path="/newminor/:guardianid">
             <NewMinorAccount />
         </Route>
+        <Route path="/guardiansignup/:event_id">
+          <GuardianSignUp userInfo={userInfo} />
+        </Route>
+        
         <BottomNav />
+
       </Router>
     </div>
   );
