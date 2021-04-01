@@ -11,7 +11,7 @@ const VolunteerProfile = ({ userInfo }) => {
     userInfo?.id === id ? userInfo : {}
   );
   const [isProfileGuardian, setIsProfileGuardian] = useState(false);
-  const [guardianID, setGuardianID] = useState(false);
+  const [guardianID, setGuardianID] = useState("");
   const [viewPage, setViewPage] = useState(false);
   const [canEdit, setCanEdit] = useState(false);
   const history = useHistory();
@@ -60,7 +60,14 @@ const VolunteerProfile = ({ userInfo }) => {
     console.log("THIS IS THE ID: ", id);
     console.log("THIS IS THE GUARDIAN ID AFTER IT IS SET: ", guardianID);
     console.log(userInfo);
-    setIsProfileGuardian(guardianID === userInfo.id);
+    console.log(
+      "THIS IS WHETHER OR NOT THE GUARDIAN EQUALS THE USER ID: ",
+      guardianID === userInfo.id
+    );
+    if (userInfo.id) {
+      setIsProfileGuardian(guardianID === userInfo.id);
+    }
+
     if (userInfo.id === id || userInfo.is_admin || isProfileGuardian) {
       if (userInfo.is_minor) {
         setCanEdit(false);
@@ -74,7 +81,7 @@ const VolunteerProfile = ({ userInfo }) => {
   useEffect(() => {
     console.log(userInfo.id === id);
     console.log(userInfo.is_admin);
-    console.log(isProfileGuardian);
+    console.log("PROFILE GUARDIAN???:", isProfileGuardian);
     setViewPage(userInfo.id === id || userInfo.is_admin || isProfileGuardian);
   }, [id, isProfileGuardian]);
 
