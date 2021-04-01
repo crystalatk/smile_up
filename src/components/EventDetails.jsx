@@ -1,6 +1,6 @@
 import moment from "moment";
 import { useState, useEffect } from "react";
-import { Link, Route, useParams } from "react-router-dom";
+import { Link, Route, useParams, useHistory } from "react-router-dom";
 import CheckInVolunteers from "./CheckInVolunteers";
 
 const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
@@ -8,6 +8,12 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
   const [event, setEvent] = useState();
   const [volunteersSignedUp, setVolunteersSignedUp] = useState("");
   const [spotsRemaining, setSpotsRemaining] = useState("");
+  const history = useHistory();
+
+  const _onSignUpClick = (e) => {
+    e.preventDefault();
+    history.push("/guardiansignup");
+  };
 
   useEffect(() => {
     console.log("THIS IS THE ID: ", id);
@@ -39,8 +45,8 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
         .catch((e) => {
           console.log(e);
         });
-      console.log("THIS IS THE NUMVOLSIGNEDUP: ", numVolSignedUp.rows[0].count);
-      setVolunteersSignedUp(numVolSignedUp.rows[0].count);
+      console.log("THIS IS THE NUMVOLSIGNEDUP: ", numVolSignedUp?.rows[0].count);
+      setVolunteersSignedUp(numVolSignedUp?.rows[0].count);
     };
     fetchEvent();
     fetchNumVolunteersSignedUp();
@@ -81,7 +87,7 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
           <h4>You MUST signup by the deadline!</h4>
           {!!userInfo.isLoggedIn ? (
             <>
-              <button>Sign Up!</button>
+              <button onClick={_onSignUpClick}>Sign Up!</button>
               {!!userInfo}
             </>
           ) : (

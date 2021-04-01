@@ -19,6 +19,7 @@ import LogoutButton from "./components/LogoutButton";
 import EditVolunteerProfile from "./components/EditVolunteerProfile";
 import "./App.css";
 import NewMinorAccount from "./components/NewMinorAccount";
+import GuardianSignUp from "./components/GuardianSignUp";
 
 function App() {
   const [userInfo, setUserInfo] = useState({
@@ -116,6 +117,9 @@ function App() {
         </Route>
         <Route path="/newminor">
           <NewMinorAccount />
+        </Route>
+        <Route path="/guardiansignup/:event_id">
+          <GuardianSignUp userInfo={userInfo} />
         </Route>
       </Router>
     </div>
