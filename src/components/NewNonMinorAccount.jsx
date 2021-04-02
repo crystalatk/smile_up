@@ -248,7 +248,11 @@ const NewNonMinorAccount = () => {
   return (
     <div>
       <h1>Create an Account:</h1>
-      <h2>You must be 18 years or older to create an account. If you need to register a minor with smileUp, you will have the option to do so immediately after creating your account.</h2>
+      <h2>
+        You must be 18 years or older to create an account. If you need to
+        register a minor with smileUp, you will have the option to do so
+        immediately after creating your account.
+      </h2>
       <form className={classes} onSubmit={_handleSubmit}>
         <div>
           <FormControl>
@@ -356,7 +360,7 @@ const NewNonMinorAccount = () => {
               required
               name="num"
               id="num"
-              // inputComponent={TextMaskCustom}
+              inputComponent={TextMaskCustom}
               margin="dense"
               value={phoneNumber}
               onChange={_handlePhoneNumberChange}
