@@ -21,7 +21,9 @@ import "./App.css";
 import BottomNav from "./components/BottomNav";
 import NewMinorAccount from "./components/NewMinorAccount";
 import GuardianSignUp from "./components/GuardianSignUp";
+import MinorSignUp from './components/MinorSignUp';
 import CheckIn from "./components/CheckIn";
+
 
 function App() {
   const [userInfo, setUserInfo] = useState({
@@ -124,6 +126,10 @@ function App() {
           <GuardianSignUp userInfo={userInfo} />
         </Route>
         <Route path="/checkin/:va_id">
+        <Route path="/minorsignup">
+            <MinorSignUp userInfo={userInfo}/>
+        </Route>
+        <Route path="/checkin/:event_id/:volunteer_id">
           <CheckIn userInfo={userInfo} />
         </Route>
 
