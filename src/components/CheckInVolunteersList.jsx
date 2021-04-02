@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -40,9 +40,10 @@ const useStyles = makeStyles({
   },
 });
 
-const CheckInVolunteers = ({ event_id }) => {
+const CheckInVolunteersList = ({ event_id }) => {
   const [volunteersAttending, setVolunteersAttending] = useState([]);
   const classes = useStyles();
+  const history = useHistory();
 
   useEffect(() => {
     const fetchVolunteersAttending = async () => {
@@ -89,13 +90,28 @@ const CheckInVolunteers = ({ event_id }) => {
                 </CardContent>
                 <CardActions className={classes.actions}>
                   <IconButton aria-label="go to volunteer profile">
-                    <AccountCircleIcon className={classes.profile} />
+                    <AccountCircleIcon
+                      className={classes.profile}
+                      onClick={(e) => {
+                        history.push(`/profile/${volunteer.id}`);
+                      }}
+                    />
                   </IconButton>
                   <IconButton aria-label="check in volunteer">
-                    <AssignmentIndIcon className={classes.checkin} />
+                    <AssignmentIndIcon
+                      className={classes.checkin}
+                      onClick={(e) => {
+                        history.push(`/profile/${volunteer.id}`);
+                      }}
+                    />
                   </IconButton>
                   <IconButton aria-label="checkout volunteer">
-                    <ExitToAppIcon className={classes.checkout} />
+                    <ExitToAppIcon
+                      className={classes.checkout}
+                      onClick={(e) => {
+                        history.push(`/profile/${volunteer.id}`);
+                      }}
+                    />
                   </IconButton>
                 </CardActions>
               </Card>
@@ -109,4 +125,4 @@ const CheckInVolunteers = ({ event_id }) => {
   );
 };
 
-export default CheckInVolunteers;
+export default CheckInVolunteersList;
