@@ -14,11 +14,20 @@ body {
 .App {
   text-align: center;
   background-color: rgb(250, 193, 135);
-  min-width: "100vw";
-  min-height: "100vh";
-  padding-bottom: 100px;
+  min-width: 100vw;
+  min-height: 100vh;
   position: relative;
   overflow: hidden;
+}
+
+.body {
+  padding-bottom: 100px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 a {

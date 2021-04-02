@@ -121,7 +121,7 @@ const EditVolunteerProfile = ({ userInfo }) => {
     <>
       {!!viewPage ? (
         <>
-          <div className="App">
+          <div>
             <h1>Edit Profile for {volunteerInfo.first_name}</h1>
             <form onSubmit={_handleSubmit}>
               <label>
