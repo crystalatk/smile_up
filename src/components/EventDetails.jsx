@@ -91,9 +91,11 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
           <h4>You MUST signup by the deadline!</h4>
           {!!userInfo.isLoggedIn ? (
             <>
+            {!volunteersSignedUp ? (
               <Button variant="outlined" onClick={_onSignUpClick}>
                 Sign Up!
               </Button>
+              ): <h3>You are already signed up for this event!</h3>}
               <Button variant="outlined" onClick={() => history.goBack()}>
                 Back
               </Button>
