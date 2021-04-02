@@ -24,7 +24,7 @@ const NewMinorAccount = () => {
     const [needsAdditionalForm, setNeedsAdditionalForm] = useState(false);
     const myAlert = useAlert();
     const { guardianid } = useParams({});
-    // const history = useHistory();
+    const history = useHistory();
 
     useEffect(() => {
         (async () => {
@@ -94,7 +94,7 @@ const NewMinorAccount = () => {
     }
 
     const _handleNeedsAdditionalFormChange = e => {
-        e.target.value === "yes" ? setNeedsAdditionalForm(true) : setNeedsAdditionalForm(false);
+        setNeedsAdditionalForm(e.target.value === "yes");
     }
 
     const _handleSubmit = async (e) => {
@@ -128,7 +128,8 @@ const NewMinorAccount = () => {
                     }),
                 }
                 ).then((response) => response.json());
-                myAlert.success("Your account has been created!");
+                history.push('/');
+                myAlert.success("Your minor's account has been created!");
                 setFirstName("");
                 setLastName("");
                 setPasswordsMatch(true);
@@ -143,6 +144,7 @@ const NewMinorAccount = () => {
                 setUsernameTaken(false);
                 setMinorFormSubmitted(true);
                 setIsGuardian(false);
+                setNeedsAdditionalForm(true);
                 // history.push("/");
                 console.log('submit response is ', submitResponse);
                 const linkResponse = await fetch(
@@ -219,8 +221,8 @@ const NewMinorAccount = () => {
                     <input  type="text" value={emergencyPhone} onChange={_handleEmergencyPhoneChange} required></input>
                 </label>
                 <label>Would you like to register another minor after you submit this form?
-                    <input type="radio" value="yes" onChange={_handleNeedsAdditionalFormChange} name="is_guardian"/> Yes
-                    <input type="radio" value="no" onChange={_handleNeedsAdditionalFormChange} name="is_guardian"/> No
+                    <input type="radio" value="yes" onChange={_handleNeedsAdditionalFormChange} name="is_guardian" checked={needsAdditionalForm}/> Yes
+                    <input type="radio" value="no" onChange={_handleNeedsAdditionalFormChange} name="is_guardian" checked={!needsAdditionalForm}/> No
                 </label>
                 <button type="submit">Submit</button>
                 {!!usernameTaken ? (
@@ -228,7 +230,6 @@ const NewMinorAccount = () => {
                     ) : null}
             </form>
             {minorFormSubmitted && needsAdditionalForm ? <p>Your minor was registered. Please use the the same form to register additional minors.</p> : null}
-            {minorFormSubmitted && !needsAdditionalForm ? <p>Your minor was registered!</p> : null}
 
         </>
     )

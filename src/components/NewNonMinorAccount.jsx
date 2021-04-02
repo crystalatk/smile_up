@@ -351,12 +351,12 @@ const NewNonMinorAccount = () => {
             onChange={_handleZipCodeChange}
           />
           <FormControl>
-            <InputLabel htmlFor="num">Phone Number111111</InputLabel>
+            <InputLabel htmlFor="num">Phone Number</InputLabel>
             <Input
               required
               name="num"
               id="num"
-              inputComponent={TextMaskCustom}
+              // inputComponent={TextMaskCustom}
               margin="dense"
               value={phoneNumber}
               onChange={_handlePhoneNumberChange}
@@ -383,7 +383,7 @@ const NewNonMinorAccount = () => {
               required
               name="enum"
               id="enum"
-              inputComponent={TextMaskCustom}
+              // inputComponent={TextMaskCustom}
               margin="normal"
               value={emergencyPhone}
               onChange={_handleEmergencyPhoneChange}
