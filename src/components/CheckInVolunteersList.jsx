@@ -75,7 +75,7 @@ const CheckInVolunteersList = ({ event_id }) => {
 
   return (
     <>
-      {!!volunteersAttending.length !== 0 ? (
+      {!!volunteersAttending?.length !== 0 ? (
         <>
           <h2>These Volunteers are attending the event:</h2>
           <label>
@@ -123,7 +123,7 @@ const CheckInVolunteersList = ({ event_id }) => {
                     <IconButton
                       aria-label="check in volunteer"
                       onClick={(e) => {
-                        history.push(`/checkin/${event_id}/${volunteer.id}`);
+                        history.push(`/checkin/${volunteer.va_id}`);
                       }}
                     >
                       <AssignmentIndIcon className={classes.checkin} />

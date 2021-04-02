@@ -125,6 +125,7 @@ function App() {
         <Route path="/guardiansignup/:event_id">
           <GuardianSignUp userInfo={userInfo} />
         </Route>
+        <Route path="/checkin/:va_id">
         <Route path="/minorsignup">
             <MinorSignUp userInfo={userInfo}/>
         </Route>
