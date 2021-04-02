@@ -11,7 +11,7 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import StarBorder from "@material-ui/icons/StarBorder";
-import Moment from "moment";
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,6 +68,10 @@ const EventList = () => {
           className={classes.root}
         >
           {eventList.map((event) => {
+            const startTime = event.date_start;
+            console.log(startTime)
+            const stopTime = event.date_stop;
+            const diff = moment(stopTime) - moment(startTime);
             return (
               <div key={event.id}>
                 <ListItem button onClick={handleClick}>
@@ -85,33 +89,34 @@ const EventList = () => {
                       <ListItemIcon>
                         <StarBorder />
                       </ListItemIcon>
-                      <ListItemText primary={event.date} />
+                      <ListItemText primary={'WHEN: ' + moment(startTime).format("MMM Do YYYY") + " - " + moment(stopTime).format("MMM Do YYYY")}/>
                     </ListItem>
                     <ListItem button className={classes.nested}>
                       <ListItemIcon>
                         <StarBorder />
                       </ListItemIcon>
                       <ListItemText
-                        primary={event.start_time + "-" + event.stop_time}
-                      />
+                        primary={'TIME: ' + moment(startTime).format("h:mm a") + " - " + moment(stopTime).format("h:mm a ")}
+                      /> <br/>
+                      <ListItemText secondary={'Duration:' + moment.duration(diff).hours() + 'hr ' + moment.duration(diff).minutes() + 'min'}/>
                     </ListItem>
                     <ListItem button className={classes.nested}>
                       <ListItemIcon>
                         <StarBorder />
                       </ListItemIcon>
-                      <ListItemText primary={event.location} />
+                      <ListItemText primary={'WHERE: ' + event.location} />
                     </ListItem>
                     <ListItem button className={classes.nested}>
                       <ListItemIcon>
                         <StarBorder />
                       </ListItemIcon>
-                      <ListItemText primary={event.deadline} />
+                      <ListItemText primary={'SIGN-UP DEADLINE: ' + moment(event.signup_deadline).format("MMM Do YYYY")}/>
                     </ListItem>
                     <ListItem button className={classes.nested}>
                       <ListItemIcon>
                         <StarBorder />
                       </ListItemIcon>
-                      <ListItemText primary={event.age_min} />
+                      <ListItemText primary={'VOLUNTEER MINIMUM AGE: ' + event.age_min}/>
                     </ListItem>
                   </List>
                 </Collapse>
