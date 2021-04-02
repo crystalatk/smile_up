@@ -123,8 +123,10 @@ function App() {
         <Route path="/guardiansignup/:event_id">
           <GuardianSignUp userInfo={userInfo} />
         </Route>
-        <Route path="/minorsignup">
+        <Route path="/minorsignup/:event_id">
+        {!!userInfo.isLoggedIn ?
             <MinorSignUp userInfo={userInfo}/>
+        :null}
         </Route>
         
         <BottomNav />
