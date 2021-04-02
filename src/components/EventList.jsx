@@ -58,7 +58,8 @@ const EventList = () => {
   return (
     <>
       <h1>This is the Event List Page</h1>
-      {!!eventList ? (
+      {/* Reminder: remove pipes and true below before deployment */}
+      {!!eventList || true ? (
         <List
         component="nav"
         aria-labelledby="nested-list-subheader"
