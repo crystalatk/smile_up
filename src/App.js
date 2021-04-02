@@ -123,7 +123,7 @@ function App() {
         <Route path="/guardiansignup/:event_id">
           <GuardianSignUp userInfo={userInfo} />
         </Route>
-        <Route path="/checkin/:event_id/:volunteer_id">
+        <Route path="/checkin/:va_id">
           <CheckIn userInfo={userInfo} />
         </Route>
 
