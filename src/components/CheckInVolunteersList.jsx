@@ -112,29 +112,29 @@ const CheckInVolunteersList = ({ event_id }) => {
                     </Typography>
                   </CardContent>
                   <CardActions className={classes.actions}>
-                    <IconButton aria-label="go to volunteer profile">
-                      <AccountCircleIcon
-                        className={classes.profile}
-                        onClick={(e) => {
-                          history.push(`/profile/${volunteer.id}`);
-                        }}
-                      />
+                    <IconButton
+                      aria-label="go to volunteer profile"
+                      onClick={(e) => {
+                        history.push(`/profile/${volunteer.id}`);
+                      }}
+                    >
+                      <AccountCircleIcon className={classes.profile} />
                     </IconButton>
-                    <IconButton aria-label="check in volunteer">
-                      <AssignmentIndIcon
-                        className={classes.checkin}
-                        onClick={(e) => {
-                          history.push(`/profile/${volunteer.id}`);
-                        }}
-                      />
+                    <IconButton
+                      aria-label="check in volunteer"
+                      onClick={(e) => {
+                        history.push(`/checkin/${event_id}/${volunteer.id}`);
+                      }}
+                    >
+                      <AssignmentIndIcon className={classes.checkin} />
                     </IconButton>
-                    <IconButton aria-label="checkout volunteer">
-                      <ExitToAppIcon
-                        className={classes.checkout}
-                        onClick={(e) => {
-                          history.push(`/profile/${volunteer.id}`);
-                        }}
-                      />
+                    <IconButton
+                      aria-label="checkout volunteer"
+                      onClick={(e) => {
+                        history.push(`/profile/${volunteer.id}`);
+                      }}
+                    >
+                      <ExitToAppIcon className={classes.checkout} />
                     </IconButton>
                   </CardActions>
                 </Card>
