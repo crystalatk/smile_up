@@ -248,7 +248,11 @@ const NewNonMinorAccount = () => {
   return (
     <div>
       <h1>Create an Account:</h1>
-      <h2>You must be 18 years or older to create an account. If you need to register a minor with smileUp, you will have the option to do so immediately after creating your account.</h2>
+      <h2>
+        You must be 18 years or older to create an account. If you need to
+        register a minor with smileUp, you will have the option to do so
+        immediately after creating your account.
+      </h2>
       <form className={classes} onSubmit={_handleSubmit}>
         <div>
           <FormControl>
@@ -351,7 +355,7 @@ const NewNonMinorAccount = () => {
             onChange={_handleZipCodeChange}
           />
           <FormControl>
-            <InputLabel htmlFor="num">Phone Number111111</InputLabel>
+            <InputLabel htmlFor="num">Phone Number</InputLabel>
             <Input
               required
               name="num"
@@ -383,7 +387,7 @@ const NewNonMinorAccount = () => {
               required
               name="enum"
               id="enum"
-              inputComponent={TextMaskCustom}
+              // inputComponent={TextMaskCustom}
               margin="normal"
               value={emergencyPhone}
               onChange={_handleEmergencyPhoneChange}

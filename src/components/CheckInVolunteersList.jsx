@@ -44,6 +44,7 @@ const CheckInVolunteersList = ({ event_id }) => {
   const [volunteersAttending, setVolunteersAttending] = useState([]);
   const classes = useStyles();
   const history = useHistory();
+  const [searchBoxInput, setSearchBoxInput] = useState("");
 
   useEffect(() => {
     const fetchVolunteersAttending = async () => {
@@ -69,54 +70,76 @@ const CheckInVolunteersList = ({ event_id }) => {
 
   useEffect(() => {
     console.log(volunteersAttending);
-  }, [volunteersAttending]);
+    console.log(searchBoxInput);
+  }, [volunteersAttending, searchBoxInput]);
 
   return (
     <>
       {!!volunteersAttending.length !== 0 ? (
         <>
           <h2>These Volunteers are attending the event:</h2>
-          {volunteersAttending.map((volunteer) => {
-            return (
-              <Card key={volunteer.id} className={classes.root}>
-                <CardContent>
-                  <Typography
-                    className={classes.title}
-                    color="textSecondary"
-                    gutterBottom
-                  >
-                    {volunteer.first_name} {volunteer.last_name}
-                  </Typography>
-                </CardContent>
-                <CardActions className={classes.actions}>
-                  <IconButton aria-label="go to volunteer profile">
-                    <AccountCircleIcon
-                      className={classes.profile}
+          <label>
+            Search
+            <input
+              type="text"
+              onChange={(e) => {
+                setSearchBoxInput(e.target.value);
+              }}
+            />
+          </label>
+
+          {volunteersAttending
+            .filter((volunteer) =>
+              searchBoxInput
+                ? volunteer?.first_name
+                    ?.toLowerCase()
+                    .includes(searchBoxInput.toLowerCase()) ||
+                  volunteer?.last_name
+                    ?.toLowerCase()
+                    .includes(searchBoxInput.toLowerCase())
+                : true
+            )
+            .map((volunteer) => {
+              return (
+                <Card key={volunteer.id} className={classes.root}>
+                  <CardContent>
+                    <Typography
+                      className={classes.title}
+                      color="textSecondary"
+                      gutterBottom
+                    >
+                      {volunteer.first_name} {volunteer.last_name}
+                    </Typography>
+                  </CardContent>
+                  <CardActions className={classes.actions}>
+                    <IconButton
+                      aria-label="go to volunteer profile"
                       onClick={(e) => {
                         history.push(`/profile/${volunteer.id}`);
                       }}
-                    />
-                  </IconButton>
-                  <IconButton aria-label="check in volunteer">
-                    <AssignmentIndIcon
-                      className={classes.checkin}
+                    >
+                      <AccountCircleIcon className={classes.profile} />
+                    </IconButton>
+                    <IconButton
+                      aria-label="check in volunteer"
+                      onClick={(e) => {
+                        history.push(`/checkin/${event_id}/${volunteer.id}`);
+                      }}
+                    >
+                      <AssignmentIndIcon className={classes.checkin} />
+                    </IconButton>
+                    <IconButton
+                      aria-label="checkout volunteer"
                       onClick={(e) => {
                         history.push(`/profile/${volunteer.id}`);
                       }}
-                    />
-                  </IconButton>
-                  <IconButton aria-label="checkout volunteer">
-                    <ExitToAppIcon
-                      className={classes.checkout}
-                      onClick={(e) => {
-                        history.push(`/profile/${volunteer.id}`);
-                      }}
-                    />
-                  </IconButton>
-                </CardActions>
-              </Card>
-            );
-          })}
+                    >
+                      <ExitToAppIcon className={classes.checkout} />
+                    </IconButton>
+                  </CardActions>
+                </Card>
+              );
+            })}
         </>
       ) : (
         <h3>There are no volunteers signed up for this event.</h3>
