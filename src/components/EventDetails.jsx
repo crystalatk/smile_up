@@ -13,7 +13,7 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
 
   const _onSignUpClick = (e) => {
     e.preventDefault();
-    history.push("/guardiansignup");
+    history.push(`/guardiansignup/${id}`);
   };
 
   useEffect(() => {
@@ -34,8 +34,8 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
       setEvent(eventResponse);
       setEventDetailsForEditPurposes(eventResponse);
     };
-    const fetchNumVolunteersSignedUp = async () => {
-      const numVolSignedUp = await fetch(
+    const fetchVolunteersSignedUp = async () => {
+      const VolSignedUpResponse = await fetch(
         `http://127.0.0.1:3232/admins/counttotalvolbyevent?event_id=${id}`,
         {
           method: "GET",
@@ -46,19 +46,17 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
         .catch((e) => {
           console.log(e);
         });
-      console.log(
-        "THIS IS THE NUMVOLSIGNEDUP: ",
-        numVolSignedUp?.rows[0].count
-      );
-      setVolunteersSignedUp(numVolSignedUp?.rows[0].count);
+      console.log("THIS IS THE VOLSIGNEDUP: ", VolSignedUpResponse);
+      setVolunteersSignedUp(VolSignedUpResponse);
     };
     fetchEvent();
-    fetchNumVolunteersSignedUp();
+    fetchVolunteersSignedUp();
   }, []);
 
   useEffect(() => {
     if (event && volunteersSignedUp !== "") {
-      const mathNumSpotsRemaining = event.max_participants - volunteersSignedUp;
+      const mathNumSpotsRemaining =
+        event.max_participants - volunteersSignedUp.length;
       console.log("This is the spots reamining", mathNumSpotsRemaining);
       setSpotsRemaining(mathNumSpotsRemaining);
     }
@@ -91,15 +89,18 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
           <h4>You MUST signup by the deadline!</h4>
           {!!userInfo.isLoggedIn ? (
             <>
-            {!volunteersSignedUp ? (
-              <Button variant="outlined" onClick={_onSignUpClick}>
-                Sign Up!
-              </Button>
-              ): <h3>You are already signed up for this event!</h3>}
+              {!volunteersSignedUp.some(
+                (volunteer) => volunteer.volunteer_id === userInfo.id
+              ) ? (
+                <Button variant="outlined" onClick={_onSignUpClick}>
+                  Sign Up!
+                </Button>
+              ) : (
+                <h3>You are already signed up for this event!</h3>
+              )}
               <Button variant="outlined" onClick={() => history.goBack()}>
                 Back
               </Button>
-              {!!userInfo}
             </>
           ) : (
             <p>
@@ -111,10 +112,12 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
             <>
               <h1>Number of Volunteers Signed up</h1>
               <h1>
-                {volunteersSignedUp} signed up/{event.min_participants} needed
+                {volunteersSignedUp.length} signed up/{event.min_participants}{" "}
+                needed
               </h1>
               <h1>
-                {volunteersSignedUp} signed up/{event.max_participants} max
+                {volunteersSignedUp.length} signed up/{event.max_participants}{" "}
+                max
               </h1>
               <Button
                 variant="outlined"
