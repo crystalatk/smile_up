@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
   const { id } = useParams();
   const [event, setEvent] = useState();
-  const [volunteersSignedUp, setVolunteersSignedUp] = useState("");
+  const [volunteersSignedUp, setVolunteersSignedUp] = useState([]);
   const [spotsRemaining, setSpotsRemaining] = useState("");
   const history = useHistory();
 

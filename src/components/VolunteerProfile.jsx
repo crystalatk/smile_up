@@ -120,7 +120,9 @@ const VolunteerProfile = ({ userInfo }) => {
                 </>
               )}
               {!!canEdit ? (
-                <Button onClick={_handleEditClick}>Edit</Button>
+                <Button onClick={_handleEditClick} variant="outlined">
+                  Edit
+                </Button>
               ) : null}
             </>
           ) : (
@@ -130,7 +132,9 @@ const VolunteerProfile = ({ userInfo }) => {
       ) : (
         <h1>You do not have access to this page.</h1>
       )}
-      <Button onClick={() => history.goBack()}>Back</Button>
+      <Button onClick={history.goBack} variant="outlined">
+        Back
+      </Button>
     </>
   );
 };
