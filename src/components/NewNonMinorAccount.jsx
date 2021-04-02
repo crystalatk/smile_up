@@ -258,7 +258,7 @@ const NewNonMinorAccount = () => {
           <FormControl>
             <TextField
               required
-              id="outlined-required"
+              id="outlined-required-username"
               label="Create Username"
               variant="outlined"
               value={username}
@@ -271,7 +271,7 @@ const NewNonMinorAccount = () => {
             ) : null}
 
             <TextField
-              id="outlined-password-input"
+              id="outlined-password1-input"
               label="Create a Password"
               type="password"
               autoComplete="current-password"
@@ -283,7 +283,7 @@ const NewNonMinorAccount = () => {
             />
 
             <TextField
-              id="outlined-password-input"
+              id="outlined-password2-input"
               label="Retype your password"
               type="password"
               autoComplete="current-password"
@@ -300,7 +300,7 @@ const NewNonMinorAccount = () => {
 
           <TextField
             required
-            id="outlined-required"
+            id="outlined-required-first-name"
             label="First Name"
             variant="outlined"
             value={firstName}
@@ -311,7 +311,7 @@ const NewNonMinorAccount = () => {
 
           <TextField
             required
-            id="outlined-required"
+            id="outlined-required-last-name"
             label="Last Name"
             variant="outlined"
             value={lastName}
@@ -322,7 +322,7 @@ const NewNonMinorAccount = () => {
 
           <TextField
             required
-            id="outlined-required"
+            id="outlined-required-date-of-birth"
             label="Date of Birth"
             variant="outlined"
             value={dateOfBirth}
@@ -336,7 +336,7 @@ const NewNonMinorAccount = () => {
 
           <TextField
             required
-            id="outlined-required"
+            id="outlined-required-email"
             label="Email"
             variant="outlined"
             margin="dense"
@@ -346,7 +346,7 @@ const NewNonMinorAccount = () => {
           />
           <TextField
             required
-            id="outlined-required"
+            id="outlined-required-zipcode"
             label="Zip Code"
             variant="outlined"
             margin="dense"
@@ -370,7 +370,7 @@ const NewNonMinorAccount = () => {
         <div>
           <TextField
             required
-            id="outlined-required"
+            id="outlined-required-e-name"
             label="Emergency Contact Full Name"
             variant="outlined"
             margin="normal"
