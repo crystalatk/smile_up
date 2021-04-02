@@ -110,6 +110,12 @@ const CheckInVolunteersList = ({ event_id }) => {
                     >
                       {volunteer.first_name} {volunteer.last_name}
                     </Typography>
+                    {volunteer.total_time ? (
+                      <Typography>
+                        {volunteer.total_time.hours}hrs &
+                        {volunteer.total_time.minutes}min
+                      </Typography>
+                    ) : null}
                   </CardContent>
                   <CardActions className={classes.actions}>
                     <IconButton
@@ -120,22 +126,26 @@ const CheckInVolunteersList = ({ event_id }) => {
                     >
                       <AccountCircleIcon className={classes.profile} />
                     </IconButton>
-                    <IconButton
-                      aria-label="check in volunteer"
-                      onClick={(e) => {
-                        history.push(`/checkin/${volunteer.va_id}`);
-                      }}
-                    >
-                      <AssignmentIndIcon className={classes.checkin} />
-                    </IconButton>
-                    <IconButton
-                      aria-label="checkout volunteer"
-                      onClick={(e) => {
-                        history.push(`/profile/${volunteer.id}`);
-                      }}
-                    >
-                      <ExitToAppIcon className={classes.checkout} />
-                    </IconButton>
+                    {volunteer.check_in_time ? null : (
+                      <IconButton
+                        aria-label="check in volunteer"
+                        onClick={(e) => {
+                          history.push(`/checkin/${volunteer.va_id}`);
+                        }}
+                      >
+                        <AssignmentIndIcon className={classes.checkin} />
+                      </IconButton>
+                    )}
+                    {!volunteer.check_out_time && volunteer.check_in_time ? (
+                      <IconButton
+                        aria-label="checkout volunteer"
+                        onClick={(e) => {
+                          history.push(`/profile/${volunteer.id}`);
+                        }}
+                      >
+                        <ExitToAppIcon className={classes.checkout} />
+                      </IconButton>
+                    ) : null}
                   </CardActions>
                 </Card>
               );
