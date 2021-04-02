@@ -7,18 +7,33 @@ import CardContent from "@material-ui/core/CardContent";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import { AutorenewTwoTone } from "@material-ui/icons";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 
 const useStyles = makeStyles({
   root: {
+    border: "1px solid black",
+    margin: "5px auto",
+    maxWidth: 400,
     minWidth: 275,
   },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
-  },
   title: {
-    fontSize: 14,
+    fontSize: 24,
+  },
+  actions: {
+    display: "block",
+    margin: "auto",
+  },
+  profile: {
+    margin: "auto",
+  },
+  checkin: {
+    margin: "auto",
+  },
+  checkout: {
+    margin: "auto",
   },
   pos: {
     marginBottom: 12,
@@ -57,13 +72,12 @@ const CheckInVolunteers = ({ event_id }) => {
 
   return (
     <>
-      <h1>I am in the CheckInVolunteers</h1>
       {!!volunteersAttending.length !== 0 ? (
         <>
           <h2>These Volunteers are attending the event:</h2>
           {volunteersAttending.map((volunteer) => {
             return (
-              <Card className={classes.root}>
+              <Card key={volunteer.id} className={classes.root}>
                 <CardContent>
                   <Typography
                     className={classes.title}
@@ -73,7 +87,17 @@ const CheckInVolunteers = ({ event_id }) => {
                     {volunteer.first_name} {volunteer.last_name}
                   </Typography>
                 </CardContent>
-                <CardActions></CardActions>
+                <CardActions className={classes.actions}>
+                  <IconButton aria-label="go to volunteer profile">
+                    <AccountCircleIcon className={classes.profile} />
+                  </IconButton>
+                  <IconButton aria-label="check in volunteer">
+                    <AssignmentIndIcon className={classes.checkin} />
+                  </IconButton>
+                  <IconButton aria-label="checkout volunteer">
+                    <ExitToAppIcon className={classes.checkout} />
+                  </IconButton>
+                </CardActions>
               </Card>
             );
           })}
