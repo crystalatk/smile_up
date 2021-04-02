@@ -84,7 +84,7 @@ const AddAnEvent = () => {
   };
 
   return (
-    <div className="App">
+    <div>
       <h1>This is the AddAnEvent</h1>
       <form onSubmit={_handleSubmit}>
         <TextField
