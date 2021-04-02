@@ -11,6 +11,8 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
+import Moment from 'react-moment';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,8 +60,7 @@ const EventList = () => {
   return (
     <>
       <h1>This is the Event List Page</h1>
-      {/* Reminder: remove pipes and true below before deployment */}
-      {!!eventList || true ? (
+      {!!eventList ? (
         <List
         component="nav"
         aria-labelledby="nested-list-subheader"
@@ -70,11 +71,16 @@ const EventList = () => {
         }
         className={classes.root}
       >
+        {eventList.map((event) => {
+              return (
+                <div key={event.id}>
         <ListItem button onClick={handleClick}>
         <ListItemIcon>
           <InboxIcon />
         </ListItemIcon>
-        <ListItemText primary="event1" />
+        <Link to={`/event/${event.id}`}>
+        <ListItemText primary={event.title}/>
+        </Link>
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
@@ -83,76 +89,37 @@ const EventList = () => {
             <ListItemIcon>
               <StarBorder />
             </ListItemIcon>
-            <ListItemText primary="detail1" />
+            <ListItemText primary={event.date} />
           </ListItem>
           <ListItem button className={classes.nested}>
             <ListItemIcon>
               <StarBorder />
             </ListItemIcon>
-            <ListItemText primary="detail2" />
+            <ListItemText primary={event.start_time +'-'+ event.stop_time} />
           </ListItem>
           <ListItem button className={classes.nested}>
             <ListItemIcon>
               <StarBorder />
             </ListItemIcon>
-            <ListItemText primary="detail3" />
+            <ListItemText primary={event.location}/>
           </ListItem>
           <ListItem button className={classes.nested}>
             <ListItemIcon>
               <StarBorder />
             </ListItemIcon>
-            <ListItemText primary="detail4" />
+            <ListItemText primary={event.deadline} />
           </ListItem>
           <ListItem button className={classes.nested}>
             <ListItemIcon>
               <StarBorder />
             </ListItemIcon>
-            <ListItemText primary="detail5" />
-          </ListItem>
-          <ListItem button className={classes.nested}>
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
-            <ListItemText primary="detail6" />
-          </ListItem>
-          <ListItem button className={classes.nested}>
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
-            <ListItemText primary="detail7" />
-          </ListItem>
-          <ListItem button className={classes.nested}>
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
-            <ListItemText primary="detail8" />
-          </ListItem>
-          <ListItem button className={classes.nested}>
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
-            <ListItemText primary="detail8" />
+            <ListItemText primary={event.age_min} />
           </ListItem>
         </List>
       </Collapse>
-        {/* <>
-          <ul>
-            {eventList.map((event) => {
-              return (
-                <li key={event.id}>
-                  <Link to={`/event/${event.id}`}>
-                    <h1>{event.title}</h1>
-                    <h3>Date: {event.date}</h3>
-                    <h3>Start Time: {event.stop_time}</h3>
-                    <h3>End Time: {event.start_time}</h3>
-                    <h3>Location: {event.location}</h3>
-                    <h3>You must sign up by: {event.deadline}</h3>
-                    <h3>Minimum Age: {event.age_min}</h3>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul> */}
+      </div>
+      );
+    })}
           </List>
         // </>
       ) : (
