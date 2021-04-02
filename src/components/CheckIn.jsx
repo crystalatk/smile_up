@@ -41,6 +41,7 @@ const CheckIn = () => {
       );
     };
     fetchInsertCheckInTime();
+    history.goBack();
   };
 
   return (
