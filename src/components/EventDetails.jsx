@@ -1,7 +1,8 @@
 import moment from "moment";
 import { useState, useEffect } from "react";
 import { Link, Route, useParams, useHistory } from "react-router-dom";
-import CheckInVolunteers from "./CheckInVolunteers";
+import CheckInVolunteersList from "./CheckInVolunteersList";
+import Button from "@material-ui/core/Button";
 
 const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
   const { id } = useParams();
@@ -45,7 +46,10 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
         .catch((e) => {
           console.log(e);
         });
-      console.log("THIS IS THE NUMVOLSIGNEDUP: ", numVolSignedUp?.rows[0].count);
+      console.log(
+        "THIS IS THE NUMVOLSIGNEDUP: ",
+        numVolSignedUp?.rows[0].count
+      );
       setVolunteersSignedUp(numVolSignedUp?.rows[0].count);
     };
     fetchEvent();
@@ -87,7 +91,12 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
           <h4>You MUST signup by the deadline!</h4>
           {!!userInfo.isLoggedIn ? (
             <>
-              <button onClick={_onSignUpClick}>Sign Up!</button>
+              <Button variant="outlined" onClick={_onSignUpClick}>
+                Sign Up!
+              </Button>
+              <Button variant="outlined" onClick={() => history.goBack()}>
+                Back
+              </Button>
               {!!userInfo}
             </>
           ) : (
@@ -105,11 +114,14 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
               <h1>
                 {volunteersSignedUp} signed up/{event.max_participants} max
               </h1>
-              <Link to="/editevent">
-                <button>Edit Event</button>
-              </Link>
+              <Button
+                variant="outlined"
+                onClick={() => history.push("/editevent")}
+              >
+                Edit Event
+              </Button>
               <Route>
-                <CheckInVolunteers event_id={id} />
+                <CheckInVolunteersList event_id={id} />
               </Route>
             </>
           ) : (

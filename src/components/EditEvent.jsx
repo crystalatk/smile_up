@@ -3,6 +3,7 @@ import { useAlert } from "react-alert";
 import { Link, useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Button from "@material-ui/core/Button";
 
 const EditEvent = ({ eventDetailsForEditPurposes }) => {
   const [title, setTitle] = useState(eventDetailsForEditPurposes.title);
@@ -248,11 +249,19 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
             required
           />
         </label>
-        <button type="submit">Update my Event</button>
+        <Button type="submit" variant="outlined">
+          Update my Event
+        </Button>
       </form>
-      <Link to={`/event/${eventDetailsForEditPurposes.id}`}>
-        <button type="button">Cancel</button>
-      </Link>
+      <Button
+        type="button"
+        variant="outlined"
+        onClick={(e) => {
+          history.push(`/event/${eventDetailsForEditPurposes.id}`);
+        }}
+      >
+        Cancel
+      </Button>
     </>
   );
 };

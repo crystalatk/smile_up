@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import VHID from "./VolunteerHrsById";
 import EventsId from "./TotalEventsId";
 import moment from "moment";
+import Button from "@material-ui/core/Button";
 
 const VolunteerProfile = ({ userInfo }) => {
   const { id: initialID } = useParams();
@@ -119,7 +120,7 @@ const VolunteerProfile = ({ userInfo }) => {
                 </>
               )}
               {!!canEdit ? (
-                <button onClick={_handleEditClick}>Edit</button>
+                <Button onClick={_handleEditClick}>Edit</Button>
               ) : null}
             </>
           ) : (
@@ -129,6 +130,7 @@ const VolunteerProfile = ({ userInfo }) => {
       ) : (
         <h1>You do not have access to this page.</h1>
       )}
+      <Button onClick={() => history.goBack()}>Back</Button>
     </>
   );
 };

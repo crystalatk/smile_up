@@ -1,4 +1,6 @@
 import { useHistory } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+
 const LogoutButton = ({ setUserInfo }) => {
   const history = useHistory();
   const _handleClick = (e) => {
@@ -15,7 +17,9 @@ const LogoutButton = ({ setUserInfo }) => {
   };
   return (
     <>
-      <button onClick={_handleClick}>Logout</button>
+      <Button variant="outlined" onClick={_handleClick}>
+        Logout
+      </Button>
     </>
   );
 };
