@@ -23,6 +23,11 @@ import NewMinorAccount from "./components/NewMinorAccount";
 import GuardianSignUp from "./components/GuardianSignUp";
 import MinorSignUp from "./components/MinorSignUp";
 import CheckIn from "./components/CheckIn";
+import AdminDash from "./components/AdminDash";
+import AdminDir from "./components/AdminDir";
+import AdminProfile from "./components/AdminProfile";
+import AdminEvents from "./components/AdminEvents";
+import AdminCheckin from "./components/AdminCheckin";
 
 function App() {
   const [userInfo, setUserInfo] = useState({
@@ -100,6 +105,21 @@ function App() {
           <Route path="/directory">
             <VolunteerDirectory userInfo={userInfo} />
           </Route>
+          <Route exact path="/admindash">
+            <AdminDash />
+          </Route>
+          <Route exact path="/admincheckin">
+            <AdminCheckin />
+          </Route>
+          <Route exact path="/adminevents">
+            <AdminEvents />
+          </Route>
+          <Route exact path="/adminprofile">
+            <AdminProfile />
+          </Route>
+          <Route exact path="/admindir">
+            <AdminDir />
+          </Route>
           <Route path="/profile/:id">
             <VolunteerProfile userInfo={userInfo} />
           </Route>
@@ -132,9 +152,9 @@ function App() {
             <CheckIn userInfo={userInfo} />
           </Route>
         </div>
-        <div className="footer">
+        {/* <div className="footer">
           <BottomNav />
-        </div>
+        </div> */}
       </Router>
     </div>
   );

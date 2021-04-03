@@ -40,7 +40,7 @@ const BottomNav = () => {
     >
       <BottomNavigationAction label="Profile" value="profile" icon={profileI} />
       <BottomNavigationAction label="Messages" value="messages" icon={mailI} />
-      <BottomNavigationAction label="Home" value="home" icon={smileI} />
+      <BottomNavigationAction value="home" icon={smileI} />
       <BottomNavigationAction label="Events" value="events" icon={bellI} />
       <BottomNavigationAction label="Donate" value="donate" icon={donateI} />
     </BottomNavigation>
