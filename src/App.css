@@ -35,6 +35,18 @@ a {
   text-decoration: none;
 }
 
+.home{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color:rgb(0,214,203);
+  text-align: center;
+  position: relative;
+  margin: auto;
+  padding: auto;
+  font-size: 3vw;
+  background-color: rgb(248,135,21);
+  width: 100%;
+
+} 
 li {
   list-style-type: none;
 }

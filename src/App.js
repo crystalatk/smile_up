@@ -28,6 +28,7 @@ import AdminDir from "./components/AdminDir";
 import AdminProfile from "./components/AdminProfile";
 import AdminEvents from "./components/AdminEvents";
 import AdminCheckin from "./components/AdminCheckin";
+import HomeLogin from "./components/HomeLogin";
 
 function App() {
   const [userInfo, setUserInfo] = useState({
@@ -78,6 +79,9 @@ function App() {
         <div className="body">
           <Route path="/createaccount">
             <NewNonMinorAccount />
+          </Route>
+          <Route path="/hm">
+            <HomeLogin />
           </Route>
           <Route path="/addevent">
             <AddAnEvent userInfo={userInfo} />
