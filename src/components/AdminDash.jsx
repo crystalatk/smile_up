@@ -1,4 +1,3 @@
-import AdminNav from "./AdminNav";
 import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
@@ -19,9 +18,6 @@ const AdminDash = () => {
           </Typography>
         </Container>
       </React.Fragment>
-      <div className="footer">
-        <AdminNav />
-      </div>
     </div>
   );
 };

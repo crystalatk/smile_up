@@ -7,7 +7,9 @@ import Button from "@material-ui/core/Button";
 
 const VolunteerProfile = ({ userInfo }) => {
   const { id: initialID } = useParams();
+  console.log(initialID);
   const id = parseInt(initialID);
+  console.log(id);
   const [volunteerInfo, setVolunteerInfo] = useState(
     userInfo?.id === id ? userInfo : {}
   );
@@ -54,7 +56,7 @@ const VolunteerProfile = ({ userInfo }) => {
       setIsProfileGuardian(false);
     }
     fetchProfileData();
-  }, [id]);
+  }, [id, userInfo]);
 
   useEffect(() => {
     console.log("USERINFO ID: ", userInfo.id);
@@ -84,13 +86,13 @@ const VolunteerProfile = ({ userInfo }) => {
     console.log(userInfo.is_admin);
     console.log("PROFILE GUARDIAN???:", isProfileGuardian);
     setViewPage(userInfo.id === id || userInfo.is_admin || isProfileGuardian);
-  }, [id, isProfileGuardian]);
+  }, [id, isProfileGuardian, userInfo]);
 
   return (
     <>
       {!!viewPage ? (
         <>
-          {!!volunteerInfo.id ? (
+          {!!volunteerInfo?.id ? (
             <>
               <h1>
                 {volunteerInfo.first_name} {volunteerInfo.last_name}

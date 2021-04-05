@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-import NewNonMinorAccount from "./components/NewNonMinorAccount";
-import LoginVolunteers from "./components/LoginVolunteers";
+import Header from "./components/Header/Header";
+import Nav from "./components/Nav/Nav";
+
 import AddAnEvent from "./components/AddAnEvent";
 import TotalVolunteers from "./components/TotalVolunteers";
 import EventList from "./components/EventList";
@@ -13,14 +14,14 @@ import EditEvent from "./components/EditEvent";
 import VolunteerDirectory from "./components/VolunteerDirectory";
 import VolunteerProfile from "./components/VolunteerProfile";
 import TotalSmiles from "./components/TotalSmiles";
-import TempHeader from "./components/TempHeader";
+
 import TotalEvents from "./components/TotalEvents";
 import TotalEventsId from "./components/TotalEventsId";
 import VolunteerHrsById from "./components/VolunteerHrsById";
-import LogoutButton from "./components/LogoutButton";
+
 import EditVolunteerProfile from "./components/EditVolunteerProfile";
 import "./App.css";
-import BottomNav from "./components/BottomNav";
+
 import NewMinorAccount from "./components/NewMinorAccount";
 import GuardianSignUp from "./components/GuardianSignUp";
 import MinorSignUp from "./components/MinorSignUp";
@@ -41,7 +42,7 @@ function App() {
     id: "",
     is_admin: false,
     is_guardian: false,
-    is_minor: true,
+    is_minor: false,
     first_name: "",
   });
   const [
@@ -75,17 +76,11 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <TempHeader />
-        {!!userInfo.isLoggedIn ? (
-          <LogoutButton setUserInfo={setUserInfo} />
-        ) : (
-          <LoginVolunteers setUserInfo={setUserInfo} />
-        )}
+        <Header setUserInfo={setUserInfo} userInfo={userInfo} />
+        <Nav userInfo={userInfo} />
+
         <div className="body">
-          <Route path="/createaccount">
-            <NewNonMinorAccount />
-          </Route>
-          <Route path="/hm">
+          <Route exact path="/">
             <HomeLogin />
           </Route>
           <Route path="/addevent">
@@ -107,10 +102,10 @@ function App() {
             <EventListNeedsApproval userInfo={userInfo} />
           </Route>
           <Route path="/vd">
-            <VolunteerDash />
+            <VolunteerDash userInfo={userInfo} />
           </Route>
           <Route path="/gd">
-            <GuardianDash />
+            <GuardianDash userInfo={userInfo} />
           </Route>
           <Route path="/event/:id">
             <EventDetails
@@ -127,19 +122,19 @@ function App() {
             <VolunteerDirectory userInfo={userInfo} />
           </Route>
           <Route exact path="/admindash">
-            <AdminDash />
+            <AdminDash userInfo={userInfo} />
           </Route>
           <Route exact path="/admincheckin">
-            <AdminCheckin />
+            <AdminCheckin userInfo={userInfo} />
           </Route>
           <Route exact path="/adminevents">
-            <AdminEvents />
+            <AdminEvents userInfo={userInfo} />
           </Route>
-          <Route exact path="/adminprofile">
-            <AdminProfile />
+          <Route path="/adminprofile/:id">
+            <AdminProfile userInfo={userInfo} />
           </Route>
           <Route exact path="/admindir">
-            <AdminDir />
+            <AdminDir userInfo={userInfo} />
           </Route>
           <Route path="/profile/:id">
             <VolunteerProfile userInfo={userInfo} />
@@ -165,7 +160,6 @@ function App() {
           <Route path="/guardiansignup/:event_id">
             <GuardianSignUp userInfo={userInfo} />
           </Route>
-          <Route path="/checkin/:va_id"></Route>
           <Route path="/minorsignup/:event_id">
             {!!userInfo.isLoggedIn ? <MinorSignUp userInfo={userInfo} /> : null}
           </Route>
@@ -176,9 +170,6 @@ function App() {
             <CheckOut userInfo={userInfo} />
           </Route>
         </div>
-        {/* <div className="footer">
-          <BottomNav />
-        </div> */}
       </Router>
     </div>
   );

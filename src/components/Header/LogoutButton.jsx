@@ -10,7 +10,7 @@ const LogoutButton = ({ setUserInfo }) => {
       id: "",
       is_admin: false,
       is_guardian: false,
-      is_minor: true,
+      is_minor: false,
       first_name: "",
     });
     history.push("/");

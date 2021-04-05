@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useAlert } from "react-alert";
-import BottomNav from "./BottomNav";
-import NewMinorAccount from "./NewMinorAccount";
+import NewMinorAccount from "../NewMinorAccount";
 import moment from "moment";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
@@ -16,17 +15,9 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormLabel from "@material-ui/core/FormLabel";
 import Button from "@material-ui/core/Button";
 import Fab from "@material-ui/core/Fab";
-import NewMinorAccountBridge from "./NewMinorAccountBridge";
-import Modal from "./Modal";
+import NewMinorAccountBridge from "../NewMinorAccountBridge";
+import Modal from "../Modal";
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     "& .MuiTextField-root": {
-//       margin: theme.spacing(1),
-//       width: "25ch",
-//     },
-//   },
-// }));
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -246,7 +237,7 @@ const NewNonMinorAccount = () => {
   };
 
   return (
-    <div>
+    <div className="create-account">
       <h1>Create an Account:</h1>
       <h2>
         You must be 18 years or older to create an account. If you need to
