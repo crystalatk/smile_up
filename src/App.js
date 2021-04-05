@@ -30,6 +30,8 @@ import AdminProfile from "./components/AdminProfile";
 import AdminEvents from "./components/AdminEvents";
 import AdminCheckin from "./components/AdminCheckin";
 import HomeLogin from "./components/HomeLogin";
+import VolunteerDash from './components/VolunteerDash'
+import GuardianDash from './components/GuardianDash'
 
 function App() {
   const [userInfo, setUserInfo] = useState({
@@ -95,6 +97,12 @@ function App() {
           </Route>
           <Route path="/eventlist">
             <EventList userInfo={userInfo} />
+          </Route>
+          <Route path="/vd">
+            <VolunteerDash />
+          </Route>
+          <Route path="/gd">
+            <GuardianDash />
           </Route>
           <Route path="/event/:id">
             <EventDetails
