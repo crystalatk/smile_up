@@ -91,15 +91,19 @@ const EventListApproved = ({ userInfo }) => {
           return (
             <li key={index}>
               {(approvedMinorEvents[index - 1]?.event_id !== event.event_id ||
-                index === 0) && <h1>{event.title}</h1>}
+                index === 0) && (
+                <h1
+                  onClick={() => {
+                    history.push(`/event/${event.event_id}`);
+                  }}
+                >
+                  {event.title}
+                </h1>
+              )}
 
               {userInfo.is_guardian && (
                 <div>
-                  <h3
-                    onClick={() => {
-                      history.push(`/event/${event.event_id}`);
-                    }}
-                  >
+                  <h3>
                     {event.first_name} has been approved to attend this event.
                   </h3>
                   <Button

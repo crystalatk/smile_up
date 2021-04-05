@@ -13,7 +13,9 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
 
   const _onSignUpClick = (e) => {
     e.preventDefault();
-    history.push(`/guardiansignup/${id}`);
+    userInfo.is_minor
+      ? history.push(`/minorsignup/${id}`)
+      : history.push(`/guardiansignup/${id}`);
   };
 
   useEffect(() => {
