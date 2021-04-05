@@ -1,77 +1,69 @@
 import { useState, useEffect } from "react";
 
 const EventListApproved = ({ userInfo }) => {
-  const [minorData, setMinorData] = useState([]);
-  const [approvedEvents, setApprovedEvents] = useState([]);
+  const [approvedMinorEvents, setApprovedMinorEvents] = useState([]);
 
   useEffect(() => {
-    const fetchMinors = async () => {
-      const minorDataResponse = await fetch(
-        `http://127.0.0.1:3232/guardians/getvolunteersforguardianId/?guardian_id=${userInfo.id}`,
+    const fetchMinorsEvents = async () => {
+      const guardianEventResponse = await fetch(
+        `http://127.0.0.1:3232/events/approvedeventsbyguardianid/?guardian_id=${userInfo.id}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
         }
       ).then((response) => response.json());
-      console.log("THIS IS THE MINORDATARESPONSE: ", minorDataResponse);
-      setMinorData(minorDataResponse);
+      console.log("THIS IS THE guardianEventRESPONSE: ", guardianEventResponse);
+      setApprovedMinorEvents(
+        guardianEventResponse.sort((a, b) => a.event_id - b.event_id)
+      );
     };
-    if (userInfo.is_guardian) {
-      fetchMinors();
-    }
-  }, []);
-
-  useEffect(() => {
-    const fetchApprovedEventsForMinor = async (minor) => {
+    const fetchApprovedEventsForMinor = async () => {
       const approvedEventsForMinorResponse = await fetch(
-        `http://127.0.0.1:3232/events/approvedeventsbyvolunteerid/?volunteer_id=${minor.id}`,
+        `http://127.0.0.1:3232/events/approvedeventsbyvolunteerid/?volunteer_id=${userInfo.id}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
         }
-      )
-        .then((response) => response.json())
-        .then((response) => {
-          console.log(
-            "THIS IS THE APPROVED EVENTS FOR MINOR RESPONSE: ",
-            response
-          );
-          setApprovedEvents([...approvedEvents, response]);
-        });
+      ).then((response) => response.json());
+      console.log(
+        "THIS IS THE APPROVED EVENTS FOR MINOR RESPONSE: ",
+        approvedEventsForMinorResponse
+      );
+      setApprovedMinorEvents(approvedEventsForMinorResponse);
     };
-    if (minorData.length) {
-      for (let i = 0; i < minorData.length; i++) {
-        const getData = async () => {
-          await fetchApprovedEventsForMinor(minorData[i]);
-        };
-        getData;
-      }
+    if (userInfo.is_guardian) {
+      fetchMinorsEvents();
     }
     if (userInfo.is_minor) {
-      fetchApprovedEventsForMinor(userInfo);
+      fetchApprovedEventsForMinor();
     }
-  }, [minorData]);
+  }, []);
 
   useEffect(() => {
-    console.log("THESE ARE THE APPROVED EVENTS", approvedEvents);
-  }, [approvedEvents]);
+    console.log(approvedMinorEvents);
+  }, [approvedMinorEvents]);
 
   return (
     <>
       <h1>This is the Approved EventList</h1>
-      {userInfo.is_guardian && minorData.length ? (
+      {userInfo.is_guardian && approvedMinorEvents.length ? (
         <h3>Here are the approved Events for your minors: </h3>
       ) : (
         <h3>You have no minors attached to this account.</h3>
       )}
-      {approvedEvents?.map((event) => {
-        return (
-          <>
-            <h1>{event.title}</h1>
-            <h3></h3>
-          </>
-        );
-      })}
+      <ul>
+        {approvedMinorEvents?.map((event, index) => {
+          return (
+            <li key={index}>
+              {(approvedMinorEvents[index - 1]?.event_id !== event.event_id ||
+                index === 0) && <h1>{event.title}</h1>}
+              <h3>
+                {event.first_name} would like approval to attend this event.
+              </h3>
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 };
