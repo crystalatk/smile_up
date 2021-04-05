@@ -32,6 +32,8 @@ import AdminProfile from "./components/AdminProfile";
 import AdminEvents from "./components/AdminEvents";
 import AdminCheckin from "./components/AdminCheckin";
 import HomeLogin from "./components/HomeLogin";
+import VolunteerDash from './components/VolunteerDash'
+import GuardianDash from './components/GuardianDash'
 
 function App() {
   const [userInfo, setUserInfo] = useState({
@@ -104,6 +106,12 @@ function App() {
           <Route path="/eventlistneedsapproval">
             <EventListNeedsApproval userInfo={userInfo} />
           </Route>
+          <Route path="/vd">
+            <VolunteerDash />
+          </Route>
+          <Route path="/gd">
+            <GuardianDash />
+          </Route>
           <Route path="/event/:id">
             <EventDetails
               userInfo={userInfo}
@@ -158,9 +166,11 @@ function App() {
             <GuardianSignUp userInfo={userInfo} />
           </Route>
           <Route path="/checkin/:va_id"></Route>
-          <Route path="/minorsignup">
-            <MinorSignUp userInfo={userInfo} />
-          </Route>
+          <Route path="/minorsignup/:event_id">
+        {!!userInfo.isLoggedIn ?
+            <MinorSignUp userInfo={userInfo}/>
+        :null}
+        </Route>
           <Route path="/checkin/:va_id">
             <CheckIn userInfo={userInfo} />
           </Route>
