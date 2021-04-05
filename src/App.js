@@ -6,6 +6,7 @@ import AddAnEvent from "./components/AddAnEvent";
 import TotalVolunteers from "./components/TotalVolunteers";
 import EventList from "./components/EventList";
 import EventListApproved from "./components/EventListApproved";
+import EventListNeedsApproval from "./components/EventListNeedsApproval";
 import EventDetails from "./components/EventDetails";
 import VolunteerHours from "./components/VolunteerHrs";
 import EditEvent from "./components/EditEvent";
@@ -99,6 +100,9 @@ function App() {
           </Route>
           <Route path="/eventlistapproved">
             <EventListApproved userInfo={userInfo} />
+          </Route>
+          <Route path="/eventlistneedsapproval">
+            <EventListNeedsApproval userInfo={userInfo} />
           </Route>
           <Route path="/event/:id">
             <EventDetails

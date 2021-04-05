@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 
 const useStyles = makeStyles((theme) => ({
@@ -9,14 +10,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const EventListApproved = ({ userInfo }) => {
+const EventListNeedsApproval = ({ userInfo }) => {
   const [approvedMinorEvents, setApprovedMinorEvents] = useState([]);
   const classes = useStyles();
 
   useEffect(() => {
     const fetchMinorsEvents = async () => {
       const guardianEventResponse = await fetch(
-        `http://127.0.0.1:3232/events/approvedeventsbyguardianid/?guardian_id=${userInfo.id}`,
+        `http://127.0.0.1:3232/events/needsapprovaleventsbyguardianid/?guardian_id=${userInfo.id}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
@@ -29,7 +30,7 @@ const EventListApproved = ({ userInfo }) => {
     };
     const fetchApprovedEventsForMinor = async () => {
       const approvedEventsForMinorResponse = await fetch(
-        `http://127.0.0.1:3232/events/approvedeventsbyvolunteerid/?volunteer_id=${userInfo.id}`,
+        `http://127.0.0.1:3232/events/needsapprovaleventsbyvolunteerid/?volunteer_id=${userInfo.id}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
@@ -55,18 +56,11 @@ const EventListApproved = ({ userInfo }) => {
 
   return (
     <>
-      <h1>Approved Upcoming Events:</h1>
-      {!userInfo.is_guardian && !userInfo.is_minor && (
-        <h1>You have no minors linked to this account.</h1>
-      )}
-      {userInfo.is_guardian && approvedMinorEvents.length && (
-        <h3>Here are the approved Events for your minors: </h3>
-      )}
-      {userInfo.is_minor && (
-        <h3>Here are the approved Events for your minors: </h3>
-      )}
-      {!approvedMinorEvents.length && (
-        <h3>You have no approved upcoming events.</h3>
+      <h1>Needs Approval:</h1>
+      {userInfo.is_guardian && approvedMinorEvents.length ? (
+        <h3>Here are the events awaiting approval for your minors: </h3>
+      ) : (
+        <h3>You have no awaiting approvals.</h3>
       )}
       <ul>
         {approvedMinorEvents?.map((event, index) => {
@@ -75,10 +69,18 @@ const EventListApproved = ({ userInfo }) => {
               {(approvedMinorEvents[index - 1]?.event_id !== event.event_id ||
                 index === 0) && <h1>{event.title}</h1>}
               <h3>
-                {event.first_name} has been approved to attend this event.
+                {event.first_name} would like approval to attend this event.
               </h3>
               {userInfo.is_guardian && (
                 <div>
+                  <Button
+                    variant="contained"
+                    color="default"
+                    className={classes.button}
+                    startIcon={<ThumbUpIcon />}
+                  >
+                    Approve
+                  </Button>
                   <Button
                     variant="contained"
                     color="default"
@@ -97,4 +99,4 @@ const EventListApproved = ({ userInfo }) => {
   );
 };
 
-export default EventListApproved;
+export default EventListNeedsApproval;

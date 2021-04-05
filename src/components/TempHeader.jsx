@@ -14,6 +14,7 @@ const TempHeader = () => {
       <Link to="/eventlist"> EventList</Link>
       <Link to="/event/3"> Fun Event</Link>
       <Link to="/eventlistapproved"> Approved Events</Link>
+      <Link to="/eventlistneedsapproval"> Need Approval</Link>
     </>
   );
 };
