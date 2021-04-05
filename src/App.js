@@ -23,6 +23,7 @@ import NewMinorAccount from "./components/NewMinorAccount";
 import GuardianSignUp from "./components/GuardianSignUp";
 import MinorSignUp from "./components/MinorSignUp";
 import CheckIn from "./components/CheckIn";
+import CheckOut from "./components/CheckOut";
 import AdminDash from "./components/AdminDash";
 import AdminDir from "./components/AdminDir";
 import AdminProfile from "./components/AdminProfile";
@@ -154,6 +155,9 @@ function App() {
           </Route>
           <Route path="/checkin/:va_id">
             <CheckIn userInfo={userInfo} />
+          </Route>
+          <Route path="/checkout/:va_id">
+            <CheckOut userInfo={userInfo} />
           </Route>
         </div>
         {/* <div className="footer">
