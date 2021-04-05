@@ -32,8 +32,8 @@ import AdminProfile from "./components/AdminProfile";
 import AdminEvents from "./components/AdminEvents";
 import AdminCheckin from "./components/AdminCheckin";
 import HomeLogin from "./components/HomeLogin";
-import VolunteerDash from './components/VolunteerDash'
-import GuardianDash from './components/GuardianDash'
+import VolunteerDash from "./components/VolunteerDash";
+import GuardianDash from "./components/GuardianDash";
 
 function App() {
   const [userInfo, setUserInfo] = useState({
@@ -167,10 +167,8 @@ function App() {
           </Route>
           <Route path="/checkin/:va_id"></Route>
           <Route path="/minorsignup/:event_id">
-        {!!userInfo.isLoggedIn ?
-            <MinorSignUp userInfo={userInfo}/>
-        :null}
-        </Route>
+            {!!userInfo.isLoggedIn ? <MinorSignUp userInfo={userInfo} /> : null}
+          </Route>
           <Route path="/checkin/:va_id">
             <CheckIn userInfo={userInfo} />
           </Route>
