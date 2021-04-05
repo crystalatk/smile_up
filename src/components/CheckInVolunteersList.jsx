@@ -112,7 +112,9 @@ const CheckInVolunteersList = ({ event_id }) => {
                     </Typography>
                     {volunteer.total_time ? (
                       <Typography>
-                        {volunteer.total_time.hours}hrs &
+                        {volunteer.total_time.hours ? (
+                          <span>{volunteer.total_time.hours}hrs & </span>
+                        ) : null}
                         {volunteer.total_time.minutes}min
                       </Typography>
                     ) : null}
@@ -140,7 +142,7 @@ const CheckInVolunteersList = ({ event_id }) => {
                       <IconButton
                         aria-label="checkout volunteer"
                         onClick={(e) => {
-                          history.push(`/profile/${volunteer.id}`);
+                          history.push(`/checkout/${volunteer.va_id}`);
                         }}
                       >
                         <ExitToAppIcon className={classes.checkout} />

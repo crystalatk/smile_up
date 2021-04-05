@@ -2,7 +2,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Button from "@material-ui/core/Button";
 
-const CheckIn = () => {
+const CheckOut = () => {
   const history = useHistory();
   const { va_id } = useParams();
   const [volunteerInfo, setVolunteerInfo] = useState("");
@@ -22,35 +22,35 @@ const CheckIn = () => {
     fetchVolunteerInfo();
   }, []);
 
-  const _handleSubmitCheckIn = (e) => {
+  const _handleSubmitCheckOut = (e) => {
     e.preventDefault();
-    const fetchInsertCheckInTime = async () => {
-      const InsertCheckInTimeResponse = await fetch(
+    const fetchInsertCheckOutTime = async () => {
+      const InsertCheckOutTimeResponse = await fetch(
         `http://127.0.0.1:3232/admins/insertcheckinouttime`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             va_id: va_id,
-            event: "check_in_time",
+            event: "check_out_time",
           }),
         }
       ).then((response) => response);
       console.log(
-        "THIS IS THE INSERT CHECK IN TIME RESPONSE: ",
-        InsertCheckInTimeResponse
+        "THIS IS THE INSERT CHECK OUT TIME RESPONSE: ",
+        InsertCheckOutTimeResponse
       );
     };
-    fetchInsertCheckInTime();
+    fetchInsertCheckOutTime();
     history.goBack();
   };
 
   return (
     <>
       <h1>
-        Check-in {volunteerInfo?.first_name} {volunteerInfo?.last_name}:
+        Check-out {volunteerInfo?.first_name} {volunteerInfo?.last_name}:
       </h1>
-      <Button onClick={_handleSubmitCheckIn}>Check-in</Button>
+      <Button onClick={_handleSubmitCheckOut}>Check-out</Button>
       <Button
         onClick={(e) => {
           history.goBack();
@@ -62,4 +62,4 @@ const CheckIn = () => {
   );
 };
 
-export default CheckIn;
+export default CheckOut;
