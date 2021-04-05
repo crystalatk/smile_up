@@ -150,9 +150,11 @@ function App() {
             <GuardianSignUp userInfo={userInfo} />
           </Route>
           <Route path="/checkin/:va_id"></Route>
-          <Route path="/minorsignup">
-            <MinorSignUp userInfo={userInfo} />
-          </Route>
+          <Route path="/minorsignup/:event_id">
+        {!!userInfo.isLoggedIn ?
+            <MinorSignUp userInfo={userInfo}/>
+        :null}
+        </Route>
           <Route path="/checkin/:va_id">
             <CheckIn userInfo={userInfo} />
           </Route>
