@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
 
 const EventListApproved = ({ userInfo }) => {
   const [approvedMinorEvents, setApprovedMinorEvents] = useState([]);
+  const [reload, setReload] = useState(false);
   const classes = useStyles();
   const history = useHistory();
 
@@ -49,11 +50,26 @@ const EventListApproved = ({ userInfo }) => {
     if (userInfo.is_minor) {
       fetchApprovedEventsForMinor();
     }
-  }, []);
+  }, [userInfo, reload]);
 
-  useEffect(() => {
-    console.log(approvedMinorEvents);
-  }, [approvedMinorEvents]);
+  const _handleRemoveButton = (id) => {
+    const fetchInsertIntoGuardianRemoved = async () => {
+      console.log("I MADE IT!", id);
+      const insertIntoGuardianRemoved = await fetch(
+        `http://127.0.0.1:3232/guardians/insertguardiandeniedbyactiviesID`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            id,
+          }),
+        }
+      ).then((response) => response);
+      console.log(insertIntoGuardianRemoved);
+    };
+    fetchInsertIntoGuardianRemoved();
+    setReload(!reload);
+  };
 
   return (
     <>
@@ -73,18 +89,17 @@ const EventListApproved = ({ userInfo }) => {
       <ul>
         {approvedMinorEvents?.map((event, index) => {
           return (
-            <li
-              key={index}
-              onClick={() => {
-                history.push(`/event/${event.event_id}`);
-              }}
-            >
+            <li key={index}>
               {(approvedMinorEvents[index - 1]?.event_id !== event.event_id ||
                 index === 0) && <h1>{event.title}</h1>}
 
               {userInfo.is_guardian && (
                 <div>
-                  <h3>
+                  <h3
+                    onClick={() => {
+                      history.push(`/event/${event.event_id}`);
+                    }}
+                  >
                     {event.first_name} has been approved to attend this event.
                   </h3>
                   <Button
@@ -92,6 +107,7 @@ const EventListApproved = ({ userInfo }) => {
                     color="default"
                     className={classes.button}
                     startIcon={<ThumbDownIcon />}
+                    onClick={() => _handleRemoveButton(event.id)}
                   >
                     Remove
                   </Button>

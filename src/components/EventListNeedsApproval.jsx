@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
@@ -12,7 +13,9 @@ const useStyles = makeStyles((theme) => ({
 
 const EventListNeedsApproval = ({ userInfo }) => {
   const [approvedMinorEvents, setApprovedMinorEvents] = useState([]);
+  const [reload, setReload] = useState(false);
   const classes = useStyles();
+  const history = useHistory();
 
   useEffect(() => {
     const fetchMinorsEvents = async () => {
@@ -48,7 +51,45 @@ const EventListNeedsApproval = ({ userInfo }) => {
     if (userInfo.is_minor) {
       fetchApprovedEventsForMinor();
     }
-  }, []);
+  }, [userInfo, reload]);
+
+  const _handleRemoveButton = (id) => {
+    const fetchInsertIntoGuardianRemoved = async () => {
+      console.log("I MADE IT!", id);
+      const insertIntoGuardianRemoved = await fetch(
+        `http://127.0.0.1:3232/guardians/insertguardiandeniedbyactiviesID`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            id,
+          }),
+        }
+      ).then((response) => response);
+      console.log(insertIntoGuardianRemoved);
+    };
+    fetchInsertIntoGuardianRemoved();
+    setReload(!reload);
+  };
+
+  const _handleApproveButton = (id) => {
+    const fetchInsertIntoGuardianApproved = async () => {
+      console.log("I MADE IT!", id);
+      const insertIntoGuardianApproved = await fetch(
+        `http://127.0.0.1:3232/guardians/insertguardianapprovedbyactiviesID`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            id,
+          }),
+        }
+      ).then((response) => response);
+      console.log(insertIntoGuardianApproved);
+    };
+    fetchInsertIntoGuardianApproved();
+    setReload(!reload);
+  };
 
   useEffect(() => {
     console.log(approvedMinorEvents);
@@ -67,7 +108,15 @@ const EventListNeedsApproval = ({ userInfo }) => {
           return (
             <li key={index}>
               {(approvedMinorEvents[index - 1]?.event_id !== event.event_id ||
-                index === 0) && <h1>{event.title}</h1>}
+                index === 0) && (
+                <h1
+                  onClick={() => {
+                    history.push(`/event/${event.event_id}`);
+                  }}
+                >
+                  {event.title}
+                </h1>
+              )}
               <h3>
                 {event.first_name} would like approval to attend this event.
               </h3>
@@ -78,6 +127,7 @@ const EventListNeedsApproval = ({ userInfo }) => {
                     color="default"
                     className={classes.button}
                     startIcon={<ThumbUpIcon />}
+                    onClick={() => _handleApproveButton(event.id)}
                   >
                     Approve
                   </Button>
@@ -86,6 +136,7 @@ const EventListNeedsApproval = ({ userInfo }) => {
                     color="default"
                     className={classes.button}
                     startIcon={<ThumbDownIcon />}
+                    onClick={() => _handleRemoveButton(event.id)}
                   >
                     Remove
                   </Button>
