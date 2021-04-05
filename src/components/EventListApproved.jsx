@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
@@ -12,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
 const EventListApproved = ({ userInfo }) => {
   const [approvedMinorEvents, setApprovedMinorEvents] = useState([]);
   const classes = useStyles();
+  const history = useHistory();
 
   useEffect(() => {
     const fetchMinorsEvents = async () => {
@@ -71,14 +73,20 @@ const EventListApproved = ({ userInfo }) => {
       <ul>
         {approvedMinorEvents?.map((event, index) => {
           return (
-            <li key={index}>
+            <li
+              key={index}
+              onClick={() => {
+                history.push(`/event/${event.event_id}`);
+              }}
+            >
               {(approvedMinorEvents[index - 1]?.event_id !== event.event_id ||
                 index === 0) && <h1>{event.title}</h1>}
-              <h3>
-                {event.first_name} has been approved to attend this event.
-              </h3>
+
               {userInfo.is_guardian && (
                 <div>
+                  <h3>
+                    {event.first_name} has been approved to attend this event.
+                  </h3>
                   <Button
                     variant="contained"
                     color="default"
