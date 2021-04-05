@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useAlert } from "react-alert";
 import moment from "moment";
+import Button from "@material-ui/core/Button";
 
 const EditVolunteerProfile = ({ userInfo }) => {
   const { id: initialID } = useParams();
@@ -120,7 +121,7 @@ const EditVolunteerProfile = ({ userInfo }) => {
     <>
       {!!viewPage ? (
         <>
-          <div className="App">
+          <div>
             <h1>Edit Profile for {volunteerInfo.first_name}</h1>
             <form onSubmit={_handleSubmit}>
               <label>
@@ -207,7 +208,12 @@ const EditVolunteerProfile = ({ userInfo }) => {
                   required
                 />
               </label>
-              <button type="submit">Update Information</button>
+              <Button type="submit" variant="outlined">
+                Update Information
+              </Button>
+              <Button type="button" onClick={history.goBack} variant="outlined">
+                Back
+              </Button>
             </form>
           </div>
         </>

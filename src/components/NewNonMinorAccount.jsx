@@ -248,13 +248,17 @@ const NewNonMinorAccount = () => {
   return (
     <div>
       <h1>Create an Account:</h1>
-      <h2>You must be 18 years or older to create an account. If you need to register a minor with smileUp, you will have the option to do so immediately after creating your account.</h2>
+      <h2>
+        You must be 18 years or older to create an account. If you need to
+        register a minor with smileUp, you will have the option to do so
+        immediately after creating your account.
+      </h2>
       <form className={classes} onSubmit={_handleSubmit}>
         <div>
           <FormControl>
             <TextField
               required
-              id="outlined-required"
+              id="outlined-required-username"
               label="Create Username"
               variant="outlined"
               value={username}
@@ -267,7 +271,7 @@ const NewNonMinorAccount = () => {
             ) : null}
 
             <TextField
-              id="outlined-password-input"
+              id="outlined-password1-input"
               label="Create a Password"
               type="password"
               autoComplete="current-password"
@@ -279,7 +283,7 @@ const NewNonMinorAccount = () => {
             />
 
             <TextField
-              id="outlined-password-input"
+              id="outlined-password2-input"
               label="Retype your password"
               type="password"
               autoComplete="current-password"
@@ -296,7 +300,7 @@ const NewNonMinorAccount = () => {
 
           <TextField
             required
-            id="outlined-required"
+            id="outlined-required-first-name"
             label="First Name"
             variant="outlined"
             value={firstName}
@@ -307,7 +311,7 @@ const NewNonMinorAccount = () => {
 
           <TextField
             required
-            id="outlined-required"
+            id="outlined-required-last-name"
             label="Last Name"
             variant="outlined"
             value={lastName}
@@ -318,7 +322,7 @@ const NewNonMinorAccount = () => {
 
           <TextField
             required
-            id="outlined-required"
+            id="outlined-required-date-of-birth"
             label="Date of Birth"
             variant="outlined"
             value={dateOfBirth}
@@ -332,7 +336,7 @@ const NewNonMinorAccount = () => {
 
           <TextField
             required
-            id="outlined-required"
+            id="outlined-required-email"
             label="Email"
             variant="outlined"
             margin="dense"
@@ -342,7 +346,7 @@ const NewNonMinorAccount = () => {
           />
           <TextField
             required
-            id="outlined-required"
+            id="outlined-required-zipcode"
             label="Zip Code"
             variant="outlined"
             margin="dense"
@@ -351,7 +355,7 @@ const NewNonMinorAccount = () => {
             onChange={_handleZipCodeChange}
           />
           <FormControl>
-            <InputLabel htmlFor="num">Phone Number111111</InputLabel>
+            <InputLabel htmlFor="num">Phone Number</InputLabel>
             <Input
               required
               name="num"
@@ -366,7 +370,7 @@ const NewNonMinorAccount = () => {
         <div>
           <TextField
             required
-            id="outlined-required"
+            id="outlined-required-e-name"
             label="Emergency Contact Full Name"
             variant="outlined"
             margin="normal"
@@ -383,7 +387,7 @@ const NewNonMinorAccount = () => {
               required
               name="enum"
               id="enum"
-              inputComponent={TextMaskCustom}
+              // inputComponent={TextMaskCustom}
               margin="normal"
               value={emergencyPhone}
               onChange={_handleEmergencyPhoneChange}

@@ -38,7 +38,7 @@ const LoginVolunteers = ({ setUserInfo }) => {
   };
 
   return (
-    <div className="App">
+    <div>
       <form onSubmit={_handleSubmit}>
         <label>
           <TextField
