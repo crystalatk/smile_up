@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -6,22 +6,29 @@ import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import AddToHomeScreenRoundedIcon from "@material-ui/icons/AddToHomeScreenRounded";
+import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
 import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
+import Badge from "@material-ui/core/Badge";
 import smilelg from "../../images/smilelg.gif";
 
-const VolunteerNav = ({ userInfo }) => {
-  const useStyles = makeStyles({
-    root: {
-      width: "100%",
-      background: "rgb(0,214,203)",
-    },
-    appBar: {
-      top: "auto",
-      bottom: 0,
-    },
-  });
-  let location = useLocation();
+const useStyles = makeStyles({
+  root: {
+    width: "100%",
+    background: "rgb(0,214,203)",
+  },
+  appBar: {
+    top: "auto",
+    bottom: 0,
+  },
+});
 
+const VolunteerNav = ({
+  userInfo,
+  numberOfApprovalsWaiting,
+  setNumberOfApprovalsWaiting,
+}) => {
+  console.log(numberOfApprovalsWaiting);
+  let location = useLocation();
   const classes = useStyles();
   const [value, setValue] = useState("recents");
 
@@ -31,6 +38,17 @@ const VolunteerNav = ({ userInfo }) => {
   const smileI = (
     <img src={smilelg} alt="SmileUp Logo" height="50px" width="80px" />
   );
+
+  useEffect(() => {
+    console.log("THIS IS THE VALUE: ", value);
+    if (value === "notifications") {
+      setNumberOfApprovalsWaiting(0);
+    }
+  }, [value]);
+
+  useEffect(() => {
+    console.log(numberOfApprovalsWaiting);
+  }, [numberOfApprovalsWaiting]);
 
   return (
     <AppBar position="fixed" color="primary" className={classes.appBar}>
@@ -63,21 +81,30 @@ const VolunteerNav = ({ userInfo }) => {
           value="Dash"
           icon={smileI}
         />
-        <BottomNavigationAction
-          component={Link}
-          to={`/notifications`}
-          selected={`/notifications` === location.pathname}
-          label="Approval"
-          value="approval"
-          icon={<NotificationsActiveIcon />}
-        />
+        <Badge badgeContent={numberOfApprovalsWaiting} color="primary">
+          <BottomNavigation
+            value={value}
+            onChange={handleChange}
+            className={classes.root}
+            showLabels
+          >
+            <BottomNavigationAction
+              component={Link}
+              to={`/notifications`}
+              selected={`/notifications` === location.pathname}
+              label="Notifications"
+              value="notifications"
+              icon={<NotificationsActiveIcon />}
+            />
+          </BottomNavigation>
+        </Badge>
         <BottomNavigationAction
           component={Link}
           to={`/donate`}
           selected={`/donate` === location.pathname}
           label="Donate"
           value="donate"
-          icon={<NotificationsActiveIcon />}
+          icon={<MonetizationOnIcon />}
         />
       </BottomNavigation>
     </AppBar>
