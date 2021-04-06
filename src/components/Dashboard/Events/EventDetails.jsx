@@ -19,7 +19,6 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
   };
 
   useEffect(() => {
-    console.log("THIS IS THE ID: ", id);
     const fetchEvent = async () => {
       const eventResponse = await fetch(
         `http://127.0.0.1:3232/events/details?id=${id}`,
@@ -32,7 +31,6 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
         .catch((e) => {
           console.log(e);
         });
-      console.log("THIS IS THE EVENT RESPONSE: ", eventResponse);
       setEvent(eventResponse);
       setEventDetailsForEditPurposes(eventResponse);
     };
@@ -48,7 +46,6 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
         .catch((e) => {
           console.log(e);
         });
-      console.log("THIS IS THE VOLSIGNEDUP: ", VolSignedUpResponse);
       setVolunteersSignedUp(VolSignedUpResponse);
     };
     fetchEvent();
@@ -59,7 +56,6 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
     if (event && volunteersSignedUp !== "") {
       const mathNumSpotsRemaining =
         event.max_participants - volunteersSignedUp.length;
-      console.log("This is the spots reamining", mathNumSpotsRemaining);
       setSpotsRemaining(mathNumSpotsRemaining);
     }
   }, [event, volunteersSignedUp]);
@@ -94,13 +90,28 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
               {!volunteersSignedUp.some(
                 (volunteer) => volunteer.volunteer_id === userInfo.id
               ) ? (
-                <Button variant="outlined" onClick={_onSignUpClick}>
-                  Sign Up!
-                </Button>
+                <>
+                  <Button
+                    variant="outlined"
+                    onClick={_onSignUpClick}
+                    disabled={userInfo.age < event.age_min}
+                  >
+                    Sign Up!
+                  </Button>
+                  <h6
+                    className={
+                      userInfo.age < event.age_min
+                        ? "f-red f-small m-0"
+                        : "f-background-color f-small m-0"
+                    }
+                  >
+                    You are not old enough to sign up for this event.
+                  </h6>
+                </>
               ) : (
                 <h3>You are already signed up for this event!</h3>
               )}
-            
+
               <Button variant="outlined" onClick={() => history.goBack()}>
                 Back
               </Button>

@@ -31,6 +31,7 @@ const LoginVolunteers = ({ setUserInfo }) => {
         is_guardian: loginData.is_guardian,
         is_minor: loginData.is_minor,
         first_name: loginData.first_name,
+        age: loginData.age.years,
         avatar_link: loginData.avatar_link,
       });
       setWrongPasswordUsername(false);
