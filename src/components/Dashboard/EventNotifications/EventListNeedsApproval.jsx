@@ -67,9 +67,9 @@ const EventListNeedsApproval = ({ userInfo }) => {
         }
       ).then((response) => response);
       console.log(insertIntoGuardianRemoved);
+      setReload(!reload);
     };
     fetchInsertIntoGuardianRemoved();
-    setReload(!reload);
   };
 
   const _handleApproveButton = (id) => {
@@ -86,9 +86,9 @@ const EventListNeedsApproval = ({ userInfo }) => {
         }
       ).then((response) => response);
       console.log(insertIntoGuardianApproved);
+      setReload(!reload);
     };
     fetchInsertIntoGuardianApproved();
-    setReload(!reload);
   };
 
   useEffect(() => {
@@ -98,8 +98,8 @@ const EventListNeedsApproval = ({ userInfo }) => {
   return (
     <>
       <h1>Needs Approval:</h1>
-      {userInfo.is_guardian && approvedMinorEvents.length ? (
-        <h3>Here are the events awaiting approval for your minors: </h3>
+      {userInfo.isLoggedIn && approvedMinorEvents.length ? (
+        <h3>Here are the events awaiting approval: </h3>
       ) : (
         <h3>You have no awaiting approvals.</h3>
       )}
