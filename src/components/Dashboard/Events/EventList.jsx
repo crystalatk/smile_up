@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import List from "@material-ui/core/List";
-import Card from '@material-ui/core/Card';
+import Card from "@material-ui/core/Card";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     maxWidth: 330,
-    backgroundColor: 'rgb(247, 219, 182, 1)'
+    backgroundColor: "rgb(247, 219, 182, 1)",
   },
   nested: {
     paddingLeft: theme.spacing(4),
@@ -74,54 +74,81 @@ const EventList = () => {
             const diff = moment(stopTime) - moment(startTime);
             return (
               <div key={event.id}>
-                  <>
-                    <Card className={classes.root}>
-                        <ListItem button onClick={handleClick}>
-                          <ListItemIcon>
-                            <InboxIcon />
-                          </ListItemIcon>
-                          <Link to={`/event/${event.id}`}>
-                            <ListItemText primary={event.title} />
-                          </Link>
-                        </ListItem>
-                          <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
-                              <ListItemIcon>
-                                <StarBorder />
-                              </ListItemIcon>
-                              <ListItemText primary={'WHEN: ' + moment(startTime).format("MMM Do YYYY") + " - " + moment(stopTime).format("MMM Do YYYY")}/>
-                            </ListItem>
-                            <ListItem button className={classes.nested}>
-                              <ListItemIcon>
-                                <StarBorder />
-                              </ListItemIcon>
-                              <ListItemText
-                                primary={'TIME: ' + moment(startTime).format("h:mm a") + " - " + moment(stopTime).format("h:mm a ")}
-                              /> <br/>
-                              <ListItemText secondary={'Duration:' + moment.duration(diff).hours() + 'hr ' + moment.duration(diff).minutes() + 'min'}/>
-                            </ListItem>
-                            <ListItem button className={classes.nested}>
-                              <ListItemIcon>
-                                <StarBorder />
-                              </ListItemIcon>
-                              <ListItemText primary={'WHERE: ' + event.location} />
-                            </ListItem>
-                            <ListItem button className={classes.nested}>
-                              <ListItemIcon>
-                                <StarBorder />
-                              </ListItemIcon>
-                              <ListItemText primary={'SIGN-UP DEADLINE: ' + moment(event.signup_deadline).format("MMM Do YYYY")}/>
-                            </ListItem>
-                            <ListItem button className={classes.nested}>
-                              <ListItemIcon>
-                                <StarBorder />
-                              </ListItemIcon>
-                              <ListItemText primary={'VOLUNTEER MINIMUM AGE: ' + event.age_min}/>
-                            </ListItem>
-                          </List>
-                    </Card>
-                  
-                  </>
+                <>
+                  <Card className={classes.root}>
+                    <ListItem button onClick={handleClick}>
+                      <ListItemIcon>
+                        <InboxIcon />
+                      </ListItemIcon>
+                      <Link to={`/events/eventdetails/${event.id}`}>
+                        <ListItemText primary={event.title} />
+                      </Link>
+                    </ListItem>
+                    <List component="div" disablePadding>
+                      <ListItem button className={classes.nested}>
+                        <ListItemIcon>
+                          <StarBorder />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={
+                            "WHEN: " +
+                            moment(startTime).format("MMM Do YYYY") +
+                            " - " +
+                            moment(stopTime).format("MMM Do YYYY")
+                          }
+                        />
+                      </ListItem>
+                      <ListItem button className={classes.nested}>
+                        <ListItemIcon>
+                          <StarBorder />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={
+                            "TIME: " +
+                            moment(startTime).format("h:mm a") +
+                            " - " +
+                            moment(stopTime).format("h:mm a ")
+                          }
+                        />{" "}
+                        <br />
+                        <ListItemText
+                          secondary={
+                            "Duration:" +
+                            moment.duration(diff).hours() +
+                            "hr " +
+                            moment.duration(diff).minutes() +
+                            "min"
+                          }
+                        />
+                      </ListItem>
+                      <ListItem button className={classes.nested}>
+                        <ListItemIcon>
+                          <StarBorder />
+                        </ListItemIcon>
+                        <ListItemText primary={"WHERE: " + event.location} />
+                      </ListItem>
+                      <ListItem button className={classes.nested}>
+                        <ListItemIcon>
+                          <StarBorder />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={
+                            "SIGN-UP DEADLINE: " +
+                            moment(event.signup_deadline).format("MMM Do YYYY")
+                          }
+                        />
+                      </ListItem>
+                      <ListItem button className={classes.nested}>
+                        <ListItemIcon>
+                          <StarBorder />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={"VOLUNTEER MINIMUM AGE: " + event.age_min}
+                        />
+                      </ListItem>
+                    </List>
+                  </Card>
+                </>
               </div>
             );
           })}
