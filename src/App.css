@@ -13,8 +13,9 @@ body {
 
 .App {
   text-align: center;
-  background-color: rgb(141, 138, 136);
-  min-width: 100vw;
+  background-color: rgb(250, 248, 247);
+  margin: auto;
+  max-width: 800px;
   min-height: 100vh;
   position: relative;
   overflow: hidden;
@@ -35,21 +36,35 @@ a {
   text-decoration: none;
 }
 
-.home{
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  color:rgb(0,214,203);
+li {
+  list-style-type: none;
+}
+
+input {
+  margin: auto 5px;
+}
+
+.label {
+  margin: 5px auto;
+}
+
+.create-account {
+  padding: 25px;
+}
+
+.home {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: rgb(0, 214, 203);
   text-align: center;
   position: relative;
   margin: auto;
   padding: auto;
   font-size: 3vw;
-  background-color: rgb(248,135,21);
+  background-color: rgb(248, 135, 21);
   width: 100%;
-
-} 
-li {
-  list-style-type: none;
 }
+
 .menu-bar {
   display: flex;
   /* flex-shrink: 3; */
