@@ -4,24 +4,29 @@ import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import List from "@material-ui/core/List";
+import Card from '@material-ui/core/Card';
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import Collapse from "@material-ui/core/Collapse";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
 import StarBorder from "@material-ui/icons/StarBorder";
 import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    maxWidth: 360,
+    maxWidth: 330,
+    backgroundColor: 'rgb(247, 219, 182, 1)'
   },
   nested: {
     paddingLeft: theme.spacing(4),
   },
+<<<<<<< HEAD:src/components/EventList.jsx
+  
+  
+
+=======
+>>>>>>> b20641ad75517cf03a8b6e231490ca50a2855ed8:src/components/Dashboard/Events/EventList.jsx
 }));
 
 const EventList = () => {
@@ -75,6 +80,56 @@ const EventList = () => {
             const diff = moment(stopTime) - moment(startTime);
             return (
               <div key={event.id}>
+<<<<<<< HEAD:src/components/EventList.jsx
+                  <>
+                    <Card className={classes.root}>
+                        <ListItem button onClick={handleClick}>
+                          <ListItemIcon>
+                            <InboxIcon />
+                          </ListItemIcon>
+                          <Link to={`/event/${event.id}`}>
+                            <ListItemText primary={event.title} />
+                          </Link>
+                        </ListItem>
+                          <List component="div" disablePadding>
+                            <ListItem button className={classes.nested}>
+                              <ListItemIcon>
+                                <StarBorder />
+                              </ListItemIcon>
+                              <ListItemText primary={'WHEN: ' + moment(startTime).format("MMM Do YYYY") + " - " + moment(stopTime).format("MMM Do YYYY")}/>
+                            </ListItem>
+                            <ListItem button className={classes.nested}>
+                              <ListItemIcon>
+                                <StarBorder />
+                              </ListItemIcon>
+                              <ListItemText
+                                primary={'TIME: ' + moment(startTime).format("h:mm a") + " - " + moment(stopTime).format("h:mm a ")}
+                              /> <br/>
+                              <ListItemText secondary={'Duration:' + moment.duration(diff).hours() + 'hr ' + moment.duration(diff).minutes() + 'min'}/>
+                            </ListItem>
+                            <ListItem button className={classes.nested}>
+                              <ListItemIcon>
+                                <StarBorder />
+                              </ListItemIcon>
+                              <ListItemText primary={'WHERE: ' + event.location} />
+                            </ListItem>
+                            <ListItem button className={classes.nested}>
+                              <ListItemIcon>
+                                <StarBorder />
+                              </ListItemIcon>
+                              <ListItemText primary={'SIGN-UP DEADLINE: ' + moment(event.signup_deadline).format("MMM Do YYYY")}/>
+                            </ListItem>
+                            <ListItem button className={classes.nested}>
+                              <ListItemIcon>
+                                <StarBorder />
+                              </ListItemIcon>
+                              <ListItemText primary={'VOLUNTEER MINIMUM AGE: ' + event.age_min}/>
+                            </ListItem>
+                          </List>
+                    </Card>
+                  
+                  </>
+=======
                 <ListItem button onClick={handleClick}>
                   <ListItemIcon>
                     <InboxIcon />
@@ -149,6 +204,7 @@ const EventList = () => {
                     </ListItem>
                   </List>
                 </Collapse>
+>>>>>>> b20641ad75517cf03a8b6e231490ca50a2855ed8:src/components/Dashboard/Events/EventList.jsx
               </div>
             );
           })}
