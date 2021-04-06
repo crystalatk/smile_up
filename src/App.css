@@ -70,7 +70,7 @@ input {
   padding: auto;
   font-size: 3vw;
   background-color: var(--accent-orange);
-  width: 100%;
+  width: 100;
 }
 
 .f-background-color {

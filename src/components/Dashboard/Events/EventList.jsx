@@ -16,7 +16,12 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     maxWidth: 330,
-    backgroundColor: 'rgb(247, 219, 182, 1)'
+    backgroundColor: 'rgb(247, 219, 182, 1)',
+    minHeight: '90%',
+    position: 'relative',
+    margin: '2em auto',
+    padding: '5px',
+    float:'none'
   },
   nested: {
     paddingLeft: theme.spacing(4),
@@ -65,7 +70,7 @@ const EventList = () => {
               EVENTS
             </ListSubheader>
           }
-          className={classes.root}
+          
         >
           {eventList.map((event) => {
             const startTime = event.date_start;
@@ -75,52 +80,53 @@ const EventList = () => {
             return (
               <div key={event.id}>
                   <>
-                    <Card className={classes.root}>
-                        <ListItem button onClick={handleClick}>
-                          <ListItemIcon>
-                            <InboxIcon />
-                          </ListItemIcon>
-                          <Link to={`/event/${event.id}`}>
-                            <ListItemText primary={event.title} />
-                          </Link>
-                        </ListItem>
-                          <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
-                              <ListItemIcon>
-                                <StarBorder />
-                              </ListItemIcon>
-                              <ListItemText primary={'WHEN: ' + moment(startTime).format("MMM Do YYYY") + " - " + moment(stopTime).format("MMM Do YYYY")}/>
-                            </ListItem>
-                            <ListItem button className={classes.nested}>
-                              <ListItemIcon>
-                                <StarBorder />
-                              </ListItemIcon>
-                              <ListItemText
-                                primary={'TIME: ' + moment(startTime).format("h:mm a") + " - " + moment(stopTime).format("h:mm a ")}
-                              /> <br/>
-                              <ListItemText secondary={'Duration:' + moment.duration(diff).hours() + 'hr ' + moment.duration(diff).minutes() + 'min'}/>
-                            </ListItem>
-                            <ListItem button className={classes.nested}>
-                              <ListItemIcon>
-                                <StarBorder />
-                              </ListItemIcon>
-                              <ListItemText primary={'WHERE: ' + event.location} />
-                            </ListItem>
-                            <ListItem button className={classes.nested}>
-                              <ListItemIcon>
-                                <StarBorder />
-                              </ListItemIcon>
-                              <ListItemText primary={'SIGN-UP DEADLINE: ' + moment(event.signup_deadline).format("MMM Do YYYY")}/>
-                            </ListItem>
-                            <ListItem button className={classes.nested}>
-                              <ListItemIcon>
-                                <StarBorder />
-                              </ListItemIcon>
-                              <ListItemText primary={'VOLUNTEER MINIMUM AGE: ' + event.age_min}/>
-                            </ListItem>
-                          </List>
-                    </Card>
-                  
+                    <div>
+                      <Card className={classes.root}>
+                          <ListItem button onClick={handleClick}>
+                            <ListItemIcon>
+                              <InboxIcon />
+                            </ListItemIcon>
+                            <Link to={`/event/${event.id}`}>
+                              <ListItemText primary={event.title} />
+                            </Link>
+                          </ListItem>
+                            <List component="div" disablePadding>
+                              <ListItem >
+                                <ListItemIcon>
+                                  <StarBorder />
+                                </ListItemIcon>
+                                <ListItemText primary={'WHEN: ' + moment(startTime).format("MMM Do YYYY") + " - " + moment(stopTime).format("MMM Do YYYY")}/>
+                              </ListItem>
+                              <ListItem >
+                                <ListItemIcon>
+                                  <StarBorder />
+                                </ListItemIcon>
+                                <ListItemText
+                                  primary={'TIME: ' + moment(startTime).format("h:mm a") + " - " + moment(stopTime).format("h:mm a ")}
+                                /> <br/>
+                                <ListItemText secondary={'Duration:' + moment.duration(diff).hours() + 'hr ' + moment.duration(diff).minutes() + 'min'}/>
+                              </ListItem>
+                              <ListItem >
+                                <ListItemIcon>
+                                  <StarBorder />
+                                </ListItemIcon>
+                                <ListItemText primary={'WHERE: ' + event.location} />
+                              </ListItem>
+                              <ListItem >
+                                <ListItemIcon>
+                                  <StarBorder />
+                                </ListItemIcon>
+                                <ListItemText primary={'SIGN-UP DEADLINE: ' + moment(event.signup_deadline).format("MMM Do YYYY")}/>
+                              </ListItem>
+                              <ListItem >
+                                <ListItemIcon>
+                                  <StarBorder />
+                                </ListItemIcon>
+                                <ListItemText primary={'VOLUNTEER MINIMUM AGE: ' + event.age_min}/>
+                              </ListItem>
+                            </List>
+                      </Card>
+                    </div>
                   </>
               </div>
             );
