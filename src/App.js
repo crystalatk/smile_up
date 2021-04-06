@@ -1,39 +1,10 @@
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { useState, useEffect } from "react";
-import NewNonMinorAccount from "./components/NewNonMinorAccount";
-import LoginVolunteers from "./components/LoginVolunteers";
-import AddAnEvent from "./components/AddAnEvent";
-import TotalVolunteers from "./components/TotalVolunteers";
-import EventList from "./components/EventList";
-import EventListApproved from "./components/EventListApproved";
-import EventListNeedsApproval from "./components/EventListNeedsApproval";
-import EventDetails from "./components/EventDetails";
-import VolunteerHours from "./components/VolunteerHrs";
-import EditEvent from "./components/EditEvent";
-import VolunteerDirectory from "./components/VolunteerDirectory";
-import VolunteerProfile from "./components/VolunteerProfile";
-import TotalSmiles from "./components/TotalSmiles";
-import TempHeader from "./components/TempHeader";
-import TotalEvents from "./components/TotalEvents";
-import TotalEventsId from "./components/TotalEventsId";
-import VolunteerHrsById from "./components/VolunteerHrsById";
-import LogoutButton from "./components/LogoutButton";
-import EditVolunteerProfile from "./components/EditVolunteerProfile";
+import Header from "./components/Header/Header";
+import Nav from "./components/Nav/Nav";
+import Dashboard from "./components/Dashboard/Dashboard";
+
 import "./App.css";
-import BottomNav from "./components/BottomNav";
-import NewMinorAccount from "./components/NewMinorAccount";
-import GuardianSignUp from "./components/GuardianSignUp";
-import MinorSignUp from "./components/MinorSignUp";
-import CheckIn from "./components/CheckIn";
-import CheckOut from "./components/CheckOut";
-import AdminDash from "./components/AdminDash";
-import AdminDir from "./components/AdminDir";
-import AdminProfile from "./components/AdminProfile";
-import AdminEvents from "./components/AdminEvents";
-import AdminCheckin from "./components/AdminCheckin";
-import HomeLogin from "./components/HomeLogin";
-import VolunteerDash from "./components/VolunteerDash";
-import GuardianDash from "./components/GuardianDash";
 
 function App() {
   const [userInfo, setUserInfo] = useState({
@@ -41,7 +12,7 @@ function App() {
     id: "",
     is_admin: false,
     is_guardian: false,
-    is_minor: true,
+    is_minor: false,
     first_name: "",
   });
   const [
@@ -75,110 +46,15 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <TempHeader />
-        {!!userInfo.isLoggedIn ? (
-          <LogoutButton setUserInfo={setUserInfo} />
-        ) : (
-          <LoginVolunteers setUserInfo={setUserInfo} />
-        )}
+        <Header setUserInfo={setUserInfo} userInfo={userInfo} />
+        <Nav userInfo={userInfo} />
         <div className="body">
-          <Route path="/createaccount">
-            <NewNonMinorAccount />
-          </Route>
-          <Route path="/hm">
-            <HomeLogin />
-          </Route>
-          <Route path="/addevent">
-            <AddAnEvent userInfo={userInfo} />
-          </Route>
-          <Route path="/totalVolunteers">
-            <TotalVolunteers userInfo={userInfo} />
-          </Route>
-          <Route path="/volunteerHours">
-            <VolunteerHours userInfo={userInfo} />
-          </Route>
-          <Route path="/eventlist">
-            <EventList userInfo={userInfo} />
-          </Route>
-          <Route path="/eventlistapproved">
-            <EventListApproved userInfo={userInfo} />
-          </Route>
-          <Route path="/eventlistneedsapproval">
-            <EventListNeedsApproval userInfo={userInfo} />
-          </Route>
-          <Route path="/vd">
-            <VolunteerDash />
-          </Route>
-          <Route path="/gd">
-            <GuardianDash />
-          </Route>
-          <Route path="/event/:id">
-            <EventDetails
-              userInfo={userInfo}
-              setEventDetailsForEditPurposes={setEventDetailsForEditPurposes}
-            />
-          </Route>
-          <Route exact path="/editevent">
-            <EditEvent
-              eventDetailsForEditPurposes={eventDetailsForEditPurposes}
-            />
-          </Route>
-          <Route path="/directory">
-            <VolunteerDirectory userInfo={userInfo} />
-          </Route>
-          <Route exact path="/admindash">
-            <AdminDash />
-          </Route>
-          <Route exact path="/admincheckin">
-            <AdminCheckin />
-          </Route>
-          <Route exact path="/adminevents">
-            <AdminEvents />
-          </Route>
-          <Route exact path="/adminprofile">
-            <AdminProfile />
-          </Route>
-          <Route exact path="/admindir">
-            <AdminDir />
-          </Route>
-          <Route path="/profile/:id">
-            <VolunteerProfile userInfo={userInfo} />
-          </Route>
-          <Route path="/totalSmiles">
-            <TotalSmiles />
-          </Route>
-          <Route path="/counttotalevents">
-            <TotalEvents />
-          </Route>
-          <Route path="/volunteerHoursId">
-            <VolunteerHrsById id={userInfo.id} />
-          </Route>
-          <Route path="/totalEventsId">
-            <TotalEventsId id={userInfo.id} />
-          </Route>
-          <Route path="/editprofile/:id">
-            <EditVolunteerProfile userInfo={userInfo} />
-          </Route>
-          <Route path="/newminor/:guardianid">
-            <NewMinorAccount />
-          </Route>
-          <Route path="/guardiansignup/:event_id">
-            <GuardianSignUp userInfo={userInfo} />
-          </Route>
-          <Route path="/checkin/:va_id"></Route>
-          <Route path="/minorsignup/:event_id">
-            {!!userInfo.isLoggedIn ? <MinorSignUp userInfo={userInfo} /> : null}
-          </Route>
-          <Route path="/checkin/:va_id">
-            <CheckIn userInfo={userInfo} />
-          </Route>
-          <Route path="/checkout/:va_id">
-            <CheckOut userInfo={userInfo} />
-          </Route>
+          <Dashboard
+            userInfo={userInfo}
+            setEventDetailsForEditPurposes={setEventDetailsForEditPurposes}
+            eventDetailsForEditPurposes={eventDetailsForEditPurposes}
+          />
         </div>
-        {/* <div className="footer">
-          <BottomNav />
-        </div> */}
       </Router>
     </div>
   );
