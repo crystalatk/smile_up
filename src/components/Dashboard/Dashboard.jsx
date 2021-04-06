@@ -8,6 +8,7 @@ import Events from "./Events/Events";
 import Profile from "./Profile/Profile";
 import AddAnEvent from "./Events/AddAnEvent";
 import EventNotifications from "./EventNotifications/EventNotifications";
+import Donate from "./Donate/Donate";
 
 const Dashboard = ({
   userInfo,
@@ -53,6 +54,9 @@ const Dashboard = ({
       </Route>
       <Route path="/notifications">
         <EventNotifications userInfo={userInfo} />
+      </Route>
+      <Route path="/donate">
+        <Donate />
       </Route>
     </>
   );

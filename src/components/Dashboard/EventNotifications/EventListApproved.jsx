@@ -77,7 +77,7 @@ const EventListApproved = ({ userInfo }) => {
       {!userInfo.is_guardian && !userInfo.is_minor && (
         <h1>You have no minors linked to this account.</h1>
       )}
-      {userInfo.is_guardian && approvedMinorEvents.length && (
+      {userInfo.is_guardian && !!approvedMinorEvents.length && (
         <h3>Here are the approved Events for your minors: </h3>
       )}
       {userInfo.is_minor && (
