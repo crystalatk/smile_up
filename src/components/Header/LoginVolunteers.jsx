@@ -5,6 +5,7 @@ import Fab from "@material-ui/core/Fab";
 const LoginVolunteers = ({ setUserInfo }) => {
   const [username, setUserName] = useState([]);
   const [password, setPassword] = useState([]);
+  const [wrongPasswordUsername, setWrongPasswordUsername] = useState(false);
 
   const _handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,14 +18,22 @@ const LoginVolunteers = ({ setUserInfo }) => {
       }),
     }).then((response) => response.json());
     console.log("Here are the login results: ", loginData);
-    setUserInfo({
-      isLoggedIn: true,
-      id: loginData.id,
-      is_admin: loginData.is_admin,
-      is_guardian: loginData.is_guardian,
-      is_minor: loginData.is_minor,
-      first_name: loginData.first_name,
-    });
+    if (!loginData.isValid) {
+      setUserInfo({ isLoggedIn: false });
+      setWrongPasswordUsername(true);
+    }
+
+    if (loginData.id) {
+      setUserInfo({
+        isLoggedIn: true,
+        id: loginData.id,
+        is_admin: loginData.is_admin,
+        is_guardian: loginData.is_guardian,
+        is_minor: loginData.is_minor,
+        first_name: loginData.first_name,
+      });
+      setWrongPasswordUsername(false);
+    }
   };
 
   const _onUserName = (e) => {
@@ -61,6 +70,15 @@ const LoginVolunteers = ({ setUserInfo }) => {
             required
           />
         </label>
+        <h6
+          className={
+            !!wrongPasswordUsername
+              ? "f-red f-small m-0"
+              : "f-background-color f-small m-0"
+          }
+        >
+          Your password and username do not match.
+        </h6>
         <Fab type="submit">Submit</Fab>
       </form>
     </div>
