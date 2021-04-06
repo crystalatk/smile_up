@@ -30,6 +30,7 @@ import AdminProfile from "./components/AdminProfile";
 import AdminEvents from "./components/AdminEvents";
 import AdminCheckin from "./components/AdminCheckin";
 import HomeLogin from "./components/HomeLogin";
+import UploadPhoto from "./components/UploadPhoto";
 
 function App() {
   const [userInfo, setUserInfo] = useState({
@@ -39,6 +40,7 @@ function App() {
     is_guardian: false,
     is_minor: true,
     first_name: "",
+    avatar_link: "",
   });
   const [
     eventDetailsForEditPurposes,
@@ -160,6 +162,9 @@ function App() {
           </Route>
           <Route path="/checkout/:va_id">
             <CheckOut userInfo={userInfo} />
+          </Route>
+          <Route>
+            <UploadPhoto userInfo={userInfo} setUserInfo={setUserInfo}/>
           </Route>
         </div>
         {/* <div className="footer">
