@@ -6,8 +6,6 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import AddToHomeScreenRoundedIcon from "@material-ui/icons/AddToHomeScreenRounded";
 import smilelg from "../../images/smilelg.gif";
-import bell from "../../images/bell.png";
-import profile from "../../images/profile.png";
 
 const VolunteerNav = ({ userInfo }) => {
   const useStyles = makeStyles({
@@ -26,10 +24,6 @@ const VolunteerNav = ({ userInfo }) => {
   };
   const smileI = (
     <img src={smilelg} alt="SmileUp Logo" height="50px" width="80px" />
-  );
-  const bellI = <img src={bell} alt="Bell Icon" height="20px" width="20px" />;
-  const profileI = (
-    <img src={profile} alt="Profile Icon" height="20px" width="20px" />
   );
 
   return (
