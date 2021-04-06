@@ -15,6 +15,7 @@ function App() {
     is_minor: false,
     first_name: "",
     age: "",
+    avatar_link: "",
   });
   const [
     eventDetailsForEditPurposes,
