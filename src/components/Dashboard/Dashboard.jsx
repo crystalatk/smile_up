@@ -17,9 +17,11 @@ const Dashboard = ({
 }) => {
   return (
     <>
-      <Route exact path="/">
-        <HomeLogin />
-      </Route>
+      {!userInfo.isLoggedIn && (
+        <Route exact path="/">
+          <HomeLogin />
+        </Route>
+      )}
       {userInfo.is_guardian && (
         <Route exact path="/">
           <GuardianDash userInfo={userInfo} />
