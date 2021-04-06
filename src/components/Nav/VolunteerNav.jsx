@@ -53,8 +53,8 @@ const VolunteerNav = ({ userInfo }) => {
         component={Link}
         to={`/notifications`}
         selected={`/notifications` === location.pathname}
-        label="Notifications"
-        value="notifications"
+        label="Approval"
+        value="approval"
         icon={<NotificationsActiveIcon />}
       />
       <BottomNavigationAction

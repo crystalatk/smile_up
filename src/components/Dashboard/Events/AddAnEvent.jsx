@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { useAlert } from "react-alert";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import TextField from "@material-ui/core/TextField";
 
 const AddAnEvent = () => {
+  const dt = new Date();
+  const timeStop = dt.setHours(dt.getHours() + 2);
   const [title, setTitle] = useState("");
   const [dateStart, setDateStart] = useState(new Date());
-  const [dateStop, setDateStop] = useState(null);
+  const [dateStop, setDateStop] = useState(timeStop);
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [headcountServedPotential, setHeadcountServedPotential] = useState("");

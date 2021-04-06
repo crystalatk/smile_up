@@ -81,7 +81,7 @@ const EventListApproved = ({ userInfo }) => {
         <h3>Here are the approved Events for your minors: </h3>
       )}
       {userInfo.is_minor && (
-        <h3>Here are the approved Events for your minors: </h3>
+        <h3>Here are the approved Events by your guardian: </h3>
       )}
       {!approvedMinorEvents.length && (
         <h3>You have no approved upcoming events.</h3>
