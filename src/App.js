@@ -14,6 +14,7 @@ function App() {
     is_guardian: false,
     is_minor: false,
     first_name: "",
+    age: "",
   });
   const [
     eventDetailsForEditPurposes,

@@ -3,7 +3,8 @@ import Checkbox from "@material-ui/core/Checkbox";
 import { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 
-const MinorSignUp = ({ userInfo }) => {
+const MinorSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
+  console.log("THIS IS THE USERINFO", userInfo);
   const [termsApproved, setTermsApproved] = useState(false);
   const { event_id } = useParams();
   const [checkBox1, setCheckBox1] = useState(false);
@@ -49,7 +50,13 @@ const MinorSignUp = ({ userInfo }) => {
             label="I would like to attend this event, please get approval from my guardian"
           />
 
-          <button type="submit" disabled={!termsApproved}>
+          <button
+            type="submit"
+            disabled={
+              !termsApproved &&
+              eventDetailsForEditPurposes.age_min > userInfo.age
+            }
+          >
             Submit
           </button>
         </>
