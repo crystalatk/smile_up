@@ -5,6 +5,7 @@ import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import AddToHomeScreenRoundedIcon from "@material-ui/icons/AddToHomeScreenRounded";
+import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
 import smilelg from "../../images/smilelg.gif";
 
 const VolunteerNav = ({ userInfo }) => {
@@ -47,6 +48,14 @@ const VolunteerNav = ({ userInfo }) => {
         selected={"/" === location.pathname}
         value="Dash"
         icon={smileI}
+      />
+      <BottomNavigationAction
+        component={Link}
+        to={`/notifications`}
+        selected={`/notifications` === location.pathname}
+        label="Notifications"
+        value="notifications"
+        icon={<NotificationsActiveIcon />}
       />
       <BottomNavigationAction
         component={Link}
