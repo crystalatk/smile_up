@@ -21,7 +21,6 @@ body {
 
 .App {
   text-align: center;
-  min-width: 100vw;
   background-color: var(--background);
   margin: auto;
   max-width: 800px;
