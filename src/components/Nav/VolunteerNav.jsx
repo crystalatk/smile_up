@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
@@ -13,6 +14,10 @@ const VolunteerNav = ({ userInfo }) => {
     root: {
       width: "100%",
       background: "rgb(0,214,203)",
+    },
+    appBar: {
+      top: "auto",
+      bottom: 0,
     },
   });
   let location = useLocation();
@@ -28,44 +33,54 @@ const VolunteerNav = ({ userInfo }) => {
   );
 
   return (
-    <BottomNavigation
-      value={value}
-      onChange={handleChange}
-      className={classes.root}
-      showLabels
-    >
-      <BottomNavigationAction
-        component={Link}
-        to="/events"
-        selected={"/events" === location.pathname}
-        label="Events"
-        value="events"
-        icon={<AddToHomeScreenRoundedIcon />}
-      />
-      <BottomNavigationAction
-        component={Link}
-        to="/"
-        selected={"/" === location.pathname}
-        value="Dash"
-        icon={smileI}
-      />
-      <BottomNavigationAction
-        component={Link}
-        to={`/notifications`}
-        selected={`/notifications` === location.pathname}
-        label="Approval"
-        value="approval"
-        icon={<NotificationsActiveIcon />}
-      />
-      <BottomNavigationAction
-        component={Link}
-        to={`/profile/myprofile/${userInfo.id}`}
-        selected={`/profile/myprofile/${userInfo.id}` === location.pathname}
-        label="Profile"
-        value="profile"
-        icon={<AccountCircleIcon />}
-      />
-    </BottomNavigation>
+    <AppBar position="fixed" color="primary" className={classes.appBar}>
+      <BottomNavigation
+        value={value}
+        onChange={handleChange}
+        className={classes.root}
+        showLabels
+      >
+        <BottomNavigationAction
+          component={Link}
+          to={`/profile/myprofile/${userInfo.id}`}
+          selected={`/profile/myprofile/${userInfo.id}` === location.pathname}
+          label="Profile"
+          value="profile"
+          icon={<AccountCircleIcon />}
+        />
+        <BottomNavigationAction
+          component={Link}
+          to="/events"
+          selected={"/events" === location.pathname}
+          label="Events"
+          value="events"
+          icon={<AddToHomeScreenRoundedIcon />}
+        />
+        <BottomNavigationAction
+          component={Link}
+          to="/"
+          selected={"/" === location.pathname}
+          value="Dash"
+          icon={smileI}
+        />
+        <BottomNavigationAction
+          component={Link}
+          to={`/notifications`}
+          selected={`/notifications` === location.pathname}
+          label="Approval"
+          value="approval"
+          icon={<NotificationsActiveIcon />}
+        />
+        <BottomNavigationAction
+          component={Link}
+          to={`/donate`}
+          selected={`/donate` === location.pathname}
+          label="Donate"
+          value="donate"
+          icon={<NotificationsActiveIcon />}
+        />
+      </BottomNavigation>
+    </AppBar>
   );
 };
 export default VolunteerNav;
