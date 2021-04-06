@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useAlert } from "react-alert";
-import NewMinorAccount from "../NewMinorAccount";
 import moment from "moment";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,13 +9,11 @@ import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormLabel from "@material-ui/core/FormLabel";
-import Button from "@material-ui/core/Button";
 import Fab from "@material-ui/core/Fab";
-import NewMinorAccountBridge from "../NewMinorAccountBridge";
-import Modal from "../Modal";
+import NewMinorAccountBridge from "./NewMinorAccountBridge";
+import Modal from "./Modal";
 
 const useStyles = makeStyles((theme) => ({
   root: {

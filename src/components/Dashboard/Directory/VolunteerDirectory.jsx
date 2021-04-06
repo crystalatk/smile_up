@@ -1,5 +1,5 @@
 import { useEffect, useState, forwardRef } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import MaterialTable from "material-table";
 import AddBox from "@material-ui/icons/AddBox";
 import ArrowDownward from "@material-ui/icons/ArrowDownward";
@@ -56,7 +56,7 @@ const VolunteerDirectory = ({ userInfo }) => {
       setVolunteersData(VolunteerListResponse);
     };
     fetchVolunteerList();
-  }, []);
+  }, [userInfo]);
   return (
     <>
       {userInfo.is_admin ? (
@@ -78,13 +78,14 @@ const VolunteerDirectory = ({ userInfo }) => {
                 age: moment().diff(volunteer.date_of_birth, "years"),
               }))}
               title="SmileUp Volunteers"
+              options={{ pageSize: 20 }}
               actions={[
                 {
                   icon: Edit,
                   tooltip: "Edit Volunteer",
                   onClick: (event, rowData) => {
                     // console.log("THIS IS THE ROW DATA: ", rowData);
-                    history.push(`/editprofile/${rowData.id}`);
+                    history.push(`/profile/editprofile/${rowData.id}`);
                   },
                 },
                 {
@@ -92,7 +93,7 @@ const VolunteerDirectory = ({ userInfo }) => {
                   tooltip: "Go to Volunteer Profile",
                   onClick: (event, rowData) => {
                     // console.log("THIS IS THE ROW DATA: ", rowData);
-                    history.push(`/profile/${rowData.id}`);
+                    history.push(`/profile/myprofile/${rowData.id}`);
                   },
                 },
                 {

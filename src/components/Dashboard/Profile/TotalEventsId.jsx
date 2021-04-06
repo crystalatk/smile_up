@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const EventsId = ({ id }) => {
+const TotalEventsId = ({ id }) => {
   const [eventId, setEventId] = useState("");
   useEffect(() => {
     const getVH = () => {
@@ -12,7 +12,7 @@ const EventsId = ({ id }) => {
         });
     };
     getVH();
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -22,4 +22,4 @@ const EventsId = ({ id }) => {
   );
 };
 
-export default EventsId;
+export default TotalEventsId;

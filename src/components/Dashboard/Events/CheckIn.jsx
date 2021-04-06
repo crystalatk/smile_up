@@ -20,7 +20,7 @@ const CheckIn = () => {
       setVolunteerInfo(VolunteerInfoResponse);
     };
     fetchVolunteerInfo();
-  }, []);
+  }, [va_id]);
 
   const _handleSubmitCheckIn = (e) => {
     e.preventDefault();

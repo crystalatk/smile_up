@@ -20,7 +20,7 @@ const CheckOut = () => {
       setVolunteerInfo(VolunteerInfoResponse);
     };
     fetchVolunteerInfo();
-  }, []);
+  }, [va_id]);
 
   const _handleSubmitCheckOut = (e) => {
     e.preventDefault();

@@ -1,4 +1,3 @@
-import BottomNav from "./BottomNav";
 import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
@@ -19,9 +18,6 @@ const GuardianDash = () => {
           </Typography>
         </Container>
       </React.Fragment>
-      <div className="footer">
-        <BottomNav />
-      </div>
     </div>
   );
 };

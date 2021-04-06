@@ -1,15 +1,14 @@
 import { useState } from "react";
-import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
+import ImportContactsIcon from "@material-ui/icons/ImportContacts";
+import AddToHomeScreenRoundedIcon from "@material-ui/icons/AddToHomeScreenRounded";
+import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
 import smilelg from "../../images/smilelg.gif";
 import bell from "../../images/bell.png";
 import profile from "../../images/profile.png";
-import ImportContactsIcon from "@material-ui/icons/ImportContacts";
-import AddToHomeScreenRoundedIcon from "@material-ui/icons/AddToHomeScreenRounded";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 
 const AdminNav = ({ userInfo }) => {
   const useStyles = makeStyles({
@@ -26,9 +25,13 @@ const AdminNav = ({ userInfo }) => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const smileI = <img src={smilelg} height="50px" width="80px" />;
-  const bellI = <img src={bell} height="20px" width="20px" />;
-  const profileI = <img src={profile} height="20px" width="20px" />;
+  const smileI = (
+    <img src={smilelg} alt="SmileUp Logo" height="50px" width="80px" />
+  );
+  const bellI = <img src={bell} alt="bell Icon" height="20px" width="20px" />;
+  const profileI = (
+    <img src={profile} alt="profile Icon" height="20px" width="20px" />
+  );
 
   return (
     <BottomNavigation
@@ -39,39 +42,39 @@ const AdminNav = ({ userInfo }) => {
     >
       <BottomNavigationAction
         component={Link}
-        to="/adminevents"
-        selected={"/adminevents" === location.pathname}
-        label="Events"
-        value="events"
-        icon={bellI}
+        to="/addevent"
+        selected={location.pathname === "/addevent"}
+        label="Add Event"
+        value="addEvent"
+        icon={<AddToPhotosIcon />}
       />
       <BottomNavigationAction
         component={Link}
-        to="/admincheckin"
-        selected={"/admincheckin" === location.pathname}
-        label="Check-in"
-        value="checkin"
+        to="/events"
+        selected={location.pathname === "/events"}
+        label="Events"
+        value="events"
         icon={<AddToHomeScreenRoundedIcon />}
       />
       <BottomNavigationAction
         component={Link}
         to="/admindash"
-        selected={"/admindash" === location.pathname}
+        selected={location.pathname === "/admindash"}
         value="Dash"
         icon={smileI}
       />
       <BottomNavigationAction
         component={Link}
         to="/admindir"
-        selected={"/admindir" === location.pathname}
+        selected={location.pathname === "/admindir"}
         label="Directory"
         value="directory"
         icon={<ImportContactsIcon />}
       />
       <BottomNavigationAction
         component={Link}
-        to={`/adminprofile/${userInfo.id}`}
-        selected={"/adminprofile" === location.pathname}
+        to={`/profile/myprofile/${userInfo.id}`}
+        selected={location.pathname === `/profile/myprofile/${userInfo.id}`}
         label="Profile"
         value="profile"
         icon={profileI}

@@ -1,8 +1,8 @@
 import moment from "moment";
 import { useState, useEffect } from "react";
 import { Link, Route, useParams, useHistory } from "react-router-dom";
-import CheckInVolunteersList from "./CheckInVolunteersList";
 import Button from "@material-ui/core/Button";
+import CheckInVolunteersList from "./CheckInVolunteersList";
 
 const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
   const { id } = useParams();
@@ -14,8 +14,8 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
   const _onSignUpClick = (e) => {
     e.preventDefault();
     userInfo.is_minor
-      ? history.push(`/minorsignup/${id}`)
-      : history.push(`/guardiansignup/${id}`);
+      ? history.push(`/events/minorsignup/${id}`)
+      : history.push(`/events/guardiansignup/${id}`);
   };
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
     };
     fetchEvent();
     fetchVolunteersSignedUp();
-  }, []);
+  }, [id, setEventDetailsForEditPurposes]);
 
   useEffect(() => {
     if (event && volunteersSignedUp !== "") {
@@ -123,7 +123,7 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
               </h1>
               <Button
                 variant="outlined"
-                onClick={() => history.push("/editevent")}
+                onClick={() => history.push("/events/editevent")}
               >
                 Edit Event
               </Button>

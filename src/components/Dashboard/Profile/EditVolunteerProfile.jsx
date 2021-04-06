@@ -110,12 +110,15 @@ const EditVolunteerProfile = ({ userInfo }) => {
     }
     fetchProfileData();
     console.log("fetching...");
-  }, [id]);
+  }, [id, userInfo?.id, userInfo?.is_minor]);
 
   useEffect(() => {
     setIsProfileGuardian(guardianID === userInfo?.id);
-    setViewPage(userInfo?.id === id || userInfo?.is_admin || isProfileGuardian);
   }, [guardianID, userInfo, volunteerInfo]);
+
+  useEffect(() => {
+    setViewPage(userInfo?.id === id || userInfo?.is_admin || isProfileGuardian);
+  }, [guardianID, userInfo, volunteerInfo, id, isProfileGuardian]);
 
   return (
     <>

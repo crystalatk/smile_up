@@ -40,6 +40,14 @@ li {
   list-style-type: none;
 }
 
+input {
+  margin: auto 5px;
+}
+
+.label {
+  margin: 5px auto;
+}
+
 .create-account {
   padding: 25px;
 }

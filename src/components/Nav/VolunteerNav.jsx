@@ -1,15 +1,11 @@
 import { useState } from "react";
-import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import smilelg from "../../images/smilelg.gif";
 import bell from "../../images/bell.png";
 import profile from "../../images/profile.png";
-import ImportContactsIcon from "@material-ui/icons/ImportContacts";
-import AddToHomeScreenRoundedIcon from "@material-ui/icons/AddToHomeScreenRounded";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 
 const VolunteerNav = ({ userInfo }) => {
   const useStyles = makeStyles({
@@ -26,9 +22,13 @@ const VolunteerNav = ({ userInfo }) => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const smileI = <img src={smilelg} height="50px" width="80px" />;
-  const bellI = <img src={bell} height="20px" width="20px" />;
-  const profileI = <img src={profile} height="20px" width="20px" />;
+  const smileI = (
+    <img src={smilelg} alt="SmileUp Logo" height="50px" width="80px" />
+  );
+  const bellI = <img src={bell} alt="Bell Icon" height="20px" width="20px" />;
+  const profileI = (
+    <img src={profile} alt="Profile Icon" height="20px" width="20px" />
+  );
 
   return (
     <BottomNavigation

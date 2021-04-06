@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import VHID from "./VolunteerHrsById";
-import EventsId from "./TotalEventsId";
+import VolunteerHrsById from "./VolunteerHrsById";
+import TotalEventsId from "./TotalEventsId";
 import moment from "moment";
 import Button from "@material-ui/core/Button";
 
 const VolunteerProfile = ({ userInfo }) => {
+  console.log("I AM HERE");
   const { id: initialID } = useParams();
   console.log(initialID);
   const id = parseInt(initialID);
@@ -18,10 +19,6 @@ const VolunteerProfile = ({ userInfo }) => {
   const [viewPage, setViewPage] = useState(false);
   const [canEdit, setCanEdit] = useState(false);
   const history = useHistory();
-
-  const _handleEditClick = () => {
-    history.push(`/editprofile/${id}`);
-  };
 
   useEffect(() => {
     const fetchGuardianID = async () => {
@@ -59,18 +56,12 @@ const VolunteerProfile = ({ userInfo }) => {
   }, [id, userInfo]);
 
   useEffect(() => {
-    console.log("USERINFO ID: ", userInfo.id);
-    console.log("THIS IS THE ID: ", id);
-    console.log("THIS IS THE GUARDIAN ID AFTER IT IS SET: ", guardianID);
-    console.log(userInfo);
-    console.log(
-      "THIS IS WHETHER OR NOT THE GUARDIAN EQUALS THE USER ID: ",
-      guardianID === userInfo.id
-    );
     if (userInfo.id) {
       setIsProfileGuardian(guardianID === userInfo.id);
     }
+  }, [guardianID, id, userInfo.id]);
 
+  useEffect(() => {
     if (userInfo.id === id || userInfo.is_admin || isProfileGuardian) {
       if (userInfo.is_minor) {
         setCanEdit(false);
@@ -79,7 +70,14 @@ const VolunteerProfile = ({ userInfo }) => {
         setCanEdit(true);
       }
     }
-  }, [guardianID, id]);
+  }, [
+    guardianID,
+    id,
+    isProfileGuardian,
+    userInfo.id,
+    userInfo.is_admin,
+    userInfo.is_minor,
+  ]);
 
   useEffect(() => {
     console.log(userInfo.id === id);
@@ -109,8 +107,8 @@ const VolunteerProfile = ({ userInfo }) => {
 
               {!volunteerInfo.is_minor ? null : (
                 <>
-                  <VHID id={volunteerInfo.id} />
-                  <EventsId id={volunteerInfo.id} />
+                  <VolunteerHrsById id={volunteerInfo.id} />
+                  <TotalEventsId id={volunteerInfo.id} />
                   <h2>Emergency Contact Information:</h2>
                   <h3>
                     Emergency Contact Name: {volunteerInfo.emergency_name}
@@ -122,7 +120,10 @@ const VolunteerProfile = ({ userInfo }) => {
                 </>
               )}
               {!!canEdit ? (
-                <Button onClick={_handleEditClick} variant="outlined">
+                <Button
+                  onClick={() => history.push(`/profile/editprofile/${id}`)}
+                  variant="outlined"
+                >
                   Edit
                 </Button>
               ) : null}

@@ -12,20 +12,17 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import smileupkids from "../images/smileupkids.jfif";
-import smile2 from "../images/smile2.jfif";
 import { Zoom } from "react-slideshow-image";
-// import s1 from "../images/s1.jfif";
-// import s2 from "../images/s2.jfif";
-// import s3 from "../images/s3.jfif";
-import s4 from "../images/s4.jpg";
-import s5 from "../images/s5.jpg";
-import s6 from "../images/s6.jpg";
-import s7 from "../images/s7.jpg";
-import s8 from "../images/s8.jpg";
-import s9 from "../images/s9.jpg";
-import s10 from "../images/s10.jpg";
 import "react-slideshow-image/dist/styles.css";
+import smileupkids from "../../../images/smileupkids.jfif";
+import smile2 from "../../../images/smile2.jfif";
+import s4 from "../../../images/s4.jpg";
+import s5 from "../../../images/s5.jpg";
+import s6 from "../../../images/s6.jpg";
+import s7 from "../../../images/s7.jpg";
+import s8 from "../../../images/s8.jpg";
+import s9 from "../../../images/s9.jpg";
+import s10 from "../../../images/s10.jpg";
 
 function Copyright() {
   return (
@@ -57,6 +54,7 @@ const Slideshow = () => {
             key={index}
             style={{ width: "100%", height: "60%" }}
             src={each}
+            alt="Images of Volunteers at Events"
           />
         ))}
       </Zoom>

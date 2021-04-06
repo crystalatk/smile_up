@@ -6,9 +6,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import FavoriteIcon from "@material-ui/icons/Favorite";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import { AutorenewTwoTone } from "@material-ui/icons";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 
@@ -40,7 +38,7 @@ const useStyles = makeStyles({
   },
 });
 
-const CheckInVolunteersList = ({ event_id }) => {
+const CheckInVolunteersList = ({ event_id, userInfo }) => {
   const [volunteersAttending, setVolunteersAttending] = useState([]);
   const classes = useStyles();
   const history = useHistory();
@@ -123,7 +121,7 @@ const CheckInVolunteersList = ({ event_id }) => {
                     <IconButton
                       aria-label="go to volunteer profile"
                       onClick={(e) => {
-                        history.push(`/profile/${volunteer.id}`);
+                        history.push(`/profile/myprofile/${volunteer.id}`);
                       }}
                     >
                       <AccountCircleIcon className={classes.profile} />
@@ -132,7 +130,7 @@ const CheckInVolunteersList = ({ event_id }) => {
                       <IconButton
                         aria-label="check in volunteer"
                         onClick={(e) => {
-                          history.push(`/checkin/${volunteer.va_id}`);
+                          history.push(`/events/checkin/${volunteer.va_id}`);
                         }}
                       >
                         <AssignmentIndIcon className={classes.checkin} />
@@ -142,7 +140,7 @@ const CheckInVolunteersList = ({ event_id }) => {
                       <IconButton
                         aria-label="checkout volunteer"
                         onClick={(e) => {
-                          history.push(`/checkout/${volunteer.va_id}`);
+                          history.push(`/events/checkout/${volunteer.va_id}`);
                         }}
                       >
                         <ExitToAppIcon className={classes.checkout} />

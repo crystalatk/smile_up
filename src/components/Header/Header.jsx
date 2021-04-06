@@ -1,7 +1,8 @@
 import { Route, Link } from "react-router-dom";
-import NewNonMinorAccount from "./NewNonMinorAccount";
 import LoginVolunteers from "./LoginVolunteers";
 import LogoutButton from "./LogoutButton";
+import NewNonMinorAccount from "./NewNonMinorAccount";
+import NewMinorAccount from "./NewMinorAccount";
 
 const Header = ({ userInfo, setUserInfo }) => {
   return (
@@ -18,6 +19,9 @@ const Header = ({ userInfo, setUserInfo }) => {
           </h6>
           <Route path="/createaccount">
             <NewNonMinorAccount />
+          </Route>
+          <Route path="/newminor/:guardianid">
+            <NewMinorAccount />
           </Route>
         </>
       )}

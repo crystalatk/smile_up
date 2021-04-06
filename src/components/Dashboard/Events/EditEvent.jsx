@@ -1,25 +1,49 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAlert } from "react-alert";
+import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
-const AddAnEvent = () => {
-  const [title, setTitle] = useState("");
-  const [dateStart, setDateStart] = useState(new Date());
-  const [dateStop, setDateStop] = useState(null);
-  const [location, setLocation] = useState("");
-  const [description, setDescription] = useState("");
-  const [headcountServedPotential, setHeadcountServedPotential] = useState("");
-  const [signupDeadline, setSignupDeadline] = useState(new Date());
-  const [ageMin, setAgeMin] = useState("");
-  const [minParticipants, setMinParticipants] = useState("");
-  const [maxParticipants, setMaxParticipants] = useState("");
-  const [adultsNeeded, setAdultsNeeded] = useState(false);
-  const [numAdults, setNumAdults] = useState(0);
-  const [alerts, setAlerts] = useState("");
-  const [isChecked, setIsChecked] = useState(false);
+const EditEvent = ({ eventDetailsForEditPurposes }) => {
+  const [title, setTitle] = useState(eventDetailsForEditPurposes.title);
+  const [dateStart, setDateStart] = useState(
+    new Date(eventDetailsForEditPurposes.date_start)
+  );
+  const [dateStop, setDateStop] = useState(
+    new Date(eventDetailsForEditPurposes.date_stop)
+  );
+  const [location, setLocation] = useState(
+    eventDetailsForEditPurposes.location
+  );
+  const [description, setDescription] = useState(
+    eventDetailsForEditPurposes.description
+  );
+  const [headcountServedPotential, setHeadcountServedPotential] = useState(
+    eventDetailsForEditPurposes.headcount_served_potential
+  );
+  const [signupDeadline, setSignupDeadline] = useState(
+    new Date(eventDetailsForEditPurposes.signup_deadline)
+  );
+  const [ageMin, setAgeMin] = useState(eventDetailsForEditPurposes.age_min);
+  const [minParticipants, setMinParticipants] = useState(
+    eventDetailsForEditPurposes.min_participants
+  );
+  const [maxParticipants, setMaxParticipants] = useState(
+    eventDetailsForEditPurposes.max_participants
+  );
+  const [adultsNeeded, setAdultsNeeded] = useState(
+    eventDetailsForEditPurposes.adults_needed
+  );
+  const [numAdults, setNumAdults] = useState(
+    eventDetailsForEditPurposes.num_adults
+  );
+  const [alerts, setAlerts] = useState(eventDetailsForEditPurposes.alerts);
+  const [isChecked, setIsChecked] = useState(
+    eventDetailsForEditPurposes.adults_needed
+  );
   const myAlert = useAlert();
+  const history = useHistory();
   const filterPassedTime = (time) => {
     const currentDate = new Date();
     const selectedDate = new Date(time);
@@ -29,44 +53,40 @@ const AddAnEvent = () => {
 
   //   functions to handle Input changes
   const _handleAdultsNeeded = (e) => {
-    adultsNeeded ? setAdultsNeeded(false) : setAdultsNeeded(true);
-    setIsChecked(true);
+    if (adultsNeeded) {
+      setAdultsNeeded(false);
+      setNumAdults(0);
+      setIsChecked(false);
+    } else {
+      setAdultsNeeded(true);
+      setIsChecked(true);
+    }
   };
-
-  // useEffect for consoling....
-  useEffect(() => {
-    console.log("THIS IS ADULTS NEEDED: ", adultsNeeded);
-    console.log("THIS IS SIGN UP DEADLINE: ", signupDeadline);
-    console.log("THIS IS THE HEADCOUNT SERVED :", headcountServedPotential);
-    console.log("THIS IS THE MIN AGE: ", ageMin);
-  }, [adultsNeeded, headcountServedPotential, ageMin, signupDeadline]);
 
   //   Function to Handle Submit
   const _handleSubmit = async (e) => {
     e.preventDefault();
-    const submitResponse = await fetch(
-      `http://127.0.0.1:3232/admins/addevent`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          title: title,
-          date_start: dateStart,
-          date_stop: dateStop,
-          location: location,
-          description: description,
-          headcount_served_potential: headcountServedPotential,
-          signup_deadline: signupDeadline,
-          age_min: ageMin,
-          min_participants: minParticipants,
-          max_participants: maxParticipants,
-          adults_needed: adultsNeeded,
-          num_adults: numAdults,
-          alerts: alerts,
-        }),
-      }
-    ).then((response) => response);
-    myAlert.success("Your event has been created!");
+    await fetch(`http://127.0.0.1:3232/admins/editevent`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        event_id: eventDetailsForEditPurposes.id,
+        title: title,
+        date_start: dateStart,
+        date_stop: dateStop,
+        location: location,
+        description: description,
+        headcount_served_potential: headcountServedPotential,
+        signup_deadline: signupDeadline,
+        age_min: ageMin,
+        min_participants: minParticipants,
+        max_participants: maxParticipants,
+        adults_needed: adultsNeeded,
+        num_adults: numAdults,
+        alerts: alerts,
+      }),
+    }).then((response) => response);
+    myAlert.success("Your event has been updated!");
     setTitle("");
     setSignupDeadline(new Date());
     setDateStart(new Date());
@@ -81,36 +101,38 @@ const AddAnEvent = () => {
     setNumAdults(0);
     setAlerts("");
     setIsChecked(false);
+    history.push(`/event/${eventDetailsForEditPurposes.id}`);
   };
 
   return (
-    <div>
-      <h1>This is the AddAnEvent</h1>
+    <>
+      <h1>This is the EditEvent</h1>
       <form onSubmit={_handleSubmit}>
-        <TextField
-          label="Event Title"
-          type="text"
-          variant="outlined"
-          margin="dense"
-          value={title}
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
-          required
-        />
-        <TextField
-          required
-          id="outlined-required"
-          label="Event Start"
-          variant="outlined"
-          value={dateStart}
-          margin="dense"
-          onChange={(date) => setDateStart(date)}
-          type="date"
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
+        <label>
+          Event Title
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value.replace(/‘/g, "''"));
+            }}
+            required
+          />
+        </label>
+        <label>
+          Event Start:
+          <DatePicker
+            selected={dateStart}
+            onChange={(date) => setDateStart(date)}
+            showTimeSelect
+            timeIntervals={15}
+            timeCaption="Time"
+            dateFormat="MMMM d, yyyy h:mm aa"
+            shouldCloseOnSelect={true}
+            filterTime={filterPassedTime}
+            required
+          />
+        </label>
         <label>
           Event End:
           <DatePicker
@@ -214,17 +236,33 @@ const AddAnEvent = () => {
           Sign-up Deadline:
           <DatePicker
             selected={!!signupDeadline ? signupDeadline : dateStart}
-            onChange={(date) => setSignupDeadline(date)}
+            onChange={
+              (date) => setSignupDeadline(date)
+              // console.log(`${moment(date).format("YYYY-MM-DD")} 00:00:00`)
+            }
             showMonthDropdown
             shouldCloseOnSelect={true}
             filterTime={filterPassedTime}
             required
           />
         </label>
-        <button type="submit">Create my Event</button>
+        <Button type="submit" variant="outlined">
+          Update my Event
+        </Button>
       </form>
-    </div>
+      <Button
+        type="button"
+        variant="outlined"
+        onClick={(e) => {
+          history.push(
+            `/events/eventdetails/${eventDetailsForEditPurposes.id}`
+          );
+        }}
+      >
+        Cancel
+      </Button>
+    </>
   );
 };
 
-export default AddAnEvent;
+export default EditEvent;

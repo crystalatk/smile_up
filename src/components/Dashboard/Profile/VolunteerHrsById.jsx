@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const VHID = ({ id }) => {
+const VolunteerHrsById = ({ id }) => {
   const [vhid, setVH] = useState("");
   useEffect(() => {
     if (id) {
@@ -16,7 +16,7 @@ const VHID = ({ id }) => {
       };
       getVH();
     }
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -26,4 +26,4 @@ const VHID = ({ id }) => {
   );
 };
 
-export default VHID;
+export default VolunteerHrsById;

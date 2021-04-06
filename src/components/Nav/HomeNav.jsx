@@ -1,11 +1,9 @@
 import { useState } from "react";
-import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import smilelg from "../../images/smilelg.gif";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 
 const HomeNav = ({ userInfo }) => {
   const useStyles = makeStyles({
@@ -22,7 +20,9 @@ const HomeNav = ({ userInfo }) => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const smileI = <img src={smilelg} height="50px" width="80px" />;
+  const smileI = (
+    <img src={smilelg} alt="SmileUp logo" height="50px" width="80px" />
+  );
 
   return (
     <BottomNavigation

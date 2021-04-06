@@ -1,11 +1,7 @@
-import { withStyles } from "@material-ui/core/styles";
-import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
-import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
 const GuardianSignUp = ({ userInfo }) => {
   const [minorData, setMinorData] = useState([]);
@@ -15,14 +11,9 @@ const GuardianSignUp = ({ userInfo }) => {
   const [checkBox1, setCheckBox1] = useState(false);
   const [checkBox2, setCheckBox2] = useState(false);
 
-    useEffect(() => {
-        setTermsApproved(checkBox1 && checkBox2)
-    },[checkBox1, checkBox2]);   
-    
-
-
-
-
+  useEffect(() => {
+    setTermsApproved(checkBox1 && checkBox2);
+  }, [checkBox1, checkBox2]);
 
   const _handleCheck = (e) => {
     if (signedUpMinorId.includes(e.target.value)) {
@@ -31,8 +22,6 @@ const GuardianSignUp = ({ userInfo }) => {
       setSignedUpMinorId([...signedUpMinorId, e.target.value]);
     }
   };
-
-  
 
   const _handleSubmit = (e) => {
     e.preventDefault();
@@ -95,19 +84,33 @@ const GuardianSignUp = ({ userInfo }) => {
               );
             })}
             <FormControlLabel
-              control={<Checkbox name="checkedC" color="secondary" onChange={(e) => {
-                setCheckBox1(!checkBox1)
-            }} />}
+              control={
+                <Checkbox
+                  name="checkedC"
+                  color="secondary"
+                  onChange={(e) => {
+                    setCheckBox1(!checkBox1);
+                  }}
+                />
+              }
               label="I agree to allow the above minors to attend this event"
             />
             <FormControlLabel
-              control={<Checkbox name="checkedC" color="secondary" onChange={(e) => {
-                setCheckBox2(!checkBox2)
-            }}/>}
+              control={
+                <Checkbox
+                  name="checkedC"
+                  color="secondary"
+                  onChange={(e) => {
+                    setCheckBox2(!checkBox2);
+                  }}
+                />
+              }
               label="I agree to provide supervision to any above minors under the age of 12"
             />
-            
-            <button type="submit" disabled={!termsApproved} >Submit</button>
+
+            <button type="submit" disabled={!termsApproved}>
+              Submit
+            </button>
           </>
         </form>
       ) : (
