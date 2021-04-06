@@ -1,4 +1,5 @@
 import { Route, Link } from "react-router-dom";
+import Welcome from "./Welcome";
 import LoginVolunteers from "./LoginVolunteers";
 import LogoutButton from "./LogoutButton";
 import NewNonMinorAccount from "./NewNonMinorAccount";
@@ -8,7 +9,10 @@ const Header = ({ userInfo, setUserInfo }) => {
   return (
     <>
       {!!userInfo.isLoggedIn ? (
-        <LogoutButton setUserInfo={setUserInfo} />
+        <>
+          <Welcome userInfo={userInfo} />
+          <LogoutButton setUserInfo={setUserInfo} />
+        </>
       ) : (
         <>
           <LoginVolunteers setUserInfo={setUserInfo} />
