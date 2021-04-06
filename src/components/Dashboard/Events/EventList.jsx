@@ -21,12 +21,6 @@ const useStyles = makeStyles((theme) => ({
   nested: {
     paddingLeft: theme.spacing(4),
   },
-<<<<<<< HEAD:src/components/EventList.jsx
-  
-  
-
-=======
->>>>>>> b20641ad75517cf03a8b6e231490ca50a2855ed8:src/components/Dashboard/Events/EventList.jsx
 }));
 
 const EventList = () => {
@@ -80,7 +74,6 @@ const EventList = () => {
             const diff = moment(stopTime) - moment(startTime);
             return (
               <div key={event.id}>
-<<<<<<< HEAD:src/components/EventList.jsx
                   <>
                     <Card className={classes.root}>
                         <ListItem button onClick={handleClick}>
@@ -129,82 +122,6 @@ const EventList = () => {
                     </Card>
                   
                   </>
-=======
-                <ListItem button onClick={handleClick}>
-                  <ListItemIcon>
-                    <InboxIcon />
-                  </ListItemIcon>
-                  <Link to={`/events/eventdetails/${event.id}`}>
-                    <ListItemText primary={event.title} />
-                  </Link>
-                  {open ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-                <Collapse in={open} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
-                    <ListItem button className={classes.nested}>
-                      <ListItemIcon>
-                        <StarBorder />
-                      </ListItemIcon>
-                      <ListItemText
-                        primary={
-                          "WHEN: " +
-                          moment(startTime).format("MMM Do YYYY") +
-                          " - " +
-                          moment(stopTime).format("MMM Do YYYY")
-                        }
-                      />
-                    </ListItem>
-                    <ListItem button className={classes.nested}>
-                      <ListItemIcon>
-                        <StarBorder />
-                      </ListItemIcon>
-                      <ListItemText
-                        primary={
-                          "TIME: " +
-                          moment(startTime).format("h:mm a") +
-                          " - " +
-                          moment(stopTime).format("h:mm a ")
-                        }
-                      />{" "}
-                      <br />
-                      <ListItemText
-                        secondary={
-                          "Duration:" +
-                          moment.duration(diff).hours() +
-                          "hr " +
-                          moment.duration(diff).minutes() +
-                          "min"
-                        }
-                      />
-                    </ListItem>
-                    <ListItem button className={classes.nested}>
-                      <ListItemIcon>
-                        <StarBorder />
-                      </ListItemIcon>
-                      <ListItemText primary={"WHERE: " + event.location} />
-                    </ListItem>
-                    <ListItem button className={classes.nested}>
-                      <ListItemIcon>
-                        <StarBorder />
-                      </ListItemIcon>
-                      <ListItemText
-                        primary={
-                          "SIGN-UP DEADLINE: " +
-                          moment(event.signup_deadline).format("MMM Do YYYY")
-                        }
-                      />
-                    </ListItem>
-                    <ListItem button className={classes.nested}>
-                      <ListItemIcon>
-                        <StarBorder />
-                      </ListItemIcon>
-                      <ListItemText
-                        primary={"VOLUNTEER MINIMUM AGE: " + event.age_min}
-                      />
-                    </ListItem>
-                  </List>
-                </Collapse>
->>>>>>> b20641ad75517cf03a8b6e231490ca50a2855ed8:src/components/Dashboard/Events/EventList.jsx
               </div>
             );
           })}
