@@ -92,6 +92,7 @@ const VolunteerProfile = ({ userInfo }) => {
         <>
           {!!volunteerInfo?.id ? (
             <>
+              <img src={volunteerInfo.avatar_link} alt={`${volunteerInfo.first_name} ${volunteerInfo.last_name}'s avatar`}/>
               <h1>
                 {volunteerInfo.first_name} {volunteerInfo.last_name}
               </h1>
