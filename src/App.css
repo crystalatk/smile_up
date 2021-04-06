@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=New+Tegomin&family=Poppins&display=swap");
 
 :root {
-  --background: rgb(251, 249, 247);
+  --background: rgb(251, 247, 243);
   --accent-orange: rgb(250, 193, 135);
   --accent-teal: rgb(0, 214, 203);
   --accent-dark: rgb(1, 26, 25);
@@ -77,12 +77,12 @@ input {
   color: var(--background);
 }
 
-.f-small {
-  font-size: 10px;
-}
-
 .f-red {
   color: red;
+}
+
+.f-small {
+  font-size: 10px;
 }
 
 .m-0 {

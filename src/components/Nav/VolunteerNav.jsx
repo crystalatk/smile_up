@@ -3,6 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import AddToHomeScreenRoundedIcon from "@material-ui/icons/AddToHomeScreenRounded";
 import smilelg from "../../images/smilelg.gif";
 import bell from "../../images/bell.png";
 import profile from "../../images/profile.png";
@@ -43,22 +45,22 @@ const VolunteerNav = ({ userInfo }) => {
         selected={"/events" === location.pathname}
         label="Events"
         value="events"
-        icon={bellI}
+        icon={<AddToHomeScreenRoundedIcon />}
       />
       <BottomNavigationAction
         component={Link}
-        to="/dash"
-        selected={"/dash" === location.pathname}
+        to="/"
+        selected={"/" === location.pathname}
         value="Dash"
         icon={smileI}
       />
       <BottomNavigationAction
         component={Link}
-        to={`/profile/${userInfo.id}`}
-        selected={`/profile/${userInfo.id}` === location.pathname}
+        to={`/profile/myprofile/${userInfo.id}`}
+        selected={`/profile/myprofile/${userInfo.id}` === location.pathname}
         label="Profile"
         value="profile"
-        icon={profileI}
+        icon={<AccountCircleIcon />}
       />
     </BottomNavigation>
   );

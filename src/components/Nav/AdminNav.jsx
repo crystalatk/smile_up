@@ -6,9 +6,8 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import ImportContactsIcon from "@material-ui/icons/ImportContacts";
 import AddToHomeScreenRoundedIcon from "@material-ui/icons/AddToHomeScreenRounded";
 import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import smilelg from "../../images/smilelg.gif";
-import bell from "../../images/bell.png";
-import profile from "../../images/profile.png";
 
 const AdminNav = ({ userInfo }) => {
   const useStyles = makeStyles({
@@ -27,10 +26,6 @@ const AdminNav = ({ userInfo }) => {
   };
   const smileI = (
     <img src={smilelg} alt="SmileUp Logo" height="50px" width="80px" />
-  );
-  const bellI = <img src={bell} alt="bell Icon" height="20px" width="20px" />;
-  const profileI = (
-    <img src={profile} alt="profile Icon" height="20px" width="20px" />
   );
 
   return (
@@ -77,7 +72,7 @@ const AdminNav = ({ userInfo }) => {
         selected={location.pathname === `/profile/myprofile/${userInfo.id}`}
         label="Profile"
         value="profile"
-        icon={profileI}
+        icon={<AccountCircleIcon />}
       />
     </BottomNavigation>
   );
