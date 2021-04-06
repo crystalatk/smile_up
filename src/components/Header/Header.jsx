@@ -4,15 +4,17 @@ import LoginVolunteers from "./LoginVolunteers";
 import LogoutButton from "./LogoutButton";
 import NewNonMinorAccount from "./NewNonMinorAccount";
 import NewMinorAccount from "./NewMinorAccount";
+import Minors from "./Minors";
 
 const Header = ({ userInfo, setUserInfo }) => {
   return (
     <>
       {!!userInfo.isLoggedIn ? (
-        <>
+        <div className="header-container">
           <Welcome userInfo={userInfo} />
           <LogoutButton setUserInfo={setUserInfo} />
-        </>
+          {userInfo.is_guardian && <Minors userInfo={userInfo} />}
+        </div>
       ) : (
         <>
           <LoginVolunteers setUserInfo={setUserInfo} />
