@@ -1,11 +1,19 @@
+import { useHistory } from "react-router-dom";
+
 const Welcome = ({ userInfo }) => {
+  const history = useHistory();
   console.log(userInfo);
   return (
     <>
-      <h1>
-        <img src={userInfo.avatar_link} className="avatar-image" />
-        Welcome, {userInfo.first_name}!
-      </h1>
+      <div className="avatar-container">
+        <img
+          src={userInfo.avatar_link}
+          alt={`${userInfo.first_name}'s profile Image`}
+          className="avatar-image"
+          onClick={() => history.push(`/profile/myprofile/${userInfo.id}`)}
+        />
+        <h4 className="avatar-name">{userInfo.first_name}</h4>
+      </div>
     </>
   );
 };

@@ -3,9 +3,11 @@
 
 :root {
   --background: rgb(251, 247, 243);
-  --accent-orange: #fac187;
+  --accent-orange: rgb(250, 191, 133);
   --accent-teal: rgb(0, 214, 203);
   --accent-dark: rgb(1, 26, 25);
+  --accent-dark-transparent: rgb(1, 26, 25, 0.3);
+  --accent-orange-transparent: rgb(0, 214, 203, 0.85);
   --main-font: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
@@ -111,9 +113,56 @@ h2 {
   color: rgb(251, 247, 243);
 }
 
+.header-container {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.avatar-container {
+  margin: 20px 20px;
+  position: relative;
+}
+
+.avatar-container-minor {
+  display: inline;
+  margin: 5px 5px;
+  position: relative;
+}
+
 .avatar-image {
   border-radius: 50px;
   max-height: 100px;
+}
+.avatar-image-minor {
+  border-radius: 50px;
+  max-height: 50px;
+}
+
+.avatar-name {
+  background-color: var(--accent-orange-transparent);
+  border-radius: 10px;
+  color: var(--accent-dark);
+  margin: 0;
+  padding: 5px 10px;
+  position: absolute;
+  top: 95%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.avatar-name-minor {
+  background-color: var(--accent-orange-transparent);
+  border-radius: 10px;
+  color: var(--accent-dark);
+  font-size: 10px;
+  margin: 0;
+  padding: 2px 5px;
+  position: absolute;
+  top: 95%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .menu-bar {
