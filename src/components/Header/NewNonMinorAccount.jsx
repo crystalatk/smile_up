@@ -282,10 +282,15 @@ const NewNonMinorAccount = () => {
               required
             />
           </FormControl>
-          {!!passwordsMatch ? null : (
-            <h6 className="f-red f-small">Your passwords do not match</h6>
-          )}
-
+          <h6
+            className={
+              !!passwordsMatch
+                ? "f-background-color f-small m-0"
+                : "f-red f-small m-0"
+            }
+          >
+            Your passwords do not match
+          </h6>
           <TextField
             required
             id="outlined-required-first-name"
