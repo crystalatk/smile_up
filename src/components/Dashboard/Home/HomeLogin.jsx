@@ -24,6 +24,7 @@ import s8 from "../../../images/s8.jpg";
 import s9 from "../../../images/s9.jpg";
 import s10 from "../../../images/s10.jpg";
 
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -223,12 +224,11 @@ export default function HomeLogin() {
           communities <br /> and this world a better place for all.
         </h1>
       </Box>
-      <h2 className="home">OUR VISION</h2>
+      <h2 className="home1">OUR VISION</h2>
       <Box
         style={{
-          backgroundColor: "rgb(248,135,21)",
+          backgroundColor: " rgb(0, 214, 203)",
           paddingTop: "1px",
-          paddingBottom: "5px",
         }}
       >
         <h2>
@@ -239,14 +239,14 @@ export default function HomeLogin() {
       </Box>
       <Box
         style={{
-          backgroundColor: "rgb(248,135,21)",
+          backgroundColor: "rgb(0, 214, 203)",
           fontFamily: "sans-serif",
           borderTopStyle: "solid",
           borderTopWidth: "15px",
         }}
       >
-        <h1 className="home">WHAT WE BELIEVE</h1>
-        <h2 style={{ backgroundColor: "rgb(248,135,21)" }}>
+        <h1 className="home1">WHAT WE BELIEVE</h1>
+        <h2 style={{ backgroundColor: " rgb(0, 214, 203)" }}>
           Every child has an innate desire to help others <br /> Every child
           should be shown respect and treated with dignity <br />
           Every child has a voice that should be heard <br />
