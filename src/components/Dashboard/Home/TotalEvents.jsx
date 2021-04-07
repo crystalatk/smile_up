@@ -16,8 +16,8 @@ const TotalEvents = () => {
 
   return (
     <>
-      <h1>Total Events</h1>
-      <h2>{totalEvents}</h2>
+      <h1 className="snippet-header">Total Events</h1>
+      <h2 className="snippet-content">{totalEvents}</h2>
     </>
   );
 };

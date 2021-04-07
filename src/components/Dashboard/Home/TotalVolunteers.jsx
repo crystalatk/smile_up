@@ -14,11 +14,11 @@ const TotalVolunteers = () => {
 
   return (
     <>
-      <h1>Total Volunteers</h1>
+      <h1 className="snippet-header">Total Volunteers</h1>
       {!!totalVolunteers ? (
-        <h1>{totalVolunteers}</h1>
+        <h1 className="snippet-content">{totalVolunteers}</h1>
       ) : (
-        <p>Getting Total ...</p>
+        <p className="snippet-content">Getting Total ...</p>
       )}
     </>
   );

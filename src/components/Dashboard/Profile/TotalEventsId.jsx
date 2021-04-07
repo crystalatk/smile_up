@@ -16,7 +16,7 @@ const TotalEventsId = ({ id }) => {
 
   return (
     <>
-      <h1>Total Events </h1>
+      <h1>Total Events</h1>
       {!!eventId ? <h2>{eventId}</h2> : <h3>0</h3>}
     </>
   );
