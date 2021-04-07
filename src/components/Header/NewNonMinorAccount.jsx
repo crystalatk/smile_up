@@ -104,6 +104,13 @@ const NewNonMinorAccount = () => {
 
   const _handlePasswordChange = (e) => {
     setPassword(e.target.value.replace(/'/g, "''"));
+    if (password2.length) {
+      if (password2 === e.target.value) {
+        setPasswordsMatch(true);
+      } else {
+        setPasswordsMatch(false);
+      }
+    }
     if (e.target.value.length === 0) {
       setPasswordsMatch(true);
     }
