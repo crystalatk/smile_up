@@ -14,6 +14,8 @@ function App() {
     is_guardian: false,
     is_minor: false,
     first_name: "",
+    age: "",
+    avatar_link: "",
   });
   const [
     eventDetailsForEditPurposes,
@@ -44,11 +46,11 @@ function App() {
   }, [eventDetailsForEditPurposes]);
 
   return (
-    <div className="App">
+    <div className={userInfo.isLoggedIn ? "App-user" : "App"}>
       <Router>
         <Header setUserInfo={setUserInfo} userInfo={userInfo} />
         <Nav userInfo={userInfo} />
-        <div className="body">
+        <div>
           <Dashboard
             userInfo={userInfo}
             setEventDetailsForEditPurposes={setEventDetailsForEditPurposes}

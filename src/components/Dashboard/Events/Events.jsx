@@ -21,10 +21,18 @@ const Events = ({
         <EditEvent eventDetailsForEditPurposes={eventDetailsForEditPurposes} />
       </Route>
       <Route path="/events/guardiansignup/:event_id">
-        <GuardianSignUp userInfo={userInfo} />
+        <GuardianSignUp
+          userInfo={userInfo}
+          eventDetailsForEditPurposes={eventDetailsForEditPurposes}
+        />
       </Route>
       <Route path="/events/minorsignup/:event_id">
-        {!!userInfo.isLoggedIn ? <MinorSignUp userInfo={userInfo} /> : null}
+        {!!userInfo.isLoggedIn ? (
+          <MinorSignUp
+            userInfo={userInfo}
+            eventDetailsForEditPurposes={eventDetailsForEditPurposes}
+          />
+        ) : null}
       </Route>
       <Route path="/events/eventdetails/:id">
         <EventDetails

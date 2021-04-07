@@ -7,8 +7,8 @@ import AdminDir from "./Directory/AdminDir";
 import Events from "./Events/Events";
 import Profile from "./Profile/Profile";
 import AddAnEvent from "./Events/AddAnEvent";
-import EventListApproved from "./Events/EventListApproved";
-import EventListNeedsApproval from "./Events/EventListNeedsApproval";
+import EventNotifications from "./EventNotifications/EventNotifications";
+import Donate from "./Donate/Donate";
 
 const Dashboard = ({
   userInfo,
@@ -17,9 +17,11 @@ const Dashboard = ({
 }) => {
   return (
     <>
-      <Route exact path="/">
-        <HomeLogin />
-      </Route>
+      {!userInfo.isLoggedIn && (
+        <Route exact path="/">
+          <HomeLogin />
+        </Route>
+      )}
       {userInfo.is_guardian && (
         <Route exact path="/">
           <GuardianDash userInfo={userInfo} />
@@ -52,11 +54,11 @@ const Dashboard = ({
       <Route path="/addevent">
         <AddAnEvent userInfo={userInfo} />
       </Route>
-      <Route path="/eventlistapproved">
-        <EventListApproved userInfo={userInfo} />
+      <Route path="/notifications/:index">
+        <EventNotifications userInfo={userInfo} />
       </Route>
-      <Route path="/eventlistneedsapproval">
-        <EventListNeedsApproval userInfo={userInfo} />
+      <Route path="/donate">
+        <Donate />
       </Route>
     </>
   );

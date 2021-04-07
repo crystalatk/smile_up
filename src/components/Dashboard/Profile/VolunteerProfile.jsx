@@ -4,6 +4,7 @@ import VolunteerHrsById from "./VolunteerHrsById";
 import TotalEventsId from "./TotalEventsId";
 import moment from "moment";
 import Button from "@material-ui/core/Button";
+import UploadAvatar from "./UploadAvatar";
 
 const VolunteerProfile = ({ userInfo }) => {
   console.log("I AM HERE");
@@ -18,6 +19,7 @@ const VolunteerProfile = ({ userInfo }) => {
   const [guardianID, setGuardianID] = useState("");
   const [viewPage, setViewPage] = useState(false);
   const [canEdit, setCanEdit] = useState(false);
+  const [reloadPhoto, setReloadPhoto] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -53,7 +55,7 @@ const VolunteerProfile = ({ userInfo }) => {
       setIsProfileGuardian(false);
     }
     fetchProfileData();
-  }, [id, userInfo]);
+  }, [id, userInfo, reloadPhoto]);
 
   useEffect(() => {
     if (userInfo.id) {
@@ -92,6 +94,8 @@ const VolunteerProfile = ({ userInfo }) => {
         <>
           {!!volunteerInfo?.id ? (
             <>
+              <img src={volunteerInfo.avatar_link} alt={`${volunteerInfo.first_name} ${volunteerInfo.last_name}'s avatar`}/>
+              <UploadAvatar userInfo={userInfo} reloadPhoto={reloadPhoto} setReloadPhoto={setReloadPhoto}/>
               <h1>
                 {volunteerInfo.first_name} {volunteerInfo.last_name}
               </h1>

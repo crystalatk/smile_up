@@ -3,7 +3,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-const GuardianSignUp = ({ userInfo }) => {
+const GuardianSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
   const [minorData, setMinorData] = useState([]);
   const [signedUpMinorId, setSignedUpMinorId] = useState([]);
   const [termsApproved, setTermsApproved] = useState(false);
@@ -26,31 +26,25 @@ const GuardianSignUp = ({ userInfo }) => {
   const _handleSubmit = (e) => {
     e.preventDefault();
     signedUpMinorId.map(async (id) => {
-      const insertResponse = await fetch(
-        `http://127.0.0.1:3232/volunteers/insertvolunteeractivity`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            volunteer_id: id,
-            event_id: event_id,
-            guardian_approval: true,
-          }),
-        }
-      ).then((response) => response.json());
-      console.log(insertResponse);
+      await fetch(`http://127.0.0.1:3232/volunteers/insertvolunteeractivity`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          volunteer_id: id,
+          event_id: event_id,
+          guardian_approval: true,
+        }),
+      }).then((response) => response.json());
     });
   };
 
   useEffect(() => {
-    console.log(userInfo.id);
     const getMinorData = () => {
       fetch(
         `http://127.0.0.1:3232/guardians/getvolunteersforguardianId/?guardian_id=${userInfo.id}`
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setMinorData(data);
         });
     };
@@ -58,8 +52,9 @@ const GuardianSignUp = ({ userInfo }) => {
   }, [userInfo]);
 
   useEffect(() => {
-    console.log("this is our array", signedUpMinorId);
-  }, [signedUpMinorId]);
+    console.log("this is MINORDATA", minorData);
+    console.log("THESE ARE THE EVENT DETAILS: ", eventDetailsForEditPurposes);
+  }, [minorData]);
 
   return (
     <div>
@@ -69,18 +64,32 @@ const GuardianSignUp = ({ userInfo }) => {
           <>
             {minorData.map((minor) => {
               return (
-                <FormControlLabel
-                  key={minor.id}
-                  control={
-                    <Checkbox
-                      name="checkedC"
-                      color="secondary"
-                      value={minor.id}
-                      onChange={_handleCheck}
-                    />
-                  }
-                  label={`${minor.first_name} ${minor.last_name}`}
-                />
+                <>
+                  <FormControlLabel
+                    key={minor.id}
+                    control={
+                      <Checkbox
+                        name="checkedC"
+                        color="secondary"
+                        value={minor.id}
+                        onChange={_handleCheck}
+                        disabled={
+                          eventDetailsForEditPurposes.age_min > minor.age.years
+                        }
+                      />
+                    }
+                    label={`${minor.first_name} ${minor.last_name}`}
+                  />
+                  <h6
+                    className={
+                      eventDetailsForEditPurposes.age_min > minor.age.years
+                        ? "f-red f-small m-0"
+                        : "f-background-color f-small m-0"
+                    }
+                  >
+                    This minor is not old enough to attend this event.
+                  </h6>
+                </>
               );
             })}
             <FormControlLabel
