@@ -1,8 +1,19 @@
 import { useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  logout: {
+    fontSize: "10px",
+    margin: "0px",
+    padding: "2px",
+  },
+});
 
 const LogoutButton = ({ setUserInfo }) => {
   const history = useHistory();
+  const classes = useStyles();
+
   const _handleClick = (e) => {
     e.preventDefault();
     setUserInfo({
@@ -17,7 +28,12 @@ const LogoutButton = ({ setUserInfo }) => {
   };
   return (
     <>
-      <Button variant="outlined" onClick={_handleClick}>
+      <Button
+        className={classes.logout}
+        variant="outlined"
+        size="small"
+        onClick={_handleClick}
+      >
         Logout
       </Button>
     </>
