@@ -1,16 +1,9 @@
 import React from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { Zoom } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
-import smile2 from "../../../images/smile2.jfif";
 import s4 from "../../../images/s4.jpg";
 import s5 from "../../../images/s5.jpg";
 import s6 from "../../../images/s6.jpg";
@@ -19,16 +12,6 @@ import s8 from "../../../images/s8.jpg";
 import s9 from "../../../images/s9.jpg";
 import s10 from "../../../images/s10.jpg";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"©"}
-      2020 Smile Up Charitable Foundation is a 501(c)3 non-profit organization
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 const images = [s4, s5, s6, s7, s8, s9, s10];
 
@@ -59,131 +42,19 @@ const Slideshow = () => {
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: "100vh",
-   
-  },
-  image: {
-    backgroundColor:
-      theme.palette.type === "light"
-        ? theme.palette.grey[50]
-        : theme.palette.grey[900],
-    backgroundSize: "contain",
-    maxHeight: "100vh", 
-    width: "100vw",
-    overflow: "hidden",
-    backgroundPosition: "center",
-  },
-  image2: {
-    backgroundImage: `url(${smile2})`,
-    backgroundRepeat: "no-repeat",
-    backgroundColor:
-      theme.palette.type === "light"
-        ? theme.palette.grey[50]
-        : theme.palette.grey[900],
-    backgroundSize: "cover",
-    maxHeight: "100%",
-    borderRadius: "16",
-    borderWidth: "5",
-    overflow: "hidden",
-    backgroundPosition: "center",
-  },
-  paper: {
-    margin: theme.spacing(8, 9, 5, 9),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: "70%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-    backgroundColor: "rgb(255,255,255,0.7)",
-    color: "red",
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
   },
 }));
 
-export default function HomeLogin() {
+export default function HomeLogin({ setUserInfo }) {
   const classes = useStyles();
+
+ 
 
   return (
     <div className="body">
       <Grid container component="main" className={classes.root}>
         <h1 className="home">Welcome to the SmileUp! Charitable Foundation!</h1>
-        <Grid item xs={false} sm={4} md={7} className={classes.image} />
-        <Grid
-          item
-          xs={12}
-          component={Paper}
-          elevation={6}
-          square
-          className={classes.image2}
-        >
-          <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
-            <form className={classes.form} noValidate>
-              <TextField
-                style={{
-                  borderColor: "rgb(248,135,21)",
-                  borderWidth: "5px",
-                  borderStyle: "solid",
-                  color: "white",
-                }}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="username"
-                label="Username"
-                name="username"
-                autoComplete="username"
-                autoFocus
-                // color="secondary"
-              />
-              <TextField
-                style={{
-                  borderColor: "rgb(0,214,203)",
-                  borderWidth: "5px",
-                  borderStyle: "solid",
-                }}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                Sign In
-              </Button>
-              <Grid container>
-                <Grid item xs></Grid>
-                <Grid item></Grid>
-              </Grid>
-              <Box mt={5}>
-                <Copyright Text="2020 Smile Up Charitable Foundation is a 501(c)3 non-profit organization" />
-              </Box>
-            </form>
-          </div>
-        </Grid>
+        
       </Grid>
       <Box
         style={{
