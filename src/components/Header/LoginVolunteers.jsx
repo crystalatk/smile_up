@@ -206,5 +206,3 @@ const LoginVolunteers = ({ setUserInfo }) => {
     }
 
 export default LoginVolunteers;
-
-
