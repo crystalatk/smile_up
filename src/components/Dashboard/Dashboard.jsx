@@ -9,6 +9,7 @@ import Profile from "./Profile/Profile";
 import AddAnEvent from "./Events/AddAnEvent";
 import EventNotifications from "./EventNotifications/EventNotifications";
 import Donate from "./Donate/Donate";
+import AddDocument from "./Documents/AddDocument";
 
 const Dashboard = ({
   userInfo,
@@ -59,6 +60,9 @@ const Dashboard = ({
       </Route>
       <Route path="/donate">
         <Donate />
+      </Route>
+      <Route path="/documents">
+        <AddDocument userInfo={userInfo}/>
       </Route>
     </>
   );
