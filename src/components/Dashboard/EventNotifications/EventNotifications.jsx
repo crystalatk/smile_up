@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
@@ -18,8 +18,9 @@ const useStyles = makeStyles({
 });
 
 const EventNotifications = ({ userInfo }) => {
+  const { index } = useParams();
   const classes = useStyles();
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(index ? parseInt(index) : 0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

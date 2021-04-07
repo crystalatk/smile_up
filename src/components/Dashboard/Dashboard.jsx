@@ -54,7 +54,7 @@ const Dashboard = ({
       <Route path="/addevent">
         <AddAnEvent userInfo={userInfo} />
       </Route>
-      <Route path="/notifications">
+      <Route path="/notifications/:index">
         <EventNotifications userInfo={userInfo} />
       </Route>
       <Route path="/donate">

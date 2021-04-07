@@ -20,6 +20,13 @@ const useStyles = makeStyles({
     top: "auto",
     bottom: 0,
   },
+  icon: {
+    padding: "0px",
+  },
+  badge: {
+    position: "absolute",
+    right: "25%",
+  },
 });
 
 const VolunteerNav = ({
@@ -65,6 +72,7 @@ const VolunteerNav = ({
           label="Profile"
           value="profile"
           icon={<AccountCircleIcon />}
+          className={classes.icon}
         />
         <BottomNavigationAction
           component={Link}
@@ -73,6 +81,7 @@ const VolunteerNav = ({
           label="Events"
           value="events"
           icon={<AddToHomeScreenRoundedIcon />}
+          className={classes.icon}
         />
         <BottomNavigationAction
           component={Link}
@@ -80,24 +89,23 @@ const VolunteerNav = ({
           selected={"/" === location.pathname}
           value="Dash"
           icon={smileI}
+          className={classes.icon}
         />
-        <Badge badgeContent={numberOfApprovalsWaiting} color="primary">
-          <BottomNavigation
-            value={value}
-            onChange={handleChange}
-            className={classes.root}
-            showLabels
-          >
-            <BottomNavigationAction
-              component={Link}
-              to={`/notifications`}
-              selected={`/notifications` === location.pathname}
-              label="Notifications"
-              value="notifications"
-              icon={<NotificationsActiveIcon />}
-            />
-          </BottomNavigation>
-        </Badge>
+
+        <BottomNavigationAction
+          component={Link}
+          to={`/notifications/0`}
+          selected={`/notifications/0` === location.pathname}
+          label="Alerts"
+          value="notifications"
+          icon={<NotificationsActiveIcon />}
+          className={classes.icon}
+        />
+        <Badge
+          badgeContent={numberOfApprovalsWaiting}
+          color="primary"
+          className={classes.badge}
+        ></Badge>
         <BottomNavigationAction
           component={Link}
           to={`/donate`}
@@ -105,6 +113,7 @@ const VolunteerNav = ({
           label="Donate"
           value="donate"
           icon={<MonetizationOnIcon />}
+          className={classes.icon}
         />
       </BottomNavigation>
     </AppBar>
