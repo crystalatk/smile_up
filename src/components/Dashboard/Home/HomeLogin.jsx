@@ -1,9 +1,8 @@
 import React from "react";
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import { Zoom } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
+import smile2 from "../../../images/smile2.jfif";
 import s4 from "../../../images/s4.jpg";
 import s5 from "../../../images/s5.jpg";
 import s6 from "../../../images/s6.jpg";
@@ -12,6 +11,16 @@ import s8 from "../../../images/s8.jpg";
 import s9 from "../../../images/s9.jpg";
 import s10 from "../../../images/s10.jpg";
 
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"©"}
+      2020 Smile Up Charitable Foundation is a 501(c)3 non-profit organization
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
 
 const images = [s4, s5, s6, s7, s8, s9, s10];
 
@@ -47,8 +56,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function HomeLogin({ setUserInfo }) {
   const classes = useStyles();
-
- 
 
   return (
     <div className="body">
