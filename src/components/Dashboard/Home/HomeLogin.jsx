@@ -17,7 +17,8 @@ import s6 from "../../../images/s6.jpg";
 import s7 from "../../../images/s7.jpg";
 import s8 from "../../../images/s8.jpg";
 import s9 from "../../../images/s9.jpg";
-import s10 from "../../../images/s10.jpg";
+import s10 from "../../../images/s10.jpg"
+import { useEffect } from 'react';
 
 function Copyright() {
   return (
@@ -95,8 +96,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
+
 export default function HomeLogin() {
   const classes = useStyles();
+  useEffect(()=> {
+    document.body.classList.add('loginBackground')
+  },[])
 
   return (
     <div className="body">
