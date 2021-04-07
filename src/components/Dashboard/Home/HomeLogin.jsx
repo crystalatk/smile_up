@@ -1,11 +1,7 @@
 import React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
@@ -23,7 +19,6 @@ import s7 from "../../../images/s7.jpg";
 import s8 from "../../../images/s8.jpg";
 import s9 from "../../../images/s9.jpg";
 import s10 from "../../../images/s10.jpg";
-
 
 function Copyright() {
   return (
@@ -121,10 +116,9 @@ export default function HomeLogin() {
   const classes = useStyles();
 
   return (
-    <>
+    <div className="body">
       <Grid container component="main" className={classes.root}>
         <h1 className="home">Welcome to the SmileUp! Charitable Foundation!</h1>
-        <CssBaseline />
         <Grid item xs={false} sm={4} md={7} className={classes.image} />
         <Grid
           item
@@ -188,10 +182,8 @@ export default function HomeLogin() {
                 Sign In
               </Button>
               <Grid container>
-                <Grid item xs>
-                </Grid>
-                <Grid item>
-                </Grid>
+                <Grid item xs></Grid>
+                <Grid item></Grid>
               </Grid>
               <Box mt={5}>
                 <Copyright Text="2020 Smile Up Charitable Foundation is a 501(c)3 non-profit organization" />
@@ -265,6 +257,6 @@ export default function HomeLogin() {
       >
         <Slideshow />
       </Box>
-    </>
+    </div>
   );
 }

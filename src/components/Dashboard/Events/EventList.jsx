@@ -60,14 +60,13 @@ const EventList = () => {
 
   return (
     <>
-      <h1>This is the Event List Page</h1>
       {!!eventList ? (
         <List
           component="nav"
           aria-labelledby="nested-list-subheader"
           subheader={
             <ListSubheader component="div" id="nested-list-subheader">
-              EVENTS
+              Join us!
             </ListSubheader>
           }
         >

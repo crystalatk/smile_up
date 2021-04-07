@@ -22,19 +22,22 @@ const Minors = ({ userInfo }) => {
 
   return (
     <div className="avatar-container">
-      {minorData?.map((minor) => {
-        return (
-          <div className="avatar-container-minor">
-            <img
-              src={minor.avatar_link}
-              alt={`${minor.first_name}'s profile Image`}
-              className="avatar-image-minor"
-              onClick={() => history.push(`/profile/myprofile/${minor.id}`)}
-            />
-            <h4 className="avatar-name-minor">{minor.first_name}</h4>
-          </div>
-        );
-      })}
+      <div className="avatar-container-minor">
+        <h4 className="f-med-teal">My Minors</h4>
+        {minorData?.map((minor) => {
+          return (
+            <div className="avatar-container-minor">
+              <img
+                src={minor.avatar_link}
+                alt={`${minor.first_name}'s profile Image`}
+                className="avatar-image-minor"
+                onClick={() => history.push(`/profile/myprofile/${minor.id}`)}
+              />
+              <h4 className="avatar-name-minor">{minor.first_name}</h4>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
