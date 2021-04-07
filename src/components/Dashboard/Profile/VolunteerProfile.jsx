@@ -95,7 +95,10 @@ const VolunteerProfile = ({ userInfo }) => {
           {!!volunteerInfo?.id ? (
             <>
               <img src={volunteerInfo.avatar_link} alt={`${volunteerInfo.first_name} ${volunteerInfo.last_name}'s avatar`}/>
-              <UploadAvatar userInfo={userInfo} reloadPhoto={reloadPhoto} setReloadPhoto={setReloadPhoto}/>
+              {(userInfo.is_guardian && userInfo.id === id) && <UploadAvatar id={id} 
+              reloadPhoto={reloadPhoto} setReloadPhoto={setReloadPhoto}/> }
+              {(userInfo.is_guardian && userInfo.id === guardianID) && <UploadAvatar id={id} 
+              reloadPhoto={reloadPhoto} setReloadPhoto={setReloadPhoto}/> }
               <h1>
                 {volunteerInfo.first_name} {volunteerInfo.last_name}
               </h1>

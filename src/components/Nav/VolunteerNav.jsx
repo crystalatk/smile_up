@@ -7,8 +7,7 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import AddToHomeScreenRoundedIcon from "@material-ui/icons/AddToHomeScreenRounded";
 import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
-import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
-import Badge from "@material-ui/core/Badge";
+import NotificationIcon from "./NotificationIcon";
 import smilelg from "../../images/smilelg.gif";
 
 const useStyles = makeStyles({
@@ -34,7 +33,6 @@ const VolunteerNav = ({
   numberOfApprovalsWaiting,
   setNumberOfApprovalsWaiting,
 }) => {
-  console.log(numberOfApprovalsWaiting);
   let location = useLocation();
   const classes = useStyles();
   const [value, setValue] = useState("recents");
@@ -47,7 +45,6 @@ const VolunteerNav = ({
   );
 
   useEffect(() => {
-    console.log("THIS IS THE VALUE: ", value);
     if (value === "notifications") {
       setNumberOfApprovalsWaiting(0);
     }
@@ -91,21 +88,21 @@ const VolunteerNav = ({
           icon={smileI}
           className={classes.icon}
         />
-
         <BottomNavigationAction
           component={Link}
-          to={`/notifications/0`}
-          selected={`/notifications/0` === location.pathname}
+          to="/notifications/0"
+          selected={"/notifications/0" === location.pathname}
           label="Alerts"
           value="notifications"
-          icon={<NotificationsActiveIcon />}
+          icon={
+            <NotificationIcon
+              numberOfApprovalsWaiting={numberOfApprovalsWaiting}
+              setNumberOfApprovalsWaiting={setNumberOfApprovalsWaiting}
+            />
+          }
           className={classes.icon}
         />
-        <Badge
-          badgeContent={numberOfApprovalsWaiting}
-          color="primary"
-          className={classes.badge}
-        ></Badge>
+
         <BottomNavigationAction
           component={Link}
           to={`/donate`}

@@ -5,26 +5,71 @@ import { makeStyles } from "@material-ui/core/styles";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import List from "@material-ui/core/List";
 import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import StarBorder from "@material-ui/icons/StarBorder";
+import AccessTimeIcon from "@material-ui/icons/AccessTime";
+import EventIcon from "@material-ui/icons/Event";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
+import EventAvailableIcon from "@material-ui/icons/EventAvailable";
+import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
-    maxWidth: 330,
     backgroundColor: "rgb(247, 219, 182, 1)",
-    minHeight: "90%",
-    position: "relative",
-    margin: "2em auto",
-    padding: "5px",
+    border: "1px solid rgb(251, 247, 243, 0.85)",
     float: "none",
+    margin: "2em auto",
+    maxWidth: 330,
+    minHeight: "90%",
+    padding: "5px",
+    position: "relative",
+    width: "100%",
+    "&:last-child": {
+      paddingBottom: 0,
+    },
+  },
+  listRoot: {
+    "&:last-child": {
+      paddingBottom: 0,
+    },
   },
   nested: {
     paddingLeft: theme.spacing(4),
+  },
+  subheader: {
+    color: "#002c2b",
+    fontSize: "36px",
+    fontFamily: `"Luckiest Guy", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;"`,
+    marginTop: "20px",
+  },
+  title: {
+    color: "rgb(251, 247, 243)",
+    fontSize: "28px",
+    fontFamily: `"Luckiest Guy", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;"`,
+    padding: "10px",
+  },
+  titleContainer: {
+    backgroundColor: "rgb(0, 44, 43)",
+    marginBottom: "5px",
+    padding: "0px",
+  },
+  infoHeader: {
+    textAlign: "center",
+  },
+  infoContainer: {
+    backgroundColor: "rgb(251, 247, 243, 0.85)",
+    marginBottom: "5px",
+    padding: "0px",
+    paddingBottom: "0px",
+    "&:last-child": {
+      paddingBottom: 0,
+    },
   },
 }));
 
@@ -52,11 +97,6 @@ const EventList = () => {
   }, []);
 
   const classes = useStyles();
-  const [open, setOpen] = useState(true);
-
-  const handleClick = () => {
-    setOpen(!open);
-  };
 
   return (
     <>
@@ -65,7 +105,11 @@ const EventList = () => {
           component="nav"
           aria-labelledby="nested-list-subheader"
           subheader={
-            <ListSubheader component="div" id="nested-list-subheader">
+            <ListSubheader
+              className={classes.subheader}
+              component="div"
+              id="nested-list-subheader"
+            >
               Join us!
             </ListSubheader>
           }
@@ -80,78 +124,79 @@ const EventList = () => {
                 <>
                   <div>
                     <Card className={classes.root}>
-                      <ListItem button onClick={handleClick}>
-                        <ListItemIcon>
-                          <InboxIcon />
-                        </ListItemIcon>
-                        <Link to={`/events/eventdetails/${event.id}`}>
-                          <ListItemText primary={event.title} />
-                        </Link>
-                      </ListItem>
-                      <List component="div" disablePadding>
+                      <CardContent className={classes.titleContainer}>
+                        <Typography className={classes.title} component="h2">
+                          <Link
+                            className={classes.title}
+                            to={`/events/eventdetails/${event.id}`}
+                          >
+                            {event.title}
+                          </Link>
+                        </Typography>
+                      </CardContent>
+                      <List
+                        component="div"
+                        disablePadding
+                        className={classes.listRoot}
+                      >
                         <ListItem>
                           <ListItemIcon>
-                            <StarBorder />
+                            <EventIcon />
                           </ListItemIcon>
                           <ListItemText
-                            primary={
-                              "WHEN: " +
-                              moment(startTime).format("MMM Do YYYY") +
-                              " - " +
-                              moment(stopTime).format("MMM Do YYYY")
-                            }
+                            primary={moment(startTime).format("MMM Do YYYY")}
                           />
                         </ListItem>
                         <ListItem>
                           <ListItemIcon>
-                            <StarBorder />
+                            <AccessTimeIcon />
                           </ListItemIcon>
                           <ListItemText
                             primary={
-                              "TIME: " +
                               moment(startTime).format("h:mm a") +
                               " - " +
                               moment(stopTime).format("h:mm a ")
                             }
-                          />{" "}
-                          <br />
-                          <ListItemText
-                            secondary={
-                              "Duration:" +
-                              moment.duration(diff).hours() +
-                              "hr " +
-                              moment.duration(diff).minutes() +
-                              "min"
-                            }
                           />
                         </ListItem>
                         <ListItem>
                           <ListItemIcon>
-                            <StarBorder />
+                            <LocationOnIcon />
                           </ListItemIcon>
-                          <ListItemText primary={"WHERE: " + event.location} />
+                          <ListItemText primary={event.location} />
                         </ListItem>
-                        <ListItem>
-                          <ListItemIcon>
-                            <StarBorder />
-                          </ListItemIcon>
-                          <ListItemText
-                            primary={
-                              "SIGN-UP DEADLINE: " +
-                              moment(event.signup_deadline).format(
+                        <CardContent className={classes.infoContainer}>
+                          <ListItem>
+                            <ListItemText
+                              className={classes.infoHeader}
+                              primary={"SIGN-UP DEADLINE:"}
+                            />
+                          </ListItem>
+                          <ListItem>
+                            <ListItemIcon>
+                              <EventAvailableIcon />
+                            </ListItemIcon>
+                            <ListItemText
+                              primary={moment(event.signup_deadline).format(
                                 "MMM Do YYYY"
-                              )
-                            }
-                          />
-                        </ListItem>
-                        <ListItem>
-                          <ListItemIcon>
-                            <StarBorder />
-                          </ListItemIcon>
-                          <ListItemText
-                            primary={"VOLUNTEER MINIMUM AGE: " + event.age_min}
-                          />
-                        </ListItem>
+                              )}
+                            />
+                          </ListItem>
+                        </CardContent>
+                        <CardContent className={classes.infoContainer}>
+                          <ListItem>
+                            <ListItemText
+                              className={classes.infoHeader}
+                              primary={"VOLUNTEER MINIMUM AGE:"}
+                            />
+                          </ListItem>
+                          <ListItem>
+                            <ListItemIcon>
+                              <InsertEmoticonIcon />
+                            </ListItemIcon>
+                            <ListItemText primary={event.age_min} />
+                          </ListItem>
+                        </CardContent>
                       </List>
                     </Card>
                   </div>
