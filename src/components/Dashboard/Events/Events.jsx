@@ -5,6 +5,7 @@ import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import EventList from "./EventList";
+import PastEventList from "./PastEventList";
 import EventDetails from "./EventDetails";
 import EditEvent from "./EditEvent";
 import GuardianSignUp from "./GuardianSignUp";
@@ -48,7 +49,7 @@ const Events = ({
           </Tabs>
         </Paper>
         {value ? (
-          <EventList userInfo={userInfo} />
+          <PastEventList userInfo={userInfo} />
         ) : (
           <EventList userInfo={userInfo} />
         )}
