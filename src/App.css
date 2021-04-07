@@ -36,16 +36,13 @@ body {
   
 }
 
-.loginBackground {
-background-image: url('./images/smile2.jfif')
-}
+
 
 
 .App {
   text-align: center;
-  background-color: var(--accent-teal);
+  background-image: url('./images/smile2.jfif');
   margin: auto;
-  max-width: 800px;
   min-height: 100vh;
   position: relative;
   overflow: hidden;
