@@ -110,15 +110,9 @@ const LoginVolunteers = ({ setUserInfo }) => {
 
   return (
     <div>
-    <Grid item xs={false} sm={4} md={7} className={classes.image} />
-    <Grid
-      item
-      xs={12}
-      component={Paper}
-      elevation={6}
-      square
-      className={classes.image2}
-    >
+      <h1 className="banner">Welcome to the SmileUp! Charitable Foundation!</h1>
+    <Grid item xs={false} sm={4} md={4} className={classes.image} />
+    <Grid>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -133,6 +127,12 @@ const LoginVolunteers = ({ setUserInfo }) => {
               borderWidth: "5px",
               borderStyle: "solid",
               color: "white",
+              display: 'flex',
+              width: '300px',
+              flexDirection: 'column',
+              margin: 'auto',
+              position: 'relative',
+              bottomPadding: '38em'
             }}
             variant="outlined"
             margin="normal"
@@ -151,7 +151,12 @@ const LoginVolunteers = ({ setUserInfo }) => {
               borderColor: "rgb(0,214,203)",
               borderWidth: "5px",
               borderStyle: "solid",
-            }}
+              width: '300px',
+              display: 'flex',
+              flexDirection: 'column',
+              margin: 'auto',
+              position: 'relative'
+      }}
             variant="outlined"
             margin="normal"
             required
@@ -165,7 +170,6 @@ const LoginVolunteers = ({ setUserInfo }) => {
           />
           <Button
             type="submit"
-            fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}

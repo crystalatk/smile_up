@@ -52,7 +52,7 @@ export default function HomeLogin({ setUserInfo }) {
     <div className="body">
 
       <Grid container component="main" className={classes.root}>
-        <h1 className="home">Welcome to the SmileUp! Charitable Foundation!</h1>
+       
         
 
       </Grid>
