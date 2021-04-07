@@ -38,10 +38,12 @@ body {
 
 .banner {
   background-color: var(--accent-teal );
-  height: 100px;
+  height: 130px;
  display: flex;
  justify-content: center;
  align-items: center;
+ margin-top: 0;
+ 
   
 }
 
@@ -51,6 +53,8 @@ body {
 .App {
   text-align: center;
   background-image: url('./images/smile2.jfif');
+  background-size: cover;
+  background-position: center;
   margin: auto;
   min-height: 100vh;
   position: relative;
