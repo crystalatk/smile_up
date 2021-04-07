@@ -81,6 +81,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function HomeLogin() {
+  console.log("hi");
   const classes = useStyles();
   useEffect(()=> {
     document.body.classList.add('loginBackground')
