@@ -398,8 +398,8 @@ const NewNonMinorAccount = () => {
               name="is_guardian"
               onChange={_handleIsGuardianChange}
             >
-              <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-              <FormControlLabel value="no" control={<Radio />} label="No" />
+              <FormControlLabel value="yes" control={<Radio />} label="Yes" checked={isGuardian}/>
+              <FormControlLabel value="no" control={<Radio />} label="No" checked={!isGuardian}/>
             </label>
           </FormControl>{" "}
           <br />
