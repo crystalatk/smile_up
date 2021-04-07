@@ -11,6 +11,7 @@ import EventNotifications from "./EventNotifications/EventNotifications";
 import Donate from "./Donate/Donate";
 import AddDocument from "./Documents/AddDocument";
 
+
 const Dashboard = ({
   userInfo,
   setEventDetailsForEditPurposes,
