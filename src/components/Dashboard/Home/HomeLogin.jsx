@@ -108,7 +108,7 @@ export default function HomeLogin() {
   return (
     <div className="body">
       <Grid >
-        <h1>Welcome to the SmileUp! Charitable Foundation!</h1>
+        <h1 className="banner">Welcome to the SmileUp! Charitable Foundation!</h1>
         <Grid item xs={false} sm={4} md={7} />
         <Grid
           item
