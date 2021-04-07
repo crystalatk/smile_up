@@ -11,6 +11,7 @@ import EventNotifications from "./EventNotifications/EventNotifications";
 import Donate from "./Donate/Donate";
 import AddDocument from "./Documents/AddDocument";
 
+
 const Dashboard = ({
   userInfo,
   setEventDetailsForEditPurposes,
@@ -30,7 +31,7 @@ const Dashboard = ({
       )}
       {userInfo.is_minor && (
         <Route exact path="/">
-          <VolunteerDash userInfo={userInfo} />
+          <GuardianDash userInfo={userInfo} />
         </Route>
       )}
       {userInfo.is_admin && (
@@ -62,7 +63,7 @@ const Dashboard = ({
         <Donate />
       </Route>
       <Route path="/documents">
-        <AddDocument userInfo={userInfo}/>
+        <AddDocument userInfo={userInfo} />
       </Route>
     </>
   );

@@ -90,7 +90,7 @@ const NewNonMinorAccount = () => {
   const [isGuardian, setIsGuardian] = useState(false);
   const [isMinor, setIsMinor] = useState(false);
   const [isAmbassador, setIsAmbassador] = useState(false);
-  const [passwordsMatch, setPasswordsMatch] = useState(false);
+  const [passwordsMatch, setPasswordsMatch] = useState(true);
   const [usernameTaken, setUsernameTaken] = useState(false);
   const [guardianId, setGuardianId] = useState("");
   const [adultFormSubmitted, setAdultFormSubmitted] = useState(false);
@@ -104,6 +104,13 @@ const NewNonMinorAccount = () => {
 
   const _handlePasswordChange = (e) => {
     setPassword(e.target.value.replace(/'/g, "''"));
+    if (password2.length) {
+      if (password2 === e.target.value) {
+        setPasswordsMatch(true);
+      } else {
+        setPasswordsMatch(false);
+      }
+    }
     if (e.target.value.length === 0) {
       setPasswordsMatch(true);
     }
@@ -111,7 +118,7 @@ const NewNonMinorAccount = () => {
 
   const _handlePassword2Change = (e) => {
     setPassword2(e.target.value.replace(/'/g, "''"));
-    if (password.length === e.target.value.length) {
+    if (password.length <= e.target.value.length) {
       if (password === e.target.value) {
         setPasswordsMatch(true);
       } else {
@@ -398,8 +405,18 @@ const NewNonMinorAccount = () => {
               name="is_guardian"
               onChange={_handleIsGuardianChange}
             >
-              <FormControlLabel value="yes" control={<Radio />} label="Yes" checked={isGuardian}/>
-              <FormControlLabel value="no" control={<Radio />} label="No" checked={!isGuardian}/>
+              <FormControlLabel
+                value="yes"
+                control={<Radio />}
+                label="Yes"
+                checked={isGuardian}
+              />
+              <FormControlLabel
+                value="no"
+                control={<Radio />}
+                label="No"
+                checked={!isGuardian}
+              />
             </label>
           </FormControl>{" "}
           <br />

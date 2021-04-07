@@ -59,8 +59,8 @@ const AdminNav = ({ userInfo }) => {
         />
         <BottomNavigationAction
           component={Link}
-          to="/admindash"
-          selected={location.pathname === "/admindash"}
+          to="/"
+          selected={location.pathname === "/"}
           value="Dash"
           icon={smileI}
         />

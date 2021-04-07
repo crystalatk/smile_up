@@ -20,7 +20,7 @@ const AddDocument = ({userInfo}) => {
     };
 
     const handleUpload = async () => { 
-        const uploadTask = storage.ref(`documents/${document.name}`).put(documentFile);
+        const uploadTask = storage.ref(`documents/${documentFile.name}`).put(documentFile);
         uploadTask.on(
             'state_changed',
             (snapshot) => {},
@@ -29,7 +29,7 @@ const AddDocument = ({userInfo}) => {
             () => {
                 storage
                     .ref('documents')
-                    .child(document.name)
+                    .child(documentFile.name)
                     .getDownloadURL()
                     .then(async function(url) {
                         const response = await fetch(
@@ -48,27 +48,27 @@ const AddDocument = ({userInfo}) => {
                         ).then((response) => response);
                         console.log('the response is ', response);
                     })
-                })
-            };
+                });
+    };
 
-            useEffect(() => {
-                const fetchList = async () => {
-                    const eventListResponse = await fetch(
-                        `http://127.0.0.1:3232/events/list`,
-                        {
-                            method: "GET",
-                            headers: { "Content-Type": "application/json" },
-                        }
-                    )
-                        .then((response) => response.json())
-                        .catch((e) => {
-                            console.log(e);
-                        });
-                    console.log("THIS IS THE EVENTS LIST RESPONSE: ", eventListResponse);
-                    setEventList(eventListResponse);
-                };
-                fetchList();
-            }, []);
+    useEffect(() => {
+        const fetchList = async () => {
+            const eventListResponse = await fetch(
+                `http://127.0.0.1:3232/events/list`,
+                {
+                    method: "GET",
+                    headers: { "Content-Type": "application/json" },
+                }
+            )
+                .then((response) => response.json())
+                .catch((e) => {
+                    console.log(e);
+                });
+            console.log("THIS IS THE EVENTS LIST RESPONSE: ", eventListResponse);
+            setEventList(eventListResponse);
+        };
+        fetchList();
+    }, []);
 
     return (
         <>
@@ -95,7 +95,7 @@ const AddDocument = ({userInfo}) => {
                         onChange={(e) => setEventId(e.target.value)} 
                         defaultValue={null}
                         >
-                        {eventList.map(event => <MenuItem value={event.id}>{event.title}</MenuItem>)}
+                        {eventList.map((event, index) => <MenuItem name={index} value={event.id}>{event.title}</MenuItem>)}
                         </Select>
                     </InputLabel>
                 )}
@@ -113,7 +113,7 @@ const AddDocument = ({userInfo}) => {
                 </div>
                 {!!documentTitle.length && (
                     <div>
-                    {!!documentFile ? (<button onClick={handleUpload}>Click to Upload</button>) : (<button
+                    {!!documentFile ? (<button onClick={handleUpload} type="button">Click to Upload</button>) : (<button
                         component="label"
                         >
                         Find Document to Upload
