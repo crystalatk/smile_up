@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { storage } from '../../../firebase/index';
 
-const UploadAvatar = ({ userInfo, reloadPhoto, setReloadPhoto }) => {
+const UploadAvatar = ({ id, reloadPhoto, setReloadPhoto }) => {
     const [image, setImage] = useState(null);
     const handleChange = async (e) => {
         if (e.target.files[0]) {
@@ -28,7 +28,7 @@ const UploadAvatar = ({ userInfo, reloadPhoto, setReloadPhoto }) => {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify({
-                                    id: userInfo.id,
+                                    id: id,
                                     avatar_link: url
                                 }),
                             }
