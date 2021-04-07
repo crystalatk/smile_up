@@ -48,7 +48,7 @@ function App() {
   return (
     <div className={userInfo.isLoggedIn ? "App-user" : "App"}>
       <Router>
-        <Header setUserInfo={setUserInfo} userInfo={userInfo} />
+        {/* <Header setUserInfo={setUserInfo} userInfo={userInfo} /> */}
         <Nav userInfo={userInfo} />
         <div>
           <Dashboard

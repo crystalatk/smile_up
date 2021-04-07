@@ -59,27 +59,16 @@ const Slideshow = () => {
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: "100vh",
+  
    
   },
   image: {
-    backgroundColor:
-      theme.palette.type === "light"
-        ? theme.palette.grey[50]
-        : theme.palette.grey[900],
-    backgroundSize: "contain",
     maxHeight: "100vh", 
     width: "100vw",
     overflow: "hidden",
     backgroundPosition: "center",
   },
   image2: {
-    backgroundImage: `url(${smile2})`,
-    backgroundRepeat: "no-repeat",
-    backgroundColor:
-      theme.palette.type === "light"
-        ? theme.palette.grey[50]
-        : theme.palette.grey[900],
-    backgroundSize: "cover",
     maxHeight: "100%",
     borderRadius: "16",
     borderWidth: "5",
@@ -99,7 +88,6 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: "70%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
-    backgroundColor: "rgb(255,255,255,0.7)",
     color: "red",
   },
   submit: {
@@ -112,16 +100,12 @@ export default function HomeLogin() {
 
   return (
     <div className="body">
-      <Grid container component="main" className={classes.root}>
-        <h1 className="home">Welcome to the SmileUp! Charitable Foundation!</h1>
-        <Grid item xs={false} sm={4} md={7} className={classes.image} />
+      <Grid >
+        <h1>Welcome to the SmileUp! Charitable Foundation!</h1>
+        {/* <Grid item xs={false} sm={4} md={7} />
         <Grid
           item
           xs={12}
-          component={Paper}
-          elevation={6}
-          square
-          className={classes.image2}
         >
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>
@@ -183,7 +167,7 @@ export default function HomeLogin() {
               </Box>
             </form>
           </div>
-        </Grid>
+        </Grid> */}
       </Grid>
       <Box
         style={{

@@ -10,6 +10,7 @@ import AddAnEvent from "./Events/AddAnEvent";
 import EventNotifications from "./EventNotifications/EventNotifications";
 import Donate from "./Donate/Donate";
 
+
 const Dashboard = ({
   userInfo,
   setEventDetailsForEditPurposes,
