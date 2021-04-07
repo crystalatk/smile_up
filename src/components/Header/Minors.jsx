@@ -23,7 +23,7 @@ const Minors = ({ userInfo }) => {
   return (
     <div className="avatar-container">
       <div className="avatar-container-minor">
-        <h4 className="f-med-teal">My Minors</h4>
+        <h4 className="f-med-teal m-5">My Minors</h4>
         {minorData?.map((minor) => {
           return (
             <div className="avatar-container-minor">
