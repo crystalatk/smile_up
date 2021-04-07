@@ -13,8 +13,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import EventIcon from "@material-ui/icons/Event";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
-import EventAvailableIcon from "@material-ui/icons/EventAvailable";
-import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
@@ -80,7 +78,7 @@ const EventList = () => {
     console.log();
     const fetchList = async () => {
       const eventListResponse = await fetch(
-        `http://127.0.0.1:3232/events/list`,
+        `http://127.0.0.1:3232/events/pastlist`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
@@ -110,7 +108,7 @@ const EventList = () => {
               component="div"
               id="nested-list-subheader"
             >
-              Join us!
+              Some of the smiles we've given...
             </ListSubheader>
           }
         >
@@ -165,40 +163,6 @@ const EventList = () => {
                           </ListItemIcon>
                           <ListItemText primary={event.location} />
                         </ListItem>
-                        <CardContent className={classes.infoContainer}>
-                          <ListItem>
-                            <ListItemText
-                              className={classes.infoHeader}
-                              primary={"SIGN-UP DEADLINE:"}
-                            />
-                          </ListItem>
-                          <ListItem>
-                            <ListItemIcon>
-                              <EventAvailableIcon />
-                            </ListItemIcon>
-                            <ListItemText
-                              primary={moment(event.signup_deadline).format(
-                                "MMM Do YYYY"
-                              )}
-                            />
-                          </ListItem>
-                        </CardContent>
-                        <CardContent className={classes.infoContainer}>
-                          <ListItem>
-                            <ListItemText
-                              className={classes.infoHeader}
-                              primary={"VOLUNTEER MINIMUM AGE:"}
-                            />
-                          </ListItem>
-                          <ListItem>
-                            <ListItemIcon>
-                              <InsertEmoticonIcon />
-                            </ListItemIcon>
-                            <ListItemText
-                              primary={event.age_min + " years old"}
-                            />
-                          </ListItem>
-                        </CardContent>
                       </List>
                     </Card>
                   </div>
