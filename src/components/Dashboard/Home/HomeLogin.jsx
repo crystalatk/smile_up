@@ -102,7 +102,7 @@ export default function HomeLogin() {
     <div className="body">
       <Grid >
         <h1>Welcome to the SmileUp! Charitable Foundation!</h1>
-        {/* <Grid item xs={false} sm={4} md={7} />
+        <Grid item xs={false} sm={4} md={7} />
         <Grid
           item
           xs={12}
@@ -167,13 +167,12 @@ export default function HomeLogin() {
               </Box>
             </form>
           </div>
-        </Grid> */}
+        </Grid>
       </Grid>
       <Box
         style={{
           marginTop: "20px",
           paddingTop: "70px",
-          backgroundColor: "white",
           fontFamily: "sans-serif",
           borderBottomStyle: "solid",
           borderBottomWidth: "15px",
@@ -196,7 +195,6 @@ export default function HomeLogin() {
       <h2 className="home1">OUR VISION</h2>
       <Box
         style={{
-          backgroundColor: " rgb(0, 214, 203)",
           paddingTop: "1px",
         }}
       >
