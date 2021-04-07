@@ -115,6 +115,9 @@ input {
 .f-poppins {
   font-family: var(--main-font);
 }
+.f-bold-family {
+  font-family: var(--bold-font);
+}
 
 .f-background-color {
   color: var(--background);
