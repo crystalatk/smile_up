@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 export default function HomeLogin({ setUserInfo }) {
   const classes = useStyles();
 
- 
+ console.log("Hello")
 
   return (
     <div className="body">
