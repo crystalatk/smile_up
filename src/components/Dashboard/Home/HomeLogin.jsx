@@ -10,7 +10,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { Zoom } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
-import smileupkids from "../../../images/smileupkids.jfif";
 import smile2 from "../../../images/smile2.jfif";
 import s4 from "../../../images/s4.jpg";
 import s5 from "../../../images/s5.jpg";
@@ -59,17 +58,17 @@ const Slideshow = () => {
 };
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: "75vh",
+    minHeight: "100vh",
+   
   },
   image: {
-    backgroundImage: `url(${smileupkids})`,
-    backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "light"
         ? theme.palette.grey[50]
         : theme.palette.grey[900],
     backgroundSize: "contain",
-    maxHeight: "100vw",
+    maxHeight: "100vh", 
+    width: "100vw",
     overflow: "hidden",
     backgroundPosition: "center",
   },
@@ -84,15 +83,11 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: "100%",
     borderRadius: "16",
     borderWidth: "5",
-    borderColor: "green",
     overflow: "hidden",
     backgroundPosition: "center",
-    borderLeftWidth: "9px",
-    borderLeftColor: "rgb(0,214,203)",
-    borderLeftStyle: "solid",
   },
   paper: {
-    margin: theme.spacing(8, 4),
+    margin: theme.spacing(8, 9, 5, 9),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -123,8 +118,6 @@ export default function HomeLogin() {
         <Grid
           item
           xs={12}
-          sm={8}
-          md={5}
           component={Paper}
           elevation={6}
           square
