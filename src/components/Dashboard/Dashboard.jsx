@@ -30,7 +30,7 @@ const Dashboard = ({
       )}
       {userInfo.is_minor && (
         <Route exact path="/">
-          <VolunteerDash userInfo={userInfo} />
+          <GuardianDash userInfo={userInfo} />
         </Route>
       )}
       {userInfo.is_admin && (
@@ -62,7 +62,7 @@ const Dashboard = ({
         <Donate />
       </Route>
       <Route path="/documents">
-        <AddDocument userInfo={userInfo}/>
+        <AddDocument userInfo={userInfo} />
       </Route>
     </>
   );
