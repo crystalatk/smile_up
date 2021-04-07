@@ -1,12 +1,4 @@
 import React from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Paper from "@material-ui/core/Paper";
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { Zoom } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
@@ -17,8 +9,7 @@ import s6 from "../../../images/s6.jpg";
 import s7 from "../../../images/s7.jpg";
 import s8 from "../../../images/s8.jpg";
 import s9 from "../../../images/s9.jpg";
-import s10 from "../../../images/s10.jpg"
-import { useEffect } from 'react';
+import s10 from "../../../images/s10.jpg";
 
 function Copyright() {
   return (
@@ -60,126 +51,23 @@ const Slideshow = () => {
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: "100vh",
-  
-   
-  },
-  image: {
-    maxHeight: "100vh", 
-    width: "100vw",
-    overflow: "hidden",
-    backgroundPosition: "center",
-  },
-  image2: {
-    maxHeight: "100%",
-    borderRadius: "16",
-    borderWidth: "5",
-    overflow: "hidden",
-    backgroundPosition: "center",
-  },
-  paper: {
-    margin: theme.spacing(8, 9, 5, 9),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: "70%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-    color: "red",
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
   },
 }));
 
-
-
-
-export default function HomeLogin() {
+export default function HomeLogin({ setUserInfo }) {
   const classes = useStyles();
-  useEffect(()=> {
-    document.body.classList.add('loginBackground')
-  },[])
 
   return (
     <div className="body">
-      <Grid >
-        <h1>Welcome to the SmileUp! Charitable Foundation!</h1>
-        <Grid item xs={false} sm={4} md={7} />
-        <Grid
-          item
-          xs={12}
-        >
-          <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
-            <form className={classes.form} noValidate>
-              <TextField
-                style={{
-                  borderColor: "rgb(248,135,21)",
-                  borderWidth: "5px",
-                  borderStyle: "solid",
-                  color: "white",
-                }}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="username"
-                label="Username"
-                name="username"
-                autoComplete="username"
-                autoFocus
-                // color="secondary"
-              />
-              <TextField
-                style={{
-                  borderColor: "rgb(0,214,203)",
-                  borderWidth: "5px",
-                  borderStyle: "solid",
-                }}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                Sign In
-              </Button>
-              <Grid container>
-                <Grid item xs></Grid>
-                <Grid item></Grid>
-              </Grid>
-              <Box mt={5}>
-                <Copyright Text="2020 Smile Up Charitable Foundation is a 501(c)3 non-profit organization" />
-              </Box>
-            </form>
-          </div>
-        </Grid>
+      <Grid container component="main" className={classes.root}>
+        <h1 className="home">Welcome to the SmileUp! Charitable Foundation!</h1>
+        
       </Grid>
       <Box
         style={{
           marginTop: "20px",
           paddingTop: "70px",
+          backgroundColor: "white",
           fontFamily: "sans-serif",
           borderBottomStyle: "solid",
           borderBottomWidth: "15px",
@@ -202,6 +90,7 @@ export default function HomeLogin() {
       <h2 className="home1">OUR VISION</h2>
       <Box
         style={{
+          backgroundColor: " rgb(0, 214, 203)",
           paddingTop: "1px",
         }}
       >
