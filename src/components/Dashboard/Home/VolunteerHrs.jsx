@@ -16,8 +16,12 @@ const VolunteerHours = () => {
 
   return (
     <>
-      <h1> Total </h1>
-      {!!volunteerHours ? <h2>{volunteerHours}</h2> : <h3>noData</h3>}
+      <h1 className="snippet-header">Total Hours</h1>
+      {!!volunteerHours ? (
+        <h2 className="snippet-content">{volunteerHours}</h2>
+      ) : (
+        <h3 className="snippet-content">noData</h3>
+      )}
     </>
   );
 };
