@@ -1,67 +1,11 @@
 import { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Fab from "@material-ui/core/Fab";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import { makeStyles } from "@material-ui/core/styles";
-import React from "react";
-import Typography from "@material-ui/core/Typography";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import Paper from "@material-ui/core/Paper";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"©"}
-      2020 Smile Up Charitable Foundation is a 501(c)3 non-profit organization
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    minHeight: "100vh",
-  },
-  image: {
-    backgroundColor:
-      theme.palette.type === "light"
-        ? theme.palette.grey[50]
-        : theme.palette.grey[900],
-    backgroundSize: "contain",
-    maxHeight: "100vh",
-    width: "100vw",
-    overflow: "hidden",
-    backgroundPosition: "center",
-  },
-  paper: {
-    margin: theme.spacing(8, 9, 5, 9),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: "70%", 
-    marginTop: theme.spacing(1),
-    backgroundColor: "rgb(255,255,255,0.7)",
-    color: "red",
-  },
-}));
 
 const LoginVolunteers = ({ setUserInfo }) => {
-  const classes = useStyles();
-
   const [username, setUserName] = useState([]);
   const [password, setPassword] = useState([]);
   const [wrongPasswordUsername, setWrongPasswordUsername] = useState(false);
-  const [wrongUsername, setWrongUsername] = useState(false);
 
   const _handleSubmit = async (e) => {
     e.preventDefault();
@@ -72,19 +16,14 @@ const LoginVolunteers = ({ setUserInfo }) => {
         username: username,
         password: password,
       }),
-    }).then((response) => response.json())
-    .catch((e) => {
-      console.log(e);
-      setWrongUsername(true);
-    });
+    }).then((response) => response.json());
     console.log("Here are the login results: ", loginData);
-    if (loginData && !loginData.isValid) {
+    if (!loginData.isValid) {
       setUserInfo({ isLoggedIn: false });
       setWrongPasswordUsername(true);
-      setWrongUsername(false);
     }
 
-    if (loginData?.id) {
+    if (loginData.id) {
       setUserInfo({
         isLoggedIn: true,
         id: loginData.id,
@@ -96,7 +35,6 @@ const LoginVolunteers = ({ setUserInfo }) => {
         avatar_link: loginData.avatar_link,
       });
       setWrongPasswordUsername(false);
-      setWrongUsername(false);
     }
   };
 
@@ -110,101 +48,43 @@ const LoginVolunteers = ({ setUserInfo }) => {
 
   return (
     <div>
-    <Grid item xs={false} sm={4} md={7} className={classes.image} />
-    <Grid
-      item
-      xs={12}
-      component={Paper}
-      elevation={6}
-      square
-      className={classes.image2}
-    >
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form className={classes.form} onSubmit={_handleSubmit} noValidate>
+      <form onSubmit={_handleSubmit}>
+        <label>
           <TextField
-            style={{
-              borderColor: "rgb(248,135,21)",
-              borderWidth: "5px",
-              borderStyle: "solid",
-              color: "white",
-            }}
-            variant="outlined"
-            margin="normal"
             required
-            fullWidth
-            id="username"
+            name="name"
+            id="outlined-required"
             label="Username"
-            name="username"
-            autoComplete="username"
-            autoFocus
-            onChange={_onUserName}
-
-          />
-          <TextField
-            style={{
-              borderColor: "rgb(0,214,203)",
-              borderWidth: "5px",
-              borderStyle: "solid",
-            }}
             variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
+            margin="dense"
+            type="text"
+            onChange={_onUserName}
+          />
+
+          <TextField
+            id="outlined-password-input"
             label="Password"
             type="password"
-            id="password"
             autoComplete="current-password"
+            variant="outlined"
+            margin="dense"
             onChange={_onPassword}
+            required
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            
-          >
-            Sign In
-          </Button>
-          {wrongPasswordUsername ? <h6
-            className={
-              !!wrongPasswordUsername
-                ? "f-red f-small m-0"
-                : "f-background-color f-small m-0"
-            }
-          >
-            Your password and username do not match.
-          </h6>:
-          <h6
-            className={
-              !!wrongUsername
-                ? "f-red f-small m-0"
-                : "f-background-color f-small m-0"
-            }
-          >
-            Your username does not exist.
-          </h6>}
-          <Grid container>
-            <Grid item xs></Grid>
-            <Grid item></Grid>
-          </Grid>
-          <Box mt={5}>
-            <Copyright Text="2020 Smile Up Charitable Foundation is a 501(c)3 non-profit organization" />
-          </Box>
-        </form>
-      </div>
-    </Grid>
+        </label>
+        <h6
+          className={
+            !!wrongPasswordUsername
+              ? "f-red f-small m-0"
+              : "f-background-color f-small m-0"
+          }
+        >
+          Your password and username do not match.
+        </h6>
+        <Fab type="submit">Submit</Fab>
+      </form>
     </div>
-     );
-    }
+  );
+};
 
 export default LoginVolunteers;
-
-
