@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    backgroundColor: "rgb(255,255,255,0.7)",
   },
   avatar: {
     margin: theme.spacing(1),
@@ -37,12 +38,15 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: "70%",
     marginTop: theme.spacing(1),
-    backgroundColor: "rgb(255,255,255,0.7)",
     color: "red",
   },
 }));
 
 const LoginVolunteers = ({ setUserInfo }) => {
+  useEffect(() => {
+    document.body.classList.add('bgBody')
+    console.log('UseEffect Ran')
+  })
   const classes = useStyles();
 
   const [username, setUserName] = useState([]);
@@ -51,6 +55,7 @@ const LoginVolunteers = ({ setUserInfo }) => {
   const [wrongUsername, setWrongUsername] = useState(false);
 
   const _handleSubmit = async (e) => {
+   
     e.preventDefault();
     const loginData = await fetch("http://127.0.0.1:3232/login/sitelogin", {
       method: "POST",
@@ -99,8 +104,8 @@ const LoginVolunteers = ({ setUserInfo }) => {
   return (
     <div>
       <h1 className="banner">Welcome to the SmileUp! Charitable Foundation!</h1>
-      <Grid item xs={false} sm={4} md={4} className={classes.image} />
-      <Grid className="signin">
+      
+      <div className="signin">
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
@@ -186,10 +191,6 @@ const LoginVolunteers = ({ setUserInfo }) => {
                 Your username does not exist.
               </h6>
             )}
-            <Grid container>
-              <Grid item xs></Grid>
-              <Grid item></Grid>
-            </Grid>
             <h6>
               <Link to="/createaccount">
                 Need to create an account? Click here
@@ -197,7 +198,7 @@ const LoginVolunteers = ({ setUserInfo }) => {
             </h6>
           </form>
         </div>
-      </Grid>
+      </div>
     </div>
   );
 };
