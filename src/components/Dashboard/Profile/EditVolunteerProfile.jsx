@@ -113,7 +113,10 @@ const EditVolunteerProfile = ({ userInfo }) => {
   }, [id, userInfo?.id, userInfo?.is_minor]);
 
   useEffect(() => {
-    setIsProfileGuardian(guardianID === userInfo?.id);
+    console.log("THIS IS THE GUARDIAN ID", guardianID.guardian_id);
+    console.log("THIS IS THE USER INFO ID", userInfo.id);
+    console.log(guardianID.guardian_id === userInfo?.id);
+    setIsProfileGuardian(guardianID.guardian_id === userInfo?.id);
   }, [guardianID, userInfo, volunteerInfo]);
 
   useEffect(() => {

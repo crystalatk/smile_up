@@ -5,7 +5,6 @@ import AppBar from "@material-ui/core/AppBar";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
 import smilelg from "../../images/smilelg.gif";
 
 function Copyright() {
@@ -57,7 +56,9 @@ const HomeNav = ({ userInfo }) => {
           icon={smileI}
         />
       </BottomNavigation>
-      <Copyright />
+      <div className="">
+        <Copyright />
+      </div>
     </AppBar>
   );
 };
