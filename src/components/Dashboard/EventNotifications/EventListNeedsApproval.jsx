@@ -98,54 +98,56 @@ const EventListNeedsApproval = ({ userInfo }) => {
   return (
     <>
       <h1>Needs Approval:</h1>
-      {userInfo.isLoggedIn && approvedMinorEvents.length ? (
-        <h3>Here are the events awaiting approval: </h3>
-      ) : (
-        <h3>You have no awaiting approvals.</h3>
-      )}
-      <ul>
-        {approvedMinorEvents?.map((event, index) => {
-          return (
-            <li key={index}>
-              {(approvedMinorEvents[index - 1]?.event_id !== event.event_id ||
-                index === 0) && (
-                <h1
-                  onClick={() => {
-                    history.push(`/events/eventdetails/${event.event_id}`);
-                  }}
-                >
-                  {event.title}
-                </h1>
-              )}
-              <h3>
-                {event.first_name} would like approval to attend this event.
-              </h3>
-              {userInfo.is_guardian && (
-                <div>
-                  <Button
-                    variant="contained"
-                    color="default"
-                    className={classes.button}
-                    startIcon={<ThumbUpIcon />}
-                    onClick={() => _handleApproveButton(event.id)}
+      <div className="sign-up-container">
+        {userInfo.isLoggedIn && approvedMinorEvents.length ? (
+          <h3>Here are the events awaiting approval: </h3>
+        ) : (
+          <h3>You have no awaiting approvals.</h3>
+        )}
+        <ul>
+          {approvedMinorEvents?.map((event, index) => {
+            return (
+              <li key={index} className="inner-card">
+                {(approvedMinorEvents[index - 1]?.event_id !== event.event_id ||
+                  index === 0) && (
+                  <h1
+                    onClick={() => {
+                      history.push(`/events/eventdetails/${event.event_id}`);
+                    }}
                   >
-                    Approve
-                  </Button>
-                  <Button
-                    variant="contained"
-                    color="default"
-                    className={classes.button}
-                    startIcon={<ThumbDownIcon />}
-                    onClick={() => _handleRemoveButton(event.id)}
-                  >
-                    Remove
-                  </Button>
-                </div>
-              )}
-            </li>
-          );
-        })}
-      </ul>
+                    {event.title}
+                  </h1>
+                )}
+                <h3 className="f-poppins">
+                  {event.first_name} would like approval to attend this event.
+                </h3>
+                {userInfo.is_guardian && (
+                  <div>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={classes.button}
+                      startIcon={<ThumbUpIcon />}
+                      onClick={() => _handleApproveButton(event.id)}
+                    >
+                      Approve
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      className={classes.button}
+                      startIcon={<ThumbDownIcon />}
+                      onClick={() => _handleRemoveButton(event.id)}
+                    >
+                      Remove
+                    </Button>
+                  </div>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </>
   );
 };

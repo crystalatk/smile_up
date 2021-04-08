@@ -74,53 +74,55 @@ const EventListApproved = ({ userInfo }) => {
   return (
     <>
       <h1>Approved Upcoming Events:</h1>
-      {!userInfo.is_guardian && !userInfo.is_minor && (
-        <h1>You have no minors linked to this account.</h1>
-      )}
-      {userInfo.is_guardian && !!approvedMinorEvents.length && (
-        <h3>Here are the approved Events for your minors: </h3>
-      )}
-      {userInfo.is_minor && (
-        <h3>Here are the approved Events by your guardian: </h3>
-      )}
-      {!approvedMinorEvents.length && (
-        <h3>You have no approved upcoming events.</h3>
-      )}
-      <ul>
-        {approvedMinorEvents?.map((event, index) => {
-          return (
-            <li key={index}>
-              {(approvedMinorEvents[index - 1]?.event_id !== event.event_id ||
-                index === 0) && (
-                <h1
-                  onClick={() => {
-                    history.push(`/events/eventdetails/${event.event_id}`);
-                  }}
-                >
-                  {event.title}
-                </h1>
-              )}
-
-              {userInfo.is_guardian && (
-                <div>
-                  <h3>
-                    {event.first_name} has been approved to attend this event.
-                  </h3>
-                  <Button
-                    variant="contained"
-                    color="default"
-                    className={classes.button}
-                    startIcon={<ThumbDownIcon />}
-                    onClick={() => _handleRemoveButton(event.id)}
+      <div className="sign-up-container">
+        {!userInfo.is_guardian && !userInfo.is_minor && (
+          <h1>You have no minors linked to this account.</h1>
+        )}
+        {userInfo.is_guardian && !!approvedMinorEvents.length && (
+          <h3>Here are the approved Events for your minors: </h3>
+        )}
+        {userInfo.is_minor && (
+          <h3>Here are the approved Events by your guardian: </h3>
+        )}
+        {!approvedMinorEvents.length && (
+          <h3>You have no approved upcoming events.</h3>
+        )}
+        <ul>
+          {approvedMinorEvents?.map((event, index) => {
+            return (
+              <li key={index} className="inner-card">
+                {(approvedMinorEvents[index - 1]?.event_id !== event.event_id ||
+                  index === 0) && (
+                  <h1
+                    onClick={() => {
+                      history.push(`/events/eventdetails/${event.event_id}`);
+                    }}
                   >
-                    Remove
-                  </Button>
-                </div>
-              )}
-            </li>
-          );
-        })}
-      </ul>
+                    {event.title}
+                  </h1>
+                )}
+
+                {userInfo.is_guardian && (
+                  <div>
+                    <h3 className="f-poppins">
+                      {event.first_name} has been approved to attend this event.
+                    </h3>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      className={classes.button}
+                      startIcon={<ThumbDownIcon />}
+                      onClick={() => _handleRemoveButton(event.id)}
+                    >
+                      Remove
+                    </Button>
+                  </div>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </>
   );
 };
