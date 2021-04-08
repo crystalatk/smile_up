@@ -3,15 +3,16 @@ import FormControl from "@material-ui/core/FormControl";
 import Radio from "@material-ui/core/Radio";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormLabel from "@material-ui/core/FormLabel";
-import { Button, TextField, Select, InputLabel, MenuItem } from '@material-ui/core';
+import { TextField, Select, InputLabel, MenuItem } from '@material-ui/core';
 import { storage } from '../../../firebase/index';
 
-const AddDocument = ({userInfo}) => {
+const AddDocument = ({userInfo, reloadDocument, setReloadDocument}) => {
     const [eventList, setEventList] = useState([]);
     const [eventId, setEventId] = useState(null);
     const [isGeneral, setIsGeneral] = useState(null);
     const [documentTitle, setDocumentTitle] = useState("");
     const [documentFile, setDocumentFile] = useState(null);
+    const [isUploaded, setIsUploaded] = useState(false);
 
     const handleFileChange = async (e) => {
         if (e.target.files[0]) {
@@ -47,6 +48,8 @@ const AddDocument = ({userInfo}) => {
                             }
                         ).then((response) => response);
                         console.log('the response is ', response);
+                        setIsUploaded(true);
+                        setReloadDocument(!reloadDocument)
                     })
                 });
     };
@@ -72,6 +75,7 @@ const AddDocument = ({userInfo}) => {
 
     return (
         <>
+            <h1>This is the AddDocument</h1>
             <form>
                 <FormControl component="fieldset">
                     <FormLabel component="legend">
@@ -86,19 +90,21 @@ const AddDocument = ({userInfo}) => {
                         <FormControlLabel value="true" control={<Radio />} label="General" checked={isGeneral}/>
                     </label>
                 </FormControl>
-                {isGeneral === false &&  (
-                    <InputLabel id="demo-simple-select-label">Which Event?
-                        <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={eventId}
-                        onChange={(e) => setEventId(e.target.value)} 
-                        defaultValue={null}
-                        >
-                        {eventList.map((event, index) => <MenuItem name={index} value={event.id}>{event.title}</MenuItem>)}
-                        </Select>
-                    </InputLabel>
-                )}
+                <div>
+                    {isGeneral === false &&  (
+                        <InputLabel id="demo-simple-select-label">Which Event?
+                            <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={eventId}
+                            onChange={(e) => setEventId(e.target.value)} 
+                            defaultValue={null}
+                            >
+                            {eventList.map((event, index) => <MenuItem name={index} value={event.id}>{event.title}</MenuItem>)}
+                            </Select>
+                        </InputLabel>
+                    )}
+                </div>
                 <div>
                     <TextField
                         required
@@ -128,6 +134,7 @@ const AddDocument = ({userInfo}) => {
                 </div>
                 )}
             </form>
+            {isUploaded && <p>Your document was uploaded successfully!</p>}
         </>
     );
 };
