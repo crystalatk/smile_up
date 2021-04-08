@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import HomeLogin from "./Home/HomeLogin";
 import GuardianDash from "./Home/GuardianDash";
 import AdminDash from "./Home/AdminDash";
@@ -8,19 +8,33 @@ import Profile from "./Profile/Profile";
 import EventNotifications from "./EventNotifications/EventNotifications";
 import Donate from "./Donate/Donate";
 import AddEventOrDoc from "./Documents/AddEventOrDoc";
+import OurMission from "./Home/OurMission";
+import LoginVolunteers from "../Header/LoginVolunteers";
+import NewNonMinorAccount from "../Header/NewNonMinorAccount";
+import NewMinorAccount from "../Header/NewMinorAccount";
 
 
 const Dashboard = ({
   userInfo,
+  setUserInfo,
   setEventDetailsForEditPurposes,
   eventDetailsForEditPurposes,
 }) => {
   return (
     <>
       {!userInfo.isLoggedIn && (
-        <Route exact path="/">
-          <HomeLogin />
-        </Route>
+        <>
+          <Route exact path="/">
+            <LoginVolunteers setUserInfo={setUserInfo} />
+            <OurMission />
+          </Route>
+          <Route path="/createaccount">
+            <NewNonMinorAccount />
+          </Route>
+          <Route path="/newminor/:guardianid">
+            <NewMinorAccount />
+          </Route>
+        </>
       )}
       {userInfo.is_guardian && (
         <Route exact path="/">

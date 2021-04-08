@@ -13,32 +13,7 @@ import s8 from "../../../images/s8.jpg";
 import s9 from "../../../images/s9.jpg";
 import s10 from "../../../images/s10.jpg";
 
-// const images = [s4, s5, s6, s7, s8, s9, s10];
 
-// const zoomOutProperties = {
-//   duration: 1000,
-//   transitionDuration: 500,
-//   infinite: true,
-//   indicators: true,
-//   scale: 1,
-//   arrows: true,
-// };
-// const Slideshow = () => {
-//   return (
-//     <div className="slide-container">
-//       <Zoom {...zoomOutProperties}>
-//         {images.map((each, index) => (
-//           <img
-//             key={index}
-//             style={{ width: "100%", height: "60%" }}
-//             src={each}
-//             alt="Images of Volunteers at Events"
-//           />
-//         ))}
-//       </Zoom>
-//     </div>
-//   );
-// };
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: "100vh",
@@ -67,17 +42,7 @@ export default function HomeLogin({ setUserInfo }) {
         }}
       > */}
         {/* <h1>
-          SmileUp! is a 501c3 non-profit whose mission is to get kids helping
-          kids through volunteerism. <br /> Our focus is on recruiting
-          volunteers from all walks of life, in order to present <br /> a
-          diverse group of SERVICE LEADERS who know how to work for and along
-          side those <br /> who look and live differently than they do. Children
-          instinctively focus on the humanity <br /> of a person and SmileUp!
-          reinforces this character trait so that they carry it into adulthood.{" "}
-          <br /> The young volunteers learn empathy, compassion and tolerance
-          through their volunteer service, and by <br /> supporting SmileUp!,
-          you are supporting our young volunteers in their efforts to make their
-          communities <br /> and this world a better place for all.
+          
         </h1> */}
       {/* </Box> */}
       {/* <h2 className="home1">OUR VISION</h2> */}
@@ -88,9 +53,7 @@ export default function HomeLogin({ setUserInfo }) {
         }}
       >
         <h2>
-          We envision a world where young people are leading the charge in
-          volunteerism through awareness, advocacy and action. Our mission is to
-          be a conduit through which they can accomplish this.
+          
         </h2>
       </Box> */}
       {/* <Box

@@ -45,7 +45,7 @@ const AdminNav = ({ userInfo }) => {
           component={Link}
           to="/addevent"
           selected={location.pathname === "/addevent"}
-          label="Add Event"
+          label="Add"
           value="addEvent"
           icon={<AddToPhotosIcon />}
         />
