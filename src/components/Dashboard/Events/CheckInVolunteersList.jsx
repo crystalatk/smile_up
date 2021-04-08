@@ -21,7 +21,8 @@ const useStyles = makeStyles({
     fontSize: 24,
   },
   actions: {
-    display: "block",
+    display: "flex",
+    justifyContent: "center",
     margin: "auto",
   },
   profile: {
@@ -75,7 +76,7 @@ const CheckInVolunteersList = ({ event_id, userInfo }) => {
     <>
       {!!volunteersAttending?.length !== 0 ? (
         <>
-          <h2>These Volunteers are attending the event:</h2>
+          <h2 className="f-dark">These Volunteers are attending the event:</h2>
           <label>
             Search
             <input
@@ -113,38 +114,47 @@ const CheckInVolunteersList = ({ event_id, userInfo }) => {
                         {volunteer.total_time.hours ? (
                           <span>{volunteer.total_time.hours}hrs & </span>
                         ) : null}
-                        {volunteer.total_time.minutes}min
+                        {volunteer.total_time.minutes || 0}min
                       </Typography>
                     ) : null}
                   </CardContent>
                   <CardActions className={classes.actions}>
-                    <IconButton
-                      aria-label="go to volunteer profile"
-                      onClick={(e) => {
-                        history.push(`/profile/myprofile/${volunteer.id}`);
-                      }}
-                    >
-                      <AccountCircleIcon className={classes.profile} />
-                    </IconButton>
-                    {volunteer.check_in_time ? null : (
+                    <div className="block">
                       <IconButton
-                        aria-label="check in volunteer"
+                        aria-label="go to volunteer profile"
                         onClick={(e) => {
-                          history.push(`/events/checkin/${volunteer.va_id}`);
+                          history.push(`/profile/adminview/${volunteer.id}`);
                         }}
                       >
-                        <AssignmentIndIcon className={classes.checkin} />
+                        <AccountCircleIcon className={classes.profile} />
                       </IconButton>
+                      <h6 className="m-0">profile</h6>
+                    </div>
+                    {volunteer.check_in_time ? null : (
+                      <div className="block">
+                        <IconButton
+                          aria-label="check in volunteer"
+                          onClick={(e) => {
+                            history.push(`/events/checkin/${volunteer.va_id}`);
+                          }}
+                        >
+                          <AssignmentIndIcon className={classes.checkin} />
+                        </IconButton>
+                        <h6 className="m-0">check-in</h6>
+                      </div>
                     )}
                     {!volunteer.check_out_time && volunteer.check_in_time ? (
-                      <IconButton
-                        aria-label="checkout volunteer"
-                        onClick={(e) => {
-                          history.push(`/events/checkout/${volunteer.va_id}`);
-                        }}
-                      >
-                        <ExitToAppIcon className={classes.checkout} />
-                      </IconButton>
+                      <div className="block">
+                        <IconButton
+                          aria-label="checkout volunteer"
+                          onClick={(e) => {
+                            history.push(`/events/checkout/${volunteer.va_id}`);
+                          }}
+                        >
+                          <ExitToAppIcon className={classes.checkout} />
+                        </IconButton>
+                        <h6 className="m-0">check-out</h6>
+                      </div>
                     ) : null}
                   </CardActions>
                 </Card>

@@ -176,9 +176,19 @@ input {
 .m-5 {
   margin: 5px;
 }
+.mt-10 {
+  margin-top: 10px;
+}
 
 .inline {
   display: inline;
+}
+
+.flex {
+  display: flex;
+}
+.block {
+  display: block;
 }
 
 h1 {

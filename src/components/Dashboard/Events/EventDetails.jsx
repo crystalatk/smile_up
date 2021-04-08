@@ -247,7 +247,8 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
                       {event.max_participants} max
                     </h1>
                     <Button
-                      variant="outlined"
+                      color="primary"
+                      variant="contained"
                       onClick={() => history.push("/events/editevent")}
                     >
                       Edit Event
