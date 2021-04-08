@@ -80,7 +80,6 @@ const EditVolunteerProfile = ({ userInfo }) => {
         .catch((e) => {
           console.log(e);
         });
-      console.log("THIS IS THE GUARDIAN ID:", guardianIDResponse);
       setGuardianID(guardianIDResponse);
     };
 
@@ -92,7 +91,6 @@ const EditVolunteerProfile = ({ userInfo }) => {
         .catch((e) => {
           console.log(e);
         });
-      console.log("THIS IS THE PROFILE DATA:", profileDataResponse);
       setVolunteerInfo(profileDataResponse);
       setFirstName(profileDataResponse.first_name);
       setLastName(profileDataResponse.last_name);
@@ -109,13 +107,9 @@ const EditVolunteerProfile = ({ userInfo }) => {
       fetchGuardianID();
     }
     fetchProfileData();
-    console.log("fetching...");
   }, [id, userInfo?.id, userInfo?.is_minor]);
 
   useEffect(() => {
-    console.log("THIS IS THE GUARDIAN ID", guardianID.guardian_id);
-    console.log("THIS IS THE USER INFO ID", userInfo.id);
-    console.log(guardianID.guardian_id === userInfo?.id);
     setIsProfileGuardian(guardianID.guardian_id === userInfo?.id);
   }, [guardianID, userInfo, volunteerInfo]);
 

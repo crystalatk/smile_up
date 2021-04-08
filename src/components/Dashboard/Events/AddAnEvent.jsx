@@ -58,7 +58,8 @@ const AddAnEvent = () => {
         num_adults: numAdults,
         alerts: alerts,
       }),
-    }).then((response) => response);
+    }).then((response) => console.log(response));
+
     myAlert.success("Your event has been created!");
     setTitle("");
     setSignupDeadline(new Date());
