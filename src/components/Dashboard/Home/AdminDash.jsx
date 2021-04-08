@@ -5,8 +5,8 @@ import TotalEvents from "./TotalEvents";
 
 const AdminDash = ({ userInfo }) => {
   return (
-    <div class="admin-dashboard-container">
-      <div class="welcome-message">
+    <div className="admin-dashboard-container">
+      <div className="welcome-message">
         <h1>Welcome, {userInfo.first_name}!</h1>
         <p>The world is wrong, let's right it,</p>
         <p>The battle is hard, let's fight it.</p>

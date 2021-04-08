@@ -101,7 +101,7 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
     setNumAdults(0);
     setAlerts("");
     setIsChecked(false);
-    history.push(`/event/${eventDetailsForEditPurposes.id}`);
+    history.push(`/events/eventdetails/${eventDetailsForEditPurposes.id}`);
   };
 
   return (

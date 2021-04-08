@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -11,6 +11,7 @@ const GuardianSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
   const { event_id } = useParams();
   const [checkBox1, setCheckBox1] = useState(false);
   const [checkBox2, setCheckBox2] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     setTermsApproved(checkBox1 && checkBox2);
@@ -37,6 +38,7 @@ const GuardianSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
         }),
       }).then((response) => response.json());
     });
+    history.goBack();
   };
 
   useEffect(() => {
