@@ -10,6 +10,7 @@ import AddAnEvent from "./Events/AddAnEvent";
 import EventNotifications from "./EventNotifications/EventNotifications";
 import Donate from "./Donate/Donate";
 import AddDocument from "./Documents/AddDocument";
+import OurMission from "./Home/OurMission";
 
 
 const Dashboard = ({
@@ -22,6 +23,7 @@ const Dashboard = ({
       {!userInfo.isLoggedIn && (
         <Route exact path="/">
           <HomeLogin />
+          <OurMission />
         </Route>
       )}
       {userInfo.is_guardian && (

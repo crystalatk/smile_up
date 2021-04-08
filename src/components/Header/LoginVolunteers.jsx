@@ -112,7 +112,7 @@ const LoginVolunteers = ({ setUserInfo }) => {
     <div>
       <h1 className="banner">Welcome to the SmileUp! Charitable Foundation!</h1>
     <Grid item xs={false} sm={4} md={4} className={classes.image} />
-    <Grid>
+    <Grid className="signin">
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
