@@ -81,7 +81,8 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
   const [spotsRemaining, setSpotsRemaining] = useState("");
   const [documentArray, setDocumentArray] = useState([]);
   const history = useHistory();
-  const eventDocsArray = (eventId) => documentArray.filter(doc => doc.event_id === eventId);
+  const eventDocsArray = (eventId) =>
+    documentArray.filter((doc) => doc.event_id === eventId);
   const classes = useStyles();
 
   const _onSignUpClick = (e) => {
@@ -136,19 +137,19 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
   useEffect(() => {
     console.log();
     const fetchList = async () => {
-        const documentListResponse = await fetch(
-            `http://127.0.0.1:3232/events/getdocuments`,
-            {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-            }
-        )
-            .then((response) => response.json())
-            .catch((e) => {
-            console.log(e);
-            });
-        console.log("THIS IS THE DOCUMENT LIST RESPONSE: ", documentListResponse);
-        setDocumentArray(documentListResponse);
+      const documentListResponse = await fetch(
+        `http://127.0.0.1:3232/events/getdocuments`,
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        }
+      )
+        .then((response) => response.json())
+        .catch((e) => {
+          console.log(e);
+        });
+      console.log("THIS IS THE DOCUMENT LIST RESPONSE: ", documentListResponse);
+      setDocumentArray(documentListResponse);
     };
     fetchList();
   }, []);
@@ -196,12 +197,21 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
                     />
                   </ListItem>
                 </CardContent>
-  <h3>Document(s):</h3>
-            {!!eventDocsArray(event.id).length ?
-              (eventDocsArray(event.id).map((doc, index) => (
-                <a href={doc.document_url} target="_blank" rel="noreferrer" key={index}>{doc.document_title}</a>
-              ))) : <p>None</p>
-            }
+                <h3>Document(s):</h3>
+                {!!eventDocsArray(event.id).length ? (
+                  eventDocsArray(event.id).map((doc, index) => (
+                    <a
+                      href={doc.document_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      key={index}
+                    >
+                      {doc.document_title}
+                    </a>
+                  ))
+                ) : (
+                  <p>None</p>
+                )}
                 <CardContent className={classes.infoContainer}>
                   <ListItem>
                     <ListItemText
@@ -228,7 +238,7 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
                 </CardContent>
                 {!!userInfo.isLoggedIn ? (
                   <>
-                    {!volunteersSignedUp.some(
+                    {!volunteersSignedUp?.some(
                       (volunteer) => volunteer.volunteer_id === userInfo.id
                     ) ? (
                       <>
