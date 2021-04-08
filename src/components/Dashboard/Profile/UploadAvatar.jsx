@@ -33,6 +33,7 @@ const UploadAvatar = ({ id, reloadPhoto, setReloadPhoto }) => {
                                 }),
                             }
                         ).then((response) => response);
+                        console.log(response);
                         setReloadPhoto(!reloadPhoto);
                     })
                 })
