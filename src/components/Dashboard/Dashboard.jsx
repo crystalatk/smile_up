@@ -4,14 +4,14 @@ import AdminDash from "./Home/AdminDash";
 import AdminDir from "./Directory/AdminDir";
 import Events from "./Events/Events";
 import Profile from "./Profile/Profile";
-import AddAnEvent from "./Events/AddAnEvent";
 import EventNotifications from "./EventNotifications/EventNotifications";
 import Donate from "./Donate/Donate";
-import AddDocument from "./Documents/AddDocument";
+import AddEventOrDoc from "./Documents/AddEventOrDoc";
 import OurMission from "./Home/OurMission";
 import LoginVolunteers from "../Header/LoginVolunteers";
 import NewNonMinorAccount from "../Header/NewNonMinorAccount";
 import NewMinorAccount from "../Header/NewMinorAccount";
+
 
 const Dashboard = ({
   userInfo,
@@ -65,16 +65,13 @@ const Dashboard = ({
       </Route>
 
       <Route path="/addevent">
-        <AddAnEvent userInfo={userInfo} />
+        <AddEventOrDoc userInfo={userInfo}/>
       </Route>
       <Route path="/notifications/:index">
         <EventNotifications userInfo={userInfo} />
       </Route>
       <Route path="/donate">
         <Donate />
-      </Route>
-      <Route path="/documents">
-        <AddDocument userInfo={userInfo} />
       </Route>
     </>
   );
