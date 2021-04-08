@@ -52,7 +52,7 @@ body {
   margin: auto;
   min-height: 100vh;
   position: relative;
-  overflow: hidden;
+  margin-bottom: 100px;
 }
 
 .signin {

@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 645,
     background: 'rgba(0,0,0,0.4)',
-    backgroundHeight: '100'
+
   },
   media: {
     height: 465,
@@ -26,7 +26,8 @@ const useStyles = makeStyles({
 
   body: {
       color: 'white',
-      fontSize: '1.2em'
+      fontSize: '1.2em',
+      
   }
 });
 
@@ -42,12 +43,20 @@ export default function OMCard() {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
-            Who We Are
+           Our Mission
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p" className={classes.body}>
-          We envision a world where young people are leading the charge in
-          volunteerism through awareness, advocacy and action. Our mission is to
-          be a conduit through which they can accomplish this.
+          SmileUp! is a 501c3 non-profit whose mission is to get kids helping
+          kids through volunteerism.  Our focus is on recruiting
+          volunteers from all walks of life, in order to present a
+          diverse group of SERVICE LEADERS who know how to work for and along
+          side those who look and live differently than they do. Children
+          instinctively focus on the humanity of a person and SmileUp!
+          reinforces this character trait so that they carry it into adulthood.{" "}
+         The young volunteers learn empathy, compassion and tolerance
+          through their volunteer service, and by supporting SmileUp!,
+          you are supporting our young volunteers in their efforts to make their
+          communities and this world a better place for all.
           </Typography>
         </CardContent>
     </Card>
