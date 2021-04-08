@@ -169,14 +169,35 @@ input {
   visibility: hidden;
 }
 
+.p-0 {
+  padding: 0px;
+}
+.p-5 {
+  padding: 5px;
+}
+.p-10 {
+  padding: 10px;
+}
+.p-20 {
+  padding: 20px;
+}
 .m-0 {
   margin: 0px;
 }
 .m-5 {
   margin: 5px;
 }
+.m-10 {
+  margin: 10px;
+}
+.m-20 {
+  margin: 20px;
+}
 .mt-10 {
   margin-top: 10px;
+}
+.b-background {
+  background-color: var(--background);
 }
 
 .inline {
