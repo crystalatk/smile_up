@@ -59,6 +59,9 @@ const MinorSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
             >
               Submit
             </Button>
+            <Button type="button" onClick={history.goBack} variant="outlined">
+              Go Back
+            </Button>
           </div>
         </>
       </form>

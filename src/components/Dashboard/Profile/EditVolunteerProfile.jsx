@@ -68,7 +68,7 @@ const EditVolunteerProfile = ({ userInfo }) => {
     setEmergencyName("");
     setEmergencyPhone("");
     console.log("submit response is ", submitResponse);
-    history.push(`/profile/${id}`);
+    history.push(`/profile/myprofile/${id}`);
   };
 
   useEffect(() => {
@@ -191,7 +191,8 @@ const EditVolunteerProfile = ({ userInfo }) => {
                 <label>
                   Zip Code
                   <input
-                    type="text"
+                    type="number"
+                    maxLength="5"
                     value={zipCode}
                     onChange={(e) =>
                       setZipCode(e.target.value.replace(/‘/g, "''"))
