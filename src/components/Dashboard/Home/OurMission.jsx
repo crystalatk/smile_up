@@ -5,11 +5,14 @@ import OMCard2 from './OMCard2';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        height: '100vh',
+        backgroundColor: ' rgb(0, 214, 203, 0.85)',
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection: 'row',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        margin: 'auto',
+        maxWidth: '1000px',
+        padding: '25px',
 
     }
 

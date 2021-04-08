@@ -7,12 +7,11 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 645,
+    maxWidth: 450,
     background: 'rgba(0,0,0,0.7)',
-
   },
   media: {
-    height: 465,
+    height: 455,
   },
   title: {
     fontFamily: "Simplifica",
@@ -34,7 +33,7 @@ export default function OMCard() {
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image={process.env.PUBLIC_URL + "./images/s4.jpg"}
+        image={process.env.PUBLIC_URL + "./images/bg1.jpg"}
         title="Contemplative Reptile"
       />
       <CardContent>

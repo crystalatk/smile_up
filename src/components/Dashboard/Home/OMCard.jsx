@@ -7,12 +7,14 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 645,
+    maxWidth: 450,
     background: 'rgba(0,0,0,0.7)',
+    float: 'down'
+    
     
   },
   media: {
-    height: 465,
+    height: 455,
   },
   title: {
     fontFamily: "Simplifica",

@@ -33,6 +33,14 @@ body {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
 .banner {
   background-color: var(--accent-teal);
   height: 130px;
@@ -45,17 +53,21 @@ body {
 
 .App {
   text-align: center;
+  margin: auto;
+  position: relative;
+  min-height: 2130px;
   background-image: url("./images/smile2.jfif");
   background-size: cover;
   background-position: center;
   margin: auto;
-  position: relative;
 }
 
 .signin {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  margin: 30px auto;
+  
 }
 
 .App-user {
@@ -101,7 +113,11 @@ input {
 }
 
 .create-account {
+  background-color: var(--accent-orange-transparent);
+  margin: 50px auto;
+  max-width: 700px;
   padding: 25px;
+  
 }
 
 .home {
