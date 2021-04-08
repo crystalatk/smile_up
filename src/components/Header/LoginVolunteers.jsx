@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {  Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Fab from "@material-ui/core/Fab";
 import Grid from "@material-ui/core/Grid";
@@ -202,9 +203,15 @@ const LoginVolunteers = ({ setUserInfo }) => {
               <Grid item xs></Grid>
               <Grid item></Grid>
             </Grid>
+            <h6>
+            <Link to="/createaccount">
+              Need to create an account? Click here
+            </Link>
+          </h6>
             <Box mt={5}>
               <Copyright Text="2020 Smile Up Charitable Foundation is a 501(c)3 non-profit organization" />
             </Box>
+        
           </form>
         </div>
       </Grid>

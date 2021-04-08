@@ -50,8 +50,9 @@ function App() {
       <Router>
         <Header setUserInfo={setUserInfo} userInfo={userInfo} />
         <Nav userInfo={userInfo} />
-        <div>
+        <div className="body">
           <Dashboard
+            setUserInfo={setUserInfo}
             userInfo={userInfo}
             setEventDetailsForEditPurposes={setEventDetailsForEditPurposes}
             eventDetailsForEditPurposes={eventDetailsForEditPurposes}
