@@ -4,11 +4,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const AddAnEvent = () => {
-  const dt = new Date();
-  const timeStop = dt.setHours(dt.getHours() + 2);
   const [title, setTitle] = useState("");
   const [dateStart, setDateStart] = useState(new Date());
-  const [dateStop, setDateStop] = useState(timeStop);
+  const [dateStop, setDateStop] = useState(new Date());
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [headcountServedPotential, setHeadcountServedPotential] = useState("");
@@ -28,26 +26,16 @@ const AddAnEvent = () => {
     return currentDate.getTime() < selectedDate.getTime();
   };
 
+  const _handleStartDateChange = (e) => {
+    setDateStart(e);
+    setDateStop(e);
+  };
+
   //   functions to handle Input changes
   const _handleAdultsNeeded = (e) => {
     adultsNeeded ? setAdultsNeeded(false) : setAdultsNeeded(true);
     setIsChecked(true);
   };
-
-  // useEffect for consoling....
-  useEffect(() => {
-    console.log("THIS IS ADULTS NEEDED: ", adultsNeeded);
-    console.log("THIS IS SIGN UP DEADLINE: ", signupDeadline);
-    console.log("THIS IS THE HEADCOUNT SERVED :", headcountServedPotential);
-    console.log("THIS IS THE MIN AGE: ", ageMin);
-    console.log("THIS IS THE DATE START: ", dateStart);
-  }, [
-    adultsNeeded,
-    headcountServedPotential,
-    ageMin,
-    signupDeadline,
-    dateStart,
-  ]);
 
   //   Function to Handle Submit
   const _handleSubmit = async (e) => {
@@ -110,7 +98,7 @@ const AddAnEvent = () => {
             Event Start:
             <DatePicker
               selected={dateStart}
-              onChange={(date) => setDateStart(date)}
+              onChange={_handleStartDateChange}
               showTimeSelect
               timeIntervals={15}
               timeCaption="Time"

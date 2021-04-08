@@ -6,6 +6,7 @@
   --background: rgb(251, 247, 243);
   --background-med: rgb(218, 230, 230);
   --accent-orange: rgb(250, 191, 133);
+  --accent-light-orange: rgb(248, 206, 164);
   --accent-dark-orange: rgb(170, 86, 2);
   --accent-teal: rgb(0, 214, 203);
   --accent-med-teal: rgb(1, 150, 142);
@@ -33,6 +34,9 @@ html {
 body {
   min-height: 100%;
 }
+#root {
+  min-height: 100vh;
+}
 
 html,
 body {
@@ -52,6 +56,9 @@ body {
 
 .App {
   text-align: center;
+  background-color: var(--accent-light-orange);
+  height: 100%;
+  /* max-width: 800px; */
   background-image: url("./images/smile2.jfif");
   background-size: cover;
   background-position: center;
