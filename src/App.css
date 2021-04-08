@@ -136,6 +136,9 @@ input {
 .f-background-color {
   color: var(--background);
 }
+.fs-14 {
+  font-size: 14px;
+}
 
 .f-red {
   color: red;
