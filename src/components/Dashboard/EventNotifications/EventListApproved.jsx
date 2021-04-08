@@ -94,7 +94,7 @@ const EventListApproved = ({ userInfo }) => {
                 index === 0) && (
                 <h1
                   onClick={() => {
-                    history.push(`/event/${event.event_id}`);
+                    history.push(`/events/eventdetails/${event.event_id}`);
                   }}
                 >
                   {event.title}
