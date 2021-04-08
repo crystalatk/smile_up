@@ -1,6 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
-import Fab from "@material-ui/core/Fab";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
@@ -8,7 +8,6 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import Paper from "@material-ui/core/Paper";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 function Copyright() {
@@ -38,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: "center",
   },
   paper: {
-    margin: theme.spacing(8, 9, 5, 9),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -48,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "70%", 
+    width: "70%",
     marginTop: theme.spacing(1),
     backgroundColor: "rgb(255,255,255,0.7)",
     color: "red",
@@ -72,11 +70,12 @@ const LoginVolunteers = ({ setUserInfo }) => {
         username: username,
         password: password,
       }),
-    }).then((response) => response.json())
-    .catch((e) => {
-      console.log(e);
-      setWrongUsername(true);
-    });
+    })
+      .then((response) => response.json())
+      .catch((e) => {
+        console.log(e);
+        setWrongUsername(true);
+      });
     console.log("Here are the login results: ", loginData);
     if (loginData && !loginData.isValid) {
       setUserInfo({ isLoggedIn: false });
@@ -110,101 +109,111 @@ const LoginVolunteers = ({ setUserInfo }) => {
 
   return (
     <div>
-    <Grid item xs={false} sm={4} md={7} className={classes.image} />
-    <Grid
-      item
-      xs={12}
-      component={Paper}
-      elevation={6}
-      square
-      className={classes.image2}
-    >
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form className={classes.form} onSubmit={_handleSubmit} noValidate>
-          <TextField
-            style={{
-              borderColor: "rgb(248,135,21)",
-              borderWidth: "5px",
-              borderStyle: "solid",
-              color: "white",
-            }}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="username"
-            label="Username"
-            name="username"
-            autoComplete="username"
-            autoFocus
-            onChange={_onUserName}
-
-          />
-          <TextField
-            style={{
-              borderColor: "rgb(0,214,203)",
-              borderWidth: "5px",
-              borderStyle: "solid",
-            }}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            onChange={_onPassword}
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            
-          >
-            Sign In
-          </Button>
-          {wrongPasswordUsername ? <h6
-            className={
-              !!wrongPasswordUsername
-                ? "f-red f-small m-0"
-                : "f-background-color f-small m-0"
-            }
-          >
-            Your password and username do not match.
-          </h6>:
-          <h6
-            className={
-              !!wrongUsername
-                ? "f-red f-small m-0"
-                : "f-background-color f-small m-0"
-            }
-          >
-            Your username does not exist.
-          </h6>}
-          <Grid container>
-            <Grid item xs></Grid>
-            <Grid item></Grid>
-          </Grid>
-          <Box mt={5}>
-            <Copyright Text="2020 Smile Up Charitable Foundation is a 501(c)3 non-profit organization" />
-          </Box>
-        </form>
-      </div>
-    </Grid>
+      <h1 className="banner">Welcome to the SmileUp! Charitable Foundation!</h1>
+      <Grid item xs={false} sm={4} md={4} className={classes.image} />
+      <Grid className="signin">
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <form className={classes.form} onSubmit={_handleSubmit} noValidate>
+            <TextField
+              style={{
+                borderColor: "rgb(248,135,21)",
+                borderWidth: "5px",
+                borderStyle: "solid",
+                color: "white",
+                display: "flex",
+                maxWidth: "300px",
+                minWidth: "200px",
+                flexDirection: "column",
+                margin: "auto",
+                position: "relative",
+                bottomPadding: "38em",
+              }}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
+              autoFocus
+              onChange={_onUserName}
+            />
+            <TextField
+              style={{
+                borderColor: "rgb(0,214,203)",
+                borderWidth: "5px",
+                borderStyle: "solid",
+                maxWidth: "300px",
+                minWidth: "200px",
+                display: "flex",
+                flexDirection: "column",
+                margin: "auto",
+                position: "relative",
+              }}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              onChange={_onPassword}
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Sign In
+            </Button>
+            {wrongPasswordUsername ? (
+              <h6
+                className={
+                  !!wrongPasswordUsername
+                    ? "f-red f-small m-0"
+                    : "f-disappear f-small m-0"
+                }
+              >
+                Your password and username do not match.
+              </h6>
+            ) : (
+              <h6
+                className={
+                  !!wrongUsername
+                    ? "f-red f-small m-0"
+                    : "f-disappear f-small m-0"
+                }
+              >
+                Your username does not exist.
+              </h6>
+            )}
+            <Grid container>
+              <Grid item xs></Grid>
+              <Grid item></Grid>
+            </Grid>
+            <h6>
+              <Link to="/createaccount">
+                Need to create an account? Click here
+              </Link>
+            </h6>
+            <Box mt={5}>
+              <Copyright Text="2020 Smile Up Charitable Foundation is a 501(c)3 non-profit organization" />
+            </Box>
+          </form>
+        </div>
+      </Grid>
     </div>
-     );
-    }
+  );
+};
 
 export default LoginVolunteers;
-
-

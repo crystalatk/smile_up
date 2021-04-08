@@ -3,24 +3,27 @@ import FormControl from "@material-ui/core/FormControl";
 import Radio from "@material-ui/core/Radio";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormLabel from "@material-ui/core/FormLabel";
-import { Button, TextField, Select, InputLabel, MenuItem } from '@material-ui/core';
+import { TextField, Select, InputLabel, MenuItem } from '@material-ui/core';
 import { storage } from '../../../firebase/index';
 
-const AddDocument = ({userInfo}) => {
+const AddDocument = ({userInfo, reloadDocument, setReloadDocument}) => {
     const [eventList, setEventList] = useState([]);
     const [eventId, setEventId] = useState(null);
     const [isGeneral, setIsGeneral] = useState(null);
     const [documentTitle, setDocumentTitle] = useState("");
     const [documentFile, setDocumentFile] = useState(null);
+    const [isUploaded, setIsUploaded] = useState(false);
 
-    const handleFileChange = async (e) => {
-        if (e.target.files[0]) {
-            setDocumentFile(e.target.files[0]);
-        }
-    };
+
+  const handleFileChange = async (e) => {
+    if (e.target.files[0]) {
+      setDocumentFile(e.target.files[0]);
+    }
+  };
+
 
     const handleUpload = async () => { 
-        const uploadTask = storage.ref(`documents/${document.name}`).put(documentFile);
+        const uploadTask = storage.ref(`documents/${documentFile.name}`).put(documentFile);
         uploadTask.on(
             'state_changed',
             (snapshot) => {},
@@ -29,7 +32,7 @@ const AddDocument = ({userInfo}) => {
             () => {
                 storage
                     .ref('documents')
-                    .child(document.name)
+                    .child(documentFile.name)
                     .getDownloadURL()
                     .then(async function(url) {
                         const response = await fetch(
@@ -47,31 +50,36 @@ const AddDocument = ({userInfo}) => {
                             }
                         ).then((response) => response);
                         console.log('the response is ', response);
+                        setIsUploaded(true);
+                        setReloadDocument(!reloadDocument)
                     })
-                })
-            };
+                });
+    };
 
-            useEffect(() => {
-                const fetchList = async () => {
-                    const eventListResponse = await fetch(
-                        `http://127.0.0.1:3232/events/list`,
-                        {
-                            method: "GET",
-                            headers: { "Content-Type": "application/json" },
-                        }
-                    )
-                        .then((response) => response.json())
-                        .catch((e) => {
-                            console.log(e);
-                        });
-                    console.log("THIS IS THE EVENTS LIST RESPONSE: ", eventListResponse);
-                    setEventList(eventListResponse);
-                };
-                fetchList();
-            }, []);
+
+  useEffect(() => {
+    const fetchList = async () => {
+      const eventListResponse = await fetch(
+        `http://127.0.0.1:3232/events/list`,
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        }
+      )
+        .then((response) => response.json())
+        .catch((e) => {
+          console.log(e);
+        });
+      console.log("THIS IS THE EVENTS LIST RESPONSE: ", eventListResponse);
+      setEventList(eventListResponse);
+    };
+    fetchList();
+  }, []);
+
 
     return (
         <>
+            <h1>This is the AddDocument</h1>
             <form>
                 <FormControl component="fieldset">
                     <FormLabel component="legend">
@@ -86,19 +94,21 @@ const AddDocument = ({userInfo}) => {
                         <FormControlLabel value="true" control={<Radio />} label="General" checked={isGeneral}/>
                     </label>
                 </FormControl>
-                {isGeneral === false &&  (
-                    <InputLabel id="demo-simple-select-label">Which Event?
-                        <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={eventId}
-                        onChange={(e) => setEventId(e.target.value)} 
-                        defaultValue={null}
-                        >
-                        {eventList.map(event => <MenuItem value={event.id}>{event.title}</MenuItem>)}
-                        </Select>
-                    </InputLabel>
-                )}
+                <div>
+                    {isGeneral === false &&  (
+                        <InputLabel id="demo-simple-select-label">Which Event?
+                            <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={eventId}
+                            onChange={(e) => setEventId(e.target.value)} 
+                            defaultValue={null}
+                            >
+                            {eventList.map((event, index) => <MenuItem name={index} value={event.id}>{event.title}</MenuItem>)}
+                            </Select>
+                        </InputLabel>
+                    )}
+                </div>
                 <div>
                     <TextField
                         required
@@ -113,7 +123,7 @@ const AddDocument = ({userInfo}) => {
                 </div>
                 {!!documentTitle.length && (
                     <div>
-                    {!!documentFile ? (<button onClick={handleUpload}>Click to Upload</button>) : (<button
+                    {!!documentFile ? (<button onClick={handleUpload} type="button">Click to Upload</button>) : (<button
                         component="label"
                         >
                         Find Document to Upload
@@ -128,8 +138,10 @@ const AddDocument = ({userInfo}) => {
                 </div>
                 )}
             </form>
+            {isUploaded && <p>Your document was uploaded successfully!</p>}
         </>
     );
+
 };
 
 export default AddDocument;

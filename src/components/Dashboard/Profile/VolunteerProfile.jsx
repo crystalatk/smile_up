@@ -93,17 +93,34 @@ const VolunteerProfile = ({ userInfo }) => {
       {!!viewPage ? (
         <>
           {!!volunteerInfo?.id ? (
-            <>
-              <img src={volunteerInfo.avatar_link} alt={`${volunteerInfo.first_name} ${volunteerInfo.last_name}'s avatar`}/>
-              {(userInfo.is_guardian && userInfo.id === id) && <UploadAvatar id={id} 
-              reloadPhoto={reloadPhoto} setReloadPhoto={setReloadPhoto}/> }
-              {(userInfo.is_guardian && userInfo.id === guardianID) && <UploadAvatar id={id} 
-              reloadPhoto={reloadPhoto} setReloadPhoto={setReloadPhoto}/> }
+            <div className="profile-container">
+              <img
+                className="profile-avatar"
+                src={volunteerInfo.avatar_link}
+                alt={`${volunteerInfo.first_name} ${volunteerInfo.last_name}'s avatar`}
+              />
+              {userInfo.is_guardian && userInfo.id === id && (
+                <UploadAvatar
+                  id={id}
+                  reloadPhoto={reloadPhoto}
+                  setReloadPhoto={setReloadPhoto}
+                />
+              )}
+              {userInfo.is_guardian && userInfo.id === guardianID && (
+                <UploadAvatar
+                  id={id}
+                  reloadPhoto={reloadPhoto}
+                  setReloadPhoto={setReloadPhoto}
+                />
+              )}
               <h1>
                 {volunteerInfo.first_name} {volunteerInfo.last_name}
               </h1>
               {!!volunteerInfo.is_ambassador ? <h1>Badge Here</h1> : null}
-              <h6>Member since {volunteerInfo.date_joined}.</h6>
+              <h6>
+                Member since{" "}
+                {moment(volunteerInfo.date_joined).format("MMM DD, YYYY")}.
+              </h6>
               <h3>
                 Birthday:{" "}
                 {moment(volunteerInfo.date_of_birth).format("MMM DD, YYYY")}
@@ -127,14 +144,18 @@ const VolunteerProfile = ({ userInfo }) => {
                 </>
               )}
               {!!canEdit ? (
-                <Button
-                  onClick={() => history.push(`/profile/editprofile/${id}`)}
-                  variant="outlined"
-                >
-                  Edit
-                </Button>
+                <>
+                  <br />
+                  <Button
+                    color="primary"
+                    onClick={() => history.push(`/profile/editprofile/${id}`)}
+                    variant="contained"
+                  >
+                    Edit
+                  </Button>
+                </>
               ) : null}
-            </>
+            </div>
           ) : (
             <h1>Loading...</h1>
           )}
@@ -142,7 +163,7 @@ const VolunteerProfile = ({ userInfo }) => {
       ) : (
         <h1>You do not have access to this page.</h1>
       )}
-      <Button onClick={history.goBack} variant="outlined">
+      <Button color="primary" onClick={history.goBack} variant="contained">
         Back
       </Button>
     </>

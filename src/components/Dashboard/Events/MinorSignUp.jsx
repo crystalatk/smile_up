@@ -1,7 +1,8 @@
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Button from "@material-ui/core/Button";
 
 const MinorSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
   console.log("THIS IS THE USERINFO", userInfo);
@@ -33,7 +34,7 @@ const MinorSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
   };
 
   return (
-    <div>
+    <div className="m-20 b-background p-20">
       <h1>This is the Minor Sign Up</h1>
       <form onSubmit={_handleSubmit}>
         <>
@@ -49,16 +50,16 @@ const MinorSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
             }
             label="I would like to attend this event, please get approval from my guardian"
           />
-
-          <button
-            type="submit"
-            disabled={
-              !termsApproved &&
-              eventDetailsForEditPurposes.age_min > userInfo.age
-            }
-          >
-            Submit
-          </button>
+          <div className="m-5">
+            <Button
+              color="primary"
+              variant="contained"
+              type="submit"
+              disabled={!termsApproved}
+            >
+              Submit
+            </Button>
+          </div>
         </>
       </form>
     </div>

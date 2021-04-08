@@ -1,7 +1,8 @@
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 
 const GuardianSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
   const [minorData, setMinorData] = useState([]);
@@ -51,17 +52,13 @@ const GuardianSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
     getMinorData();
   }, [userInfo]);
 
-  useEffect(() => {
-    console.log("this is MINORDATA", minorData);
-    console.log("THESE ARE THE EVENT DETAILS: ", eventDetailsForEditPurposes);
-  }, [minorData]);
-
   return (
-    <div>
-      <h1>This is the Guardian Sign Up</h1>
+    <div className="sign-up-container">
+      <h1>Sign-up today to bring smiles to the community!</h1>
       {!!minorData.length ? (
         <form onSubmit={_handleSubmit}>
           <>
+            <h4>Minors to sign-up:</h4>
             {minorData.map((minor) => {
               return (
                 <>
@@ -84,7 +81,7 @@ const GuardianSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
                     className={
                       eventDetailsForEditPurposes.age_min > minor.age.years
                         ? "f-red f-small m-0"
-                        : "f-background-color f-small m-0"
+                        : "f-disappear f-small m-0"
                     }
                   >
                     This minor is not old enough to attend this event.
@@ -92,6 +89,7 @@ const GuardianSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
                 </>
               );
             })}
+            <h4>Please check the boxes below to acknowledge that you agree:</h4>
             <FormControlLabel
               control={
                 <Checkbox
@@ -116,10 +114,16 @@ const GuardianSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
               }
               label="I agree to provide supervision to any above minors under the age of 12"
             />
+            <br />
 
-            <button type="submit" disabled={!termsApproved}>
+            <Button
+              color="primary"
+              type="submit"
+              variant="contained"
+              disabled={!termsApproved}
+            >
               Submit
-            </button>
+            </Button>
           </>
         </form>
       ) : (

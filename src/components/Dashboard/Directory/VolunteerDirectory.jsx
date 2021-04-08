@@ -93,7 +93,7 @@ const VolunteerDirectory = ({ userInfo }) => {
                   tooltip: "Go to Volunteer Profile",
                   onClick: (event, rowData) => {
                     // console.log("THIS IS THE ROW DATA: ", rowData);
-                    history.push(`/profile/myprofile/${rowData.id}`);
+                    history.push(`/profile/adminview/${rowData.id}`);
                   },
                 },
                 {

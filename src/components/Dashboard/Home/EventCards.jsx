@@ -100,7 +100,7 @@ const EventCards = ({ userInfo, title }) => {
       };
       fetchList();
     }
-  }, [userInfo]);
+  }, [userInfo, title]);
 
   return (
     <>
@@ -122,7 +122,7 @@ const EventCards = ({ userInfo, title }) => {
                 <>
                   <img
                     src={event.avatar_link}
-                    alt={`${event.first_name}'s profile Image`}
+                    alt={`${event.first_name}'s profile`}
                     className="avatar-image-minor-card"
                   />
 

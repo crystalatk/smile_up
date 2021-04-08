@@ -16,8 +16,8 @@ const TotalSmiles = () => {
 
   return (
     <>
-      <h1>Total Volunteers</h1>
-      <h2>{totalSmiles}</h2>
+      <h1 className="snippet-header">Total Smiles Given</h1>
+      <h2 className="snippet-content">{totalSmiles}</h2>
     </>
   );
 };

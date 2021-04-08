@@ -45,7 +45,7 @@ const AdminNav = ({ userInfo }) => {
           component={Link}
           to="/addevent"
           selected={location.pathname === "/addevent"}
-          label="Add Event"
+          label="Add"
           value="addEvent"
           icon={<AddToPhotosIcon />}
         />
@@ -59,8 +59,8 @@ const AdminNav = ({ userInfo }) => {
         />
         <BottomNavigationAction
           component={Link}
-          to="/admindash"
-          selected={location.pathname === "/admindash"}
+          to="/"
+          selected={location.pathname === "/"}
           value="Dash"
           icon={smileI}
         />

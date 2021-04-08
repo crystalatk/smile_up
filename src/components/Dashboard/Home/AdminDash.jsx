@@ -1,5 +1,3 @@
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
 import TotalVolunteers from "./TotalVolunteers";
 import VolunteerHours from "./VolunteerHrs";
 import TotalSmiles from "./TotalSmiles";
@@ -7,20 +5,27 @@ import TotalEvents from "./TotalEvents";
 
 const AdminDash = ({ userInfo }) => {
   return (
-    <div>
-      <h1>Dash</h1>
-      <Container fixed>
-        <Typography
-          component="div"
-          style={{ backgroundColor: "rgb(250, 193, 135)", height: "74vh" }}
-        >
-          <h1>Info inside or component goes here</h1>
+    <div class="admin-dashboard-container">
+      <div class="welcome-message">
+        <h1>Welcome, {userInfo.first_name}!</h1>
+        <p>The world is wrong, let's right it,</p>
+        <p>The battle is hard, let's fight it.</p>
+        <p> - Beah Richards</p>
+      </div>
+      <div className="admin-card-container">
+        <div className="admin-inner-card">
           <TotalVolunteers userInfo={userInfo} />
+        </div>
+        <div className="admin-inner-card">
           <VolunteerHours userInfo={userInfo} />
+        </div>
+        <div className="admin-inner-card">
           <TotalSmiles />
+        </div>
+        <div className="admin-inner-card">
           <TotalEvents />
-        </Typography>
-      </Container>
+        </div>
+      </div>
     </div>
   );
 };
