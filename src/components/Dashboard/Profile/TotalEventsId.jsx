@@ -15,10 +15,14 @@ const TotalEventsId = ({ id }) => {
   }, [id]);
 
   return (
-    <>
-      <h1>Total Events</h1>
-      {!!eventId ? <h2>{eventId}</h2> : <h3>0</h3>}
-    </>
+    <div className="block">
+      <h1 className="m-0">Total Events</h1>
+      {!!eventId ? (
+        <h2 className="m-0">{eventId}</h2>
+      ) : (
+        <h3 className="m-0">0</h3>
+      )}
+    </div>
   );
 };
 

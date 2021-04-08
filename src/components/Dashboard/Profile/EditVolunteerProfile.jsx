@@ -125,98 +125,124 @@ const EditVolunteerProfile = ({ userInfo }) => {
       {!!viewPage ? (
         <>
           <div>
-            <h1>Edit Profile for {volunteerInfo.first_name}</h1>
+            <h1>Edit Information for {volunteerInfo.first_name}</h1>
             <form onSubmit={_handleSubmit}>
-              <label>
-                First Name
-                <input
-                  type="text"
-                  value={firstName}
-                  onChange={(e) =>
-                    setFirstName(e.target.value.replace(/‘/g, "''"))
-                  }
-                  required
-                />
-              </label>
-              <label>
-                Last Name
-                <input
-                  type="text"
-                  value={lastName}
-                  onChange={(e) =>
-                    setLastName(e.target.value.replace(/‘/g, "''"))
-                  }
-                  required
-                />
-              </label>
-              <label>
-                Date of Birth
-                <input
-                  type="date"
-                  value={dateOfBirth}
-                  onChange={(e) => setDateOfBirth(e.target.value)}
-                  required
-                />
-              </label>
-              <label>
-                Phone Number
-                <input
-                  type="text"
-                  value={phoneNumber}
-                  onChange={(e) =>
-                    setPhoneNumber(e.target.value.replace(/‘/g, "''"))
-                  }
-                  required
-                />
-              </label>
-              <label>
-                Email
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value.replace(/‘/g, "''"))}
-                  required
-                />
-              </label>
-              <label>
-                Zip Code
-                <input
-                  type="text"
-                  value={zipCode}
-                  onChange={(e) =>
-                    setZipCode(e.target.value.replace(/‘/g, "''"))
-                  }
-                  required
-                />
-              </label>
-              <label>
-                Emergency Contact Name (First & Last)
-                <input
-                  type="text"
-                  value={emergencyName}
-                  onChange={(e) =>
-                    setEmergencyName(e.target.value.replace(/‘/g, "''"))
-                  }
-                  required
-                />
-              </label>
-              <label>
-                Emergency Contact Phone Number
-                <input
-                  type="text"
-                  value={emergencyPhone}
-                  onChange={(e) =>
-                    setEmergencyPhone(e.target.value.replace(/‘/g, "''"))
-                  }
-                  required
-                />
-              </label>
-              <Button type="submit" variant="outlined">
-                Update Information
-              </Button>
-              <Button type="button" onClick={history.goBack} variant="outlined">
-                Back
-              </Button>
+              <div className="m-5">
+                <label>
+                  First Name
+                  <input
+                    type="text"
+                    value={firstName}
+                    onChange={(e) =>
+                      setFirstName(e.target.value.replace(/‘/g, "''"))
+                    }
+                    required
+                  />
+                </label>
+              </div>
+              <div className="m-5">
+                <label>
+                  Last Name
+                  <input
+                    type="text"
+                    value={lastName}
+                    onChange={(e) =>
+                      setLastName(e.target.value.replace(/‘/g, "''"))
+                    }
+                    required
+                  />
+                </label>
+              </div>
+              <div className="m-5">
+                <label>
+                  Date of Birth
+                  <input
+                    type="date"
+                    value={dateOfBirth}
+                    onChange={(e) => setDateOfBirth(e.target.value)}
+                    required
+                  />
+                </label>
+              </div>
+              <div className="m-5">
+                <label>
+                  Phone Number
+                  <input
+                    type="text"
+                    value={phoneNumber}
+                    onChange={(e) =>
+                      setPhoneNumber(e.target.value.replace(/‘/g, "''"))
+                    }
+                    required
+                  />
+                </label>
+              </div>
+              <div className="m-5">
+                <label>
+                  Email
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) =>
+                      setEmail(e.target.value.replace(/‘/g, "''"))
+                    }
+                    required
+                  />
+                </label>
+              </div>
+              <div className="m-5">
+                <label>
+                  Zip Code
+                  <input
+                    type="text"
+                    value={zipCode}
+                    onChange={(e) =>
+                      setZipCode(e.target.value.replace(/‘/g, "''"))
+                    }
+                    required
+                  />
+                </label>
+              </div>
+              <div className="m-5">
+                <label>
+                  Emergency Contact Name (First & Last)
+                  <input
+                    type="text"
+                    value={emergencyName}
+                    onChange={(e) =>
+                      setEmergencyName(e.target.value.replace(/‘/g, "''"))
+                    }
+                    required
+                  />
+                </label>
+              </div>
+              <div className="m-5">
+                <label>
+                  Emergency Contact Phone Number
+                  <input
+                    type="text"
+                    value={emergencyPhone}
+                    onChange={(e) =>
+                      setEmergencyPhone(e.target.value.replace(/‘/g, "''"))
+                    }
+                    required
+                  />
+                </label>
+              </div>
+              <div>
+                <Button type="submit" variant="contained" color="primary">
+                  Update Information
+                </Button>
+              </div>
+              <div className="m-5">
+                <Button
+                  type="button"
+                  onClick={history.goBack}
+                  variant="outlined"
+                >
+                  Back
+                </Button>
+              </div>
             </form>
           </div>
         </>

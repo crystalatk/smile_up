@@ -8,7 +8,7 @@ const NotificationIcon = ({
 }) => {
   useEffect(() => {
     setNumberOfApprovalsWaiting(0);
-  }, []);
+  }, [setNumberOfApprovalsWaiting]);
 
   return (
     <Badge badgeContent={numberOfApprovalsWaiting} color="primary">

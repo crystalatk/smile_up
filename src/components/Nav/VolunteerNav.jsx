@@ -48,11 +48,7 @@ const VolunteerNav = ({
     if (value === "notifications") {
       setNumberOfApprovalsWaiting(0);
     }
-  }, [value]);
-
-  useEffect(() => {
-    console.log(numberOfApprovalsWaiting);
-  }, [numberOfApprovalsWaiting]);
+  }, [value, setNumberOfApprovalsWaiting]);
 
   return (
     <AppBar position="fixed" color="primary" className={classes.appBar}>

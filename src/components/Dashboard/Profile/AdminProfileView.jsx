@@ -1,8 +1,7 @@
 import { useEffect, useState, forwardRef } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import MaterialTable from "material-table";
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
+import Button from "@material-ui/core/Button";
 import AddBox from "@material-ui/icons/AddBox";
 import ArrowDownward from "@material-ui/icons/ArrowDownward";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
@@ -67,12 +66,15 @@ const AdminProfileView = ({ userInfo }) => {
 
     fetchProfileData();
     fetchVolunteerEvents();
-  }, [userInfo]);
+  }, [userInfo, id]);
 
   return (
     <>
       {userInfo.is_admin && volunteerInfo.id ? (
-        <>
+        <div className="mt-10">
+          <Button variant="outlined" onClick={() => history.goBack()}>
+            Back
+          </Button>
           <div className="table" style={{ maxWidth: "100%" }}>
             <MaterialTable
               icons={tableIcons}
@@ -102,7 +104,7 @@ const AdminProfileView = ({ userInfo }) => {
                 updated: moment(volunteer.updated_at).format("MMM DD, YYYY"),
               }))}
               title={`${volunteerInfo.first_name}'s Info`}
-              options={{ pageSize: 1 }}
+              options={{ paging: false, search: false }}
               actions={[
                 {
                   icon: Edit,
@@ -115,6 +117,7 @@ const AdminProfileView = ({ userInfo }) => {
               ]}
             />
           </div>
+
           <div className="table" style={{ maxWidth: "100%" }}>
             <MaterialTable
               icons={tableIcons}
@@ -148,7 +151,7 @@ const AdminProfileView = ({ userInfo }) => {
               options={{ pageSize: 5 }}
             />
           </div>
-        </>
+        </div>
       ) : (
         <h1>You must be an admin to access this page.</h1>
       )}
