@@ -4,7 +4,19 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 import smilelg from "../../images/smilelg.gif";
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"©"}
+      {new Date().getFullYear()} Smile Up Charitable Foundation is a 501(c)3
+      non-profit organization
+    </Typography>
+  );
+}
 
 const HomeNav = ({ userInfo }) => {
   const useStyles = makeStyles({
@@ -45,6 +57,7 @@ const HomeNav = ({ userInfo }) => {
           icon={smileI}
         />
       </BottomNavigation>
+      <Copyright />
     </AppBar>
   );
 };

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -19,36 +20,38 @@ const useStyles = makeStyles({
 const Donate = () => {
   const classes = useStyles();
   return (
-    <>
-      <h1>Donate Today!</h1>
-      <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" />
-      {/* PayPal */}
-      <Card className={classes.root}>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg"
-            title="PayPal"
+    <div className="donate-card-container">
+      <div className="card-header">
+        <h1 className=" f-med-teal m-5">Donate Today!</h1>
+      </div>
+      <div className="admin-inner-card">
+        <Link to="https://www.paypal.com/us/fundraiser/charity/1851712">
+          <img
+            src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg"
+            alt="PayPal"
           />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              PayPal
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              BlahBlah
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Donate Now!
-          </Button>
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
-        </CardActions>
-      </Card>
-    </>
+        </Link>
+      </div>
+      <div className="admin-inner-card center">
+        <Link to="https://venmo.com/smileup">
+          <img src="./images/venmo.png" alt="Venmo" className="venmo-logo" />
+        </Link>
+      </div>
+      <div className="admin-inner-card center">
+        <Link to="https://smile.amazon.com/gp/chpf/homepage?orig=%2F">
+          <img src="./images/amazon.png" alt="Amazon" className="venmo-logo" />
+        </Link>
+      </div>
+      <div className="admin-inner-card center">
+        <Link to="https://www.mightycause.com/organization/Smileup">
+          <img
+            src="./images/mighty.png"
+            alt="MightyCause"
+            className="venmo-logo"
+          />
+        </Link>
+      </div>
+    </div>
   );
 };
 

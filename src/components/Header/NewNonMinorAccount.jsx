@@ -291,9 +291,7 @@ const NewNonMinorAccount = () => {
           </FormControl>
           <h6
             className={
-              !!passwordsMatch
-                ? "f-background-color f-small m-0"
-                : "f-red f-small m-0"
+              !!passwordsMatch ? "f-disappear f-small m-0" : "f-red f-small m-0"
             }
           >
             Your passwords do not match

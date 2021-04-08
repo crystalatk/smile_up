@@ -6,6 +6,7 @@
   --background: rgb(251, 247, 243);
   --background-med: rgb(218, 230, 230);
   --accent-orange: rgb(250, 191, 133);
+  --accent-light-orange: rgb(248, 206, 164);
   --accent-dark-orange: rgb(170, 86, 2);
   --accent-teal: rgb(0, 214, 203);
   --accent-med-teal: rgb(1, 150, 142);
@@ -26,11 +27,22 @@
 * {
   box-sizing: border-box;
 }
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+#root {
+  min-height: 100vh;
+}
 
 html,
 body {
   font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: var(--accent-orange);
 }
 
 html {
@@ -58,8 +70,9 @@ body {
   min-height: 2130px;
   background-image: url("./images/smile2.jfif");
   background-size: cover;
-  background-position: center;
+  background-position: center; 
   margin: auto;
+
 }
 
 .signin {
@@ -110,6 +123,10 @@ input {
 
 .label {
   margin: 5px auto;
+}
+
+.venmo-logo {
+  max-width: 177.17px;
 }
 
 .create-account {
@@ -215,6 +232,9 @@ input {
 .b-background {
   background-color: var(--background);
 }
+.b-background {
+  background-color: var(--background);
+}
 
 .inline {
   display: inline;
@@ -225,6 +245,10 @@ input {
 }
 .block {
   display: block;
+}
+.center {
+  align-items: center;
+  justify-content: center;
 }
 
 h1 {
@@ -331,6 +355,16 @@ h2 {
   border: 2px solid var(--accent-teal);
   border-radius: 20px 10px;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px;
+  padding: 20px 10px;
+}
+.donate-card-container {
+  background-color: var(--background-med);
+  border: 2px solid var(--accent-teal);
+  border-radius: 20px 10px;
+  display: block;
   flex-wrap: wrap;
   justify-content: center;
   margin: 10px;
