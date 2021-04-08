@@ -129,7 +129,7 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
   useEffect(() => {
     if (event && volunteersSignedUp !== "") {
       const mathNumSpotsRemaining =
-        event.max_participants - volunteersSignedUp.length;
+        event.max_participants - volunteersSignedUp?.length;
       setSpotsRemaining(mathNumSpotsRemaining);
     }
   }, [event, volunteersSignedUp]);
