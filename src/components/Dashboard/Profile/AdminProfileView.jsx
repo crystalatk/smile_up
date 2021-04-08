@@ -73,7 +73,7 @@ const AdminProfileView = ({ userInfo }) => {
     <>
       {userInfo.is_admin && volunteerInfo.id ? (
         <>
-          <div style={{ maxWidth: "100%" }}>
+          <div className="table" style={{ maxWidth: "100%" }}>
             <MaterialTable
               icons={tableIcons}
               columns={[
@@ -115,7 +115,7 @@ const AdminProfileView = ({ userInfo }) => {
               ]}
             />
           </div>
-          <div style={{ maxWidth: "100%" }}>
+          <div className="table" style={{ maxWidth: "100%" }}>
             <MaterialTable
               icons={tableIcons}
               columns={[
@@ -145,7 +145,7 @@ const AdminProfileView = ({ userInfo }) => {
                   : "N/A",
               }))}
               title={`Events that ${volunteerInfo.first_name} has signed up to attend:`}
-              options={{ pageSize: 20 }}
+              options={{ pageSize: 5 }}
             />
           </div>
         </>
