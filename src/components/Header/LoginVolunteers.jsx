@@ -1,7 +1,6 @@
 import { useState } from "react";
-import {  Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
-import Fab from "@material-ui/core/Fab";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
@@ -9,7 +8,6 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import Paper from "@material-ui/core/Paper";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 function Copyright() {
@@ -204,14 +202,13 @@ const LoginVolunteers = ({ setUserInfo }) => {
               <Grid item></Grid>
             </Grid>
             <h6>
-            <Link to="/createaccount">
-              Need to create an account? Click here
-            </Link>
-          </h6>
+              <Link to="/createaccount">
+                Need to create an account? Click here
+              </Link>
+            </h6>
             <Box mt={5}>
               <Copyright Text="2020 Smile Up Charitable Foundation is a 501(c)3 non-profit organization" />
             </Box>
-        
           </form>
         </div>
       </Grid>

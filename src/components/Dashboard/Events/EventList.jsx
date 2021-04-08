@@ -117,7 +117,7 @@ const EventList = () => {
             const startTime = event.date_start;
             console.log(startTime);
             const stopTime = event.date_stop;
-            const diff = moment(stopTime) - moment(startTime);
+
             return (
               <div key={event.id}>
                 <>

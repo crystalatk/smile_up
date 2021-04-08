@@ -14,11 +14,13 @@ const AddDocument = ({userInfo, reloadDocument, setReloadDocument}) => {
     const [documentFile, setDocumentFile] = useState(null);
     const [isUploaded, setIsUploaded] = useState(false);
 
-    const handleFileChange = async (e) => {
-        if (e.target.files[0]) {
-            setDocumentFile(e.target.files[0]);
-        }
-    };
+
+  const handleFileChange = async (e) => {
+    if (e.target.files[0]) {
+      setDocumentFile(e.target.files[0]);
+    }
+  };
+
 
     const handleUpload = async () => { 
         const uploadTask = storage.ref(`documents/${documentFile.name}`).put(documentFile);
@@ -54,24 +56,26 @@ const AddDocument = ({userInfo, reloadDocument, setReloadDocument}) => {
                 });
     };
 
-    useEffect(() => {
-        const fetchList = async () => {
-            const eventListResponse = await fetch(
-                `http://127.0.0.1:3232/events/list`,
-                {
-                    method: "GET",
-                    headers: { "Content-Type": "application/json" },
-                }
-            )
-                .then((response) => response.json())
-                .catch((e) => {
-                    console.log(e);
-                });
-            console.log("THIS IS THE EVENTS LIST RESPONSE: ", eventListResponse);
-            setEventList(eventListResponse);
-        };
-        fetchList();
-    }, []);
+
+  useEffect(() => {
+    const fetchList = async () => {
+      const eventListResponse = await fetch(
+        `http://127.0.0.1:3232/events/list`,
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        }
+      )
+        .then((response) => response.json())
+        .catch((e) => {
+          console.log(e);
+        });
+      console.log("THIS IS THE EVENTS LIST RESPONSE: ", eventListResponse);
+      setEventList(eventListResponse);
+    };
+    fetchList();
+  }, []);
+
 
     return (
         <>
@@ -137,6 +141,7 @@ const AddDocument = ({userInfo, reloadDocument, setReloadDocument}) => {
             {isUploaded && <p>Your document was uploaded successfully!</p>}
         </>
     );
+
 };
 
 export default AddDocument;

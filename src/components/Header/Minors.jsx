@@ -26,10 +26,10 @@ const Minors = ({ userInfo }) => {
         <h4 className="f-med-teal m-5">My Minors</h4>
         {minorData?.map((minor) => {
           return (
-            <div className="avatar-container-minor">
+            <div key={minor.id} className="avatar-container-minor">
               <img
                 src={minor.avatar_link}
-                alt={`${minor.first_name}'s profile Image`}
+                alt={`${minor.first_name}'s profile`}
                 className="avatar-image-minor"
                 onClick={() => history.push(`/profile/myprofile/${minor.id}`)}
               />
