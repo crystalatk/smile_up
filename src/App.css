@@ -353,6 +353,16 @@ h2 {
   padding: 10px;
 }
 
+/* Profile Styling */
+.profile-container {
+  margin: 20px;
+  padding: 10px;
+}
+.profile-avatar {
+  border-radius: 50%;
+  width: 200px;
+}
+
 .menu-bar {
   display: flex;
   /* flex-shrink: 3; */
