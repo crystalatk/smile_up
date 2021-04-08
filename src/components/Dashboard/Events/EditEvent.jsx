@@ -108,144 +108,173 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
     <>
       <h1>This is the EditEvent</h1>
       <form onSubmit={_handleSubmit}>
-        <label>
-          Event Title
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => {
-              setTitle(e.target.value.replace(/‘/g, "''"));
-            }}
-            required
-          />
-        </label>
-        <label>
-          Event Start:
-          <DatePicker
-            selected={dateStart}
-            onChange={(date) => setDateStart(date)}
-            showTimeSelect
-            timeIntervals={15}
-            timeCaption="Time"
-            dateFormat="MMMM d, yyyy h:mm aa"
-            shouldCloseOnSelect={true}
-            filterTime={filterPassedTime}
-            required
-          />
-        </label>
-        <label>
-          Event End:
-          <DatePicker
-            selected={!!dateStop ? dateStop : dateStart}
-            onChange={(date) => setDateStop(date)}
-            showTimeSelect
-            timeIntervals={15}
-            timeCaption="Time"
-            dateFormat="MMMM d, yyyy h:mm aa"
-            shouldCloseOnSelect={true}
-            filterTime={filterPassedTime}
-            required
-          />
-        </label>
-        <label>
-          Event Location
-          <input
-            type="text"
-            value={location}
-            onChange={(e) => setLocation(e.target.value.replace(/‘/g, "''"))}
-            required
-          />
-        </label>
-        <label>
-          Event Description
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value.replace(/‘/g, "''"))}
-            required
-          />
-        </label>
-        <label>
-          Total Smiles we will give
-          <input
-            type="text"
-            value={headcountServedPotential}
-            onChange={(e) =>
-              setHeadcountServedPotential(e.target.value.replace(/‘/g, "''"))
-            }
-            required
-          />
-        </label>
-        <label>
-          Minimum Age
-          <input
-            type="text"
-            value={ageMin}
-            onChange={(e) => setAgeMin(e.target.value.replace(/‘/g, "''"))}
-            required
-          />
-        </label>
-        <label>
-          Minimum Participants
-          <input
-            type="text"
-            value={minParticipants}
-            onChange={(e) =>
-              setMinParticipants(e.target.value.replace(/‘/g, "''"))
-            }
-            required
-          />
-        </label>
-        <label>
-          Maximum Participants
-          <input
-            type="text"
-            value={maxParticipants}
-            onChange={(e) =>
-              setMaxParticipants(e.target.value.replace(/‘/g, "''"))
-            }
-            required
-          />
-        </label>
-        <label>
-          Adults Needed
-          <input
-            type="checkbox"
-            onChange={_handleAdultsNeeded}
-            checked={isChecked}
-          />
-        </label>
-        {!!adultsNeeded ? (
+        <div>
           <label>
-            Number of Adults Needed
+            Event Title
             <input
               type="text"
-              value={numAdults}
-              onChange={(e) => setNumAdults(e.target.value.replace(/‘/g, "''"))}
+              value={title}
+              onChange={(e) => {
+                setTitle(e.target.value.replace(/‘/g, "''"));
+              }}
+              required
             />
           </label>
+        </div>
+        <div>
+          <label>
+            Event Start:
+            <DatePicker
+              selected={dateStart}
+              onChange={(date) => setDateStart(date)}
+              showTimeSelect
+              timeIntervals={15}
+              timeCaption="Time"
+              dateFormat="MMMM d, yyyy h:mm aa"
+              shouldCloseOnSelect={true}
+              filterTime={filterPassedTime}
+              required
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Event End:
+            <DatePicker
+              selected={!!dateStop ? dateStop : dateStart}
+              onChange={(date) => setDateStop(date)}
+              showTimeSelect
+              timeIntervals={15}
+              timeCaption="Time"
+              dateFormat="MMMM d, yyyy h:mm aa"
+              shouldCloseOnSelect={true}
+              filterTime={filterPassedTime}
+              required
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Event Location
+            <input
+              type="text"
+              value={location}
+              onChange={(e) => setLocation(e.target.value.replace(/‘/g, "''"))}
+              required
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Event Description
+            <textarea
+              value={description}
+              onChange={(e) =>
+                setDescription(e.target.value.replace(/‘/g, "''"))
+              }
+              required
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Total Smiles we will give
+            <input
+              type="text"
+              value={headcountServedPotential}
+              onChange={(e) =>
+                setHeadcountServedPotential(e.target.value.replace(/‘/g, "''"))
+              }
+              required
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Minimum Age
+            <input
+              type="text"
+              value={ageMin}
+              onChange={(e) => setAgeMin(e.target.value.replace(/‘/g, "''"))}
+              required
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Minimum Participants
+            <input
+              type="text"
+              value={minParticipants}
+              onChange={(e) =>
+                setMinParticipants(e.target.value.replace(/‘/g, "''"))
+              }
+              required
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Maximum Participants
+            <input
+              type="text"
+              value={maxParticipants}
+              onChange={(e) =>
+                setMaxParticipants(e.target.value.replace(/‘/g, "''"))
+              }
+              required
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Adults Needed
+            <input
+              type="checkbox"
+              onChange={_handleAdultsNeeded}
+              checked={isChecked}
+            />
+          </label>
+        </div>
+        {!!adultsNeeded ? (
+          <div>
+            <label>
+              Number of Adults Needed
+              <input
+                type="text"
+                value={numAdults}
+                onChange={(e) =>
+                  setNumAdults(e.target.value.replace(/‘/g, "''"))
+                }
+              />
+            </label>
+          </div>
         ) : null}
-
-        <label>
-          Alerts:
-          <textarea
-            value={alerts}
-            onChange={(e) => setAlerts(e.target.value.replace(/‘/g, "''"))}
-          />
-        </label>
-        <label>
-          Sign-up Deadline:
-          <DatePicker
-            selected={!!signupDeadline ? signupDeadline : dateStart}
-            onChange={
-              (date) => setSignupDeadline(date)
-              // console.log(`${moment(date).format("YYYY-MM-DD")} 00:00:00`)
-            }
-            showMonthDropdown
-            shouldCloseOnSelect={true}
-            filterTime={filterPassedTime}
-            required
-          />
-        </label>
+        <div>
+          <label>
+            Alerts:
+            <textarea
+              value={alerts}
+              onChange={(e) => setAlerts(e.target.value.replace(/‘/g, "''"))}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Sign-up Deadline:
+            <DatePicker
+              selected={!!signupDeadline ? signupDeadline : dateStart}
+              onChange={
+                (date) => setSignupDeadline(date)
+                // console.log(`${moment(date).format("YYYY-MM-DD")} 00:00:00`)
+              }
+              showMonthDropdown
+              shouldCloseOnSelect={true}
+              filterTime={filterPassedTime}
+              required
+            />
+          </label>
+        </div>
         <Button type="submit" variant="outlined">
           Update my Event
         </Button>
