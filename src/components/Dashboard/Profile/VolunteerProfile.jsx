@@ -147,8 +147,9 @@ const VolunteerProfile = ({ userInfo }) => {
                 <>
                   <br />
                   <Button
+                    color="primary"
                     onClick={() => history.push(`/profile/editprofile/${id}`)}
-                    variant="outlined"
+                    variant="contained"
                   >
                     Edit
                   </Button>
@@ -162,7 +163,7 @@ const VolunteerProfile = ({ userInfo }) => {
       ) : (
         <h1>You do not have access to this page.</h1>
       )}
-      <Button onClick={history.goBack} variant="outlined">
+      <Button color="primary" onClick={history.goBack} variant="contained">
         Back
       </Button>
     </>

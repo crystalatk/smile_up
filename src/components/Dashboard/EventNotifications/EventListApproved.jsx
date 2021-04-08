@@ -6,6 +6,7 @@ import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 
 const useStyles = makeStyles((theme) => ({
   button: {
+    fontSize: "8px",
     margin: theme.spacing(1),
   },
 }));
@@ -104,12 +105,12 @@ const EventListApproved = ({ userInfo }) => {
 
                 {userInfo.is_guardian && (
                   <div>
-                    <h3 className="f-poppins">
+                    <h3 className="f-poppins fs-14">
                       {event.first_name} has been approved to attend this event.
                     </h3>
                     <Button
-                      variant="contained"
                       color="secondary"
+                      variant="contained"
                       className={classes.button}
                       startIcon={<ThumbDownIcon />}
                       onClick={() => _handleRemoveButton(event.id)}
