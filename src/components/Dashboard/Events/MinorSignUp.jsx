@@ -55,10 +55,7 @@ const MinorSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
               color="primary"
               variant="contained"
               type="submit"
-              disabled={
-                !termsApproved &&
-                eventDetailsForEditPurposes.age_min > userInfo.age
-              }
+              disabled={!termsApproved}
             >
               Submit
             </Button>
