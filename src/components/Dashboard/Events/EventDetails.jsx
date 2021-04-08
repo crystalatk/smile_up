@@ -82,7 +82,7 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
   const [documentArray, setDocumentArray] = useState([]);
   const history = useHistory();
   const eventDocsArray = (eventId) =>
-    documentArray.filter((doc) => doc.event_id === eventId);
+    documentArray?.filter((doc) => doc.event_id === eventId);
   const classes = useStyles();
 
   const _onSignUpClick = (e) => {
@@ -198,7 +198,7 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
                   </ListItem>
                 </CardContent>
                 <h3>Document(s):</h3>
-                {!!eventDocsArray(event.id).length ? (
+                {!!eventDocsArray(event.id)?.length ? (
                   eventDocsArray(event.id).map((doc, index) => (
                     <a
                       href={doc.document_url}
@@ -279,11 +279,11 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
                   <>
                     <h1>Number of Volunteers Signed up</h1>
                     <h1>
-                      {volunteersSignedUp.length} signed up/
+                      {volunteersSignedUp?.length} signed up/
                       {event.min_participants} needed
                     </h1>
                     <h1>
-                      {volunteersSignedUp.length} signed up/
+                      {volunteersSignedUp?.length} signed up/
                       {event.max_participants} max
                     </h1>
                     <Button
