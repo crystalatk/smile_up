@@ -104,7 +104,7 @@ const AdminProfileView = ({ userInfo }) => {
                 updated: moment(volunteer.updated_at).format("MMM DD, YYYY"),
               }))}
               title={`${volunteerInfo.first_name}'s Info`}
-              options={{ paging: false }}
+              options={{ paging: false, search: false }}
               actions={[
                 {
                   icon: Edit,
