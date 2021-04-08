@@ -195,7 +195,8 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
             Minimum Age
             <input
               type="number"
-              max="1000"
+              min="5"
+              max="18"
               value={ageMin}
               onChange={(e) => setAgeMin(e.target.value.replace(/‘/g, "''"))}
               required
