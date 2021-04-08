@@ -118,8 +118,8 @@ const VolunteerProfile = ({ userInfo }) => {
               </h1>
               {!!volunteerInfo.is_ambassador ? <h1>Badge Here</h1> : null}
               <h6>
-                Member since{" "}
-                {moment(volunteerInfo.date_joined).format("MMM DD, YYYY")}.
+                Member Since{" "}
+                {moment(volunteerInfo.date_joined).format("MMM DD, YYYY")}
               </h6>
               <h3>
                 Birthday:{" "}

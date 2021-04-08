@@ -2,24 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"©"}
-      2020 Smile Up Charitable Foundation is a 501(c)3 non-profit organization
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -206,9 +194,6 @@ const LoginVolunteers = ({ setUserInfo }) => {
                 Need to create an account? Click here
               </Link>
             </h6>
-            <Box mt={5}>
-              <Copyright Text="2020 Smile Up Charitable Foundation is a 501(c)3 non-profit organization" />
-            </Box>
           </form>
         </div>
       </Grid>
