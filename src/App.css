@@ -43,6 +43,7 @@ body {
   margin-top: 0;
 }
 
+
 .App {
   text-align: center;
   background-image: url("./images/smile2.jfif");
@@ -53,6 +54,13 @@ body {
   position: relative;
   overflow: hidden;
 }
+
+.signin{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
 .App-user {
   text-align: center;
   background-color: var(--accent-orange);

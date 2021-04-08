@@ -13,32 +13,7 @@ import s8 from "../../../images/s8.jpg";
 import s9 from "../../../images/s9.jpg";
 import s10 from "../../../images/s10.jpg";
 
-// const images = [s4, s5, s6, s7, s8, s9, s10];
 
-// const zoomOutProperties = {
-//   duration: 1000,
-//   transitionDuration: 500,
-//   infinite: true,
-//   indicators: true,
-//   scale: 1,
-//   arrows: true,
-// };
-// const Slideshow = () => {
-//   return (
-//     <div className="slide-container">
-//       <Zoom {...zoomOutProperties}>
-//         {images.map((each, index) => (
-//           <img
-//             key={index}
-//             style={{ width: "100%", height: "60%" }}
-//             src={each}
-//             alt="Images of Volunteers at Events"
-//           />
-//         ))}
-//       </Zoom>
-//     </div>
-//   );
-// };
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: "100vh",
@@ -88,9 +63,7 @@ export default function HomeLogin({ setUserInfo }) {
         }}
       >
         <h2>
-          We envision a world where young people are leading the charge in
-          volunteerism through awareness, advocacy and action. Our mission is to
-          be a conduit through which they can accomplish this.
+          
         </h2>
       </Box> */}
       {/* <Box
