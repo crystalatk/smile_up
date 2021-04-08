@@ -19,10 +19,10 @@ const VolunteerHrsById = ({ id }) => {
   }, [id]);
 
   return (
-    <>
-      <h1>Total Hours </h1>
-      {!!vhid ? <h2>{vhid}</h2> : <h3>0</h3>}
-    </>
+    <div className="block">
+      <h1 className="m-0">Total Hours </h1>
+      {!!vhid ? <h2 className="m-0">{vhid}</h2> : <h3 className="m-0">0</h3>}
+    </div>
   );
 };
 

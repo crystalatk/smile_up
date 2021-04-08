@@ -1,9 +1,8 @@
-
 import Welcome from "./Welcome";
-import LoginVolunteers from "./LoginVolunteers";
-import LogoutButton from "./LogoutButton"
+import LogoutButton from "./LogoutButton";
+import TotalEventsId from "../Dashboard/Profile/TotalEventsId";
+import VolunteerHrsById from "../Dashboard/Profile/VolunteerHrsById";
 import Minors from "./Minors";
-import smilelg from "../../images/smilelg.gif";
 
 const Header = ({ userInfo, setUserInfo }) => {
   return (
@@ -11,6 +10,16 @@ const Header = ({ userInfo, setUserInfo }) => {
       {!!userInfo.isLoggedIn && (
         <div className="header-container">
           <Welcome userInfo={userInfo} />
+          {userInfo.is_minor && (
+            <div className="">
+              <div className="f-poppins f-small flex">
+                <TotalEventsId />
+              </div>
+              <div className="f-poppins f-small flex">
+                <VolunteerHrsById />
+              </div>
+            </div>
+          )}
           <div className="middle-items-container">
             <img src="/images/smilelg.gif" className="header-logo" />
             <br />

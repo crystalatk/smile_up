@@ -1,5 +1,4 @@
-import { Route, Link } from "react-router-dom";
-import HomeLogin from "./Home/HomeLogin";
+import { Route } from "react-router-dom";
 import GuardianDash from "./Home/GuardianDash";
 import AdminDash from "./Home/AdminDash";
 import AdminDir from "./Directory/AdminDir";

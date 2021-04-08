@@ -346,6 +346,18 @@ h2 {
   padding: 7px;
   min-width: 300px;
 }
+.admin-inner-card-snippet {
+  background-color: var(--background);
+  border: 2px solid var(--accent-teal);
+  font-family: var(--bold-font);
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+  padding: 7px;
+  min-width: 150px;
+}
 
 .snippet-header {
   color: var(--accent-med-teal);
