@@ -24,12 +24,14 @@ const useStyles = makeStyles((theme) => ({
     width: "100vw",
     overflow: "hidden",
     backgroundPosition: "center",
+    
   },
   paper: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     backgroundColor: "rgb(255,255,255,0.7)",
+    width: '350px',
   },
   avatar: {
     margin: theme.spacing(1),
