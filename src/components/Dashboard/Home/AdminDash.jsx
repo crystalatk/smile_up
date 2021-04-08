@@ -1,5 +1,3 @@
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
 import TotalVolunteers from "./TotalVolunteers";
 import VolunteerHours from "./VolunteerHrs";
 import TotalSmiles from "./TotalSmiles";

@@ -66,7 +66,7 @@ const AdminProfileView = ({ userInfo }) => {
 
     fetchProfileData();
     fetchVolunteerEvents();
-  }, [userInfo]);
+  }, [userInfo, id]);
 
   return (
     <>

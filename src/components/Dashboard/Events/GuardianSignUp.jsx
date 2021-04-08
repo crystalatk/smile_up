@@ -52,11 +52,6 @@ const GuardianSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
     getMinorData();
   }, [userInfo]);
 
-  useEffect(() => {
-    console.log("this is MINORDATA", minorData);
-    console.log("THESE ARE THE EVENT DETAILS: ", eventDetailsForEditPurposes);
-  }, [minorData]);
-
   return (
     <div className="sign-up-container">
       <h1>Sign-up today to bring smiles to the community!</h1>

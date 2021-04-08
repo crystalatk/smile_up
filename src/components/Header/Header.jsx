@@ -21,7 +21,11 @@ const Header = ({ userInfo, setUserInfo }) => {
             </div>
           )}
           <div className="middle-items-container">
-            <img src="/images/smilelg.gif" className="header-logo" />
+            <img
+              src="/images/smilelg.gif"
+              alt="SMileUp"
+              className="header-logo"
+            />
             <br />
             <LogoutButton setUserInfo={setUserInfo} />
           </div>

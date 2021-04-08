@@ -8,7 +8,7 @@ const Welcome = ({ userInfo }) => {
       <div className="avatar-container">
         <img
           src={userInfo.avatar_link}
-          alt={`${userInfo.first_name}'s profile Image`}
+          alt={`${userInfo.first_name}'s profile`}
           className="avatar-image"
           onClick={() => history.push(`/profile/myprofile/${userInfo.id}`)}
         />
