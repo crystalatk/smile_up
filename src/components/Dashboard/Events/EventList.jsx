@@ -75,6 +75,7 @@ const useStyles = makeStyles((theme) => ({
 
 const EventList = () => {
   const [eventList, setEventList] = useState();
+  const classes = useStyles();
 
   useEffect(() => {
     console.log();
@@ -95,8 +96,6 @@ const EventList = () => {
     };
     fetchList();
   }, []);
-
-  const classes = useStyles();
 
   return (
     <>
