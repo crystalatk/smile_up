@@ -41,8 +41,8 @@ body {
   justify-content: center;
   align-items: center;
   margin-top: 0;
+  padding: 10px;
 }
-
 
 .App {
   text-align: center;
@@ -55,7 +55,7 @@ body {
   overflow: hidden;
 }
 
-.signin{
+.signin {
   display: flex;
   justify-content: center;
   align-items: flex-end;
