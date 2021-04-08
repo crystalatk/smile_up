@@ -9,8 +9,7 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 645,
     background: 'rgba(0,0,0,0.7)',
-    backgroundHeight: '100'
-
+    
   },
   media: {
     height: 465,
