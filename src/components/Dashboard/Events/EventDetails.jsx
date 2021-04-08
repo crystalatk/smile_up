@@ -9,7 +9,9 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
   const [event, setEvent] = useState();
   const [volunteersSignedUp, setVolunteersSignedUp] = useState([]);
   const [spotsRemaining, setSpotsRemaining] = useState("");
+  const [documentArray, setDocumentArray] = useState([]);
   const history = useHistory();
+  const eventDocsArray = (eventId) => documentArray.filter(doc => doc.event_id === eventId);
 
   const _onSignUpClick = (e) => {
     e.preventDefault();
@@ -60,6 +62,26 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
     }
   }, [event, volunteersSignedUp]);
 
+  useEffect(() => {
+    console.log();
+    const fetchList = async () => {
+        const documentListResponse = await fetch(
+            `http://127.0.0.1:3232/events/getdocuments`,
+            {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+            }
+        )
+            .then((response) => response.json())
+            .catch((e) => {
+            console.log(e);
+            });
+        console.log("THIS IS THE DOCUMENT LIST RESPONSE: ", documentListResponse);
+        setDocumentArray(documentListResponse);
+    };
+    fetchList();
+  }, []);
+
   return (
     <>
       {!!event ? (
@@ -81,6 +103,13 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
           ) : null}
           <h3>Details:</h3>
           <p>{event.description}</p>
+          <h3>Document(s):</h3>
+            {!!eventDocsArray(event.id).length ?
+              (eventDocsArray(event.id).map((doc, index) => (
+                <a href={doc.document_url} target="_blank" rel="noreferrer" key={index}>{doc.document_title}</a>
+              ))) : <p>None</p>
+            }
+          <br/>
           <h3>
             Signup Deadline: {moment(event.signup_deadline).format("MMMM DD")}
           </h3>
@@ -111,7 +140,6 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
               ) : (
                 <h3>You are already signed up for this event!</h3>
               )}
-
               <Button variant="outlined" onClick={() => history.goBack()}>
                 Back
               </Button>
