@@ -238,9 +238,11 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
                 </CardContent>
                 {!!userInfo.isLoggedIn ? (
                   <>
-                    {!volunteersSignedUp?.some(
-                      (volunteer) => volunteer.volunteer_id === userInfo.id
-                    ) ? (
+                    {new Date() > new Date(event.signup_deadline) ? (
+                      <h3>The sign-up deadline for this event has passed.</h3>
+                    ) : !volunteersSignedUp?.some(
+                        (volunteer) => volunteer.volunteer_id === userInfo.id
+                      ) ? (
                       <>
                         <Button
                           variant="outlined"

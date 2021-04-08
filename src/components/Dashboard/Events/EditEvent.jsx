@@ -180,7 +180,8 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
           <label>
             Total Smiles we will give
             <input
-              type="text"
+              type="number"
+              max="1000"
               value={headcountServedPotential}
               onChange={(e) =>
                 setHeadcountServedPotential(e.target.value.replace(/‘/g, "''"))
@@ -193,7 +194,8 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
           <label>
             Minimum Age
             <input
-              type="text"
+              type="number"
+              max="1000"
               value={ageMin}
               onChange={(e) => setAgeMin(e.target.value.replace(/‘/g, "''"))}
               required
@@ -204,7 +206,8 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
           <label>
             Minimum Participants
             <input
-              type="text"
+              type="number"
+              max="1000"
               value={minParticipants}
               onChange={(e) =>
                 setMinParticipants(e.target.value.replace(/‘/g, "''"))
@@ -217,7 +220,8 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
           <label>
             Maximum Participants
             <input
-              type="text"
+              type="number"
+              max="1000"
               value={maxParticipants}
               onChange={(e) =>
                 setMaxParticipants(e.target.value.replace(/‘/g, "''"))
@@ -241,7 +245,8 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
             <label>
               Number of Adults Needed
               <input
-                type="text"
+                type="number"
+                max="1000"
                 value={numAdults}
                 onChange={(e) =>
                   setNumAdults(e.target.value.replace(/‘/g, "''"))
