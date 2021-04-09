@@ -8,6 +8,7 @@ const GuardianSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
   const [minorData, setMinorData] = useState([]);
   const [signedUpMinorId, setSignedUpMinorId] = useState([]);
   const [termsApproved, setTermsApproved] = useState(false);
+  const [volunteersSignedUp, setVolunteersSignedUp] = useState([]);
   const { event_id } = useParams();
   const [checkBox1, setCheckBox1] = useState(false);
   const [checkBox2, setCheckBox2] = useState(false);
@@ -51,7 +52,22 @@ const GuardianSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
           setMinorData(data);
         });
     };
+    const fetchVolunteersSignedUp = async () => {
+      const VolSignedUpResponse = await fetch(
+        `http://127.0.0.1:3232/admins/counttotalvolbyevent?event_id=${event_id}`,
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        }
+      )
+        .then((response) => response.json())
+        .catch((e) => {
+          console.log(e);
+        });
+      setVolunteersSignedUp(VolSignedUpResponse);
+    };
     getMinorData();
+    fetchVolunteersSignedUp();
   }, [userInfo]);
 
   return (
@@ -73,7 +89,11 @@ const GuardianSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
                         value={minor.id}
                         onChange={_handleCheck}
                         disabled={
-                          eventDetailsForEditPurposes.age_min > minor.age.years
+                          eventDetailsForEditPurposes.age_min >
+                            minor.age.years ||
+                          volunteersSignedUp.some(
+                            (volunteer) => volunteer.volunteer_id === minor.id
+                          )
                         }
                       />
                     }
@@ -125,6 +145,9 @@ const GuardianSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
               disabled={!termsApproved}
             >
               Submit
+            </Button>
+            <Button onClick={history.goBack} type="button" variant="outlined">
+              BACK
             </Button>
           </>
         </form>
