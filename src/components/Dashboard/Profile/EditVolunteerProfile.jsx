@@ -41,7 +41,7 @@ const EditVolunteerProfile = ({ userInfo }) => {
   const _handleSubmit = async (e) => {
     e.preventDefault();
     const submitResponse = await fetch(
-      `http://127.0.0.1:3232/volunteers/editProfile`,
+      `${process.env.REACT_APP_HOST}/volunteers/editProfile`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -74,7 +74,7 @@ const EditVolunteerProfile = ({ userInfo }) => {
   useEffect(() => {
     const fetchGuardianID = async () => {
       const guardianIDResponse = await fetch(
-        `http://127.0.0.1:3232/volunteers/guardianid?volunteer_id=${id}`
+        `${process.env.REACT_APP_HOST}/volunteers/guardianid?volunteer_id=${id}`
       )
         .then((response) => response.json())
         .catch((e) => {
@@ -85,7 +85,7 @@ const EditVolunteerProfile = ({ userInfo }) => {
 
     const fetchProfileData = async () => {
       const profileDataResponse = await fetch(
-        `http://127.0.0.1:3232/volunteers/profile?id=${id}`
+        `${process.env.REACT_APP_HOST}/volunteers/profile?id=${id}`
       )
         .then((response) => response.json())
         .catch((e) => {

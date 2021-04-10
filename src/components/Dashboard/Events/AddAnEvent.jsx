@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAlert } from "react-alert";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -40,7 +40,7 @@ const AddAnEvent = () => {
   //   Function to Handle Submit
   const _handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch(`http://127.0.0.1:3232/admins/addevent`, {
+    await fetch(`${process.env.REACT_APP_HOST}/admins/addevent`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

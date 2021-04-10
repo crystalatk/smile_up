@@ -43,7 +43,7 @@ const VolunteerDirectory = ({ userInfo }) => {
     console.log(userInfo);
     const fetchVolunteerList = async () => {
       const VolunteerListResponse = await fetch(
-        "http://127.0.0.1:3232/admins/volunteerslist"
+        `${process.env.REACT_APP_HOST}/admins/volunteerslist`
       )
         .then((response) => response.json())
         .catch((e) => {

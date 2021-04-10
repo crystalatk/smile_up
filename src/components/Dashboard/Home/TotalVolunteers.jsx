@@ -5,7 +5,7 @@ const TotalVolunteers = () => {
   useEffect(() => {
     (async () => {
       const volunteerTotal = await fetch(
-        "http://127.0.0.1:3232/volunteers/totalVolunteers"
+        `${process.env.REACT_APP_HOST}/volunteers/totalVolunteers`
       ).then((response) => response.json());
       console.log("This is the volunteer total:", volunteerTotal);
       setTotalVolunteers(volunteerTotal.length);

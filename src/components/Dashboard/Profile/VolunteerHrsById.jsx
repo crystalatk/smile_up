@@ -6,7 +6,7 @@ const VolunteerHrsById = ({ id }) => {
     if (id) {
       const getVH = () => {
         fetch(
-          `http://127.0.0.1:3232/volunteers/volunteerHoursId?volunteer_id=${id}`
+          `${process.env.REACT_APP_HOST}/volunteers/volunteerHoursId?volunteer_id=${id}`
         )
           .then((res) => res.json())
           .then((data) => {

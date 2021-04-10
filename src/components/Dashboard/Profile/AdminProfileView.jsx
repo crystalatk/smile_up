@@ -43,7 +43,7 @@ const AdminProfileView = ({ userInfo }) => {
   useEffect(() => {
     const fetchProfileData = async () => {
       const profileDataResponse = await fetch(
-        `http://127.0.0.1:3232/volunteers/profile?id=${id}`
+        `${process.env.REACT_APP_HOST}/volunteers/profile?id=${id}`
       )
         .then((response) => response.json())
         .catch((e) => {
@@ -54,7 +54,7 @@ const AdminProfileView = ({ userInfo }) => {
     };
     const fetchVolunteerEvents = async () => {
       const volunteerEventsResponse = await fetch(
-        `http://127.0.0.1:3232/volunteers/getallvolunteeractivities?volunteer_id=${id}`
+        `${process.env.REACT_APP_HOST}/volunteers/getallvolunteeractivities?volunteer_id=${id}`
       )
         .then((response) => response.json())
         .catch((e) => {

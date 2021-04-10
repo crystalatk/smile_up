@@ -100,7 +100,7 @@ const NewMinorAccount = () => {
   useEffect(() => {
     (async () => {
       const data = await fetch(
-        `http://127.0.0.1:3232/volunteers/profile/?id=${guardianid}`
+        `${process.env.REACT_APP_HOST}/volunteers/profile/?id=${guardianid}`
       ).then((response) => response.json());
       console.log("the data is ", data);
       setZipCode(data.zip_code);
@@ -178,13 +178,13 @@ const NewMinorAccount = () => {
   const _handleSubmit = async (e) => {
     e.preventDefault();
     const isUsername = await fetch(
-      `http://127.0.0.1:3232/login/username/?username=${username}`
+      `${process.env.REACT_APP_HOST}/login/username/?username=${username}`
     ).then((response) => response.json());
     console.log("THIS IS THE ISUSESRNAME RESPONSE: ", isUsername);
     if (isUsername) {
       if (password2 === password) {
         const submitResponse = await fetch(
-          `http://127.0.0.1:3232/login/signupVolunteer`,
+          `${process.env.REACT_APP_HOST}/login/signupVolunteer`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -223,7 +223,7 @@ const NewMinorAccount = () => {
         setIsGuardian(false);
         !needsAdditionalForm && history.push("/");
         console.log("submit response is ", submitResponse);
-        await fetch(`http://127.0.0.1:3232/volunteers/linkminor`, {
+        await fetch(`${process.env.REACT_APP_HOST}/volunteers/linkminor`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

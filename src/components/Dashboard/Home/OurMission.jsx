@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function () {
+const OurMission = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -28,3 +28,5 @@ export default function () {
     </div>
   );
 }
+
+export default OurMission;

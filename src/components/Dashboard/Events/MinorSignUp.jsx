@@ -18,7 +18,7 @@ const MinorSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
   const _handleSubmit = (e) => {
     e.preventDefault();
     const insertResponse = fetch(
-      `http://127.0.0.1:3232/volunteers/insertvolunteeractivity`,
+      `${process.env.REACT_APP_HOST}/volunteers/insertvolunteeractivity`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
