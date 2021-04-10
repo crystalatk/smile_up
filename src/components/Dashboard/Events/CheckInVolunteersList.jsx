@@ -48,7 +48,7 @@ const CheckInVolunteersList = ({ event_id, userInfo }) => {
   useEffect(() => {
     const fetchVolunteersAttending = async () => {
       const volunteersAttendingResponse = await fetch(
-        `http://127.0.0.1:3232/admins/volunteersattending?event_id=${event_id}`,
+        `${process.env.REACT_APP_HOST}/admins/volunteersattending?event_id=${event_id}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },

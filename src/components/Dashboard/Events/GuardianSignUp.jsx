@@ -29,7 +29,7 @@ const GuardianSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
   const _handleSubmit = (e) => {
     e.preventDefault();
     signedUpMinorId.map(async (id) => {
-      await fetch(`http://127.0.0.1:3232/volunteers/insertvolunteeractivity`, {
+      await fetch(`${process.env.REACT_APP_HOST}/volunteers/insertvolunteeractivity`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -45,7 +45,7 @@ const GuardianSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
   useEffect(() => {
     const getMinorData = () => {
       fetch(
-        `http://127.0.0.1:3232/guardians/getvolunteersforguardianId/?guardian_id=${userInfo.id}`
+        `${process.env.REACT_APP_HOST}/guardians/getvolunteersforguardianId/?guardian_id=${userInfo.id}`
       )
         .then((res) => res.json())
         .then((data) => {
@@ -54,7 +54,7 @@ const GuardianSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
     };
     const fetchVolunteersSignedUp = async () => {
       const VolSignedUpResponse = await fetch(
-        `http://127.0.0.1:3232/admins/counttotalvolbyevent?event_id=${event_id}`,
+        `${process.env.REACT_APP_HOST}/admins/counttotalvolbyevent?event_id=${event_id}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },

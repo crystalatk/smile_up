@@ -8,7 +8,7 @@ const Minors = ({ userInfo }) => {
   useEffect(() => {
     const fetchMinors = async () => {
       const minorDataResponse = await fetch(
-        `http://127.0.0.1:3232/guardians/getvolunteersforguardianId/?guardian_id=${userInfo.id}`
+        `${process.env.REACT_APP_HOST}/guardians/getvolunteersforguardianId/?guardian_id=${userInfo.id}`
       )
         .then((response) => response.json())
         .catch((e) => {

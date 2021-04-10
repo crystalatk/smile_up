@@ -7,7 +7,7 @@ const DocumentsList = ({reloadDocument}) => {
         console.log();
         const fetchList = async () => {
             const documentListResponse = await fetch(
-                `http://127.0.0.1:3232/events/getdocuments`,
+                `${process.env.REACT_APP_HOST}/events/getdocuments`,
                 {
                 method: "GET",
                 headers: { "Content-Type": "application/json" },

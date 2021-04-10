@@ -4,7 +4,7 @@ const TotalSmiles = () => {
   const [totalSmiles, setTotalSmiles] = useState("");
   useEffect(() => {
     const getSmiles = () => {
-      fetch("http://127.0.0.1:3232/volunteers/totalSmiles")
+      fetch(`${process.env.REACT_APP_HOST}/volunteers/totalSmiles`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);

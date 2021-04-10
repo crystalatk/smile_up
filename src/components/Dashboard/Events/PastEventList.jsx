@@ -78,7 +78,7 @@ const EventList = () => {
     console.log();
     const fetchList = async () => {
       const eventListResponse = await fetch(
-        `http://127.0.0.1:3232/events/pastlist`,
+        `${process.env.REACT_APP_HOST}/events/pastlist`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
