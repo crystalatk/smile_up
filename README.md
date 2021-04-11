@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+# SmileUp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Purpose
 
-## Available Scripts
+This app was designed specifically for the Smile Up Charitable Foundation to be the primary member-tracking-system for its growing pool of volunteers. Smile Up envisions a world where young people are leading the charge in volunteerism through awareness, advocacy and action. The SmileUp app provides a safe and secure system for tracking volunteers and events. The app also improves efficiency of tracking various volunteer data, which was previously entered by hand by the nonprofit administrator.
 
-In the project directory, you can run:
+## Who is the app for?
 
-### `yarn start`
+The SmileUp app was built around the three primary user types: administrators, volunteers, and guardians. As a result of SmileUp’s mission to encourage children under the age of 18 to volunteer, nearly all of the volunteers are minors.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Admin Account Features
 
-### `yarn test`
+- Ability to create events
+- Ability to browse and update event details
+- A volunteer directory
+- A dashboard to view nonprofit performance
+- Ability to upload documents to be accessed globally by guardians and volunteers
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Volunteer Account Features
 
-### `yarn build`
+- Ability to browse volunteer events
+- Ability to request volunteer approval from their guardian for specific events
+- Ability to track approval requests
+- A profile page
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Guardian Account Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Ability to approve or decline volunteer requests made by minors
+- Ability to edit personal or minor profiles
+- Ability to recommend volunteer events for minors
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Other Features
 
-### `yarn eject`
+- Secure sign-up page
+- Secure login/logout
+- Ability to upload a profile picture
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Technologies
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Frontend Technologies
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- React, with all functional components to manage state and API calls
+- Controlled form inputs with state
+- React Router
+- Styled with material-ui, styled components, and vanilla CSS
+- moment (date and timestamp handling)
+- Deployed on netlify
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Development Technologies
 
-## Learn More
+- create-react-app: quickly launches a react dev environment
+- Trello: collaborative Kanban board.
+- Postico: database management
+- nodemon: real-time server updater
+- Git & GitHub: version control
+- Slack: ...lots of Slack
+- Google Docs: collaborative video scripting, and README word processor
+- Lucid: database whiteboarding
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Stretch Goals
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Give guardians the ability to recommend volunteer events to their minors, giving the volunteers more control over their service endeavors
+- Think of new ways to incentivise volunteers under the age of 18 to use the app, and thus become more involved in their communities
+- Allow volunteers under the age of 18 to submit ideas for new volunteer events.
+- Include a social component, allowing guardians to share and comment on events with other guardians.
+- Ability for guardians to check in volunteers at each event, with location-based alerts.
+- Finally, the ultimate stretch goal will be to recreate the SmileUp app in React Native, making the app fully mobile and more accessible.
 
-### Code Splitting
+## Dev Team
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Josh Garner: styling, logo design
+- Andrew Martins: frontend logic, backend logic, styling, logo design
+- Crystal Atkinson: Project Manager, vision caster, frontend logic, backend logic, styling
+- John Manack: Technical Writer, frontend logic, backend logic
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Screenshots
