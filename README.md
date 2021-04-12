@@ -71,10 +71,18 @@ The SmileUp app was built around the three primary user types: administrators, v
 
 ## Dev Team
 
-* Josh Garner([GitHub](https://github.com/jg-2021),[Portfolio](https://mrjgarner.com/)): styling, logo design
-* [Andrew Martins](https://www.linkedin.com/in/andrew-martins-jr/): frontend logic, backend logic, styling, logo design
-* [Crystal Atkinson](https://www.linkedin.com/in/crystal-atkinson/): Project Manager, vision caster, frontend logic, backend logic, styling
-* [John Manack](https://www.linkedin.com/in/john-manack/): Technical Writer, frontend logic, backend logic
+- Josh Garner: styling, logo design
+  - [GitHub](https://github.com/jg-2021)
+  - [Portfolio](https://mrjgarner.com/)
+- Andrew Martins: frontend logic, backend logic, styling, logo design
+  - [GitHub](https://github.com/jg-2021)
+  - [LinkedIn](https://www.linkedin.com/in/andrew-martins-jr/)
+- Crystal Atkinson: Project Manager, vision caster, frontend logic, backend logic, styling
+  - [GitHub](https://github.com/jg-2021)
+  - [LinkedIn](https://www.linkedin.com/in/crystal-atkinson/)
+- John Manack: Technical Writer, frontend logic, backend logic
+  - [GitHub](https://github.com/jg-2021)
+  - [LinkedIn](https://www.linkedin.com/in/john-manack/)
 
 ## Helpful Links
 
