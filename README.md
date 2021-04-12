@@ -18,6 +18,8 @@ The SmileUp app was built around the three primary user types: administrators, v
 - A dashboard to view nonprofit performance
 - Ability to upload documents to be accessed globally by guardians and volunteers
 
+![Browse Events](./public/images_for_readme/admin_browse_events.gif)
+
 ### Volunteer Account Features
 
 - Ability to browse volunteer events
@@ -25,11 +27,17 @@ The SmileUp app was built around the three primary user types: administrators, v
 - Ability to track approval requests
 - A profile page
 
+![Minor Request Approval](./public/images_for_readme/minor_request_approval.gif)
+
+![Minor Account Tour](./public/images_for_readme/minor_account_tour.gif)
+
 ### Guardian Account Features
 
 - Ability to approve or decline volunteer requests made by minors
 - Ability to edit personal or minor profiles
 - Ability to recommend volunteer events for minors
+
+![Sign Up Kids](./public/images_for_readme/guardian_sign_up_kids.gif)
 
 ### Other Features
 
@@ -38,6 +46,29 @@ The SmileUp app was built around the three primary user types: administrators, v
 - Ability to upload a profile picture
 
 ## Technologies
+
+### Quick Facts: SmileUp is...
+
+- a full-stack, CRUD web app
+- a member-tracking-system
+- built on a PERN Stack: Postgres, Express, React, Node.js
+
+### Backend Technologies
+
+- Node.js
+- PostgreSQL
+- express.js
+- bcryptjs: node dependency to secure passwords with salting and hashing
+- cors: node dependency to manage cors requirements
+- dotenv: node dependency for security of environment variables
+- express-session: node dependency to manage login sessions
+- pg-promise: allows models to interact with Postgres database
+- ElephantSQL: remote Postgres hosting service
+- Google Firebase - Storage: cloud storage of documents and profile pictures
+- Model & Controller integration to create a custom RESTful Web API (JSON)
+- Deployed on Heroku
+
+![Sign Up Kids](./public/images_for_readme/innter_join_sql.png)
 
 ### Frontend Technologies
 
@@ -48,6 +79,8 @@ The SmileUp app was built around the three primary user types: administrators, v
 - moment (date and timestamp handling)
 - Deployed on netlify
 
+![Moment JS](./public/images_for_readme/moment_js.png)
+
 ### Development Technologies
 
 - create-react-app: quickly launches a react dev environment
@@ -57,22 +90,30 @@ The SmileUp app was built around the three primary user types: administrators, v
 - Git & GitHub: version control
 - Slack: ...lots of Slack
 - Google Docs: collaborative video scripting, and README word processor
+- Justinmind: ux/ui creation; presentation of initial mockups to client
 - Lucid: database whiteboarding
+
+![Lucid App DB Whiteboard](./public/images_for_readme/lucid_db_whiteboard.png)
 
 ## Stretch Goals
 
 - Give guardians the ability to recommend volunteer events to their minors, giving the volunteers more control over their service endeavors
-- Think of new ways to incentivise volunteers under the age of 18 to use the app, and thus become more involved in their communities
+- Think of new ways to incentivize volunteers under the age of 18 to use the app, and thus become more involved in their communities
 - Allow volunteers under the age of 18 to submit ideas for new volunteer events.
 - Include a social component, allowing guardians to share and comment on events with other guardians.
 - Ability for guardians to check in volunteers at each event, with location-based alerts.
 - Finally, the ultimate stretch goal will be to recreate the SmileUp app in React Native, making the app fully mobile and more accessible.
 
-## Dev Team
+## Development Team
 
-- Josh Garner: styling, logo design
-- Andrew Martins: frontend logic, backend logic, styling, logo design
-- Crystal Atkinson: Project Manager, vision caster, frontend logic, backend logic, styling
-- John Manack: Technical Writer, frontend logic, backend logic
+- [Josh Garner](https://mrjgarner.com/) ([GitHub](https://github.com/jg-2021)): styling, logo design
+- [Andrew Martins](https://www.linkedin.com/in/andrew-martins-jr/) ([GitHub](https://github.com/martins309)): frontend logic, backend logic, styling, logo design
+- [Crystal Atkinson](https://www.linkedin.com/in/crystal-atkinson/) ([GitHub](https://github.com/crystalatk)): Project Manager, vision caster, frontend logic, backend logic, styling
+- [John Manack](https://www.linkedin.com/in/john-manack/) ([GitHub](https://github.com/john-manack)): Technical Writer, frontend logic, backend logic
 
-## Screenshots
+## Helpful Links
+
+- [Deployed Site](https://smileup.netlify.app/)
+- [Frontend Repository](https://github.com/crystalatk/smile_up)
+- [Backend Repository](https://github.com/crystalatk/smileUp_back)
+- [Smile Up Foundation Main Website](http://www.smileupfoundation.org/)
