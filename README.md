@@ -18,6 +18,8 @@ The SmileUp app was built around the three primary user types: administrators, v
 - A dashboard to view nonprofit performance
 - Ability to upload documents to be accessed globally by guardians and volunteers
 
+(./public/images_for_readme/admin_browse.events.gif)
+
 ### Volunteer Account Features
 
 - Ability to browse volunteer events
@@ -69,7 +71,7 @@ The SmileUp app was built around the three primary user types: administrators, v
 - Ability for guardians to check in volunteers at each event, with location-based alerts.
 - Finally, the ultimate stretch goal will be to recreate the SmileUp app in React Native, making the app fully mobile and more accessible.
 
-## Dev Team
+## Development Team
 
 - [Josh Garner](https://mrjgarner.com/) ([GitHub](https://github.com/jg-2021)): styling, logo design
 - [Andrew Martins](https://www.linkedin.com/in/andrew-martins-jr/) ([GitHub](https://github.com/martins309)): frontend logic, backend logic, styling, logo design
@@ -82,5 +84,3 @@ The SmileUp app was built around the three primary user types: administrators, v
 - [Frontend Repository](https://github.com/crystalatk/smile_up)
 - [Backend Repository](https://github.com/crystalatk/smileUp_back)
 - [Smile Up Foundation Main Website](http://www.smileupfoundation.org/)
-
-## Screenshots
