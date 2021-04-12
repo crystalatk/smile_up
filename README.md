@@ -58,11 +58,12 @@ The SmileUp app was built around the three primary user types: administrators, v
 - Slack: ...lots of Slack
 - Google Docs: collaborative video scripting, and README word processor
 - Lucid: database whiteboarding
+- Justinmind: ux/ui creation; presentation of initial mockups to client
 
 ## Stretch Goals
 
 - Give guardians the ability to recommend volunteer events to their minors, giving the volunteers more control over their service endeavors
-- Think of new ways to incentivise volunteers under the age of 18 to use the app, and thus become more involved in their communities
+- Think of new ways to incentivize volunteers under the age of 18 to use the app, and thus become more involved in their communities
 - Allow volunteers under the age of 18 to submit ideas for new volunteer events.
 - Include a social component, allowing guardians to share and comment on events with other guardians.
 - Ability for guardians to check in volunteers at each event, with location-based alerts.
@@ -70,9 +71,16 @@ The SmileUp app was built around the three primary user types: administrators, v
 
 ## Dev Team
 
-- Josh Garner: styling, logo design
-- Andrew Martins: frontend logic, backend logic, styling, logo design
-- Crystal Atkinson: Project Manager, vision caster, frontend logic, backend logic, styling
-- John Manack: Technical Writer, frontend logic, backend logic
+* Josh Garner([GitHub](https://github.com/jg-2021),[Portfolio](https://mrjgarner.com/)): styling, logo design
+* [Andrew Martins](https://www.linkedin.com/in/andrew-martins-jr/): frontend logic, backend logic, styling, logo design
+* [Crystal Atkinson](https://www.linkedin.com/in/crystal-atkinson/): Project Manager, vision caster, frontend logic, backend logic, styling
+* [John Manack](https://www.linkedin.com/in/john-manack/): Technical Writer, frontend logic, backend logic
+
+## Helpful Links
+
+- [Deployed Site](https://smileup.netlify.app/)
+- [Frontend Repository](https://github.com/crystalatk/smile_up)
+- [Backend Repository](https://github.com/crystalatk/smileUp_back)
+- [Smile Up Foundation Main Website](http://www.smileupfoundation.org/)
 
 ## Screenshots
