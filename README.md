@@ -27,11 +27,17 @@ The SmileUp app was built around the three primary user types: administrators, v
 - Ability to track approval requests
 - A profile page
 
+![Minor Request Approval](./public/images_for_readme/minor_request_approval.gif)
+
+![Minor Account Tour](./public/images_for_readme/minor_account_tour.gif)
+
 ### Guardian Account Features
 
 - Ability to approve or decline volunteer requests made by minors
 - Ability to edit personal or minor profiles
 - Ability to recommend volunteer events for minors
+
+![Sign Up Kids](./public/images_for_readme/guardian_sign_up_kids.gif)
 
 ### Other Features
 
@@ -40,6 +46,29 @@ The SmileUp app was built around the three primary user types: administrators, v
 - Ability to upload a profile picture
 
 ## Technologies
+
+### Quick Facts: SmileUp is...
+
+- a full-stack, CRUD web app
+- a member-tracking-system
+- built on a PERN Stack: Postgres, Express, React, Node.js
+
+### Backend Technologies
+
+- Node.js
+- PostgreSQL
+- express.js
+- bcryptjs: node dependency to secure passwords with salting and hashing
+- cors: node dependency to manage cors requirements
+- dotenv: node dependency for security of environment variables
+- express-session: node dependency to manage login sessions
+- pg-promise: allows models to interact with Postgres database
+- ElephantSQL: remote Postgres hosting service
+- Google Firebase - Storage: cloud storage of documents and profile pictures
+- Model & Controller integration to create a custom RESTful Web API (JSON)
+- Deployed on Heroku
+
+![Sign Up Kids](./public/images_for_readme/innter_join_sql.png)
 
 ### Frontend Technologies
 
@@ -50,6 +79,8 @@ The SmileUp app was built around the three primary user types: administrators, v
 - moment (date and timestamp handling)
 - Deployed on netlify
 
+![Moment JS](./public/images_for_readme/moment_js.png)
+
 ### Development Technologies
 
 - create-react-app: quickly launches a react dev environment
@@ -59,8 +90,10 @@ The SmileUp app was built around the three primary user types: administrators, v
 - Git & GitHub: version control
 - Slack: ...lots of Slack
 - Google Docs: collaborative video scripting, and README word processor
-- Lucid: database whiteboarding
 - Justinmind: ux/ui creation; presentation of initial mockups to client
+- Lucid: database whiteboarding
+
+![Lucid App DB Whiteboard](./public/images_for_readme/lucid_db_whiteboard.png)
 
 ## Stretch Goals
 
