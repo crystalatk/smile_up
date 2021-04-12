@@ -18,7 +18,7 @@ The SmileUp app was built around the three primary user types: administrators, v
 - A dashboard to view nonprofit performance
 - Ability to upload documents to be accessed globally by guardians and volunteers
 
-(./public/images_for_readme/admin_browse_events.gif)
+!(./public/images_for_readme/admin_browse_events.gif)
 
 ### Volunteer Account Features
 
