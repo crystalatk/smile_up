@@ -4,7 +4,7 @@ const VolunteerHours = () => {
   const [volunteerHours, setVolunteerHours] = useState("");
   useEffect(() => {
     const getData = () => {
-      fetch("http://127.0.0.1:3232/volunteers/volunteerHours")
+      fetch(`${process.env.REACT_APP_HOST}/volunteers/volunteerHours`)
         .then((res) => res.json())
         .then((data) => {
           setVolunteerHours(data[0].sum);

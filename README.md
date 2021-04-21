@@ -1,70 +1,119 @@
-# Getting Started with Create React App
+# SmileUp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Purpose
 
-## Available Scripts
+This app was designed specifically for the Smile Up Charitable Foundation to be the primary member-tracking-system for its growing pool of volunteers. Smile Up envisions a world where young people are leading the charge in volunteerism through awareness, advocacy and action. The SmileUp app provides a safe and secure system for tracking volunteers and events. The app also improves efficiency of tracking various volunteer data, which was previously entered by hand by the nonprofit administrator.
 
-In the project directory, you can run:
+## Who is the app for?
 
-### `yarn start`
+The SmileUp app was built around the three primary user types: administrators, volunteers, and guardians. As a result of SmileUp’s mission to encourage children under the age of 18 to volunteer, nearly all of the volunteers are minors.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Admin Account Features
 
-### `yarn test`
+- Ability to create events
+- Ability to browse and update event details
+- A volunteer directory
+- A dashboard to view nonprofit performance
+- Ability to upload documents to be accessed globally by guardians and volunteers
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Browse Events](./public/images_for_readme/admin_browse_events.gif)
 
-### `yarn build`
+### Volunteer Account Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Ability to browse volunteer events
+- Ability to request volunteer approval from their guardian for specific events
+- Ability to track approval requests
+- A profile page
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Minor Request Approval](./public/images_for_readme/minor_request_approval.gif)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Minor Account Tour](./public/images_for_readme/minor_account_tour.gif)
 
-### `yarn eject`
+### Guardian Account Features
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Ability to approve or decline volunteer requests made by minors
+- Ability to edit personal or minor profiles
+- Ability to recommend volunteer events for minors
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Sign Up Kids](./public/images_for_readme/guardian_sign_up_kids.gif)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Other Features
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Secure sign-up page
+- Secure login/logout
+- Ability to upload a profile picture
 
-## Learn More
+## Technologies
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Quick Facts: SmileUp is...
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- a full-stack, CRUD web app
+- a member-tracking-system
+- built on a PERN Stack: Postgres, Express, React, Node.js
 
-### Code Splitting
+### Backend Technologies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Node.js
+- PostgreSQL
+- express.js
+- bcryptjs: node dependency to secure passwords with salting and hashing
+- cors: node dependency to manage cors requirements
+- dotenv: node dependency for security of environment variables
+- express-session: node dependency to manage login sessions
+- pg-promise: allows models to interact with Postgres database
+- ElephantSQL: remote Postgres hosting service
+- Google Firebase - Storage: cloud storage of documents and profile pictures
+- Model & Controller integration to create a custom RESTful Web API (JSON)
+- Deployed on Heroku
 
-### Analyzing the Bundle Size
+![Sign Up Kids](./public/images_for_readme/innter_join_sql.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Frontend Technologies
 
-### Making a Progressive Web App
+- React, with all functional components to manage state and API calls
+- Controlled form inputs with state
+- React Router
+- Styled with material-ui, styled components, and vanilla CSS
+- moment (date and timestamp handling)
+- Deployed on netlify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![Moment JS](./public/images_for_readme/moment_js.png)
 
-### Advanced Configuration
+### Development Technologies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- create-react-app: quickly launches a react dev environment
+- Trello: collaborative Kanban board.
+- Postico: database management
+- nodemon: real-time server updater
+- Git & GitHub: version control
+- Slack: ...lots of Slack
+- Google Docs: collaborative video scripting, and README word processor
+- Justinmind: ux/ui creation; presentation of initial mockups to client
+- Lucid: database whiteboarding
 
-### Deployment
+![Lucid App DB Whiteboard](./public/images_for_readme/lucid_db_whiteboard.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Stretch Goals
 
-### `yarn build` fails to minify
+- Give guardians the ability to recommend volunteer events to their minors, giving the volunteers more control over their service endeavors
+- Think of new ways to incentivize volunteers under the age of 18 to use the app, and thus become more involved in their communities
+- Allow volunteers under the age of 18 to submit ideas for new volunteer events.
+- Include a social component, allowing guardians to share and comment on events with other guardians.
+- Ability for guardians to check in volunteers at each event, with location-based alerts.
+- Finally, the ultimate stretch goal will be to recreate the SmileUp app in React Native, making the app fully mobile and more accessible.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Development Team
+
+- [Josh Garner](https://mrjgarner.com/) ([GitHub](https://github.com/jg-2021)): styling, logo design
+- [Andrew Martins](https://www.linkedin.com/in/andrew-martins-jr/) ([GitHub](https://github.com/martins309)): frontend logic, backend logic, styling, logo design
+- [Crystal Atkinson](https://www.linkedin.com/in/crystal-atkinson/) ([GitHub](https://github.com/crystalatk)): Project Manager, vision caster, frontend logic, backend logic, styling
+- [John Manack](https://www.linkedin.com/in/john-manack/) ([GitHub](https://github.com/john-manack)): Technical Writer, frontend logic, backend logic
+
+## Helpful Links
+
+- [Deployed Site](https://smileup.netlify.app/)
+- [Frontend Repository](https://github.com/crystalatk/smile_up)
+- [Backend Repository](https://github.com/crystalatk/smileUp_back)
+- [Smile Up Foundation Main Website](http://www.smileupfoundation.org/)

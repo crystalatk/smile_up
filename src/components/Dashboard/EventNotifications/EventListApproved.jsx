@@ -20,7 +20,7 @@ const EventListApproved = ({ userInfo }) => {
   useEffect(() => {
     const fetchMinorsEvents = async () => {
       const guardianEventResponse = await fetch(
-        `http://127.0.0.1:3232/events/approvedeventsbyguardianid/?guardian_id=${userInfo.id}`,
+        `${process.env.REACT_APP_HOST}/events/approvedeventsbyguardianid/?guardian_id=${userInfo.id}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
@@ -32,7 +32,7 @@ const EventListApproved = ({ userInfo }) => {
     };
     const fetchApprovedEventsForMinor = async () => {
       const approvedEventsForMinorResponse = await fetch(
-        `http://127.0.0.1:3232/events/approvedeventsbyvolunteerid/?volunteer_id=${userInfo.id}`,
+        `${process.env.REACT_APP_HOST}/events/approvedeventsbyvolunteerid/?volunteer_id=${userInfo.id}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
@@ -51,7 +51,7 @@ const EventListApproved = ({ userInfo }) => {
   const _handleRemoveButton = (id) => {
     const fetchInsertIntoGuardianRemoved = async () => {
       const insertIntoGuardianRemoved = await fetch(
-        `http://127.0.0.1:3232/guardians/insertguardiandeniedbyactiviesID`,
+        `${process.env.REACT_APP_HOST}/guardians/insertguardiandeniedbyactiviesID`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

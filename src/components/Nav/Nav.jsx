@@ -9,7 +9,7 @@ const Nav = ({ userInfo }) => {
   useEffect(() => {
     const fetchMinorsEvents = async () => {
       const guardianEventResponse = await fetch(
-        `http://127.0.0.1:3232/events/needsapprovaleventsbyguardianid/?guardian_id=${userInfo.id}`,
+        `${process.env.REACT_APP_HOST}/events/needsapprovaleventsbyguardianid/?guardian_id=${userInfo.id}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
@@ -19,7 +19,7 @@ const Nav = ({ userInfo }) => {
     };
     const fetchNeedsApprovalEventsForMinor = async () => {
       const needsApprovalEventsForMinorResponse = await fetch(
-        `http://127.0.0.1:3232/events/needsapprovaleventsbyvolunteerid/?volunteer_id=${userInfo.id}`,
+        `${process.env.REACT_APP_HOST}/events/needsapprovaleventsbyvolunteerid/?volunteer_id=${userInfo.id}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },

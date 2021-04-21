@@ -4,7 +4,7 @@ const TotalEvents = () => {
   const [totalEvents, setTotalEvents] = useState("");
   useEffect(() => {
     const getEvents = () => {
-      fetch("http://127.0.0.1:3232/events/counttotalevents")
+      fetch(`${process.env.REACT_APP_HOST}/events/counttotalevents`)
         .then((res) => res.json())
         .then((data) => {
           setTotalEvents(data[0].count);

@@ -95,7 +95,7 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
   useEffect(() => {
     const fetchEvent = async () => {
       const eventResponse = await fetch(
-        `http://127.0.0.1:3232/events/details?id=${id}`,
+        `${process.env.REACT_APP_HOST}/events/details?id=${id}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
@@ -110,7 +110,7 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
     };
     const fetchVolunteersSignedUp = async () => {
       const VolSignedUpResponse = await fetch(
-        `http://127.0.0.1:3232/admins/counttotalvolbyevent?event_id=${id}`,
+        `${process.env.REACT_APP_HOST}/admins/counttotalvolbyevent?event_id=${id}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
@@ -137,7 +137,7 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
   useEffect(() => {
     const fetchList = async () => {
       const documentListResponse = await fetch(
-        `http://127.0.0.1:3232/events/getdocuments`,
+        `${process.env.REACT_APP_HOST}/events/getdocuments`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },

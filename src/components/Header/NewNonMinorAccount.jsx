@@ -173,12 +173,12 @@ const NewNonMinorAccount = () => {
   const _handleSubmit = async (e) => {
     e.preventDefault();
     const isUsername = await fetch(
-      `http://127.0.0.1:3232/login/username/?username=${username}`
+      `${process.env.REACT_APP_HOST}/login/username/?username=${username}`
     ).then((response) => response.json());
     if (isUsername) {
       if (password2 === password) {
         const submitResponse = await fetch(
-          `http://127.0.0.1:3232/login/signupVolunteer`,
+          `${process.env.REACT_APP_HOST}/login/signupVolunteer`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

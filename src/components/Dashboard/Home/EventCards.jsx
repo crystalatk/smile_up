@@ -9,7 +9,7 @@ const EventCards = ({ userInfo, title }) => {
     if (title === "Needs Approval") {
       const fetchMinorsEvents = async () => {
         const guardianEventResponse = await fetch(
-          `http://127.0.0.1:3232/events/needsapprovaleventsbyguardianid/?guardian_id=${userInfo.id}`,
+          `${process.env.REACT_APP_HOST}/events/needsapprovaleventsbyguardianid/?guardian_id=${userInfo.id}`,
           {
             method: "GET",
             headers: { "Content-Type": "application/json" },
@@ -21,7 +21,7 @@ const EventCards = ({ userInfo, title }) => {
       };
       const fetchNeedsApprovedEventsForMinor = async () => {
         const needsApprovedEventsForMinorResponse = await fetch(
-          `http://127.0.0.1:3232/events/needsapprovaleventsbyvolunteerid/?volunteer_id=${userInfo.id}`,
+          `${process.env.REACT_APP_HOST}/events/needsapprovaleventsbyvolunteerid/?volunteer_id=${userInfo.id}`,
           {
             method: "GET",
             headers: { "Content-Type": "application/json" },
@@ -39,7 +39,7 @@ const EventCards = ({ userInfo, title }) => {
     if (title === "My Events (Approved)") {
       const fetchMinorsEvents = async () => {
         const guardianEventResponse = await fetch(
-          `http://127.0.0.1:3232/events/approvedeventsbyguardianid/?guardian_id=${userInfo.id}`,
+          `${process.env.REACT_APP_HOST}/events/approvedeventsbyguardianid/?guardian_id=${userInfo.id}`,
           {
             method: "GET",
             headers: { "Content-Type": "application/json" },
@@ -51,7 +51,7 @@ const EventCards = ({ userInfo, title }) => {
       };
       const fetchApprovedEventsForMinor = async () => {
         const approvedEventsForMinorResponse = await fetch(
-          `http://127.0.0.1:3232/events/approvedeventsbyvolunteerid/?volunteer_id=${userInfo.id}`,
+          `${process.env.REACT_APP_HOST}/events/approvedeventsbyvolunteerid/?volunteer_id=${userInfo.id}`,
           {
             method: "GET",
             headers: { "Content-Type": "application/json" },
@@ -69,7 +69,7 @@ const EventCards = ({ userInfo, title }) => {
     if (title === "Upcoming Events") {
       const fetchList = async () => {
         const eventListResponse = await fetch(
-          `http://127.0.0.1:3232/events/list`,
+          `${process.env.REACT_APP_HOST}/events/list`,
           {
             method: "GET",
             headers: { "Content-Type": "application/json" },

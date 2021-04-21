@@ -23,7 +23,7 @@ const UploadAvatar = ({ id, reloadPhoto, setReloadPhoto }) => {
                     .getDownloadURL()
                     .then(async function(url) {
                         const response = await fetch(
-                            `http://127.0.0.1:3232/volunteers/editavatar`,
+                            `${process.env.REACT_APP_HOST}/volunteers/editavatar`,
                             {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },

@@ -20,45 +20,45 @@ const AddDocument = ({ userInfo, reloadDocument, setReloadDocument }) => {
     }
   };
 
-  const handleUpload = async () => {
-    const uploadTask = storage
-      .ref(`documents/${documentFile.name}`)
-      .put(documentFile);
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {},
-      (error) => {},
-      () => {
-        storage
-          .ref("documents")
-          .child(documentFile.name)
-          .getDownloadURL()
-          .then(async function (url) {
-            const response = await fetch(
-              `http://127.0.0.1:3232/admins/addDocument`,
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  is_general: isGeneral,
-                  event_id: eventId,
-                  document_title: documentTitle,
-                  document_url: url,
-                  admin_id: userInfo.id,
-                }),
-              }
-            ).then((response) => response);
-            setIsUploaded(true);
-            setReloadDocument(!reloadDocument);
-          });
-      }
-    );
-  };
+
+    const handleUpload = async () => { 
+        const uploadTask = storage.ref(`documents/${documentFile.name}`).put(documentFile);
+        uploadTask.on(
+            'state_changed',
+            (snapshot) => {},
+            (error) => {
+            },
+            () => {
+                storage
+                    .ref('documents')
+                    .child(documentFile.name)
+                    .getDownloadURL()
+                    .then(async function(url) {
+                        const response = await fetch(
+                            `${process.env.REACT_APP_HOST}/admins/addDocument`,
+                            {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    is_general: isGeneral,
+                                    event_id: eventId,
+                                    document_title: documentTitle,
+                                    document_url: url,
+                                    admin_id: userInfo.id,
+                                }),
+                            }
+                        ).then((response) => response);
+                        setIsUploaded(true);
+                        setReloadDocument(!reloadDocument)
+                    })
+                });
+    };
+
 
   useEffect(() => {
     const fetchList = async () => {
       const eventListResponse = await fetch(
-        `http://127.0.0.1:3232/events/list`,
+        `${process.env.REACT_APP_HOST}/events/list`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },

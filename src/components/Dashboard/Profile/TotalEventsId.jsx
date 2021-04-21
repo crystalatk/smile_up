@@ -4,7 +4,7 @@ const TotalEventsId = ({ id }) => {
   const [eventId, setEventId] = useState("");
   useEffect(() => {
     const getVH = () => {
-      fetch(`http://127.0.0.1:3232/events/totalEventsId?volunteer_id=${id}`)
+      fetch(`${process.env.REACT_APP_HOST}/events/totalEventsId?volunteer_id=${id}`)
         .then((res) => res.json())
         .then((data) => {
           setEventId(data[0].count);
