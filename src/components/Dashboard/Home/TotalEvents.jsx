@@ -7,7 +7,6 @@ const TotalEvents = () => {
       fetch(`${process.env.REACT_APP_HOST}/events/counttotalevents`)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setTotalEvents(data[0].count);
         });
     };

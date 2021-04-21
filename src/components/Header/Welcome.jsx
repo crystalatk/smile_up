@@ -2,7 +2,6 @@ import { useHistory } from "react-router-dom";
 
 const Welcome = ({ userInfo }) => {
   const history = useHistory();
-  console.log(userInfo);
   return (
     <>
       <div className="avatar-container">

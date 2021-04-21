@@ -8,7 +8,6 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: "100vh",
@@ -23,14 +22,13 @@ const useStyles = makeStyles((theme) => ({
     width: "100vw",
     overflow: "hidden",
     backgroundPosition: "center",
-    
   },
   paper: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     backgroundColor: "rgb(255,255,255,0.7)",
-    width: '350px',
+    width: "350px",
   },
   avatar: {
     margin: theme.spacing(1),
@@ -44,19 +42,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const LoginVolunteers = ({ setUserInfo }) => {
-  useEffect(() => {
-    document.body.classList.add('bgBody')
-    console.log('UseEffect Ran')
-  })
   const classes = useStyles();
-
   const [username, setUserName] = useState([]);
   const [password, setPassword] = useState([]);
   const [wrongPasswordUsername, setWrongPasswordUsername] = useState(false);
   const [wrongUsername, setWrongUsername] = useState(false);
 
+  useEffect(() => {
+    document.body.classList.add("bgBody");
+  });
+
   const _handleSubmit = async (e) => {
-   
     e.preventDefault();
     const loginData = await fetch(`${process.env.REACT_APP_HOST}/login/sitelogin`, {
       method: "POST",
@@ -71,7 +67,6 @@ const LoginVolunteers = ({ setUserInfo }) => {
         console.log(e);
         setWrongUsername(true);
       });
-    console.log("Here are the login results: ", loginData);
     if (loginData && !loginData.isValid) {
       setUserInfo({ isLoggedIn: false });
       setWrongPasswordUsername(true);
@@ -105,7 +100,7 @@ const LoginVolunteers = ({ setUserInfo }) => {
   return (
     <div>
       <h1 className="banner">Welcome to the SmileUp! Charitable Foundation!</h1>
-      
+
       <div className="signin">
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>

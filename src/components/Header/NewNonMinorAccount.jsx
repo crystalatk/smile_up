@@ -175,7 +175,6 @@ const NewNonMinorAccount = () => {
     const isUsername = await fetch(
       `${process.env.REACT_APP_HOST}/login/username/?username=${username}`
     ).then((response) => response.json());
-    console.log("THIS IS THE ISUSESRNAME RESPONSE: ", isUsername);
     if (isUsername) {
       if (password2 === password) {
         const submitResponse = await fetch(

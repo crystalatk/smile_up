@@ -135,7 +135,6 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
   }, [event, volunteersSignedUp]);
 
   useEffect(() => {
-    console.log();
     const fetchList = async () => {
       const documentListResponse = await fetch(
         `${process.env.REACT_APP_HOST}/events/getdocuments`,
@@ -148,7 +147,6 @@ const EventDetails = ({ userInfo, setEventDetailsForEditPurposes }) => {
         .catch((e) => {
           console.log(e);
         });
-      console.log("THIS IS THE DOCUMENT LIST RESPONSE: ", documentListResponse);
       setDocumentArray(documentListResponse);
     };
     fetchList();

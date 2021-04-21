@@ -7,11 +7,8 @@ import Button from "@material-ui/core/Button";
 import UploadAvatar from "./UploadAvatar";
 
 const VolunteerProfile = ({ userInfo }) => {
-  console.log("I AM HERE");
   const { id: initialID } = useParams();
-  console.log(initialID);
   const id = parseInt(initialID);
-  console.log(id);
   const [volunteerInfo, setVolunteerInfo] = useState(
     userInfo?.id === id ? userInfo : {}
   );
@@ -31,8 +28,6 @@ const VolunteerProfile = ({ userInfo }) => {
         .catch((e) => {
           console.log(e);
         });
-      console.log("THIS IS THE GUARDIAN ID:", guardianIDResponse);
-
       setGuardianID(guardianIDResponse?.guardian_id);
     };
 
@@ -44,11 +39,9 @@ const VolunteerProfile = ({ userInfo }) => {
         .catch((e) => {
           console.log(e);
         });
-      console.log("THIS IS THE PROFILE DATA:", profileDataResponse);
       setVolunteerInfo(profileDataResponse);
     };
     if (!userInfo.is_minor) {
-      console.log("I AM HERE");
       fetchGuardianID();
     } else {
       setGuardianID("");
@@ -68,7 +61,6 @@ const VolunteerProfile = ({ userInfo }) => {
       if (userInfo.is_minor) {
         setCanEdit(false);
       } else {
-        console.log("I AM HERE IN THE CAN EDIT");
         setCanEdit(true);
       }
     }
@@ -82,9 +74,6 @@ const VolunteerProfile = ({ userInfo }) => {
   ]);
 
   useEffect(() => {
-    console.log(userInfo.id === id);
-    console.log(userInfo.is_admin);
-    console.log("PROFILE GUARDIAN???:", isProfileGuardian);
     setViewPage(userInfo.id === id || userInfo.is_admin || isProfileGuardian);
   }, [id, isProfileGuardian, userInfo]);
 

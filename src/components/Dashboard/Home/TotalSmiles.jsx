@@ -7,7 +7,6 @@ const TotalSmiles = () => {
       fetch(`${process.env.REACT_APP_HOST}/volunteers/totalSmiles`)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setTotalSmiles(data[0].sum);
         });
     };

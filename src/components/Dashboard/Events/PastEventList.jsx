@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import { makeStyles } from "@material-ui/core/styles";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import List from "@material-ui/core/List";
@@ -75,7 +74,6 @@ const EventList = () => {
   const [eventList, setEventList] = useState();
 
   useEffect(() => {
-    console.log();
     const fetchList = async () => {
       const eventListResponse = await fetch(
         `${process.env.REACT_APP_HOST}/events/pastlist`,
@@ -88,7 +86,6 @@ const EventList = () => {
         .catch((e) => {
           console.log(e);
         });
-      console.log("THIS IS THE EVENTS LIST RESPONSE: ", eventListResponse);
       setEventList(eventListResponse);
     };
     fetchList();

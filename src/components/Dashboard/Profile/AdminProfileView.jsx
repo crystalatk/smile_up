@@ -49,7 +49,6 @@ const AdminProfileView = ({ userInfo }) => {
         .catch((e) => {
           console.log(e);
         });
-      console.log("THIS IS THE PROFILE DATA:", profileDataResponse);
       setVolunteerInfo(profileDataResponse);
     };
     const fetchVolunteerEvents = async () => {
@@ -60,7 +59,6 @@ const AdminProfileView = ({ userInfo }) => {
         .catch((e) => {
           console.log(e);
         });
-      console.log("THIS IS THE EVENT DATA:", volunteerEventsResponse);
       setVolunteerEvents(volunteerEventsResponse);
     };
 

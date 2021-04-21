@@ -14,7 +14,6 @@ const Minors = ({ userInfo }) => {
         .catch((e) => {
           console.log(e);
         });
-      console.log(minorDataResponse);
       setMinorData(minorDataResponse);
     };
     fetchMinors();

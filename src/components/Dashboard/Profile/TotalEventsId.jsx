@@ -7,7 +7,6 @@ const TotalEventsId = ({ id }) => {
       fetch(`${process.env.REACT_APP_HOST}/events/totalEventsId?volunteer_id=${id}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setEventId(data[0].count);
         });
     };

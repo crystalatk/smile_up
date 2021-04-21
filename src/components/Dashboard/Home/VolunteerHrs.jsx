@@ -7,7 +7,6 @@ const VolunteerHours = () => {
       fetch(`${process.env.REACT_APP_HOST}/volunteers/volunteerHours`)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setVolunteerHours(data[0].sum);
         });
     };

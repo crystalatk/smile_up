@@ -12,46 +12,53 @@ const ADDEVENT = "Add Event";
 const ADDDOC = "Add Document";
 
 const useStyles = makeStyles({
-    root: {
-        flexGrow: 1,
-    },
+  root: {
+    flexGrow: 1,
+  },
 });
 
-const AddEventOrDoc = ({userInfo}) => {
-    const classes = useStyles();
-    const [value, setValue] = useState(0);
-    const [reloadDocument, setReloadDocument] = useState(false);
+const AddEventOrDoc = ({ userInfo }) => {
+  const classes = useStyles();
+  const [value, setValue] = useState(0);
+  const [reloadDocument, setReloadDocument] = useState(false);
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
-    return (
-        <div>      
-            <Route exact path="/addevent">
-                <Paper className={classes.root}>
-                <Tabs
-                    value={value}
-                    onChange={handleChange}
-                    indicatorColor="primary"
-                    textColor="primary"
-                    centered
-                >
-                    <Tab label={ADDEVENT} />
-                    <Tab label={ADDDOC} />
-                </Tabs>
-                </Paper>
-                {value ? (
-                <>
-                    <AddDocument userInfo={userInfo} reloadDocument={reloadDocument} setReloadDocument={setReloadDocument} />
-                    <DocumentsList reloadDocument={reloadDocument} setReloadDocument={setReloadDocument} />
-                </>
-                ) : (
-                <AddAnEvent />
-                )}
-            </Route>
-        </div>
-    )
-}
+  return (
+    <div>
+      <Route exact path="/addevent">
+        <Paper className={classes.root}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            indicatorColor="primary"
+            textColor="primary"
+            centered
+          >
+            <Tab label={ADDEVENT} />
+            <Tab label={ADDDOC} />
+          </Tabs>
+        </Paper>
+        {value ? (
+          <>
+            <AddDocument
+              userInfo={userInfo}
+              reloadDocument={reloadDocument}
+              setReloadDocument={setReloadDocument}
+            />
+            <DocumentsList
+              reloadDocument={reloadDocument}
+              setReloadDocument={setReloadDocument}
+            />
+          </>
+        ) : (
+          <AddAnEvent />
+        )}
+      </Route>
+    </div>
+  );
+};
 
-export default AddEventOrDoc
+export default AddEventOrDoc;

@@ -26,7 +26,6 @@ const EventListApproved = ({ userInfo }) => {
           headers: { "Content-Type": "application/json" },
         }
       ).then((response) => response.json());
-      console.log("THIS IS THE guardianEventRESPONSE: ", guardianEventResponse);
       setApprovedMinorEvents(
         guardianEventResponse.sort((a, b) => a.event_id - b.event_id)
       );
@@ -39,10 +38,6 @@ const EventListApproved = ({ userInfo }) => {
           headers: { "Content-Type": "application/json" },
         }
       ).then((response) => response.json());
-      console.log(
-        "THIS IS THE APPROVED EVENTS FOR MINOR RESPONSE: ",
-        approvedEventsForMinorResponse
-      );
       setApprovedMinorEvents(approvedEventsForMinorResponse);
     };
     if (userInfo.is_guardian) {
@@ -55,7 +50,6 @@ const EventListApproved = ({ userInfo }) => {
 
   const _handleRemoveButton = (id) => {
     const fetchInsertIntoGuardianRemoved = async () => {
-      console.log("I MADE IT!", id);
       const insertIntoGuardianRemoved = await fetch(
         `${process.env.REACT_APP_HOST}/guardians/insertguardiandeniedbyactiviesID`,
         {
@@ -66,7 +60,6 @@ const EventListApproved = ({ userInfo }) => {
           }),
         }
       ).then((response) => response);
-      console.log(insertIntoGuardianRemoved);
     };
     fetchInsertIntoGuardianRemoved();
     setReload(!reload);

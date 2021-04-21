@@ -10,7 +10,6 @@ const VolunteerHrsById = ({ id }) => {
         )
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             setVH(data[0].sum);
           });
       };

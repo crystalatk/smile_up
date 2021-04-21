@@ -7,7 +7,6 @@ const TotalVolunteers = () => {
       const volunteerTotal = await fetch(
         `${process.env.REACT_APP_HOST}/volunteers/totalVolunteers`
       ).then((response) => response.json());
-      console.log("This is the volunteer total:", volunteerTotal);
       setTotalVolunteers(volunteerTotal.length);
     })();
   }, []);
