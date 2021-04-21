@@ -15,10 +15,6 @@ const EventCards = ({ userInfo, title }) => {
             headers: { "Content-Type": "application/json" },
           }
         ).then((response) => response.json());
-        console.log(
-          "THIS IS THE guardianEventRESPONSE: ",
-          guardianEventResponse
-        );
         setArrayToMap(
           guardianEventResponse.sort((a, b) => a.event_id - b.event_id)
         );
@@ -31,10 +27,6 @@ const EventCards = ({ userInfo, title }) => {
             headers: { "Content-Type": "application/json" },
           }
         ).then((response) => response.json());
-        console.log(
-          "THIS IS THE NeedsAPPROVED EVENTS FOR MINOR RESPONSE: ",
-          needsApprovedEventsForMinorResponse
-        );
         setArrayToMap(needsApprovedEventsForMinorResponse);
       };
       if (userInfo.is_guardian) {
@@ -53,10 +45,6 @@ const EventCards = ({ userInfo, title }) => {
             headers: { "Content-Type": "application/json" },
           }
         ).then((response) => response.json());
-        console.log(
-          "THIS IS THE guardianEventRESPONSE: ",
-          guardianEventResponse
-        );
         setArrayToMap(
           guardianEventResponse.sort((a, b) => a.event_id - b.event_id)
         );
@@ -69,10 +57,6 @@ const EventCards = ({ userInfo, title }) => {
             headers: { "Content-Type": "application/json" },
           }
         ).then((response) => response.json());
-        console.log(
-          "THIS IS THE APPROVED EVENTS FOR MINOR RESPONSE: ",
-          approvedEventsForMinorResponse
-        );
         setArrayToMap(approvedEventsForMinorResponse);
       };
       if (userInfo.is_guardian) {
@@ -95,7 +79,6 @@ const EventCards = ({ userInfo, title }) => {
           .catch((e) => {
             console.log(e);
           });
-        console.log("THIS IS THE EVENTS LIST RESPONSE: ", eventListResponse);
         setArrayToMap(eventListResponse);
       };
       fetchList();

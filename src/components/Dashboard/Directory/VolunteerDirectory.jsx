@@ -40,7 +40,6 @@ const VolunteerDirectory = ({ userInfo }) => {
   };
 
   useEffect(() => {
-    console.log(userInfo);
     const fetchVolunteerList = async () => {
       const VolunteerListResponse = await fetch(
         "http://127.0.0.1:3232/admins/volunteerslist"
@@ -49,14 +48,11 @@ const VolunteerDirectory = ({ userInfo }) => {
         .catch((e) => {
           console.log(e);
         });
-      console.log(
-        "THIS IS THE VOLUNTEER LIST RESPONSE: ",
-        VolunteerListResponse
-      );
       setVolunteersData(VolunteerListResponse);
     };
     fetchVolunteerList();
   }, [userInfo]);
+
   return (
     <>
       {userInfo.is_admin ? (
@@ -84,7 +80,6 @@ const VolunteerDirectory = ({ userInfo }) => {
                   icon: Edit,
                   tooltip: "Edit Volunteer",
                   onClick: (event, rowData) => {
-                    // console.log("THIS IS THE ROW DATA: ", rowData);
                     history.push(`/profile/editprofile/${rowData.id}`);
                   },
                 },
@@ -92,7 +87,6 @@ const VolunteerDirectory = ({ userInfo }) => {
                   icon: AccountCircleIcon,
                   tooltip: "Go to Volunteer Profile",
                   onClick: (event, rowData) => {
-                    // console.log("THIS IS THE ROW DATA: ", rowData);
                     history.push(`/profile/adminview/${rowData.id}`);
                   },
                 },

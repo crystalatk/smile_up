@@ -78,7 +78,6 @@ const EventList = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    console.log();
     const fetchList = async () => {
       const eventListResponse = await fetch(
         `http://127.0.0.1:3232/events/list`,
@@ -91,7 +90,6 @@ const EventList = () => {
         .catch((e) => {
           console.log(e);
         });
-      console.log("THIS IS THE EVENTS LIST RESPONSE: ", eventListResponse);
       setEventList(eventListResponse);
     };
     fetchList();

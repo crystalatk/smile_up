@@ -15,7 +15,6 @@ const Nav = ({ userInfo }) => {
           headers: { "Content-Type": "application/json" },
         }
       ).then((response) => response.json());
-      console.log("THIS IS THE guardianEventRESPONSE: ", guardianEventResponse);
       setNumberOfApprovalsWaiting(guardianEventResponse.length);
     };
     const fetchNeedsApprovalEventsForMinor = async () => {
@@ -26,10 +25,6 @@ const Nav = ({ userInfo }) => {
           headers: { "Content-Type": "application/json" },
         }
       ).then((response) => response.json());
-      console.log(
-        "THIS IS THE APPROVED EVENTS FOR MINOR RESPONSE: ",
-        needsApprovalEventsForMinorResponse
-      );
       setNumberOfApprovalsWaiting(needsApprovalEventsForMinorResponse.length);
     };
     if (userInfo.is_guardian) {

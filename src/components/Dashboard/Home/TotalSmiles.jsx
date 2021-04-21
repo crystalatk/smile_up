@@ -7,7 +7,6 @@ const TotalSmiles = () => {
       fetch("http://127.0.0.1:3232/volunteers/totalSmiles")
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setTotalSmiles(data[0].sum);
         });
     };

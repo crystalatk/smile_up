@@ -58,19 +58,10 @@ const CheckInVolunteersList = ({ event_id, userInfo }) => {
         .catch((e) => {
           console.log(e);
         });
-      console.log(
-        "THESE ARE THE VOLUNTEERS ATTENDING",
-        volunteersAttendingResponse
-      );
       setVolunteersAttending(volunteersAttendingResponse);
     };
     fetchVolunteersAttending();
   }, [event_id]);
-
-  useEffect(() => {
-    console.log(volunteersAttending);
-    console.log(searchBoxInput);
-  }, [volunteersAttending, searchBoxInput]);
 
   return (
     <>

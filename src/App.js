@@ -37,14 +37,6 @@ function App() {
     title: "",
   });
 
-  // useEffect for console logs
-  useEffect(() => {
-    console.log(
-      "THESE ARE THE EVENT DETAILS FOR EDIT PURPOSE: ",
-      eventDetailsForEditPurposes
-    );
-  }, [eventDetailsForEditPurposes]);
-
   return (
     <div className={userInfo.isLoggedIn ? "App-user" : "App"}>
       <Router>

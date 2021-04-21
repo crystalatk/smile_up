@@ -102,7 +102,6 @@ const NewMinorAccount = () => {
       const data = await fetch(
         `http://127.0.0.1:3232/volunteers/profile/?id=${guardianid}`
       ).then((response) => response.json());
-      console.log("the data is ", data);
       setZipCode(data.zip_code);
       setEmergencyName(`${data.first_name} ${data.last_name}`);
       setEmergencyPhone(data.phone);
@@ -171,16 +170,11 @@ const NewMinorAccount = () => {
     setNeedsAdditionalForm(e.target.value === "yes");
   };
 
-  useEffect(() => {
-    console.log("THIS IS THE NEEDS ADDITIONAL USE EFFECT", needsAdditionalForm);
-  }, [needsAdditionalForm]);
-
   const _handleSubmit = async (e) => {
     e.preventDefault();
     const isUsername = await fetch(
       `http://127.0.0.1:3232/login/username/?username=${username}`
     ).then((response) => response.json());
-    console.log("THIS IS THE ISUSESRNAME RESPONSE: ", isUsername);
     if (isUsername) {
       if (password2 === password) {
         const submitResponse = await fetch(
@@ -222,7 +216,6 @@ const NewMinorAccount = () => {
         setMinorFormSubmitted(true);
         setIsGuardian(false);
         !needsAdditionalForm && history.push("/");
-        console.log("submit response is ", submitResponse);
         await fetch(`http://127.0.0.1:3232/volunteers/linkminor`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -254,8 +247,8 @@ const NewMinorAccount = () => {
       <h2>Create a new account for your minor:</h2>
       <form className={classes} onSubmit={_handleSubmit}>
         <div>
-        <FormControl>
-        <TextField
+          <FormControl>
+            <TextField
               required
               id="outlined-required-username"
               label="Create Username"
@@ -290,11 +283,11 @@ const NewMinorAccount = () => {
               onChange={_handlePassword2Change}
               required
             />
-        </FormControl>
-        {!!passwordsMatch ? null : (
-          <h6 className="f-red f-small">Your passwords do not match</h6>
-        )}
-        <TextField
+          </FormControl>
+          {!!passwordsMatch ? null : (
+            <h6 className="f-red f-small">Your passwords do not match</h6>
+          )}
+          <TextField
             required
             id="outlined-required-first-name"
             label="First Name"
@@ -304,7 +297,7 @@ const NewMinorAccount = () => {
             onChange={_handleFirstNameChange}
             type="text"
           />
-        <TextField
+          <TextField
             required
             id="outlined-required-last-name"
             label="Last Name"
@@ -314,7 +307,7 @@ const NewMinorAccount = () => {
             onChange={_handleLastNameChange}
             type="text"
           />
-        <TextField
+          <TextField
             required
             id="outlined-required-date-of-birth"
             label="Date of Birth"
@@ -327,7 +320,7 @@ const NewMinorAccount = () => {
               shrink: true,
             }}
           />
-        <TextField
+          <TextField
             required
             id="outlined-required-email"
             label="Email"
@@ -337,7 +330,7 @@ const NewMinorAccount = () => {
             value={email}
             onChange={_handleEmailChange}
           />
-        <TextField
+          <TextField
             required
             id="outlined-required-zipcode"
             label="Zip Code"
@@ -347,7 +340,7 @@ const NewMinorAccount = () => {
             value={zipCode}
             onChange={_handleZipCodeChange}
           />
-        <FormControl>
+          <FormControl>
             <InputLabel htmlFor="num">Phone Number</InputLabel>
             <Input
               required
@@ -359,8 +352,8 @@ const NewMinorAccount = () => {
               onChange={_handlePhoneNumberChange}
             />
           </FormControl>
-          </div>
-          <div>
+        </div>
+        <div>
           <TextField
             required
             id="outlined-required-e-name"
@@ -388,32 +381,35 @@ const NewMinorAccount = () => {
           </FormControl>
         </div>
         <div>
-        <FormControl>
-          <FormLabel component="legend">
-          Would you like to register another minor after you submit this form?
-          </FormLabel>
-          <label
-            aria-label="gender"
-            name="is_guardian"
-            onChange={_handleNeedsAdditionalFormChange}
-          >
-          <FormControlLabel
-            value="yes"
-            control={<Radio />}
-            label="Yes"
-            checked={needsAdditionalForm}
-          />
-          <FormControlLabel
-            value="no"
-            control={<Radio />}
-            label="No"
-            checked={!needsAdditionalForm}
-          />
-          </label>
-        </FormControl>{" "}
+          <FormControl>
+            <FormLabel component="legend">
+              Would you like to register another minor after you submit this
+              form?
+            </FormLabel>
+            <label
+              aria-label="gender"
+              name="is_guardian"
+              onChange={_handleNeedsAdditionalFormChange}
+            >
+              <FormControlLabel
+                value="yes"
+                control={<Radio />}
+                label="Yes"
+                checked={needsAdditionalForm}
+              />
+              <FormControlLabel
+                value="no"
+                control={<Radio />}
+                label="No"
+                checked={!needsAdditionalForm}
+              />
+            </label>
+          </FormControl>{" "}
         </div>
-        
-        <Fab type="submit" size="large">Submit</Fab>
+
+        <Fab type="submit" size="large">
+          Submit
+        </Fab>
         {!!usernameTaken ? (
           <h6 className="f-red f-small">Your username is taken.</h6>
         ) : null}

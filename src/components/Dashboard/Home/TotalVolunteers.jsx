@@ -7,7 +7,6 @@ const TotalVolunteers = () => {
       const volunteerTotal = await fetch(
         "http://127.0.0.1:3232/volunteers/totalVolunteers"
       ).then((response) => response.json());
-      console.log("This is the volunteer total:", volunteerTotal);
       setTotalVolunteers(volunteerTotal.length);
     })();
   }, []);

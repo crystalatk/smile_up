@@ -16,7 +16,6 @@ const CheckIn = () => {
         .catch((e) => {
           console.log(e);
         });
-      console.log("THIS IS THE VOLUNTEER INFO: ", VolunteerInfoResponse);
       setVolunteerInfo(VolunteerInfoResponse);
     };
     fetchVolunteerInfo();
@@ -36,10 +35,6 @@ const CheckIn = () => {
           }),
         }
       ).then((response) => response);
-      console.log(
-        "THIS IS THE INSERT CHECK IN TIME RESPONSE: ",
-        InsertCheckInTimeResponse
-      );
     };
     fetchInsertCheckInTime();
     history.goBack();

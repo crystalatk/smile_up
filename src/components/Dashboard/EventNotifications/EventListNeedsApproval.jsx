@@ -26,7 +26,6 @@ const EventListNeedsApproval = ({ userInfo }) => {
           headers: { "Content-Type": "application/json" },
         }
       ).then((response) => response.json());
-      console.log("THIS IS THE guardianEventRESPONSE: ", guardianEventResponse);
       setApprovedMinorEvents(
         guardianEventResponse.sort((a, b) => a.event_id - b.event_id)
       );
@@ -39,10 +38,6 @@ const EventListNeedsApproval = ({ userInfo }) => {
           headers: { "Content-Type": "application/json" },
         }
       ).then((response) => response.json());
-      console.log(
-        "THIS IS THE APPROVED EVENTS FOR MINOR RESPONSE: ",
-        approvedEventsForMinorResponse
-      );
       setApprovedMinorEvents(approvedEventsForMinorResponse);
     };
     if (userInfo.is_guardian) {
@@ -55,7 +50,6 @@ const EventListNeedsApproval = ({ userInfo }) => {
 
   const _handleRemoveButton = (id) => {
     const fetchInsertIntoGuardianRemoved = async () => {
-      console.log("I MADE IT!", id);
       const insertIntoGuardianRemoved = await fetch(
         `http://127.0.0.1:3232/guardians/insertguardiandeniedbyactiviesID`,
         {
@@ -66,7 +60,6 @@ const EventListNeedsApproval = ({ userInfo }) => {
           }),
         }
       ).then((response) => response);
-      console.log(insertIntoGuardianRemoved);
       setReload(!reload);
     };
     fetchInsertIntoGuardianRemoved();
@@ -74,7 +67,6 @@ const EventListNeedsApproval = ({ userInfo }) => {
 
   const _handleApproveButton = (id) => {
     const fetchInsertIntoGuardianApproved = async () => {
-      console.log("I MADE IT!", id);
       const insertIntoGuardianApproved = await fetch(
         `http://127.0.0.1:3232/guardians/insertguardianapprovedbyactiviesID`,
         {
@@ -85,15 +77,10 @@ const EventListNeedsApproval = ({ userInfo }) => {
           }),
         }
       ).then((response) => response);
-      console.log(insertIntoGuardianApproved);
       setReload(!reload);
     };
     fetchInsertIntoGuardianApproved();
   };
-
-  useEffect(() => {
-    console.log(approvedMinorEvents);
-  }, [approvedMinorEvents]);
 
   return (
     <>

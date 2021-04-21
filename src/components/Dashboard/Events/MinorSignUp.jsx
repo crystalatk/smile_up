@@ -29,7 +29,6 @@ const MinorSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
         }),
       }
     ).then((response) => response.json());
-    console.log(insertResponse);
     history.goBack();
   };
 

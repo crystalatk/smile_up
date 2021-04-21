@@ -7,7 +7,6 @@ const VolunteerHours = () => {
       fetch("http://127.0.0.1:3232/volunteers/volunteerHours")
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setVolunteerHours(data[0].sum);
         });
     };
