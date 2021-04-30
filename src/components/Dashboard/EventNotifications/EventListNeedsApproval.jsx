@@ -50,8 +50,10 @@ const EventListNeedsApproval = ({ userInfo }) => {
 
   const _handleRemoveButton = (id) => {
     const fetchInsertIntoGuardianRemoved = async () => {
+
       const insertIntoGuardianRemoved = await fetch(
         `${process.env.REACT_APP_HOST}/guardians/insertguardiandeniedbyactiviesID`,
+
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -67,8 +69,10 @@ const EventListNeedsApproval = ({ userInfo }) => {
 
   const _handleApproveButton = (id) => {
     const fetchInsertIntoGuardianApproved = async () => {
+
       const insertIntoGuardianApproved = await fetch(
         `${process.env.REACT_APP_HOST}/guardians/insertguardianapprovedbyactiviesID`,
+
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

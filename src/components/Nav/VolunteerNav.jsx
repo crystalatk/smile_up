@@ -6,8 +6,8 @@ import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import AddToHomeScreenRoundedIcon from "@material-ui/icons/AddToHomeScreenRounded";
-import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
 import NotificationIcon from "./NotificationIcon";
+import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 import smilelg from "../../images/smilelg.gif";
 
 const useStyles = makeStyles({
@@ -60,20 +60,20 @@ const VolunteerNav = ({
       >
         <BottomNavigationAction
           component={Link}
-          to={`/profile/myprofile/${userInfo.id}`}
-          selected={`/profile/myprofile/${userInfo.id}` === location.pathname}
-          label="Profile"
-          value="profile"
-          icon={<AccountCircleIcon />}
-          className={classes.icon}
-        />
-        <BottomNavigationAction
-          component={Link}
           to="/events"
           selected={"/events" === location.pathname}
           label="Events"
           value="events"
           icon={<AddToHomeScreenRoundedIcon />}
+          className={classes.icon}
+        />
+        <BottomNavigationAction
+          component={Link}
+          to={`/friends`}
+          selected={`/friends` === location.pathname}
+          label="Friends"
+          value="friends"
+          icon={<PeopleAltIcon />}
           className={classes.icon}
         />
         <BottomNavigationAction
@@ -98,14 +98,13 @@ const VolunteerNav = ({
           }
           className={classes.icon}
         />
-
         <BottomNavigationAction
           component={Link}
-          to={`/donate`}
-          selected={`/donate` === location.pathname}
-          label="Donate"
-          value="donate"
-          icon={<MonetizationOnIcon />}
+          to={`/profile/myprofile/${userInfo.id}`}
+          selected={`/profile/myprofile/${userInfo.id}` === location.pathname}
+          label="Profile"
+          value="profile"
+          icon={<AccountCircleIcon />}
           className={classes.icon}
         />
       </BottomNavigation>

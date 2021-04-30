@@ -17,6 +17,7 @@ const MinorSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
 
   const _handleSubmit = (e) => {
     e.preventDefault();
+
     const insertResponse = fetch(
       `${process.env.REACT_APP_HOST}/volunteers/insertvolunteeractivity`,
       {
