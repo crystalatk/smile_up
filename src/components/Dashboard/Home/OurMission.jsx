@@ -24,6 +24,8 @@ const OurMission = () => {
       <OMCard2 />
     </div>
   );
+
 };
 
 export default OurMission;
+

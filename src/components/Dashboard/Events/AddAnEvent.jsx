@@ -40,7 +40,7 @@ const AddAnEvent = () => {
   //   Function to Handle Submit
   const _handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch(`http://127.0.0.1:3232/admins/addevent`, {
+    await fetch(`${process.env.REACT_APP_HOST}/admins/addevent`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

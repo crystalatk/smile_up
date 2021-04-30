@@ -72,7 +72,7 @@ const EditEvent = ({
     e.preventDefault();
     setUpdateButton(true);
     try {
-      const response = await fetch(`http://127.0.0.1:3232/admins/editevent`, {
+      const response = await fetch(`process.env.REACT_APP_HOST}/admins/editevent`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

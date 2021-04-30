@@ -80,7 +80,7 @@ const EventList = () => {
   useEffect(() => {
     const fetchList = async () => {
       const eventListResponse = await fetch(
-        `http://127.0.0.1:3232/events/list`,
+        `${process.env.REACT_APP_HOST}/events/list`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },

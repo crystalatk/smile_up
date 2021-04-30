@@ -1,25 +1,27 @@
 import { useState, useEffect } from "react";
 
-const DocumentsList = ({ reloadDocument }) => {
-  const [documentArray, setDocumentArray] = useState([]);
 
-  useEffect(() => {
-    const fetchList = async () => {
-      const documentListResponse = await fetch(
-        `http://127.0.0.1:3232/events/getdocuments`,
-        {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-        }
-      )
-        .then((response) => response.json())
-        .catch((e) => {
-          console.log(e);
-        });
-      setDocumentArray(documentListResponse);
-    };
-    fetchList();
-  }, [reloadDocument]);
+const DocumentsList = ({reloadDocument}) => {
+    const [documentArray, setDocumentArray] = useState([]);
+    
+    useEffect(() => {
+        const fetchList = async () => {
+            const documentListResponse = await fetch(
+                `${process.env.REACT_APP_HOST}/events/getdocuments`,
+                {
+                method: "GET",
+                headers: { "Content-Type": "application/json" },
+                }
+            )
+                .then((response) => response.json())
+                .catch((e) => {
+                console.log(e);
+                });
+            setDocumentArray(documentListResponse);
+        };
+        fetchList();
+    }, [reloadDocument]);
+
 
   return (
     <div>

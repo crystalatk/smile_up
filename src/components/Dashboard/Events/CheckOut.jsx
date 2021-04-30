@@ -10,7 +10,7 @@ const CheckOut = () => {
   useEffect(() => {
     const fetchVolunteerInfo = async () => {
       const VolunteerInfoResponse = await fetch(
-        `http://127.0.0.1:3232/volunteers/volunteerinfofromvaid/?va_id=${va_id}`
+        `${process.env.REACT_APP_HOST}/volunteers/volunteerinfofromvaid/?va_id=${va_id}`
       )
         .then((response) => response.json())
         .catch((e) => {
@@ -24,14 +24,17 @@ const CheckOut = () => {
   const _handleSubmitCheckOut = (e) => {
     e.preventDefault();
     const fetchInsertCheckOutTime = async () => {
-      await fetch(`http://127.0.0.1:3232/admins/insertcheckinouttime`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          va_id: va_id,
-          event: "check_out_time",
-        }),
-      }).then((response) => response);
+      const InsertCheckOutTimeResponse = await fetch(
+        `${process.env.REACT_APP_HOST}/admins/insertcheckinouttime`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            va_id: va_id,
+            event: "check_out_time",
+          }),
+        }
+      ).then((response) => response);
     };
     fetchInsertCheckOutTime();
     history.goBack();
