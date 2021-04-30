@@ -68,7 +68,7 @@ const GuardianSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
     };
     getMinorData();
     fetchVolunteersSignedUp();
-  }, [userInfo]);
+  }, [userInfo, event_id]);
 
   return (
     <div className="sign-up-container">

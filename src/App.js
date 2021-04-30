@@ -1,5 +1,5 @@
 import { BrowserRouter as Router } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import Dashboard from "./components/Dashboard/Dashboard";

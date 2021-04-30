@@ -17,18 +17,15 @@ const MinorSignUp = ({ userInfo, eventDetailsForEditPurposes }) => {
 
   const _handleSubmit = (e) => {
     e.preventDefault();
-    const insertResponse = fetch(
-      `http://127.0.0.1:3232/volunteers/insertvolunteeractivity`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          volunteer_id: userInfo.id,
-          event_id: event_id,
-          guardian_approval: false,
-        }),
-      }
-    ).then((response) => response.json());
+    fetch(`http://127.0.0.1:3232/volunteers/insertvolunteeractivity`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        volunteer_id: userInfo.id,
+        event_id: event_id,
+        guardian_approval: false,
+      }),
+    }).then((response) => response.json());
     history.goBack();
   };
 

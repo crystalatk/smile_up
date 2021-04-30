@@ -50,7 +50,7 @@ const EventListApproved = ({ userInfo }) => {
 
   const _handleRemoveButton = (id) => {
     const fetchInsertIntoGuardianRemoved = async () => {
-      const insertIntoGuardianRemoved = await fetch(
+      await fetch(
         `http://127.0.0.1:3232/guardians/insertguardiandeniedbyactiviesID`,
         {
           method: "POST",

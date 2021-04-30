@@ -34,20 +34,17 @@ const AddDocument = ({ userInfo, reloadDocument, setReloadDocument }) => {
           .child(documentFile.name)
           .getDownloadURL()
           .then(async function (url) {
-            const response = await fetch(
-              `http://127.0.0.1:3232/admins/addDocument`,
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  is_general: isGeneral,
-                  event_id: eventId,
-                  document_title: documentTitle,
-                  document_url: url,
-                  admin_id: userInfo.id,
-                }),
-              }
-            ).then((response) => response);
+            await fetch(`http://127.0.0.1:3232/admins/addDocument`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                is_general: isGeneral,
+                event_id: eventId,
+                document_title: documentTitle,
+                document_url: url,
+                admin_id: userInfo.id,
+              }),
+            }).then((response) => response);
             setIsUploaded(true);
             setReloadDocument(!reloadDocument);
           });

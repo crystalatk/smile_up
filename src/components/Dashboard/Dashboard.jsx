@@ -11,7 +11,7 @@ import OurMission from "./Home/OurMission";
 import LoginVolunteers from "../Header/LoginVolunteers";
 import NewNonMinorAccount from "../Header/NewNonMinorAccount";
 import NewMinorAccount from "../Header/NewMinorAccount";
-
+import FriendsList from "./Friends/FriendsList";
 
 const Dashboard = ({
   userInfo,
@@ -65,13 +65,16 @@ const Dashboard = ({
       </Route>
 
       <Route path="/addevent">
-        <AddEventOrDoc userInfo={userInfo}/>
+        <AddEventOrDoc userInfo={userInfo} />
       </Route>
       <Route path="/notifications/:index">
         <EventNotifications userInfo={userInfo} />
       </Route>
       <Route path="/donate">
         <Donate />
+      </Route>
+      <Route path="/friends">
+        <FriendsList userInfo={userInfo} />
       </Route>
     </>
   );

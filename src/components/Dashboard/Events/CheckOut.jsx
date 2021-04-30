@@ -24,17 +24,14 @@ const CheckOut = () => {
   const _handleSubmitCheckOut = (e) => {
     e.preventDefault();
     const fetchInsertCheckOutTime = async () => {
-      const InsertCheckOutTimeResponse = await fetch(
-        `http://127.0.0.1:3232/admins/insertcheckinouttime`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            va_id: va_id,
-            event: "check_out_time",
-          }),
-        }
-      ).then((response) => response);
+      await fetch(`http://127.0.0.1:3232/admins/insertcheckinouttime`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          va_id: va_id,
+          event: "check_out_time",
+        }),
+      }).then((response) => response);
     };
     fetchInsertCheckOutTime();
     history.goBack();

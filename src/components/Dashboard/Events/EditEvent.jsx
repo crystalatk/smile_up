@@ -5,7 +5,10 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Button from "@material-ui/core/Button";
 
-const EditEvent = ({ eventDetailsForEditPurposes }) => {
+const EditEvent = ({
+  eventDetailsForEditPurposes,
+  setEventDetailsForEditPurposes,
+}) => {
   const [title, setTitle] = useState(eventDetailsForEditPurposes.title);
   const [dateStart, setDateStart] = useState(
     new Date(eventDetailsForEditPurposes.date_start)
@@ -42,6 +45,7 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
   const [isChecked, setIsChecked] = useState(
     eventDetailsForEditPurposes.adults_needed
   );
+  const [updateButton, setUpdateButton] = useState(false);
   const myAlert = useAlert();
   const history = useHistory();
   const filterPassedTime = (time) => {
@@ -66,41 +70,50 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
   //   Function to Handle Submit
   const _handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch(`http://127.0.0.1:3232/admins/editevent`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        event_id: eventDetailsForEditPurposes.id,
-        title: title,
-        date_start: dateStart,
-        date_stop: dateStop,
-        location: location,
-        description: description,
-        headcount_served_potential: headcountServedPotential,
-        signup_deadline: signupDeadline,
-        age_min: ageMin,
-        min_participants: minParticipants,
-        max_participants: maxParticipants,
-        adults_needed: adultsNeeded,
-        num_adults: numAdults,
-        alerts: alerts,
-      }),
-    }).then((response) => response);
-    myAlert.success("Your event has been updated!");
-    setTitle("");
-    setSignupDeadline(new Date());
-    setDateStart(new Date());
-    setDateStop(new Date());
-    setLocation("");
-    setDescription("");
-    setHeadcountServedPotential("");
-    setAgeMin("");
-    setMinParticipants("");
-    setMaxParticipants("");
-    setAdultsNeeded(false);
-    setNumAdults(0);
-    setAlerts("");
-    setIsChecked(false);
+    setUpdateButton(true);
+    try {
+      const response = await fetch(`http://127.0.0.1:3232/admins/editevent`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          event_id: eventDetailsForEditPurposes.id,
+          title: title,
+          date_start: dateStart,
+          date_stop: dateStop,
+          location: location,
+          description: description,
+          headcount_served_potential: headcountServedPotential,
+          signup_deadline: signupDeadline,
+          age_min: ageMin,
+          min_participants: minParticipants,
+          max_participants: maxParticipants,
+          adults_needed: adultsNeeded,
+          num_adults: numAdults,
+          alerts: alerts,
+        }),
+      }).then((response) => response.json());
+      myAlert.success("Your event has been updated!");
+      setTitle(response.title);
+      setSignupDeadline(new Date());
+      setDateStart(new Date());
+      setDateStop(new Date());
+      setLocation("");
+      setDescription("");
+      setHeadcountServedPotential("");
+      setAgeMin("");
+      setMinParticipants("");
+      setMaxParticipants("");
+      setAdultsNeeded(false);
+      setNumAdults(0);
+      setAlerts("");
+      setIsChecked(false);
+    } catch (err) {
+      console.log(err.message);
+      myAlert.success("Your event could not be updated");
+    } finally {
+      setUpdateButton(false);
+    }
+
     history.push(`/events/eventdetails/${eventDetailsForEditPurposes.id}`);
   };
 
@@ -281,9 +294,15 @@ const EditEvent = ({ eventDetailsForEditPurposes }) => {
             />
           </label>
         </div>
-        <Button type="submit" variant="outlined">
-          Update my Event
-        </Button>
+        {!!updateButton ? (
+          <Button type="button" disabled variant="outlined">
+            Updating Event
+          </Button>
+        ) : (
+          <Button type="submit" variant="outlined">
+            Update my Event
+          </Button>
+        )}
       </form>
       <Button
         type="button"

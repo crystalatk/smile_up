@@ -33,6 +33,7 @@ const Events = ({
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
   return (
     <>
       <Route exact path="/events">
